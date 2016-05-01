@@ -1,0 +1,12 @@
+{
+  "name": "import",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Granger",
+  "license": "MIT",
+  "devDependencies": {
+    "lodash": "^4.11.1"
+  }
+}
