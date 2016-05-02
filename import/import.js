@@ -103,8 +103,8 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       c.format = 'Wild';
     }
 
-    //remove heroes and hero skins
-    if ( c.type !== 'HERO_SKINS' && c.set !== 'HERO'){
+    //remove heroes
+    if ( c.type !== 'HERO'){
       cards_to_keep.push(c);
     };
 
