@@ -89,10 +89,21 @@
   width: 100%
 }
 
+.ais-root__collapsible::before{
+  float: right;
+  content: "-";
+  width: 12px;
+  color: white;
+  font-size: 1.2em;
+}
+&.ais-root__collapsed::before{
+  content: "+";
+}
+
 .ais-refinement-list--item,
 .ais-toggle--item,
 .ais-menu--item {
-   a {
+  a {
     display: inline-block;
     width: 100%;
     color: rgba(white,.8);
@@ -102,7 +113,7 @@
     text-decoration: none;
     -webkit-font-smoothing: antialiased;
     &.active{
-      color: white;
+      color: yellow;
       font-weight: bold;
     }
   }
@@ -129,6 +140,9 @@
     display: inline-block;
     a{
       width: 20px;
+      &.active::before{
+        box-shadow: inset 0 0 0 2px rgba(white,.5);
+      }
     }
     .list-group-item::before {
       content: "";
@@ -145,7 +159,7 @@
       background-color: #444;
   }
   .list-group-item[data-facet-value="Common"]:before {
-      background-color: #BFC1BE;
+      background-color: #888;
   }
   .list-group-item[data-facet-value="Rare"]:before {
       background-color: #236BD2;
@@ -162,24 +176,44 @@
   .ais-refinement-list--item{
     display: inline-block;
     text-align: center;
-    width: 22px;
-    margin-right: 4px;
-    font-size: 1em;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 8px;
+    margin-top: 8px;
     font-family: 'Merriweather', serif;
-    font-size: .95em;
     background: url(img/gem.png) no-repeat;
     background-size: 100%;
-     a {
-       color: white;
-       text-shadow: -1px -1px 0 #000,
+    a {
+      font-size: 1em;
+      color: white;
+      text-shadow: -1px -1px 0 #000,
         2px -1px 0 #000,
-       -1px  2px 0 #000,
+        -1px  2px 0 #000,
         2px  2px 0 #000,
         0  2px 0 #000,
         0  -2px 0 #000,
         -2px 0 0 #000,
         2px 0 0 #000;
-     }
+      &.active{
+        color:yellow;
+      }
+    }
+  }
+}
+
+#format{
+  .list-group-item::before{
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height:22px;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+    background: url('img/SetIcons.png');
+    background-size: 140px;
+    background-position: 138px -22px;
   }
 }
 
@@ -188,7 +222,6 @@
   .ais-menu--item {
     display: inline-block;
     margin-right: 14px;
-
     a{
       color: rgba(white,.8);
       font-weight: normal;
@@ -197,7 +230,9 @@
       font-weight: bold;
       text-decoration: none;
       -webkit-font-smoothing: antialiased;
-
+      &.active{
+        color:yellow;
+      }
       em {
        font-style: normal;
        font-weight: 800;

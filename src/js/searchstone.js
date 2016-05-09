@@ -73,13 +73,13 @@ searchstone.addWidget(
     container: "#refinements",
     clearAll: false,
     attributes: [
-      {name: 'cost', template: '<a href="javascript:void(0)">Mana {{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>'},
-      {name: 'setFull'},
-      {name: 'format'},
-      {name: 'rarity'},
-      {name: 'type'},
-      {name: 'race'},
-      {name: 'mechanics'},
+      // {name: 'cost', template: '<a href="javascript:void(0)">Mana {{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>'},
+      // {name: 'setFull'},
+      // {name: 'format'},
+      // {name: 'rarity'},
+      // {name: 'type'},
+      // {name: 'race'},
+      // {name: 'mechanics'},
       {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'}
     ],
     onlyListedAttributes: true,
@@ -116,6 +116,7 @@ searchstone.addWidget(
     container: '#cost',
     attributeName: 'cost',
     options: [
+      // {name: 'all'},
       {start: 0, end: 0, name: '0'},
       {start: 1, end: 1, name: '1'},
       {start: 2, end: 2, name: '2'},
@@ -127,7 +128,7 @@ searchstone.addWidget(
     ],
     templates: {
       header: 'Cost',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
+      item: '<a href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
     }
   })
 );
@@ -138,12 +139,12 @@ searchstone.addWidget(
     attributeName: 'format',
     values: {
       on: "Standard",
-      off: undefined
+      off: "Wild"
     },
     label: "Restrict to Standard",
     templates: {
       header: 'Format',
-      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
     }
   })
 );
