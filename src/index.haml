@@ -42,8 +42,8 @@
 
       %script#hit-template{type: "text/template"}
         .hit
-          .card-wrapper{class: "type-{{type}}",style: "background: url('http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_40,q_60,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/{{ id }}.png');background-size:100%;background-position:0 -20px"}
-            %img.card-picture{data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-name: "", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-texture:"{{texture}}", data-card-type: "{{type}}"}
+          .card-wrapper{class: "type-{{type}}",style: "background: url('http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_40,q_60,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/{{ id }}.png');background-size:100%;background-position:0 -25px"}
+            %img.card-picture{data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-texture:"{{texture}}", data-card-type: "{{type}}"}
             .card-health {{health}}
             .card-attack {{attack}}
             .card-cost {{cost}}
@@ -53,23 +53,25 @@
               %text.card-text{text-anchor: "middle"}
                 %textPath{ startOffset:"50%", xlink:href: "{{textPath}}"}
                   %tspan{dy: "0.3em"}
-                    {{{_highlightResult.name.enUS.value}}}
+                    {{{_highlightResult.name.value}}}
             .card-description
               %span
-                {{{_highlightResult.text.enUS.value}}}
+                {{{_highlightResult.text.value}}}
           -# .card-infos {{set}} - {{{_highlightResult.name.frFR.value}}}
 
     %aside
-      %section#refinements
-      %section#playerClass
-      %section#set
-      %section#format
+      %section#lang
       %section#rarity
       %section#cost
-      %section#race
+      %section#format
+      %section#set
       %section#type
+      %section#race
+      %section#mechanics
 
     %main
+      %section#playerClass
+      %section#refinements
       %section#results
       %section#pagination
       %section.poweredby Built with
@@ -108,17 +110,18 @@
 
 
   %script
-    var sunwell= {settings : {
-      titleFont: 'arial',
-      bodyFont: 'arial',
-      bodyFontSize: 24,
-      bodyLineHeight: 55,
-      bodyFontOffset: {x: 0, y: 0},
-      assetFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,q_80/',
-      textureFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/',
-      autoInit: false,
-      debug: false
-    }
+    var sunwell= {
+      settings : {
+        titleFont: 'arial',
+        bodyFont: 'arial',
+        bodyFontSize: 24,
+        bodyLineHeight: 55,
+        bodyFontOffset: {x: 0, y: 0},
+        assetFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,q_80/',
+        textureFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/',
+        autoInit: false,
+        debug: false
+      }
     };
   %script{src: "js/sunwell.js"}
   %script{src: "js/app.js"}

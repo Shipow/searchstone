@@ -1,4 +1,6 @@
+
 #refinements {
+  text-align: center;
   > li, div {
     list-style: none;
     display: inline-block;
@@ -39,206 +41,213 @@
   }
 }
 
-.ais-refinement-list--item a, .ais-menu--item a{
+.ais-refinement-list--item {
+  width: 100%
+}
+
+.ais-refinement-list--item a {
   display: inline-block;
-  color: white;
+  width: 100%;
+  color: rgba(white,.8);
   font-weight: normal;
   cursor: pointer;
   font-size: 1.05em;
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
 
-  &:hover {
-    background: rgba(#00A3FF,.5);
-  }
-
-  em {
-    font-style: normal;
-    font-weight: 800;
-  }
 }
 
 
 .badge {
+  float: right;
   color: #777;
 }
 
 .ais-header{
   color: white;
-  font-family: 'Merriweather', serif;
-  margin-bottom: 8px;
+  font-size: 1.1em;
+  font-family: 'Archivo Narrow', sans-serif;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  border-bottom: solid #333 1px;
 }
 
-.ais-refinement-list--item, .ais-menu--item {
-  width: 100%
+
+
+#rarity{
+  .ais-refinement-list--item{
+    width: 30px;
+    display: inline-block;
+    a{
+      width: 20px;
+    }
+  }
+
+
+  .list-group-item[data-facet-value="Free"]:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height:20px;
+      background-color: #444;
+      border-radius: 50%;
+      position: relative;
+      top: 5px;
+      margin-right: 4px;
+  }
+
+  .list-group-item[data-facet-value="Common"]:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height:20px;
+      background-color: #BFC1BE;
+      border-radius: 50%;
+      position: relative;
+      top: 5px;
+      margin-right: 4px;
+  }
+  .list-group-item[data-facet-value="Rare"]:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height:20px;
+      background-color: #236BD2;
+      border-radius: 50%;
+      position: relative;
+      top: 5px;
+      margin-right: 4px;
+  }
+  .list-group-item[data-facet-value="Legendary"]:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height:20px;
+      background-color: #CD7400;
+      border-radius: 50%;
+      position: relative;
+      top: 5px;
+      margin-right: 4px;
+  }
+  .list-group-item[data-facet-value="Epic"]:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height:20px;
+      background-color: #BF28E7;
+      border-radius: 50%;
+      position: relative;
+      top: 5px;
+      margin-right: 4px;
+  }
 }
 
 
-#rarity .list-group-item[data-facet-value="Free"]:before {
-    content: "";
+#cost{
+  .ais-refinement-list--item{
     display: inline-block;
-    width: 20px;
-    height:20px;
-    background-color: #444;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
+    text-align: center;
+    width: 22px;
     margin-right: 4px;
+    font-size: 1em;
+    font-family: 'Merriweather', serif;
+    font-size: .95em;
+    background: url(img/gem.png) no-repeat;
+    background-size: 100%;
+     a {
+       color: white;
+       text-shadow: -1px -1px 0 #000,
+        2px -1px 0 #000,
+       -1px  2px 0 #000,
+        2px  2px 0 #000,
+        0  2px 0 #000,
+        0  -2px 0 #000,
+        -2px 0 0 #000,
+        2px 0 0 #000;
+     }
+  }
 }
 
-#rarity .list-group-item[data-facet-value="Common"]:before {
+
+#playerClass{
+  padding: 0 20px 20px;
+  .ais-menu--item {
+    display: inline-block;
+    margin-right: 14px;
+
+    a{
+      color: rgba(white,.8);
+      font-weight: normal;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      text-decoration: none;
+      -webkit-font-smoothing: antialiased;
+
+      em {
+       font-style: normal;
+       font-weight: 800;
+      }
+    }
+  }
+
+  .list-group-item:before{
     content: "";
     display: inline-block;
-    width: 20px;
-    height:20px;
-    background-color: #BFC1BE;
-    border-radius: 50%;
     position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#rarity .list-group-item[data-facet-value="Rare"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background-color: #236BD2;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#rarity .list-group-item[data-facet-value="Legendary"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background-color: #CD7400;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#rarity .list-group-item[data-facet-value="Epic"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background-color: #BF28E7;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
+    top: 11px;
+    width: 32px;
+    height:32px;
+    margin-right: 3px;
+    background: url('img/ClassIcons.png');
+    background-size: 170px;
+  }
+
+  .list-group-item[data-facet-value="Druid"]:before {
+    background-position: 100px 32px;
+  }
+
+  .list-group-item[data-facet-value="Hunter"]:before {
+    background-position: 66px 32px;
+  }
+
+  .list-group-item[data-facet-value="Shaman"]:before {
+    background-position: 32px -2px;
+  }
+
+  .list-group-item[data-facet-value="Warrior"]:before {
+    background-position: 134px 32px;
+  }
+
+  .list-group-item[data-facet-value="Paladin"]:before {
+    background-position: 134px -2px;
+  }
+
+  .list-group-item[data-facet-value="Warlock"]:before {
+    background-position: -2px 32px;
+  }
+
+  .list-group-item[data-facet-value="Priest"]:before {
+    background-position: 100px -2px;
+  }
+
+  .list-group-item[data-facet-value="Rogue"]:before {
+    background-position: 66px -2px;
+  }
+
+  .list-group-item[data-facet-value="Mage"]:before {
+    background-position: -2px -2px;
+  }
+
+  .list-group-item[data-facet-value="Neutral"]:before {
+    background-position: 32px 32px;
+  }
 }
 
-#playerClass .list-group-item[data-facet-value="Druid"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Druid_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Hunter"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Hunter_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Shaman"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Shaman_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Warrior"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Warrior_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Paladin"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Paladin_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Warlock"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Warlock_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Priest"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Priest_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Rogue"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Rogue_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
-#playerClass .list-group-item[data-facet-value="Mage"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height:20px;
-    background: url('https://hearthstats.net/assets/Icons/Classes/Mage_Icon.gif');
-    background-size: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 5px;
-    margin-right: 4px;
-}
+
+
+
+
 #set .list-group-item[data-facet-value="League of Explorers"]:before {
     content: "";
     display: inline-block;

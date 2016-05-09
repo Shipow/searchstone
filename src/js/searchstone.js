@@ -5,7 +5,7 @@ let instantsearch = require('instantsearch.js');
 let searchstone = instantsearch({
   appId: 'T2ZX9HO66V',
   apiKey: '7119d2f6f1cd95224251ec2e490e824f',
-  indexName: 'dev_hearthstone--updated',
+  indexName: 'dev_hearthstone--lang',
   urlSync: true
 });
 
@@ -29,9 +29,9 @@ searchstone.addWidget(
     },
     transformData: function(hit) {
       hit.textPath = "#" + hit.type;
-      if (typeof hit !== 'undefined' && typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name.enUS !== 'undefined') {
-        hit._highlightResult.name.enUS.value = hit._highlightResult.name.enUS.value.replace(/<em>/g,'<tspan>');
-        hit._highlightResult.name.enUS.value = hit._highlightResult.name.enUS.value.replace(/<\/em>/g,'</tspan>');
+      if (typeof hit !== 'undefined' && typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
+        hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<em>/g,'<tspan>');
+        hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
       }
       return hit;
     }
@@ -51,13 +51,26 @@ searchstone.addWidget(
 
 searchstone.addWidget(
   instantsearch.widgets.refinementList({
+    container: '#lang',
+    attributeName: 'lang',
+    operator: 'and',
+    limit: 10,
+    templates: {
+      header: 'Language',
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.refinementList({
     container: '#rarity',
     attributeName: 'rarity',
     operator: 'or',
     limit: 10,
     templates: {
       header: 'Rarity',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
     }
   })
 );
@@ -115,26 +128,50 @@ searchstone.addWidget(
 );
 
 searchstone.addWidget(
-  instantsearch.widgets.menu({
-    container: '#playerClass',
-    attributeName: 'playerClass',
-    limit: 10,
+  instantsearch.widgets.refinementList({
+    container: '#mechanics',
+    attributeName: 'mechanics',
+    operator: 'or',
+    limit: 20,
+    collapsible: true,
     templates: {
+      header: 'Mechanics',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     }
   })
 );
 
 searchstone.addWidget(
-  instantsearch.widgets.rangeSlider({
-    container: '#cost',
-    attributeName: 'cost',
+  instantsearch.widgets.menu({
+    container: '#playerClass',
+    attributeName: 'playerClass',
+    limit: 10,
     templates: {
-      header: 'Cost'
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
     }
   })
 );
 
+searchstone.addWidget(
+  instantsearch.widgets.numericRefinementList({
+    container: '#cost',
+    attributeName: 'cost',
+    options: [
+      {start: 0, end: 0, name: '0'},
+      {start: 1, end: 1, name: '1'},
+      {start: 2, end: 2, name: '2'},
+      {start: 3, end: 3, name: '3'},
+      {start: 4, end: 4, name: '4'},
+      {start: 5, end: 5, name: '5'},
+      {start: 6, end: 6, name: '6'},
+      {start: 7, name: '7+'}
+    ],
+    templates: {
+      header: 'Cost',
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
+    }
+  })
+);
 
 search.addWidget(
   instantsearch.widgets.pagination({

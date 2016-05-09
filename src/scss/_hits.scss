@@ -8,7 +8,7 @@
   .ais-hits--item {
     float: left;
     width: 240px;
-    height: 360px;
+    height: 350px;
     animation: flipInX .4s ease;
     animation-fill-mode: backwards;
 
@@ -24,11 +24,12 @@
       width: 300px;
       height: 432px;
       position: relative;
-    }
 
+    }
     .card-picture{
       max-width: 100%;
     }
+
     .card-title{
       position: absolute;
       top: 210px;

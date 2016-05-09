@@ -1,6 +1,22 @@
 // todo
 // add popularity in deck
-// split languages
+
+var lang = [
+  "deDE",
+  "enUS",
+  "esES",
+  "esMX",
+  "frFR",
+  "itIT",
+  "jaJP",
+  "koKR",
+  "plPL",
+  "ptBR",
+  "ruRU",
+  "thTH",
+  "zhCN",
+  "zhTW"
+]
 
 var set = {
   "EXPERT1" : "Expert",
@@ -151,9 +167,17 @@ fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
 
     //remove heroes
     if ( c.type !== 'HERO'){
-      cards_to_keep.push(c);
-    };
 
+      lang.forEach(function(l, i){
+        var cl = _.clone(c);
+        console.log(c.name[l]);
+        cl.lang = l;
+        cl.name = c.name[l];
+        if(typeof c.text !== "undefined") cl.text = c.text[l];
+        if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
+        cards_to_keep.push(cl);
+      });
+    };
   });
 
   // output
