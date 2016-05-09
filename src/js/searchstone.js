@@ -39,22 +39,13 @@ searchstone.addWidget(
 );
 
 searchstone.addWidget(
-  instantsearch.widgets.currentRefinedValues({
-    container: "#refinements",
-    clearAll: false,
-    templates: {
-      item: '<a href="javascript:void(0)">{{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>',
-      clearAll: '<a href="javascript:void(0)"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Clear All</a>',
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.refinementList({
+  instantsearch.widgets.menu({
     container: '#lang',
     attributeName: 'lang',
-    operator: 'and',
     limit: 10,
+    collapsible:  {
+      collapsed: true
+    },
     templates: {
       header: 'Language',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
@@ -63,11 +54,40 @@ searchstone.addWidget(
 );
 
 searchstone.addWidget(
+  instantsearch.widgets.currentRefinedValues({
+    container: "#refinements",
+    clearAll: false,
+    attributes: [
+      {name: 'cost', template: '<a href="javascript:void(0)">Mana {{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>'},
+      {name: 'setFull'},
+      {name: 'format'},
+      {name: 'rarity'},
+      {name: 'type'},
+      {name: 'race'},
+      {name: 'mechanics'}
+    ],
+    onlyListedAttributes: true,
+    templates: {
+      item: '<a href="javascript:void(0)">{{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>',
+      clearAll: '<a href="javascript:void(0)"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Clear All</a>',
+    }
+  })
+);
+
+var rarity = ['Free', 'Common', 'Rare', 'Epic', 'Legendary'];
+var playerClass = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest','Rogue','Shaman', 'Warlock','Warrior','Neutral'];
+var set = ['Reward','Basic', 'Expert', 'Naxxramas', 'Goblins vs Gnomes', 'Blackrock Mountain', 'League of Explorers', 'The Grand Tournament', 'Old Gods'];
+set.reverse();
+
+searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#rarity',
     attributeName: 'rarity',
     operator: 'or',
     limit: 10,
+    sortBy: function(a,b){
+      return rarity.indexOf(a.name) - rarity.indexOf(b.name);
+    },
     templates: {
       header: 'Rarity',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
@@ -105,8 +125,11 @@ searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#set',
     attributeName: 'setFull',
-    operator: 'or',
+    operator: 'and',
     limit: 10,
+    sortBy: function(a,b){
+      return set.indexOf(a.name) - set.indexOf(b.name);
+    },
     templates: {
       header: 'Set',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
@@ -115,13 +138,16 @@ searchstone.addWidget(
 );
 
 searchstone.addWidget(
-  instantsearch.widgets.refinementList({
+  instantsearch.widgets.toggle({
     container: '#format',
     attributeName: 'format',
-    operator: 'or',
-    limit: 10,
+    values: {
+      on: "Standard",
+      off: undefined
+    },
+    label: "Restrict to Standard",
     templates: {
-      header: 'Game format',
+      header: 'Format',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     }
   })
@@ -146,6 +172,9 @@ searchstone.addWidget(
     container: '#playerClass',
     attributeName: 'playerClass',
     limit: 10,
+    sortBy: function(a,b){
+      return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
+    },
     templates: {
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
     }
@@ -173,13 +202,23 @@ searchstone.addWidget(
   })
 );
 
-search.addWidget(
+searchstone.addWidget(
   instantsearch.widgets.pagination({
     container: '#pagination',
     maxPages: 20,
     padding: 1,
     showFirstLast: false
   })
+);
+
+searchstone.addWidget(
+  {
+    init: function(opts) {
+      if(!opts.helper.hasRefinements("lang")){
+        opts.helper.toggleRefinement( "lang", "enUS");
+      }
+    }
+  }
 );
 
 searchstone.on('render', function() {
@@ -219,6 +258,7 @@ searchstone.on('render', function() {
 
   sunwell.init();
 });
+
 
 
 

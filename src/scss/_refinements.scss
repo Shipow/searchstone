@@ -81,64 +81,31 @@
     a{
       width: 20px;
     }
+    .list-group-item::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height:20px;
+      border-radius: 50%;
+      position: relative;
+      top: 5px;
+      margin-right: 4px;
+    }
   }
-
-
   .list-group-item[data-facet-value="Free"]:before {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height:20px;
       background-color: #444;
-      border-radius: 50%;
-      position: relative;
-      top: 5px;
-      margin-right: 4px;
   }
-
   .list-group-item[data-facet-value="Common"]:before {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height:20px;
       background-color: #BFC1BE;
-      border-radius: 50%;
-      position: relative;
-      top: 5px;
-      margin-right: 4px;
   }
   .list-group-item[data-facet-value="Rare"]:before {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height:20px;
       background-color: #236BD2;
-      border-radius: 50%;
-      position: relative;
-      top: 5px;
-      margin-right: 4px;
   }
   .list-group-item[data-facet-value="Legendary"]:before {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height:20px;
       background-color: #CD7400;
-      border-radius: 50%;
-      position: relative;
-      top: 5px;
-      margin-right: 4px;
   }
   .list-group-item[data-facet-value="Epic"]:before {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height:20px;
       background-color: #BF28E7;
-      border-radius: 50%;
-      position: relative;
-      top: 5px;
-      margin-right: 4px;
   }
 }
 
@@ -304,16 +271,6 @@
     width: 25px;
     height:20px;
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/icon-naxx.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-}
-#format .list-group-item[data-facet-value="Standard"]:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height:20px;
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/standardWild-krakenFilter.png') no-repeat center;
     position: relative;
     top: 4px;
     margin-right: 4px;
