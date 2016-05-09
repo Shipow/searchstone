@@ -80,7 +80,7 @@ searchstone.addWidget(
       {name: 'type'},
       {name: 'race'},
       {name: 'mechanics'},
-      {name: 'playerClass'}
+      {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'}
     ],
     onlyListedAttributes: true,
     templates: {
@@ -209,7 +209,8 @@ searchstone.addWidget(
     options: [
       {value: 8, label: '8 per page'},
       {value: 12, label: '12 per page'},
-      {value: 80, label: '40 per page'}
+      {value: 24, label: '24 per page'},
+      {value: 40, label: '40 per page'}
     ]
   })
 );

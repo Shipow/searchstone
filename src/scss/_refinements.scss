@@ -39,6 +39,50 @@
   .ais-current-refined-values--item {
     animation: bounce .5s ease-in;
   }
+
+  h2{
+    display: inline-block;
+    width: 300px;
+    height: 80px;
+    font-size: 1.1em;
+    font-family: 'Merriweather', serif;
+    text-transform: none;
+    letter-spacing: 1px;
+    line-height: 80px;
+    text-align: center;
+    background: url('img/ClassHeaders.png') no-repeat;
+    background-size: 600px;
+  }
+  .class-Druid {
+    background-position: 0 -298px;
+  }
+  .class-Hunter {
+    background-position: 0 -372px;
+  }
+  .class-Mage {
+    background-position: 0 -222px;
+  }
+  .class-Paladin {
+    background-position: 0 -147px;
+  }
+  .class-Priest {
+    background-position: -300px -0;
+  }
+  .class-Rogue {
+    background-position: 0 -448px;
+  }
+  .class-Shaman {
+    background-position: 0 -72px;
+  }
+  .class-Warlock {
+    background-position: -300px -73px;
+  }
+  .class-Warrior {
+    background-position: 0 -523px;
+  }
+  .class-Neutral {
+    background-position: 0 3px;
+  }
 }
 
 .ais-refinement-list--item {

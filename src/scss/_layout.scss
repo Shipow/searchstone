@@ -48,10 +48,5 @@ aside {
 }
 main {
   float: left;
-  max-width: 970px;
-  margin: auto;
-
-  @media (max-width: $bp-small) {
-    max-width: 100%;
-  }
+  width: 970px;
 }
