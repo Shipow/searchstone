@@ -1,0 +1,132 @@
+!!! 5
+%head
+  %meta{charset: "UTF-8"}
+  %title Searchstone - Instant Search Hearthstone Cards
+  %link{href: "http://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css", rel: "stylesheet", type: "text/css"}
+  %link{href: "app.css", rel: "stylesheet", type: "text/css"}
+  %link{href: "https://fonts.googleapis.com/css?family=Merriweather:700|Archivo+Narrow:400,700", rel: "stylesheet", type: "text/css"}
+  %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
+  %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
+
+%body
+  .container-fluid
+    %a.github-source{href: "https://github.com/shipow/searchstone"}
+      %svg
+        %use{xlink:href: "#github-banner"}
+    %header
+      -# .please-be-kind
+      -#   %ul.social-links
+      -#     %li
+      -#       %a{href: "https://www.producthunt.com/tech/algolia-supersearch", target: "_blank"}
+      -#         .pulse
+      -#         %svg{role: "img"}
+      -#           %use{xlink:href: "#icon-producthunt"}
+      -#     %li
+      -#       %a.share-link{href: "#facebook"}
+      -#         .pulse
+      -#         %svg{role: "img"}
+      -#           %use{xlink:href: "#icon-facebook"}
+      -#     %li
+      -#       %a.share-link{href: "#twitter"}
+      -#         .pulse
+      -#         %svg{role: "img"}
+      -#           %use{xlink:href: "#icon-twitter"}
+      %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false;"}
+        %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards", autocomplete: "off", required: true, spellcheck: false}
+        %button.sbx-custom__submit{type: "submit"}
+          %svg{role: "img", aria-label: "Search"}
+            %use{xlink:href: "#sbx-icon-search-6"}
+        %button.sbx-custom__reset{type: "reset"}
+          %svg{role: "img", aria-label: "Reset"}
+            %use{xlink:href: "#sbx-icon-clear-3"}
+
+      %script#hit-template{type: "text/template"}
+        .hit
+          .card-wrapper{class: "type-{{type}}",style: "background: url('http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_40,q_60,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/{{ id }}.png');background-size:100%;background-position:0 -20px"}
+            %img.card-picture{data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-name: "", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-texture:"{{texture}}", data-card-type: "{{type}}"}
+            .card-health {{health}}
+            .card-attack {{attack}}
+            .card-cost {{cost}}
+            .card-durability {{durability}}
+            .card-race {{{_highlightResult.race.value}}}
+            %svg.card-title{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
+              %text.card-text{text-anchor: "middle"}
+                %textPath{ startOffset:"50%", xlink:href: "{{textPath}}"}
+                  %tspan{dy: "0.3em"}
+                    {{{_highlightResult.name.enUS.value}}}
+            .card-description
+              %span
+                {{{_highlightResult.text.enUS.value}}}
+          -# .card-infos {{set}} - {{{_highlightResult.name.frFR.value}}}
+
+    %aside
+      %section#refinements
+      %section#playerClass
+      %section#set
+      %section#format
+      %section#rarity
+      %section#cost
+      %section#race
+      %section#type
+
+    %main
+      %section#results
+      %section#pagination
+      %section.poweredby Built with
+        %a.instantsearch{href: "https://community.algolia.com/instantsearch.js/"} Instantsearch.js
+
+  .lightbox.hidden
+    %a.close{href: "javascript:void(0);"}
+      %svg{role: "img"}
+        %use{xlink:href: "#sbx-icon-clear-2"}
+    .lightbox_frame_wrapper
+    .lightbox_sharing
+      %ul.social-links
+        %li Share this commercial
+        %li
+          %a.share-video{href: "#facebook"}
+            .pulse
+            %svg{role: "img"}
+              %use{xlink:href: "#icon-facebook"}
+        %li
+          %a.share-video{href: "#twitter"}
+            .pulse
+            %svg{role: "img"}
+              %use{xlink:href: "#icon-twitter"}
+
+  .filters-panel.hide.overlay
+    %button.close{type: "button"} BACK
+    .overlay-content
+      %ul.filters
+        %li
+          %ul.tabs
+            %li
+              %a.active{href: "#years"} Years
+              %a{href: "#brands"} Brands
+      #years.tab-panel.active
+      #brands.tab-panel
+
+
+  %script
+    var sunwell= {settings : {
+      titleFont: 'arial',
+      bodyFont: 'arial',
+      bodyFontSize: 24,
+      bodyLineHeight: 55,
+      bodyFontOffset: {x: 0, y: 0},
+      assetFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,q_80/',
+      textureFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/',
+      autoInit: false,
+      debug: false
+    }
+    };
+  %script{src: "js/sunwell.js"}
+  %script{src: "js/app.js"}
+
+  .svg-icons{style: "height: 0; width: 0; position: absolute; visibility: hidden"}
+    <!-- inject:svg --><!-- endinject -->
+    %svg{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
+      %defs
+        %path#Spell{d: "M 43, 37 C 122, 10, 188, 13, 268, 37", fill: "none", stroke: "black", stroke-width:"1"}
+        %path#Minion{d: "M 49, 40 C 131, 46, 152, 8, 258, 29", fill: "none", stroke: "black", stroke-width:"1"}
+        %path#Weapon{d: "M 49, 25, 258, 25", fill: "none", stroke: "black", stroke-width:"1"}

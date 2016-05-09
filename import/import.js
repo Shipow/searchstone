@@ -1,7 +1,39 @@
-// read the colelctible
-// add attribute for standard/wild
-// remap name with user friendly text
+// todo
 // add popularity in deck
+// split languages
+
+var set = {
+  "EXPERT1" : "Expert",
+  "CORE" : "Basic",
+  "OG" : "Old Gods",
+  "TGT" : "The Grand Tournament",
+  "GVG" : "Goblins vs Gnomes",
+  "LOE" : "League of Explorers",
+  "BRM" : "Blackrock Mountain",
+  "NAXX" : "Naxxramas",
+  "PROMO" : "Promo",
+  "REWARD" : "Reward"
+}
+
+var setID = {
+  "CORE" : 0,
+  "EXPERT1" : 1,
+  "NAXX" : 2,
+  "GVG" : 3,
+  "BRM" : 4,
+  "LOE" : 5,
+  "TGT" : 6,
+  "OG" : 7,
+  "REWARD" : 99
+}
+
+var dust = {
+  "Common" : 40,
+  "Rare" : 100,
+  "Epic" : 400,
+  "Legendary" : 1600,
+  "Free" : ""
+}
 
 var map = {
   "HUNTER" : "Hunter",
@@ -14,20 +46,9 @@ var map = {
   "SHAMAN" : "Shaman",
   "WARLOCK" : "Warlock",
 
-  "EXPERT1" : "Classic",
-  "CORE" : "Basic",
-  "OG" : "Old Gods",
-  "TGT" : "The Grand Tournament",
-  "GVG" : "Goblins vs Gnomes",
-  "LOE" : "League of Explorers",
-  "BRM" : "Blackrock Mountain",
-  "NAXX" : "Naxxramas",
   // "HERO_SKINS" : "",
-  "PROMO" : "Promo",
-  "REWARD" : "Reward",
-
   "BEAST" : "Beast",
-  "MECHANICAL" : "Mechanical",
+  "MECHANICAL" : "Mech",
   "DRAGON" : "Dragon",
   "DEMON" : "Demon",
   "MURLOC" : "Murloc",
@@ -65,6 +86,7 @@ var map = {
   "FREEZE" : "Freeze",
   "FORGETFUL" : "Forgetful",
   "POISONOUS" : "Poisonous",
+  "TREASURE" : "Discover",
   "ImmuneToSpellpower" : "Immune to spell power",
   "SILENCE" : "Silence",
   "ADJACENT_BUFF" : "Adjacent buff",
@@ -72,10 +94,16 @@ var map = {
   "InvisibleDeathrattle" : "Invisible deathrattle"
 };
 
+var specialChars = {
+  "\#" : "",
+  "\\$" : "",
+  "\\[x\\]" : ""
+}
+
 var fs = require('fs');
 var _ = require('lodash');
 
-fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
+fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
 // fs.readFile('in/test.json', 'utf8', function (err, data) {
   if (err) {
     return console.log(err);
@@ -89,14 +117,32 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
     result = result.replace(reg, '"'+map[k]+'"');
   });
 
+  Object.keys(specialChars).forEach(function(k){
+    var reg = new RegExp( k ,"g");
+    result = result.replace(reg, specialChars[k]);
+  });
+
   var cards_to_keep = [];
 
   // filtering the collection
   JSON.parse(result).forEach(function(c, i){
 
+    if ( c.set === "PROMO"  ){
+      c.set = 'REWARD';
+    }
+
+    c.setFull = set[c.set];
+
+    c.dustCraft =  dust[c.rarity];
+
+    c.setID =  setID[c.set];
+
+    if ( typeof c.playerClass === "undefined"  ){
+      c.playerClass = 'Neutral';
+    }
 
     // 2016 standard
-    if ( c.set === map.EXPERT1 || c.set === map.CORE || c.set === map.OG || c.set === map.TGT || c.set === map.LOE || c.set === map.BRM ){
+    if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" ){
       c.format = ['Wild','Standard'];
     }
     else {

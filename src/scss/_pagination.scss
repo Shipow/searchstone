@@ -1,0 +1,37 @@
+#pagination {
+  display: block;
+  font-size: 1.2em;
+  text-align: center;
+  clear: both;
+  margin-bottom: 30px;
+  a {
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    padding: 8px;
+    background-color: rgba(darken($ais_blue,25%),.5);
+    color: $ais_blue;
+    text-decoration: none;
+    transition: background .2s ease;
+    &:hover {
+      background-color: darken($ais_blue,15%);
+    }
+  }
+  .ais-pagination--item__active a {
+    color: #fff;
+    font-weight: bold;
+  }
+  .ais-pagination--item__disabled {
+    display: none;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  li {
+    display: inline-block;
+    padding: 0 8px;
+  }
+}

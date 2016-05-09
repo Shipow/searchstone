@@ -1,0 +1,81 @@
+$bp-regular: 960px;
+$bp-small: 740px;
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+  max-width: 100% !important;
+  z-index: 9999;
+  transition: transform .5s ease, opacity .5s ease;
+
+  &:before {
+    content: '';
+    background: rgba(#001B3A, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  // Lightbox close
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    margin: 16px;
+    cursor: pointer;
+
+    svg {
+      height: 40px;
+      width: 40px;
+      fill: #fff;
+    }
+  }
+
+  .lightbox_frame {
+    z-index: 2;
+    transform: scale(0);
+    border: 0;
+    background-color: black;
+    max-width: 100vw !important;
+    transition: transform .5s ease, opacity .5s ease;
+    position: relative;
+    &.loaded {
+      transform: scale(1);
+    }
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: 'loading';
+    }
+  }
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: left 50% 50%;
+    transform-style: preserve-3d;
+    transform: translateY(50vh) scale(.9);
+  }
+}
+
+.lightbox_frame_wrapper {
+}
+
+.lightbox_sharing {
+  margin-top: 20px;
+  color: white;
+  z-index: 999;
+}

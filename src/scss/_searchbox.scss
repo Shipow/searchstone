@@ -1,0 +1,37 @@
+.sbx-custom {
+  @include searchbox($custom...);
+}
+
+
+.searchbox {
+  max-width: 420px;
+  margin: 16px auto 20px;
+  display: block;
+  width: calc(100% - 130px);
+
+  @media (max-width: $bp-small) {
+    margin: 16px 0;
+    max-width: inherit;
+    width: calc(100% - 60px);
+  }
+
+  .sbx-custom__input {
+    color: #fff;
+    box-shadow: 0 2px #fff;
+    background: transparent;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .sbx-custom__input:focus {
+    box-shadow: 0 2px #fff;
+  }
+
+  .sbx-custom__input:focus ~ .sbx-custom__submit {
+    animation: bounce .3s ease-in;
+  }
+
+  .sbx-custom__reset {
+    fill: #fff
+  }
+}

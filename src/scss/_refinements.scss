@@ -1,0 +1,311 @@
+#refinements {
+  > li, div {
+    list-style: none;
+    display: inline-block;
+    font-size: 1em;
+    color: #fff;
+    white-space: nowrap;
+    text-transform: uppercase;
+    margin-right: 8px;
+    user-select: inherit;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      div {
+        display: inline-block;
+      }
+
+      svg {
+        display: inline;
+        vertical-align: middle;
+        width: 18px;
+        height: 18px;
+        top: -2px;
+        position: relative;
+        fill: #00A3FF;
+      }
+    }
+  }
+
+  .ais-current-refined-values--list {
+    svg {
+      fill: #BD245E;
+    }
+  }
+  .ais-current-refined-values--item {
+    animation: bounce .5s ease-in;
+  }
+}
+
+.ais-refinement-list--item a, .ais-menu--item a{
+  display: inline-block;
+  color: white;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: 1.05em;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    background: rgba(#00A3FF,.5);
+  }
+
+  em {
+    font-style: normal;
+    font-weight: 800;
+  }
+}
+
+
+.badge {
+  color: #777;
+}
+
+.ais-header{
+  color: white;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 8px;
+}
+
+.ais-refinement-list--item, .ais-menu--item {
+  width: 100%
+}
+
+
+#rarity .list-group-item[data-facet-value="Free"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background-color: #444;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+
+#rarity .list-group-item[data-facet-value="Common"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background-color: #BFC1BE;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#rarity .list-group-item[data-facet-value="Rare"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background-color: #236BD2;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#rarity .list-group-item[data-facet-value="Legendary"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background-color: #CD7400;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#rarity .list-group-item[data-facet-value="Epic"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background-color: #BF28E7;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+
+#playerClass .list-group-item[data-facet-value="Druid"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Druid_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Hunter"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Hunter_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Shaman"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Shaman_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Warrior"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Warrior_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Paladin"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Paladin_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Warlock"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Warlock_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Priest"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Priest_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Rogue"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Rogue_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#playerClass .list-group-item[data-facet-value="Mage"]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height:20px;
+    background: url('https://hearthstats.net/assets/Icons/Classes/Mage_Icon.gif');
+    background-size: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+#set .list-group-item[data-facet-value="League of Explorers"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp4-icon.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}
+#set .list-group-item[data-facet-value="Goblins vs Gnomes"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp1-icon.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}
+#set .list-group-item[data-facet-value="Old Gods"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp5-icon.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}
+#set .list-group-item[data-facet-value="The Grand Tournament"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp3-icon.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}
+#set .list-group-item[data-facet-value="Blackrock Mountain"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp2-icon.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}
+#set .list-group-item[data-facet-value="Naxxramas"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/icon-naxx.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}
+#format .list-group-item[data-facet-value="Standard"]:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height:20px;
+    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/standardWild-krakenFilter.png') no-repeat center;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}

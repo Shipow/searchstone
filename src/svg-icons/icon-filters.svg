@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="34px" height="28px" viewBox="0 0 34 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-filters</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="-icon-search" sketch:type="MSArtboardGroup" transform="translate(-421.000000, -600.000000)" fill="#000000">
+            <path d="M421,600 L455,600 L455,604 L421,604 L421,600 Z M424,608 L452,608 L452,612 L424,612 L424,608 Z M429,616 L447,616 L447,620 L429,620 L429,616 Z M434,624 L442,624 L442,628 L434,628 L434,624 Z" id="icon-filters" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
