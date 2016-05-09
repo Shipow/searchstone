@@ -53,6 +53,21 @@ searchstone.addWidget(
   })
 );
 
+
+searchstone.addWidget(
+  instantsearch.widgets.menu({
+    container: '#playerClass',
+    attributeName: 'playerClass',
+    limit: 10,
+    sortBy: function(a,b){
+      return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
+    },
+    templates: {
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
+    }
+  })
+);
+
 searchstone.addWidget(
   instantsearch.widgets.currentRefinedValues({
     container: "#refinements",
@@ -64,7 +79,8 @@ searchstone.addWidget(
       {name: 'rarity'},
       {name: 'type'},
       {name: 'race'},
-      {name: 'mechanics'}
+      {name: 'mechanics'},
+      {name: 'playerClass'}
     ],
     onlyListedAttributes: true,
     templates: {
@@ -83,7 +99,7 @@ searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#rarity',
     attributeName: 'rarity',
-    operator: 'or',
+    operator: 'and',
     limit: 10,
     sortBy: function(a,b){
       return rarity.indexOf(a.name) - rarity.indexOf(b.name);
@@ -91,92 +107,6 @@ searchstone.addWidget(
     templates: {
       header: 'Rarity',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.refinementList({
-    container: '#race',
-    attributeName: 'race',
-    operator: 'or',
-    limit: 10,
-    templates: {
-      header: 'Race',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.refinementList({
-    container: '#type',
-    attributeName: 'type',
-    operator: 'or',
-    limit: 10,
-    templates: {
-      header: 'Type',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.refinementList({
-    container: '#set',
-    attributeName: 'setFull',
-    operator: 'and',
-    limit: 10,
-    sortBy: function(a,b){
-      return set.indexOf(a.name) - set.indexOf(b.name);
-    },
-    templates: {
-      header: 'Set',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.toggle({
-    container: '#format',
-    attributeName: 'format',
-    values: {
-      on: "Standard",
-      off: undefined
-    },
-    label: "Restrict to Standard",
-    templates: {
-      header: 'Format',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.refinementList({
-    container: '#mechanics',
-    attributeName: 'mechanics',
-    operator: 'or',
-    limit: 20,
-    collapsible: true,
-    templates: {
-      header: 'Mechanics',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.menu({
-    container: '#playerClass',
-    attributeName: 'playerClass',
-    limit: 10,
-    sortBy: function(a,b){
-      return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
-    },
-    templates: {
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
     }
   })
 );
@@ -199,6 +129,88 @@ searchstone.addWidget(
       header: 'Cost',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
     }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.toggle({
+    container: '#format',
+    attributeName: 'format',
+    values: {
+      on: "Standard",
+      off: undefined
+    },
+    label: "Restrict to Standard",
+    templates: {
+      header: 'Format',
+      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#set',
+    attributeName: 'setFull',
+    operator: 'and',
+    limit: 10,
+    sortBy: function(a,b){
+      return set.indexOf(a.name) - set.indexOf(b.name);
+    },
+    templates: {
+      header: 'Set',
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#type',
+    attributeName: 'type',
+    operator: 'and',
+    limit: 10,
+    templates: {
+      header: 'Type',
+      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#race',
+    attributeName: 'race',
+    operator: 'and',
+    limit: 10,
+    templates: {
+      header: 'Race',
+      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#mechanics',
+    attributeName: 'mechanics',
+    operator: 'and',
+    limit: 20,
+    templates: {
+      header: 'Mechanics',
+      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.hitsPerPageSelector({
+    container: '#hits-per-page-selector',
+    options: [
+      {value: 8, label: '8 per page'},
+      {value: 12, label: '12 per page'},
+      {value: 80, label: '40 per page'}
+    ]
   })
 );
 

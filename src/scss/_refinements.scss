@@ -45,18 +45,24 @@
   width: 100%
 }
 
-.ais-refinement-list--item a {
-  display: inline-block;
-  width: 100%;
-  color: rgba(white,.8);
-  font-weight: normal;
-  cursor: pointer;
-  font-size: 1.05em;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased;
-
+.ais-refinement-list--item,
+.ais-toggle--item,
+.ais-menu--item {
+   a {
+    display: inline-block;
+    width: 100%;
+    color: rgba(white,.8);
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 1.05em;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    &.active{
+      color: white;
+      font-weight: bold;
+    }
+  }
 }
-
 
 .badge {
   float: right;
@@ -69,9 +75,8 @@
   font-family: 'Archivo Narrow', sans-serif;
   padding-bottom: 4px;
   margin-bottom: 4px;
-  border-bottom: solid #333 1px;
+  border-bottom: solid lighten(#320DAB,10%) 1px;
 }
-
 
 
 #rarity{
@@ -109,7 +114,6 @@
   }
 }
 
-
 #cost{
   .ais-refinement-list--item{
     display: inline-block;
@@ -135,7 +139,6 @@
   }
 }
 
-
 #playerClass{
   padding: 0 20px 20px;
   .ais-menu--item {
@@ -158,7 +161,7 @@
     }
   }
 
-  .list-group-item:before{
+  .list-group-item::before{
     content: "";
     display: inline-block;
     position: relative;
@@ -211,67 +214,34 @@
   }
 }
 
+#set{
 
-
-
-
-#set .list-group-item[data-facet-value="League of Explorers"]:before {
+  .list-group-item::before{
     content: "";
     display: inline-block;
     width: 25px;
     height:20px;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+  }
+
+  .list-group-item[data-facet-value="League of Explorers"]:before {
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp4-icon.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-}
-#set .list-group-item[data-facet-value="Goblins vs Gnomes"]:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height:20px;
+  }
+  .list-group-item[data-facet-value="Goblins vs Gnomes"]:before {
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp1-icon.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-}
-#set .list-group-item[data-facet-value="Old Gods"]:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height:20px;
+  }
+  .list-group-item[data-facet-value="Old Gods"]:before {
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp5-icon.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-}
-#set .list-group-item[data-facet-value="The Grand Tournament"]:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height:20px;
+  }
+  .list-group-item[data-facet-value="The Grand Tournament"]:before {
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp3-icon.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-}
-#set .list-group-item[data-facet-value="Blackrock Mountain"]:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height:20px;
+  }
+  .list-group-item[data-facet-value="Blackrock Mountain"]:before {
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp2-icon.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-}
-#set .list-group-item[data-facet-value="Naxxramas"]:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height:20px;
+  }
+  .list-group-item[data-facet-value="Naxxramas"]:before {
     background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/icon-naxx.png') no-repeat center;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
+  }
 }
