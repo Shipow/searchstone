@@ -99,7 +99,7 @@ searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#rarity',
     attributeName: 'rarity',
-    operator: 'and',
+    operator: 'or',
     limit: 10,
     sortBy: function(a,b){
       return rarity.indexOf(a.name) - rarity.indexOf(b.name);
@@ -168,7 +168,7 @@ searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#type',
     attributeName: 'type',
-    operator: 'and',
+    operator: 'or',
     limit: 10,
     templates: {
       header: 'Type',
@@ -181,7 +181,7 @@ searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#race',
     attributeName: 'race',
-    operator: 'and',
+    operator: 'or',
     limit: 10,
     templates: {
       header: 'Race',

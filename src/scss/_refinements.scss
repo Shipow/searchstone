@@ -219,29 +219,41 @@
   .list-group-item::before{
     content: "";
     display: inline-block;
-    width: 25px;
-    height:20px;
+    width: 22px;
+    height:22px;
     position: relative;
     top: 4px;
     margin-right: 4px;
+    background: url('img/SetIcons.png');
+    background-size: 140px;
   }
 
-  .list-group-item[data-facet-value="League of Explorers"]:before {
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp4-icon.png') no-repeat center;
-  }
-  .list-group-item[data-facet-value="Goblins vs Gnomes"]:before {
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp1-icon.png') no-repeat center;
-  }
   .list-group-item[data-facet-value="Old Gods"]:before {
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp5-icon.png') no-repeat center;
+    background-position: 68px 0;
   }
   .list-group-item[data-facet-value="The Grand Tournament"]:before {
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp3-icon.png') no-repeat center;
+    background-position: 90px 0;
+
+  }
+  .list-group-item[data-facet-value="League of Explorers"]:before {
+    background-position: 68px 24px;
   }
   .list-group-item[data-facet-value="Blackrock Mountain"]:before {
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/exp2-icon.png') no-repeat center;
+    background-position: 46px 24px;
+  }
+  .list-group-item[data-facet-value="Goblins vs Gnomes"]:before {
+    background-position: 116px 0;
   }
   .list-group-item[data-facet-value="Naxxramas"]:before {
-    background: url('http://static-hearth.cursecdn.com/1-0-5962-13325/Skins/Hearth/images/icons/icon-naxx.png') no-repeat center;
+    background-position: 22px 0;
+  }
+  .list-group-item[data-facet-value="Expert"]:before {
+    background-position: 0 0;
+  }
+  .list-group-item[data-facet-value="Basic"]:before {
+    background-position: 46px 0;
+  }
+  .list-group-item[data-facet-value="Reward"]:before {
+    background-position: 116px 24px;
   }
 }
