@@ -1,5 +1,7 @@
 // todo
 // add popularity in deck
+// french plurals regex
+// add generated cards
 
 var lang = [
   "deDE",
@@ -93,11 +95,11 @@ var map = {
   "INSPIRE" : "Inspire",
   "CHOOSE_ONE" : "Choose one",
   "CHARGE" : "Charge",
-  "RITUAL" : "Ritual",
+  "RITUAL" : "C'Thun Ritual",
   "DIVINE_SHIELD" : "Divine shield",
   "COMBO" : "Combo",
   "STEALTH" : "Stealth",
-  "WINDFURY" : "Wind fury",
+  "WINDFURY" : "Windfury",
   "ENRAGED" : "Enraged",
   "FREEZE" : "Freeze",
   "FORGETFUL" : "Forgetful",
@@ -170,10 +172,13 @@ fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
 
       lang.forEach(function(l, i){
         var cl = _.clone(c);
-        console.log(c.name[l]);
         cl.lang = l;
         cl.name = c.name[l];
-        if(typeof c.text !== "undefined") cl.text = c.text[l];
+        cl.nameVO = c.name.enUS;
+        if(typeof c.text !== "undefined") {
+          cl.text = c.text[l];
+          cl.textVO = c.text.enUS;
+        };
         if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
         cards_to_keep.push(cl);
       });
