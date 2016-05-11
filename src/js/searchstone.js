@@ -124,7 +124,9 @@ searchstone.addWidget(
       {start: 4, end: 4, name: '4'},
       {start: 5, end: 5, name: '5'},
       {start: 6, end: 6, name: '6'},
-      {start: 7, name: '7+'}
+      {start: 7, end: 7, name: '7'},
+      {start: 8, end: 8, name: '8'},
+      {start: 9, name: '9+'}
     ],
     templates: {
       header: 'Cost',
