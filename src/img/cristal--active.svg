@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="194px" height="169px" viewBox="0 0 194 169" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>cristal--active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="115 27.5115057 194.674337 73.5115057 194.674337 165.511506 115 211.511506 35.3256629 165.511506 35.3256629 73.5115057"></polygon>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-4" y="-4" width="167.348674" height="192">
+            <rect x="31.3256629" y="23.5115057" width="167.348674" height="192" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+        <radialGradient cx="46.7669845%" cy="50%" fx="46.7669845%" fy="50%" r="51.3552581%" id="radialGradient-3">
+            <stop stop-color="#3AF0FF" offset="0%"></stop>
+            <stop stop-color="#00C5FF" offset="100%"></stop>
+        </radialGradient>
+        <polygon id="path-4" points="115 27.5115057 194.674337 73.5115057 194.674337 165.511506 115 211.511506 35.3256629 165.511506 35.3256629 73.5115057"></polygon>
+        <mask id="mask-5" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-4" y="-4" width="167.348674" height="192">
+            <rect x="31.3256629" y="23.5115057" width="167.348674" height="192" fill="white"></rect>
+            <use xlink:href="#path-4" fill="black"></use>
+        </mask>
+        <linearGradient x1="82.8904871%" y1="112.643025%" x2="39.2791008%" y2="14.5993041%" id="linearGradient-6">
+            <stop stop-color="#2AB7EC" offset="0%"></stop>
+            <stop stop-color="#1A3459" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="43.6630636%" y1="-3.51757708%" x2="67.4109642%" y2="92.2646725%" id="linearGradient-7">
+            <stop stop-color="#0C2242" offset="0%"></stop>
+            <stop stop-color="#303F54" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="50%" y2="100%" id="linearGradient-8">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#354666" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="92.504131%" y1="100%" x2="39.1562682%" y2="0%" id="linearGradient-9">
+            <stop stop-color="#72ADDF" offset="0%"></stop>
+            <stop stop-color="#1351A3" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-10" points="115 27.5115057 194.674337 73.5115057 194.674337 165.511506 115 211.511506 35.3256629 165.511506 35.3256629 73.5115057"></polygon>
+        <mask id="mask-11" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="159.348674" height="184" fill="white">
+            <use xlink:href="#path-10"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-308.000000, -89.000000)">
+            <g id="cristal--active" transform="translate(290.000000, 54.000000)">
+                <g id="Polygon-1" transform="translate(115.000000, 119.511506) rotate(-330.000000) translate(-115.000000, -119.511506) ">
+                    <use fill="#1E2129" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <use stroke="#000000" mask="url(#mask-2)" stroke-width="8" xlink:href="#path-1"></use>
+                </g>
+                <g id="Polygon-1" transform="translate(115.000000, 119.511506) rotate(-330.000000) translate(-115.000000, -119.511506) ">
+                    <use fill="url(#radialGradient-3)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                    <use stroke="#000000" mask="url(#mask-5)" stroke-width="8" xlink:href="#path-4"></use>
+                </g>
+                <polygon id="Path-1" fill="url(#linearGradient-6)" opacity="0.812091884" points="70.6640625 198.980469 116.236853 118.012864 161.371094 199.023438"></polygon>
+                <polygon id="Path-1" fill="url(#linearGradient-7)" opacity="0.625058302" transform="translate(116.017578, 79.518151) scale(-1, -1) translate(-116.017578, -79.518151) " points="70.6640625 119.980469 116.236853 39.0128637 161.371094 120.023438"></polygon>
+                <polygon id="Path-1" fill="#FFFFFF" opacity="0.625058302" transform="translate(149.767578, 99.085138) scale(-1, -1) rotate(60.000000) translate(-149.767578, -99.085138) " points="104.414062 138.681431 148.986853 59.4458764 195.121094 138.724399"></polygon>
+                <polygon id="Path-1" fill="url(#linearGradient-8)" opacity="0.625058302" transform="translate(149.767578, 139.085138) scale(-1, 1) rotate(60.000000) translate(-149.767578, -139.085138) " points="104.414063 178.681431 148.986853 99.4458764 195.121094 178.724399"></polygon>
+                <polygon id="Path-1" fill="url(#linearGradient-9)" opacity="0.38671875" transform="translate(80.767578, 140.085138) rotate(60.000000) translate(-80.767578, -140.085138) " points="35.4140625 179.681431 79.9868528 100.445876 126.121094 179.724399"></polygon>
+                <polygon id="Path-1" opacity="0.625058302" transform="translate(81.767578, 99.085138) scale(1, -1) rotate(60.000000) translate(-81.767578, -99.085138) " points="36.4140625 138.681431 80.9868528 59.4458764 127.121094 138.724399"></polygon>
+                <polygon id="Path-7" fill="#FFFFFF" opacity="0.616487873" points="142.696938 102.059853 156.723667 51.453125 124.275098 115.64116 192.199219 115.64116"></polygon>
+                <polygon id="Path-7" fill="#16D3FF" opacity="0.756354944" transform="translate(71.327359, 153.914621) rotate(179.000000) translate(-71.327359, -153.914621) " points="48.1632969 176.039621 69.5988438 122.492746 32.54025 185.336496 110.114469 185.336496"></polygon>
+                <polygon id="Path-7" fill="#02070B" opacity="0.165928172" transform="translate(107.605697, 60.301560) rotate(300.000000) translate(-107.605697, -60.301560) " points="84.4416342 82.4265596 105.877181 28.8796846 68.8185873 91.7234346 146.392806 91.7234346"></polygon>
+                <polygon id="Path-7" fill="#87EDFF" opacity="0.210296175" transform="translate(103.637549, 157.359293) rotate(356.000000) translate(-103.637549, -157.359293) " points="104.300153 174.186739 118.028884 124.48237 81.238816 187.32612 126.036282 190.236215"></polygon>
+                <polygon id="Path-7" fill="#000000" opacity="0.0900186567" transform="translate(84.532476, 83.638599) scale(-1, 1) rotate(2.000000) translate(-84.532476, -83.638599) " points="85.1950802 100.466045 98.9238114 50.7616768 62.1337433 113.605427 106.93121 116.515522"></polygon>
+                <polygon id="Path-7" fill="#242E3C" opacity="0.162021922" transform="translate(145.544168, 154.211688) rotate(298.000000) translate(-145.544168, -154.211688) " points="146.206772 171.039134 159.935503 121.334765 123.145435 184.178515 167.942901 187.08861"></polygon>
+                <use id="Polygon-1" stroke="#FFFFFF" mask="url(#mask-11)" stroke-width="8" opacity="0.4765625" transform="translate(115.000000, 119.511506) rotate(-330.000000) translate(-115.000000, -119.511506) " xlink:href="#path-10"></use>
+            </g>
+        </g>
+    </g>
+</svg>

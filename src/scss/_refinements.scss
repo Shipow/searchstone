@@ -136,8 +136,9 @@
 
 #rarity{
   .ais-refinement-list--item{
-    width: 30px;
+    width: 28px;
     display: inline-block;
+    margin-right: 8px;
     a{
       width: 20px;
       &.active::before{
@@ -147,43 +148,45 @@
     .list-group-item::before {
       content: "";
       display: inline-block;
-      width: 20px;
-      height:20px;
+      width: 28px;
+      height:28px;
       border-radius: 50%;
       position: relative;
       top: 5px;
-      margin-right: 4px;
     }
   }
   .list-group-item[data-facet-value="Free"]:before {
       background-color: #444;
   }
   .list-group-item[data-facet-value="Common"]:before {
-      background-color: #888;
+    background: url(img/common.svg) no-repeat;
+    background-size: 100%;
   }
   .list-group-item[data-facet-value="Rare"]:before {
-      background-color: #236BD2;
-  }
-  .list-group-item[data-facet-value="Legendary"]:before {
-      background-color: #CD7400;
+    background: url(img/rare.svg) no-repeat;
+    background-size: 100%;
   }
   .list-group-item[data-facet-value="Epic"]:before {
-      background-color: #BF28E7;
+    background: url(img/epic.svg) no-repeat;
+    background-size: 100%;
   }
+  .list-group-item[data-facet-value="Legendary"]:before {
+    background: url(img/legendary.svg) no-repeat;
+    background-size: 100%;
+  }
+
 }
 
 #cost{
   .ais-refinement-list--item{
     display: inline-block;
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     line-height: 30px;
     margin-right: 8px;
     margin-top: 8px;
     font-family: 'Merriweather', serif;
-    background: url(img/gem.png) no-repeat;
-    background-size: 100%;
     a {
       font-size: 1em;
       color: white;
@@ -195,8 +198,11 @@
         0  -2px 0 #000,
         -2px 0 0 #000,
         2px 0 0 #000;
+      background-image: url(img/cristal.svg);
+      background-repeat: no-repeat;
+      background-size: 100%;
       &.active{
-        color:yellow;
+        background-image: url(img/cristal--active.svg);
       }
     }
   }

@@ -50,3 +50,16 @@ $('.sbx-custom__reset').on('click touchstart', function(e) {
   $(this).parent().find('input').val('').focus();
   search.helper.setQuery('').search();
 });
+
+
+// select
+$('.wz-select').on('click', function(){
+  $(this).toggleClass('active');
+});
+
+$('.wz-select ul li').on('click', function() {
+  var v = $(this).html();
+  $('.wz-select ul li').not($(this)).removeClass('active');
+  $(this).addClass('active');
+  $(this).find('.wz-select label button').html(v);
+});
