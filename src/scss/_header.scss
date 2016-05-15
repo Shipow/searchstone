@@ -14,21 +14,13 @@
 
 header {
   position: relative;
-  z-index: 5;
-  float: left;
   width: 100%;
-
-  h1 {
+  float: left;
+  .logo {
     animation: flipInX .6s ease-in;
     padding: 30px 0 0;
-    text-align: center;
-    img {
-      width: 450px;
-    }
-
-    @media (max-width: $bp-small) {
-      display: none;
-    }
+    float: left;
+    margin: 0 30px 20px;
   }
 }
 
@@ -36,27 +28,20 @@ header {
   @include searchbox($custom...);
 }
 
-
-.logo {
-  float: left;
-  margin: 20px 30px;
-}
-
 .searchbox {
-  margin: 40px 0 20px 0;
+  margin: 55px 80px 20px;
   display: block;
   float: left;
+  width: 400px;
 
   .sbx-custom__input {
-    color: #fff;
-    box-shadow: 0 2px #fff;
+    color: yellow;
+    box-shadow: 0 2px #3C10C9;
     background: transparent;
-    font-weight: bold;
-    text-transform: uppercase;
   }
 
   .sbx-custom__input:focus {
-    box-shadow: 0 2px #fff;
+    box-shadow: 0 2px white;
   }
 
   .sbx-custom__input:focus ~ .sbx-custom__submit {
@@ -70,29 +55,30 @@ header {
 
 .wz-select {
   display: block;
-  position: relative;
-  width: 160px;
-  float: left;
+  position: absolute;;
+  right: 40px;
+  top: 65px;
 
   [type="button"] {
-    width: 200px;
+    width: 130px;
     height: 30px;
-    font-size: 13px;
     border-radius: 3px;
     line-height: 30px;
-    background: transparent;
     display: block;
-    float: left;
     text-align: left;
     padding: 0 8px;
+    font-size: .9em;
     color: rgba(white, 0.9);
     border: none;
     outline: 0;
+    border: solid 1px #3C10C9;
+    cursor: pointer;
     background: {
       image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%23979797\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>");
       size: 14px;
       position: center right 8px;
       repeat: no-repeat;
+      color: transparent;
     }
     &:focus,
     &:active {
@@ -105,65 +91,65 @@ header {
     }
   }
 
-   *, :after, :before {
-     box-sizing: border-box;
-   }
+  *, :after, :before {
+    box-sizing: border-box;
+  }
 
-   svg {
-      width: 20px;
-      height: 20px;
-      display: block;
-      line-height: 32px;
-      margin: 6px 0;
-      fill: rgba(0, 0, 0, 0.5);
-      margin: 8px 6px;
-      width: 20px;
-      height: 14px;
-      position: absolute;
-      top: 0;
-   }
+  svg {
+    width: 25px;
+    height: 25px;
+    display: block;
+    line-height: 32px;
+    margin: 6px 0;
+    fill: rgba(0, 0, 0, 0.5);
+    margin: 8px 6px;
+    width: 20px;
+    height: 14px;
+    position: absolute;
+    top: 0;
+  }
 
 
-   ul {
-     position: absolute;
-     background: black;
-     cursor: default;
-     list-style: none;
-     line-height: 32px;
-     top: 30px;
-     left: 0;
-     width: 200px;
-     overflow: hidden;
-     margin: 0;
-     max-height: 0;
-     padding: 0;
-     transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
-     width: 100%;
-     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
-     border-radius: 3px;
-     display: block;
+  ul {
+    position: absolute;
+    background: black;
+    cursor: default;
+    list-style: none;
+    line-height: 32px;
+    top: 30px;
+    right: 0;
+    overflow: hidden;
+    margin: 0;
+    max-height: 0;
+    padding: 0;
 
-     li {
-       height: 32px;
-       width: 100%;
-       padding: 0 8px;
-       cursor: pointer;
-       color: white;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+    border-radius: 3px;
+    display: block;
+
+    li {
+      height: 32px;
+      width: 100%;
+      padding: 0 8px;
+      cursor: pointer;
+      color: white;
+      -webkit-font-smoothing: antialiased;
 
        &:focus, &:hover, &.active {
          color: yellow;
-       }
-     }
-   }
+        }
+      }
+    }
 
-   &.active ul {
-     max-height: 200px;
-     overflow: auto;
-     padding: 8px 0 16px 0px;
-     z-index: 2;
-     transition: all .2s ease
-   }
- }
+    &.active ul {
+      max-height: 400px;
+      overflow: auto;
+      padding: 8px 0 16px 0px;
+      z-index: 999;
+      transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
+    }
+  }
 
 
 .please-be-kind {

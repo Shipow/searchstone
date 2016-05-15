@@ -2,6 +2,10 @@
 
 let instantsearch = require('instantsearch.js');
 
+import languageSelect from './is-custom/language-select.js';
+instantsearch.widgets.languageSelect = languageSelect;
+
+//config
 let searchstone = instantsearch({
   appId: 'T2ZX9HO66V',
   apiKey: '7119d2f6f1cd95224251ec2e490e824f',
@@ -9,8 +13,10 @@ let searchstone = instantsearch({
   urlSync: true
 });
 
+//expose instantsearch because of webpack
 window.search = searchstone;
 
+//searchbox
 searchstone.addWidget(
   instantsearch.widgets.searchBox({
     container: '#search',
@@ -18,6 +24,7 @@ searchstone.addWidget(
   })
 );
 
+// hits, the template is called from index.haml
 searchstone.addWidget(
   instantsearch.widgets.hits({
     hitsPerPage: 12,
@@ -38,22 +45,12 @@ searchstone.addWidget(
   })
 );
 
+// languages
 searchstone.addWidget(
-  instantsearch.widgets.menu({
-    container: '#lang',
-    attributeName: 'lang',
-    limit: 10,
-    collapsible:  {
-      collapsed: true
-    },
-    templates: {
-      header: 'Language',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
-    }
-  })
+  instantsearch.widgets.languageSelect($('#lang-select'))
 );
 
-
+//Player Class
 searchstone.addWidget(
   instantsearch.widgets.menu({
     container: '#playerClass',
@@ -73,13 +70,6 @@ searchstone.addWidget(
     container: "#refinements",
     clearAll: false,
     attributes: [
-      // {name: 'cost', template: '<a href="javascript:void(0)">Mana {{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>'},
-      // {name: 'setFull'},
-      // {name: 'format'},
-      // {name: 'rarity'},
-      // {name: 'type'},
-      // {name: 'race'},
-      // {name: 'mechanics'},
       {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'}
     ],
     onlyListedAttributes: true,
@@ -206,17 +196,17 @@ searchstone.addWidget(
   })
 );
 
-searchstone.addWidget(
-  instantsearch.widgets.hitsPerPageSelector({
-    container: '#hits-per-page-selector',
-    options: [
-      {value: 8, label: '8 per page'},
-      {value: 12, label: '12 per page'},
-      {value: 24, label: '24 per page'},
-      {value: 40, label: '40 per page'}
-    ]
-  })
-);
+// searchstone.addWidget(
+//   instantsearch.widgets.hitsPerPageSelector({
+//     container: '#hits-per-page-selector',
+//     options: [
+//       {value: 8, label: '8 per page'},
+//       {value: 12, label: '12 per page'},
+//       {value: 24, label: '24 per page'},
+//       {value: 40, label: '40 per page'}
+//     ]
+//   })
+// );
 
 searchstone.addWidget(
   instantsearch.widgets.pagination({
@@ -227,25 +217,7 @@ searchstone.addWidget(
   })
 );
 
-searchstone.addWidget(
-  {
-    init: function(opts) {
-      if(!opts.helper.hasRefinements("lang")){
-        opts.helper.toggleRefinement( "lang", "enUS");
-      }
-    }
-  }
-);
-
 searchstone.on('render', function() {
-  // $('.hit img').one('load', function() {
-  //   var img = $(this).attr('src');
-  //   $(this).parent().css('background-image', 'url("' + img + '")');
-  //   $(this).parent().addClass('loaded');
-  // }).each(function() {
-  //     if(this.complete) $(this).load();
-  // });
-  // $('.ais-hits').removeClass('hide');
 
   $('.card-picture').each(function(i,e){
 
@@ -274,7 +246,6 @@ searchstone.on('render', function() {
 
   sunwell.init();
 });
-
 
 
 

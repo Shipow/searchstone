@@ -1,9 +1,8 @@
 .poweredby {
-  color: white;
+  color: rgba(white,.6);
   display: block;
   text-align: center;
-  font-size: 1.1em;
-  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;
   .instantsearch {
     position: relative;
     display: inline-block;

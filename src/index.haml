@@ -34,7 +34,7 @@
       %img.logo{src: "img/searchstone.svg", width:320}
 
       %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false;"}
-        %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards", autocomplete: "off", required: true, spellcheck: false}
+        %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards by name, race or mechanics", autocomplete: "off", required: true, spellcheck: false}
         %button.sbx-custom__submit{type: "submit"}
           %svg{role: "img", aria-label: "Search"}
             %use{xlink:href: "#sbx-icon-search-6"}
@@ -42,13 +42,7 @@
           %svg{role: "img", aria-label: "Reset"}
             %use{xlink:href: "#sbx-icon-clear-3"}
 
-
-      .wz-select
-        %label{for: "ul-id"}
-          %button{type: "button"} English
-        %ul#ul-id{name: "ul-id", role: "listbox"}
-          %li.active{role: "option"} English
-          %li{role: "option"} Français
+      %section#lang-select
 
       %script#hit-template{type: "text/template"}
         .hit
@@ -67,10 +61,9 @@
             .card-description
               %span
                 {{{_highlightResult.text.value}}}
-          -# .card-infos {{set}} - {{{_highlightResult.name.frFR.value}}}
+            .card-infos {{set}} - {{{_highlightResult.name.value}}}
 
     %aside
-      %section#lang
       %section#rarity
       %section#cost
       %section#format
@@ -83,16 +76,13 @@
       %section#playerClass
       %section#refinements
       %section#results
-      %section#hits-per-page-selector
+      -# %section#hits-per-page-selector
       %section#pagination
 
       %section.poweredby
-        This website is not affiliated with Blizzard Entertainment.
+        This website is <strong>not</strong> affiliated with Blizzard Entertainment.
         %br
-        "Heartstone" brand, artworks and most of the assets of this website are property of Blizzard Entertainment.
-        %br
-        %br
-        %span This project is part of the HeartSim community.
+        Hearthstone brand and artworks are property of Blizzard Entertainment.
         %br
         %br
         %span Built with
