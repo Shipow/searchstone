@@ -215,7 +215,7 @@ gulp.task('watch', function() {
   gulp.watch('src/*.haml', ['build:haml']);
   gulp.watch('src/scss/**/*.scss', ['scss','lint:scss']);
   gulp.watch('src/js/**/*.js', ['js', 'lint:js']);
-  // gulp.watch('src/img/**/*',['images']);
+  gulp.watch('src/img/**/*',['images']);
 });
 
 // -------------------------------------
@@ -244,6 +244,14 @@ gulp.task('rev', function () {
 });
 
 // -------------------------------------
+//   Task: CNAME
+// -------------------------------------
+gulp.task('cname', function () {
+	return gulp.src('src/CNAME')
+		.pipe(gulp.dest('build'));
+});
+
+// -------------------------------------
 //   Task: Build DEV - PROD - HAML
 // -------------------------------------
 gulp.task('build:dev',['clean'], function(callback) {
@@ -251,7 +259,7 @@ gulp.task('build:dev',['clean'], function(callback) {
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'haml', 'icons', 'js:min', 'favicons', 'rev', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'cname', callback);
 });
 
 gulp.task('build:haml', function(callback) {
@@ -272,7 +280,6 @@ gulp.task('deploy',['build:prod'], function(callback) {
   return gulp.src('build/**/*')
     .pipe(ghPages());
 });
-
 
 
 // algolia = require('algoliasearch'),
@@ -320,6 +327,12 @@ api_secret: ''
 };
 
 var tags = "hs";
+
+// config.algolia = {
+//   appID: 'T2ZX9HO66V',
+//   apiKey: '',
+//   index: ''
+// };
 
 gulp.task('export:cloudinary_upload', function(){
 var builderDefault = new gulpCloudinary(config.cloudinary, tags);
