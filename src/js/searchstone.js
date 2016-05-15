@@ -234,7 +234,7 @@ searchstone.on('render', function() {
     cardObj.name = "";
     cardObj.text = "";
     cardObj.playerClass = $(e).data("card-playerclass");
-    cardObj.texture = $(e).data("card-texture").replace(/\(/g,'_').replace(/\)/g,'_');
+    cardObj.texture = $(e).data("card-id");
 
 
     if ( $(e).data("card-race") !== ""){
