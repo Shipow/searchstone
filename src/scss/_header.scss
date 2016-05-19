@@ -33,6 +33,7 @@ header {
   display: block;
   float: left;
   width: 400px;
+  position: relative;
 
   .sbx-custom__input {
     color: yellow;
@@ -51,19 +52,27 @@ header {
   .sbx-custom__reset {
     fill: #fff
   }
+
+  .poweredby{
+    position: absolute;
+    right: -130px;
+    top: 12px;
+    display: block;
+    width: 120px;
+  }
 }
 
 .wz-select {
   display: block;
   position: absolute;;
   right: 40px;
-  top: 65px;
+  top: 62px;
 
   [type="button"] {
     width: 130px;
     height: 30px;
     border-radius: 3px;
-    line-height: 30px;
+    line-height: 28px;
     display: block;
     text-align: left;
     padding: 0 8px;
@@ -118,15 +127,8 @@ header {
     line-height: 32px;
     top: 30px;
     right: 0;
-    overflow: hidden;
-    margin: 0;
-    max-height: 0;
-    padding: 0;
-
+    display: none;
     width: 200px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
-    border-radius: 3px;
-    display: block;
 
     li {
       height: 32px;
@@ -143,9 +145,10 @@ header {
     }
 
     &.active ul {
-      max-height: 400px;
+      display: block;
+      max-height: 500px;
       overflow: auto;
-      padding: 8px 0 16px 0px;
+      padding: 8px;
       z-index: 999;
       transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
     }

@@ -10,23 +10,11 @@
     text-transform: uppercase;
     margin-right: 8px;
     user-select: inherit;
-
     a {
       color: #fff;
       text-decoration: none;
-
       div {
         display: inline-block;
-      }
-
-      svg {
-        display: inline;
-        vertical-align: middle;
-        width: 18px;
-        height: 18px;
-        top: -2px;
-        position: relative;
-        fill: #00A3FF;
       }
     }
   }
@@ -85,24 +73,20 @@
   }
 }
 
-.ais-refinement-list--item {
-  width: 100%
+.sidebar-facets{
+  .ais-refinement-list--item{
+    line-height: 1.2em;
+  }
 }
 
-.ais-root__collapsible::before{
-  float: right;
-  content: "-";
-  width: 12px;
-  color: white;
-  font-size: 1.2em;
-}
-&.ais-root__collapsed::before{
-  content: "+";
+.ais-refinement-list--item {
+  width: 100%
 }
 
 .ais-refinement-list--item,
 .ais-toggle--item,
 .ais-menu--item {
+  position: relative;
   a {
     display: inline-block;
     width: 100%;
@@ -112,6 +96,9 @@
     font-size: 1.05em;
     text-decoration: none;
     -webkit-font-smoothing: antialiased;
+    &:hover{
+      color: white;
+    }
     &.active{
       color: yellow;
       font-weight: bold;
@@ -122,6 +109,7 @@
 .badge {
   float: right;
   color: #777;
+  line-height: 1.2em;
 }
 
 .ais-header{
@@ -300,45 +288,65 @@
 }
 
 #set{
-
-  .list-group-item::before{
-    content: "";
-    display: inline-block;
-    width: 22px;
-    height:22px;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
-    background: url('img/SetIcons.png');
-    background-size: 140px;
+  .ais-refinement-list--item {
+    line-height: 1.4em;
   }
 
-  .list-group-item[data-facet-value="Old Gods"]:before {
-    background-position: 68px 0;
+  .badge{
+    line-height: 1.4em;
   }
-  .list-group-item[data-facet-value="The Grand Tournament"]:before {
-    background-position: 90px 0;
 
-  }
-  .list-group-item[data-facet-value="League of Explorers"]:before {
-    background-position: 68px 24px;
-  }
-  .list-group-item[data-facet-value="Blackrock Mountain"]:before {
-    background-position: 46px 24px;
-  }
-  .list-group-item[data-facet-value="Goblins vs Gnomes"]:before {
-    background-position: 116px 0;
-  }
-  .list-group-item[data-facet-value="Naxxramas"]:before {
-    background-position: 22px 0;
-  }
-  .list-group-item[data-facet-value="Expert"]:before {
-    background-position: 0 0;
-  }
-  .list-group-item[data-facet-value="Basic"]:before {
-    background-position: 46px 0;
-  }
-  .list-group-item[data-facet-value="Reward"]:before {
-    background-position: 116px 24px;
+  .list-group-item{
+    box-sizing: border-box;
+    padding-left: 26px;
+
+    &::before{
+      content: "";
+      display: inline-block;
+      width: 22px;
+      height:22px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-right: 4px;
+      background: url('img/SetIcons.png');
+      background-size: 140px;
+    }
+
+    &[data-facet-value="Old Gods"]::before {
+      background-position: 68px 0;
+    }
+
+    &[data-facet-value="The Grand Tournament"]::before {
+      background-position: 90px 0;
+    }
+
+    &[data-facet-value="League of Explorers"]::before {
+      background-position: 68px 24px;
+    }
+
+    &[data-facet-value="Blackrock Mountain"]::before {
+      background-position: 46px 24px;
+    }
+
+    &[data-facet-value="Goblins vs Gnomes"]::before {
+      background-position: 116px 0;
+    }
+
+    &[data-facet-value="Naxxramas"]::before {
+      background-position: 22px 0;
+    }
+
+    &[data-facet-value="Expert"]::before {
+      background-position: 0 0;
+    }
+
+    &[data-facet-value="Basic"]::before {
+      background-position: 46px 0;
+    }
+
+    &[data-facet-value="Reward"]::before {
+      background-position: 116px 24px;
+    }
   }
 }

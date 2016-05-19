@@ -10,7 +10,7 @@
 
 %body
   .container-fluid
-    %a.github-source{href: "https://github.com/shipow/searchstone"}
+    %a.github-source{href: "https://github.com/shipow/searchstone", target:"_blank"}
       %svg
         %use{xlink:href: "#github-banner"}
     %header
@@ -31,7 +31,8 @@
       -#         .pulse
       -#         %svg{role: "img"}
       -#           %use{xlink:href: "#icon-twitter"}
-      %img.logo{src: "img/searchstone.svg", width:320}
+      %a{href:"/"}
+        %img.logo{src: "img/searchstone.svg", width:320}
 
       %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false;"}
         %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards by name, race or mechanics", autocomplete: "off", required: true, spellcheck: false}
@@ -41,6 +42,8 @@
         %button.sbx-custom__reset{type: "reset"}
           %svg{role: "img", aria-label: "Reset"}
             %use{xlink:href: "#sbx-icon-clear-3"}
+        %a.poweredby{href:"https://www.algolia.com/"}
+          %img{src:"img/powered-by-algolia.svg"}
 
       %section#lang-select
 
@@ -63,7 +66,9 @@
                 {{{_highlightResult.text.value}}}
             .card-infos {{set}} - {{{_highlightResult.nameVO.value}}}
 
-    %aside
+    %aside.sidebar-facets
+      %section#sort-by
+      %section#hits-per-page
       %section#rarity
       %section#cost
       %section#format
@@ -76,7 +81,6 @@
       %section#playerClass
       %section#refinements
       %section#results
-      -# %section#hits-per-page-selector
       %section#pagination
 
       %section.poweredby

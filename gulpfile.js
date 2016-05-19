@@ -39,6 +39,23 @@ const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant')
 const favicons = require("gulp-favicons");
 
+const algolia = require('algoliasearch');
+const _ = require('lodash');
+const chalk = require('chalk');
+const through = require('through2');
+const cloudinary = require("cloudinary");
+
+//var requireDir = require('require-dir');
+
+
+const gulpsync = require('gulp-sync')(gulp);
+
+const config = require('./config.json');
+
+const fs = require('fs');
+
+const async = require('async');
+
 // *************************************
 //
 // Available tasks:
@@ -281,63 +298,85 @@ gulp.task('deploy',['build:prod'], function(callback) {
     .pipe(ghPages());
 });
 
+// -------------------------------------
+//   Task: Algolia
+// -------------------------------------
+var client = algolia(config.algolia.appID, config.algolia.apiKey);
+var index = client.initIndex(config.algolia.index);
 
-// algolia = require('algoliasearch'),
-const chalk = require('chalk');
-const through = require('through2');
-const cloudinary = require("cloudinary");
+gulp.task('export:algolia', function(){
+  var client = algolia(config.algolia.appID, config.algolia.apiKey);
+  var index = client.initIndex(config.algolia.index);
+  fs.readFile('import/out/algolia-hearthstone.json', 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    var data = _.chunk(JSON.parse(data), [size=100]);
+    return index.clearIndex(function(err, content) {
+      index.waitTask(content.taskID, function() {
+        console.log(data.length, content);
+        async.each(data, function(batch, callback) {
+          index.addObjects(batch, function(err, result){
+            index.waitTask(result.taskID, function() {
+              console.log(batch.length);
+              callback();
+            });
+          });
+        }, function(err){
+          console.log(err);
+        });
+      });
+    });
+  });
+});
 
+
+gulp.task('export:algolia-settings', function(){
+  index.setSettings(config.algolia.settings,function(err, content) {});
+});
+
+// -------------------------------------
+//   Task: Cloudinary
+// -------------------------------------
 function gulpCloudinary(config, tags) {
-this.config = config;
-this.tags = tags;
-cloudinary.config(this.config);
+  this.config = config;
+  this.tags = tags;
+  cloudinary.config(this.config);
 }
 
 gulpCloudinary.prototype.deleteOldByTag = function(){
-var self = this;
-//remove images with by tags
-cloudinary.api.delete_resources_by_tag(self.tags, function(data){
-  console.log(data);
-});
+  var self = this;
+  //remove images with by tags
+  cloudinary.api.delete_resources_by_tag(self.tags, function(data){
+    console.log(data);
+  });
 }
 
 gulpCloudinary.prototype.uploader = function(){
-var self = this,
+  var self = this,
   count = 0;
   return through.obj(function (file, enc, cb) {
-    // var tags = self.tags.slice(0);
-    // tags.push( file.path.split('/')[ file.path.split('/').length - 2 ] );
     cloudinary.uploader.upload(file.path, function(data) {
       count++;
       cb();
-    },{ tags: "hs", use_filename: true, unique_filename: false, invalidate: true });
-
+    },{
+      tags: "hs",
+      use_filename: true,
+      unique_filename: false,
+      invalidate: true
+    });
   }, function (cb) {
     console.log('Uploaded: ' + chalk.green(count + ' items'));
     cb();
   });
 }
 
-var config = {};
-
-config.cloudinary = {
-cloud_name: 'hilnmyskv',
-api_key: '',
-api_secret: ''
-};
-
 var tags = "hs";
 
-// config.algolia = {
-//   appID: 'T2ZX9HO66V',
-//   apiKey: '',
-//   index: ''
-// };
-
 gulp.task('export:cloudinary_upload', function(){
-var builderDefault = new gulpCloudinary(config.cloudinary, tags);
-return gulp.src(['./import/in/art/*'])
-  .pipe(builderDefault.uploader());
+  var builderDefault = new gulpCloudinary(config.cloudinary, tags);
+  return gulp.src(['./import/in/art/*'])
+    .pipe(builderDefault.uploader());
 });
 
 gulp.task('export:cloudinary_clean', function(){

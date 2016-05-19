@@ -7,9 +7,9 @@ instantsearch.widgets.languageSelect = languageSelect;
 
 //config
 let searchstone = instantsearch({
-  appId: 'T2ZX9HO66V',
-  apiKey: '7119d2f6f1cd95224251ec2e490e824f',
-  indexName: 'dev_hearthstone--lang',
+  appId: 'OWD8XOXT0U',
+  apiKey: '4c77c51c3822c8a719b418b0cb47913e',
+  indexName: 'searchstone_cost--asc',
   urlSync: true
 });
 
@@ -30,8 +30,7 @@ searchstone.addWidget(
     hitsPerPage: 12,
     container: '#results',
     templates: {
-      empty: `<div class="no-results"><h2>No Results</h2>
-        <p>What about starting a new search?</p></div>`,
+      empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
       item: document.getElementById('hit-template').innerHTML
     },
     transformData: function(hit) {
@@ -196,17 +195,29 @@ searchstone.addWidget(
   })
 );
 
-// searchstone.addWidget(
-//   instantsearch.widgets.hitsPerPageSelector({
-//     container: '#hits-per-page-selector',
-//     options: [
-//       {value: 8, label: '8 per page'},
-//       {value: 12, label: '12 per page'},
-//       {value: 24, label: '24 per page'},
-//       {value: 40, label: '40 per page'}
-//     ]
-//   })
-// );
+
+searchstone.addWidget(
+  instantsearch.widgets.sortBySelector({
+    container: '#sort-by',
+    indices: [
+      {name: 'searchstone_cost--asc', label: 'Lowest cost'},
+      {name: 'searchstone_cost--desc', label: 'Highest cost'},
+      {name: 'searchstone_name', label: 'Alphabetical'}
+    ]
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.hitsPerPageSelector({
+    container: '#hits-per-page',
+    options: [
+      {value: 8, label: '8 per page'},
+      {value: 12, label: '12 per page'},
+      {value: 24, label: '24 per page'},
+      {value: 40, label: '40 per page'}
+    ]
+  })
+);
 
 searchstone.addWidget(
   instantsearch.widgets.pagination({

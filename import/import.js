@@ -2,6 +2,8 @@
 // add popularity in deck
 // french plurals regex
 // add generated cards
+var fs = require('fs');
+var _ = require('lodash');
 
 var lang = [
   "deDE",
@@ -118,11 +120,8 @@ var specialChars = {
   "\\[x\\]" : ""
 }
 
-var fs = require('fs');
-var _ = require('lodash');
-
 fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
-// fs.readFile('in/test.json', 'utf8', function (err, data) {
+
   if (err) {
     return console.log(err);
   }

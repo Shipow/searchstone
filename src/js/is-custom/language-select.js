@@ -110,7 +110,7 @@ function languageSelect($container) {
           $(this).toggleClass('active');
         });
 
-        $('.wz-select ul li').on('click', function() {
+        $('.wz-select ul li').not('.active').on('click', function() {
           var v = $(this).html();
           $('.wz-select ul li').removeClass('active');
           $(this).addClass('active');
