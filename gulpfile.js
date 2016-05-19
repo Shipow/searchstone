@@ -304,9 +304,7 @@ gulp.task('deploy',['build:prod'], function(callback) {
 var client = algolia(config.algolia.appID, config.algolia.apiKey);
 var index = client.initIndex(config.algolia.index);
 
-gulp.task('export:algolia', function(){
-  var client = algolia(config.algolia.appID, config.algolia.apiKey);
-  var index = client.initIndex(config.algolia.index);
+gulp.task('export:algolia-index', function(){
   fs.readFile('import/out/algolia-hearthstone.json', 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
@@ -314,11 +312,10 @@ gulp.task('export:algolia', function(){
     var data = _.chunk(JSON.parse(data), [size=100]);
     return index.clearIndex(function(err, content) {
       index.waitTask(content.taskID, function() {
-        console.log(data.length, content);
         async.each(data, function(batch, callback) {
           index.addObjects(batch, function(err, result){
             index.waitTask(result.taskID, function() {
-              console.log(batch.length);
+              console.log('Indexed '+ batch.length + ' cards');
               callback();
             });
           });
