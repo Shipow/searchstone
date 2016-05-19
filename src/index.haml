@@ -14,25 +14,8 @@
       %svg
         %use{xlink:href: "#github-banner"}
     %header
-      -# .please-be-kind
-      -#   %ul.social-links
-      -#     %li
-      -#       %a{href: "https://www.producthunt.com/tech/algolia-supersearch", target: "_blank"}
-      -#         .pulse
-      -#         %svg{role: "img"}
-      -#           %use{xlink:href: "#icon-producthunt"}
-      -#     %li
-      -#       %a.share-link{href: "#facebook"}
-      -#         .pulse
-      -#         %svg{role: "img"}
-      -#           %use{xlink:href: "#icon-facebook"}
-      -#     %li
-      -#       %a.share-link{href: "#twitter"}
-      -#         .pulse
-      -#         %svg{role: "img"}
-      -#           %use{xlink:href: "#icon-twitter"}
       %a{href:"/"}
-        %img.logo{src: "img/searchstone.svg", width:320}
+        %img.logo{src: "img/searchstone.svg", width:360}
 
       %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false;"}
         %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards by name, race or mechanics", autocomplete: "off", required: true, spellcheck: false}
@@ -96,7 +79,7 @@
     %a.close{href: "javascript:void(0);"}
       %svg{role: "img"}
         %use{xlink:href: "#sbx-icon-clear-2"}
-    .lightbox_frame_wrapper
+    .card-detail-wrapper
 
   .filters-panel.hide.overlay
     %button.close{type: "button"} BACK
@@ -128,7 +111,7 @@
   %script{src: "js/sunwell.js"}
   %script{src: "js/app.js"}
 
-  .svg-icons{style: "height: 0; width: 0; position: absolute; visibility: hidden"}
+  .svg-icons{style: "display:none"}
     <!-- inject:svg --><!-- endinject -->
     %svg{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
       %defs

@@ -1,17 +1,7 @@
-
-function openLightbox(e) {
-  var yt = $(e).data('yt') || jHash.val('yt');
-  jHash.val('yt', yt);
-
-  $('.lightbox_frame_wrapper')
-    .append($('<iframe class="lightbox_frame" type="text/html" width="640" height="385" allowfullscreen></iframe>'));
-  $('.lightbox_frame').attr('src', 'https://www.youtube.com/embed/'+ yt + '?autoplay=1').load(function(){
-    $(this).addClass('loaded');
-  });
+function openLightbox() {
   $('.lightbox').toggleClass('hidden');
   $('body, html').css('overflow:hidden');
   $('.container-fluid').addClass('no-scroll');
-  $(".lightbox .share-video").data('brand', $(e).data('brand'));
 }
 
 function closeLightbox() {
@@ -19,6 +9,11 @@ function closeLightbox() {
   $('.lightbox').addClass('hidden');
   $('body, html').css('overflow:auto');
   $('.container-fluid').removeClass('no-scroll');
+  $('.card-detail-wrapper').empty();
+}
+
+function cardDetail(e) {
+  $('.card-detail-wrapper').append($(e.target).parents('.ais-hits--item').clone());
 }
 
 $('.lightbox').on('click', function(){
@@ -37,4 +32,9 @@ $('.sbx-custom__reset').on('click touchstart', function(e) {
   e.preventDefault();
   $(this).parent().find('input').val('').focus();
   search.helper.setQuery('').search();
+});
+
+$('#results').on('click touchstart', '.ais-hits--item', function(e) {
+  openLightbox();
+  cardDetail(e);
 });

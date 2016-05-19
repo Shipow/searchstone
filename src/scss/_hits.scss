@@ -3,12 +3,18 @@
   clear: both;
 }
 
-.ais-hits {
+.card-detail-wrapper{
+  z-index: 9000;
+  .card-wrapper{
+    transform: scale(1)!important;
+  }
+}
 
+.ais-hits, .card-detail-wrapper {
   .ais-hits--item {
     float: left;
     width: 240px;
-    height: 350px;
+    height: 330px;
     margin-bottom: 16px;
     animation: flipInX .4s ease;
     animation-fill-mode: backwards;
@@ -20,12 +26,14 @@
     }
 
     .card-wrapper{
-      transform: scale(.8);
+      transform: scale(.75);
       transform-origin: 0 0;
       width: 300px;
       height: 432px;
       position: relative;
-
+      &:hover{
+        cursor: pointer;
+      }
     }
     .card-picture{
       max-width: 100%;
@@ -204,7 +212,6 @@
         color: rgba(yellow,.7);
       }
     }
-
   }
 }
 
@@ -228,7 +235,7 @@
     font-size: 1.1em;
     display: block;
     width: 360px;
-    margin: 0 auto;
+    margin: 40px auto 0;
     text-align: center;
     color: white;
     h2 {

@@ -1,6 +1,3 @@
-$bp-regular: 960px;
-$bp-small: 740px;
-
 .lightbox {
   position: fixed;
   top: 0;
@@ -18,7 +15,7 @@ $bp-small: 740px;
 
   &:before {
     content: '';
-    background: rgba(#001B3A, 0.9);
+    background: rgba(#001B3A, 0.3);
     position: absolute;
     top: 0;
     left: 0;
@@ -65,9 +62,6 @@ $bp-small: 740px;
   &.hidden {
     opacity: 0;
     visibility: hidden;
-    transform-origin: left 50% 50%;
-    transform-style: preserve-3d;
-    transform: translateY(50vh) scale(.9);
   }
 }
 

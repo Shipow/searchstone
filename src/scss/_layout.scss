@@ -15,6 +15,7 @@ body {
   background-size: cover;
 }
 
+
 .container-fluid {
   width: 1250px;
   transition: opacity .4s ease;
@@ -25,14 +26,10 @@ body {
   }
 
   &.no-scroll {
-    transition: transform .5s ease, opacity .5s ease;
+    filter: blur(6px);
     position: relative;
-    right: 40px;
     height: 100vh;
     overflow: hidden;
-    opacity: 0;
-    perspective: 300px;
-    transform: translateX(-30vh);
     .github-source {
       display: none;
       visibility: hidden;
