@@ -27,8 +27,8 @@
   // Lightbox close
   .close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 25%;
+    right: 15%;
     z-index: 5;
     margin: 16px;
     cursor: pointer;
@@ -40,36 +40,8 @@
     }
   }
 
-  .lightbox_frame {
-    z-index: 2;
-    transform: scale(0);
-    border: 0;
-    background-color: black;
-    max-width: 100vw !important;
-    transition: transform .5s ease, opacity .5s ease;
-    position: relative;
-    &.loaded {
-      transform: scale(1);
-    }
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: 'loading';
-    }
-  }
-
   &.hidden {
     opacity: 0;
     visibility: hidden;
   }
-}
-
-.lightbox_frame_wrapper {
-}
-
-.lightbox_sharing {
-  margin-top: 20px;
-  color: white;
-  z-index: 999;
 }

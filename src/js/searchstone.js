@@ -207,17 +207,17 @@ searchstone.addWidget(
   })
 );
 
-searchstone.addWidget(
-  instantsearch.widgets.hitsPerPageSelector({
-    container: '#hits-per-page',
-    options: [
-      {value: 8, label: '8 per page'},
-      {value: 12, label: '12 per page'},
-      {value: 24, label: '24 per page'},
-      {value: 40, label: '40 per page'}
-    ]
-  })
-);
+// searchstone.addWidget(
+//   instantsearch.widgets.hitsPerPageSelector({
+//     container: '#hits-per-page',
+//     options: [
+//       {value: 8, label: '8 per page'},
+//       {value: 12, label: '12 per page'},
+//       {value: 24, label: '24 per page'},
+//       {value: 40, label: '40 per page'}
+//     ]
+//   })
+// );
 
 searchstone.addWidget(
   instantsearch.widgets.pagination({

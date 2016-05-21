@@ -51,16 +51,16 @@
                 %span
                   {{{_highlightResult.text.value}}}
             .card-infos {{set}} - {{{_highlightResult.nameVO.value}}}
-            .card-details
-              %dl
-                %dt VO
-                %dd {{nameVO}}
-                %dd {{textVO}}
-                %dt Set
-                %dd {{set}} - {{setFull}}
-                %dd {{flavor}}
-                %dt Dust to craft it
-                %dd {{dustCraft}}
+          .card-details
+            %dl
+              %p.detail-set {{setFull}} - {{playerClass}}
+              %h2.detail-name {{nameVO}}
+              {{#dustCraft}}
+                %p.detail-dust {{dustCraft}}
+              {{/dustCraft}}
+              %p.detail-quote {{flavor}}
+              %br
+              %p.detail-artist Artist: {{artist}}
 
 
     %aside.sidebar-facets
@@ -81,9 +81,12 @@
       %section#pagination
 
       %section.poweredby
-        This website is <strong>not</strong> affiliated with Blizzard Entertainment.
+        This site is <strong>not</strong> affiliated with Blizzard Entertainment, Inc.
         %br
-        Hearthstone brand and artworks are property of Blizzard Entertainment.
+        Hearthstone assets used on this site are copyrighted and/or trademarked material of Blizzard Entertainment, Inc.
+        %br
+        %br
+        Searchtone is open-sourced on Github, read more about the making on Medium.
         %br
         %br
         %span Built with
@@ -92,7 +95,7 @@
   .lightbox.hidden
     %a.close{href: "javascript:void(0);"}
       %svg{role: "img"}
-        %use{xlink:href: "#sbx-icon-clear-2"}
+        %use{xlink:href: "#sbx-icon-clear-3"}
     .card-detail-wrapper
 
   .filters-panel.hide.overlay

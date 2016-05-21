@@ -122,9 +122,7 @@ var specialChars = {
   "\\[x\\]" : ""
 }
 
-
-
-fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
+fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
 
   if (err) {
     return console.log(err);
@@ -138,10 +136,14 @@ fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
     result = result.replace(reg, '"'+map[k]+'"');
   });
 
+  //var pluralRegex = /(\d+)(.+?)\|4\((.+?),(.+?)\)/g;
+
+
   Object.keys(specialChars).forEach(function(k){
     var reg = new RegExp( k ,"g");
     result = result.replace(reg, specialChars[k]);
   });
+
 
   var cards_to_keep = [];
 
@@ -162,6 +164,11 @@ fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
       c.dustCraft =  dust[c.rarity];
 
       c.setID =  setID[c.set];
+
+      delete c.howToEarnGolden;
+      delete c.howToEarn;
+      delete c.playRequierements;
+      delete c.collectible;
 
       c.previewImage = image;
 
@@ -187,13 +194,12 @@ fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
           cl.nameVO = c.name.enUS;
           if(typeof c.text !== "undefined") {
             cl.text = c.text[l];
-            cl.textVO = c.text.enUS;
+            // cl.textVO = c.text.enUS;
           };
           if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
           cards_to_keep.push(cl);
         });
       };
-      console.log(c.previewImage);
       callback();
     });
 

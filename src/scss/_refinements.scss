@@ -212,9 +212,11 @@
 
 #playerClass{
   padding: 0 20px 20px;
+
   .ais-menu--item {
     display: inline-block;
     margin-right: 14px;
+
     a{
       color: rgba(white,.8);
       font-weight: normal;
@@ -223,9 +225,11 @@
       font-weight: bold;
       text-decoration: none;
       -webkit-font-smoothing: antialiased;
+
       &.active{
         color:yellow;
       }
+
       em {
        font-style: normal;
        font-weight: 800;
@@ -233,56 +237,57 @@
     }
   }
 
-  .list-group-item::before{
-    content: "";
-    display: inline-block;
-    position: relative;
-    top: 11px;
-    width: 32px;
-    height:32px;
-    margin-right: 3px;
-    background: url('img/ClassIcons.png');
-    background-size: 170px;
-  }
+  .list-group-item{
+    &::before{
+      content: "";
+      display: inline-block;
+      position: relative;
+      top: 11px;
+      width: 32px;
+      height:32px;
+      margin-right: 3px;
+      background: url('img/ClassIcons.png');
+      background-size: 170px;
+    }
+    &[data-facet-value="Druid"]::before {
+      background-position: 100px 32px;
+    }
 
-  .list-group-item[data-facet-value="Druid"]:before {
-    background-position: 100px 32px;
-  }
+    &[data-facet-value="Hunter"]::before {
+      background-position: 66px 32px;
+    }
 
-  .list-group-item[data-facet-value="Hunter"]:before {
-    background-position: 66px 32px;
-  }
+    &[data-facet-value="Shaman"]::before {
+      background-position: 32px -2px;
+    }
 
-  .list-group-item[data-facet-value="Shaman"]:before {
-    background-position: 32px -2px;
-  }
+    &[data-facet-value="Warrior"]::before {
+      background-position: 134px 32px;
+    }
 
-  .list-group-item[data-facet-value="Warrior"]:before {
-    background-position: 134px 32px;
-  }
+    &[data-facet-value="Paladin"]::before {
+      background-position: 134px -2px;
+    }
 
-  .list-group-item[data-facet-value="Paladin"]:before {
-    background-position: 134px -2px;
-  }
+    &[data-facet-value="Warlock"]::before {
+      background-position: -2px 32px;
+    }
 
-  .list-group-item[data-facet-value="Warlock"]:before {
-    background-position: -2px 32px;
-  }
+    &[data-facet-value="Priest"]::before {
+      background-position: 100px -2px;
+    }
 
-  .list-group-item[data-facet-value="Priest"]:before {
-    background-position: 100px -2px;
-  }
+    &[data-facet-value="Rogue"]::before {
+      background-position: 66px -2px;
+    }
 
-  .list-group-item[data-facet-value="Rogue"]:before {
-    background-position: 66px -2px;
-  }
+    &[data-facet-value="Mage"]::before {
+      background-position: -2px -2px;
+    }
 
-  .list-group-item[data-facet-value="Mage"]:before {
-    background-position: -2px -2px;
-  }
-
-  .list-group-item[data-facet-value="Neutral"]:before {
-    background-position: 32px 32px;
+    &[data-facet-value="Neutral"]::before {
+      background-position: 32px 32px;
+    }
   }
 }
 

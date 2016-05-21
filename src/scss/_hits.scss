@@ -7,13 +7,13 @@
   float: left;
   width: 240px;
   height: 330px;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 
   .card-wrapper{
     position: relative;
     width: 300px;
     height: 432px;
-    transform: scale(.75) translateZ(0px);
+    transform: scale(.80);
     transform-origin: 0 0;
     cursor: pointer;
 
@@ -48,7 +48,6 @@
   .card-overlay{
     position: absolute;
     width: 300px;
-    height: 432px;
     top: 0;
     left: 0;
     z-index: 3;
@@ -178,20 +177,21 @@
     font-size: 1em;
     letter-spacing: .3px;
     z-index: 10;
+
+    span{
+      vertical-align: middle;
+      display: table-cell;
+      height: 100px;
+      width: 180px;
+
+    }
+
+    em{
+      background-color: rgba(yellow,.2);
+      font-style: normal;
+    }
   }
 
-  .card-description span{
-    vertical-align: middle;
-    display: table-cell;
-    height: 100px;
-    width: 180px;
-
-  }
-
-  .card-description em{
-    background-color: rgba(yellow,.2);
-    font-style: normal;
-  }
 
   .card-details{
     display: none;
@@ -225,14 +225,12 @@
   }
 
   .card-infos {
-    display: inline-block;
+    display: block;
     width: 100%;
     text-align: center;
     color: rgba(white,.6);
-    font-family: 'Archivo Narrow', sans-serif;
     position: relative;
     top: -10px;
-
     em{
       font-style: normal;
       color: rgba(yellow,.7);
@@ -243,12 +241,73 @@
 .card-detail-wrapper{
   z-index: 9000;
 
+  .ais-hits--item {
+    width: 790px;
+    position: relative;
+    margin-left: 100px;
+    margin-bottom: 20%;
+  }
+
   .card-wrapper{
+    position: relative;
+    float:left;
     transform: scale(1)!important;
+    margin-right: 40px;
+    animation: cardDetailsAnim .7s ease-in;
+    animation-fill-mode: backwards;
+    transition: none;
+    transform-origin: center;
+
+    &::after{
+      content: "";
+      position: absolute;
+      background: url('../img/cardback-legendrank.png') no-repeat;
+      background-size: 100%;
+      width: 250px;
+      height: 452px;
+      top:50px;
+      left:0;
+      animation: cardBackAnim .6s ease;
+      animation-delay: .3s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .card-details{
+    width: 450px;
+    display: block;
+    float: left;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card-infos{
+    display: none;
+  }
+  .detail-set{
+    font-size: 1.4em;
+    margin-top: 90px;
+  }
+  .detail-name{
+    font-size: 3em;
+    margin-bottom: 8px;
+  }
+  .detail-quote{
+    display: block;
+    padding: 2em 0 1em;
+    font-size: 1.4em;
+    font-style: italic;
+  }
+  .detail-dust {
+    display: block;
+    background: url('../img/dust.png') no-repeat;
+    background-size: contain;
+    padding: 4px 0 4px 30px;
+    font-size: 1.4em;
+  }
+  .detail-artist{
+    font-size: 1.2em;
   }
 }
-
-
 
 .type-Weapon .card-description {
   color: white;
@@ -256,15 +315,11 @@
   -webkit-font-smoothing: antialiased;
 }
 
-
 .ais-hits__empty {
   display: block;
   min-height: 70vh;
   background: transparent;
   padding-top: 10px;
-  @media (max-width: $bp-small) {
-    padding-top: 60px;
-  }
   .no-results {
     padding: 1.4em 0;
     font-size: 1.1em;
