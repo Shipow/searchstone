@@ -8,15 +8,28 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background-color: #0E0226;
 }
 
-body {
-  background: url('img/hs-bg.jpg') no-repeat center top #0E0226;
+.blur{
+  filter: blur(6px);
+}
+
+.background-image{
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  top:0;
+  bottom:0;
+  background: url('img/hs-bg.jpg') no-repeat center top ;
   background-size: cover;
 }
 
-
 .container-fluid {
+  z-index: 10;
+  position: relative;
   width: 1250px;
   transition: opacity .4s ease;
   margin: 0 auto;
@@ -26,7 +39,6 @@ body {
   }
 
   &.no-scroll {
-    filter: blur(6px);
     position: relative;
     height: 100vh;
     overflow: hidden;

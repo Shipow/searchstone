@@ -4,6 +4,8 @@
 // add generated cards
 var fs = require('fs');
 var _ = require('lodash');
+var base64 = require('node-base64-image');
+var async = require('async');
 
 var lang = [
   "deDE",
@@ -120,6 +122,8 @@ var specialChars = {
   "\\[x\\]" : ""
 }
 
+
+
 fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
 
   if (err) {
@@ -142,50 +146,64 @@ fs.readFile('in/all.cards.collectible.json', 'utf8', function (err, data) {
   var cards_to_keep = [];
 
   // filtering the collection
-  JSON.parse(result).forEach(function(c, i){
+  async.each(JSON.parse(result), function(c, callback) {
 
-    if ( c.set === "PROMO"  ){
-      c.set = 'REWARD';
-    }
+    var options = {string: true};
+    var url = 'http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_35,q_50,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/' + c.id + '.png';
 
-    c.setFull = set[c.set];
+    base64.base64encoder(url, options, function (err, image) {
 
-    c.dustCraft =  dust[c.rarity];
+      if ( c.set === "PROMO"  ){
+        c.set = 'REWARD';
+      }
 
-    c.setID =  setID[c.set];
+      c.setFull = set[c.set];
 
-    if ( typeof c.playerClass === "undefined"  ){
-      c.playerClass = 'Neutral';
-    }
+      c.dustCraft =  dust[c.rarity];
 
-    // 2016 standard
-    if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" ){
-      c.format = ['Wild','Standard'];
-    }
-    else {
-      c.format = 'Wild';
-    }
+      c.setID =  setID[c.set];
 
-    //remove heroes
-    if ( c.type !== 'HERO'){
+      c.previewImage = image;
 
-      lang.forEach(function(l, i){
-        var cl = _.clone(c);
-        cl.lang = l;
-        cl.name = c.name[l];
-        cl.nameVO = c.name.enUS;
-        if(typeof c.text !== "undefined") {
-          cl.text = c.text[l];
-          cl.textVO = c.text.enUS;
-        };
-        if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
-        cards_to_keep.push(cl);
-      });
-    };
+      if ( typeof c.playerClass === "undefined"  ){
+        c.playerClass = 'Neutral';
+      }
+
+      // 2016 standard
+      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" ){
+        c.format = ['Wild','Standard'];
+      }
+      else {
+        c.format = 'Wild';
+      }
+
+      //remove heroes
+      if ( c.type !== 'HERO'){
+
+        lang.forEach(function(l, i){
+          var cl = _.clone(c);
+          cl.lang = l;
+          cl.name = c.name[l];
+          cl.nameVO = c.name.enUS;
+          if(typeof c.text !== "undefined") {
+            cl.text = c.text[l];
+            cl.textVO = c.text.enUS;
+          };
+          if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
+          cards_to_keep.push(cl);
+        });
+      };
+      console.log(c.previewImage);
+      callback();
+    });
+
+
+  }, function(err){
+    console.log(err);
+    // output
+    fs.writeFile('out/algolia-hearthstone.json', JSON.stringify(cards_to_keep, null, 2), 'utf8', function (err) {
+       if (err) return console.log(err);
+    });
   });
 
-  // output
-  fs.writeFile('out/algolia-hearthstone.json', JSON.stringify(cards_to_keep, null, 2), 'utf8', function (err) {
-     if (err) return console.log(err);
-  });
 });

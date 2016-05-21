@@ -228,6 +228,7 @@ searchstone.addWidget(
   })
 );
 
+
 searchstone.on('render', function() {
 
   $('.card-picture').each(function(i,e){
@@ -253,11 +254,15 @@ searchstone.on('render', function() {
     }
 
     sunwell.createCard(cardObj, 300, e);
+
+    if ($(e).attr("src")){
+      $(e).parents('.card-wrapper').addClass('loaded');
+    }
   });
 
-  sunwell.init();
+
 });
 
 
-
+sunwell.init();
 searchstone.start();

@@ -9,13 +9,14 @@
   %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
 
 %body
+  %a.github-source{href: "https://github.com/shipow/searchstone", target:"_blank"}
+    %svg
+      %use{xlink:href: "#github-banner"}
+  .background-image
   .container-fluid
-    %a.github-source{href: "https://github.com/shipow/searchstone", target:"_blank"}
-      %svg
-        %use{xlink:href: "#github-banner"}
     %header
-      %a{href:"/"}
-        %img.logo{src: "img/searchstone.svg", width:360}
+      %a.logo{href:"/"}
+        %img{src: "img/searchstone.svg", width:360}
 
       %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false;"}
         %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards by name, race or mechanics", autocomplete: "off", required: true, spellcheck: false}
@@ -32,22 +33,35 @@
 
       %script#hit-template{type: "text/template"}
         .hit
-          .card-wrapper{class: "type-{{type}}",style: "background: url('http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_40,q_60,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/{{ id }}.png');background-size:100%;background-position:0 -25px"}
-            %img.card-picture{data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
-            .card-health {{health}}
-            .card-attack {{attack}}
-            .card-cost {{cost}}
-            .card-durability {{durability}}
-            .card-race {{{_highlightResult.race.value}}}
-            %svg.card-title{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
-              %text.card-text{text-anchor: "middle"}
-                %textPath{ startOffset:"50%", xlink:href: "{{textPath}}"}
-                  %tspan{dy: "0.3em"}
-                    {{{_highlightResult.name.value}}}
-            .card-description
-              %span
-                {{{_highlightResult.text.value}}}
+          .card-wrapper{class: "type-{{type}}"}
+            .placeholder{style:"background-image: url(data:image/png;base64,{{previewImage}}) "}
+            %img.card-picture{width:300, heigh:432, data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
+            .card-overlay
+              .card-health {{health}}
+              .card-attack {{attack}}
+              .card-cost {{cost}}
+              .card-durability {{durability}}
+              .card-race {{{_highlightResult.race.value}}}
+              %svg.card-title{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
+                %text.card-text{text-anchor: "middle"}
+                  %textPath{ startOffset:"50%", xlink:href: "{{textPath}}"}
+                    %tspan{dy: "0.3em"}
+                      {{{_highlightResult.name.value}}}
+              .card-description
+                %span
+                  {{{_highlightResult.text.value}}}
             .card-infos {{set}} - {{{_highlightResult.nameVO.value}}}
+            .card-details
+              %dl
+                %dt VO
+                %dd {{nameVO}}
+                %dd {{textVO}}
+                %dt Set
+                %dd {{set}} - {{setFull}}
+                %dd {{flavor}}
+                %dt Dust to craft it
+                %dd {{dustCraft}}
+
 
     %aside.sidebar-facets
       %section#sort-by

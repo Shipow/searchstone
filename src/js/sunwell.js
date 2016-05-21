@@ -1071,37 +1071,37 @@
 
         drawProgress = 10;
 
-        drawNumber(ctx, 116, 170, s, card.cost || 0, 170, card.costStyle);
+        //drawNumber(ctx, 116, 170, s, card.cost || 0, 170, card.costStyle);
 
         drawProgress = 11;
 
-        drawCardTitle(ctx, s, card);
+        //drawCardTitle(ctx, s, card);
 
         drawProgress = 12;
 
-        if (card.type === 'MINION') {
-            if (card.race) {
-                renderRaceText(ctx, s, card);
-            }
-
-            drawNumber(ctx, 128, 994, s, card.attack || 0, 150, card.attackStyle);
-            drawNumber(ctx, 668, 994, s, card.health || 0, 150, card.healthStyle);
-        }
-
-        drawProgress = 13;
-
-        if (card.type === 'WEAPON') {
-            drawNumber(ctx, 128, 994, s, card.attack || 0, 150, card.attackStyle);
-            drawNumber(ctx, 668, 994, s, card.durability || 0, 150, card.durabilityStyle);
-        }
-
-        drawProgress = 14;
-
-        if (!card.silenced || card.type !== 'MINION') {
-            drawBodyText(ctx, s, card);
-        } else {
-            ctx.drawImage(getAsset('silence-x'), 0, 0, 410, 397, 200 * s, 660 * s, 410 * s, 397 * s);
-        }
+        // if (card.type === 'MINION') {
+        //     if (card.race) {
+        //         renderRaceText(ctx, s, card);
+        //     }
+        //
+        //     drawNumber(ctx, 128, 994, s, card.attack || 0, 150, card.attackStyle);
+        //     drawNumber(ctx, 668, 994, s, card.health || 0, 150, card.healthStyle);
+        // }
+        //
+        // drawProgress = 13;
+        //
+        // if (card.type === 'WEAPON') {
+        //     drawNumber(ctx, 128, 994, s, card.attack || 0, 150, card.attackStyle);
+        //     drawNumber(ctx, 668, 994, s, card.durability || 0, 150, card.durabilityStyle);
+        // }
+        //
+        // drawProgress = 14;
+        //
+        // if (!card.silenced || card.type !== 'MINION') {
+        //     drawBodyText(ctx, s, card);
+        // } else {
+        //     ctx.drawImage(getAsset('silence-x'), 0, 0, 410, 397, 200 * s, 660 * s, 410 * s, 397 * s);
+        // }
 
         ctx.restore();
 
@@ -1115,8 +1115,8 @@
         }
     }
 
-    function queryRender(card, resolution, callback) {
-        renderQuery.push([card, resolution, callback]);
+    function queryRender(card, resolution, renderTarget, callback) {
+        renderQuery.push([card, resolution, callback, renderTarget]);
         if (!rendering) {
             renderTick();
         }
@@ -1141,7 +1141,7 @@
             return;
         }
 
-        var card, resolution, callback;
+        var card, resolution, callback, target;
 
         if (!renderQuery.length) {
             return;
@@ -1154,6 +1154,7 @@
         card = renderInfo[0];
         resolution = renderInfo[1];
         callback = renderInfo[2];
+        target = renderInfo[3];
 
         log('Preparing assets for: ' + card.title);
 
@@ -1238,6 +1239,20 @@
                 draw(cvs, ctx, card, s, callback, function () {
                     rendering--;
                     log('Card rendered: ' + card.title);
+                    var event;
+                    if (document.createEvent) {
+                      event = document.createEvent("HTMLEvents");
+                      event.initEvent("dataavailable", true, true);
+                    } else {
+                      event = document.createEventObject();
+                      event.eventType = "dataavailable";
+                    }
+                    event.eventName = "dataavailable";
+                    if (document.createEvent) {
+                      target.dispatchEvent(event);
+                    } else {
+                      target.fireEvent("on" + event.eventType, event);
+                    }
                     freeBuffer(cvs);
                 });
             });
@@ -1302,16 +1317,17 @@
 
         log('Queried render: ' + settings.title);
 
-        queryRender(settings, width, function (result) {
+        queryRender(settings, width, renderTarget, function (result) {
             renderTarget.src = renderCache[cacheKey] = result.toDataURL();
         });
+
 
         return {
             target: renderTarget,
             redraw: function () {
                 cacheKey = checksum(settings);
                 delete renderCache[cacheKey];
-                queryRender(settings, width, function (result) {
+                queryRender(settings, width, renderTarget, function (result) {
                     renderTarget.src = renderCache[cacheKey] = result.toDataURL();
                 });
             },
@@ -1327,8 +1343,10 @@
                     return;
                 }
 
-                queryRender(settings, width, function (result) {
-                    renderTarget.src = renderCache[cacheKey] = result.toDataURL();
+                queryRender(settings, width, renderTarget, function (result) {
+
+                  renderTarget.src = renderCache[cacheKey] = result.toDataURL();
+
                 });
             }
         };

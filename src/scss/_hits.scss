@@ -3,217 +3,252 @@
   clear: both;
 }
 
+.ais-hits--item {
+  float: left;
+  width: 240px;
+  height: 330px;
+  margin-bottom: 12px;
+
+  .card-wrapper{
+    position: relative;
+    width: 300px;
+    height: 432px;
+    transform: scale(.75) translateZ(0px);
+    transform-origin: 0 0;
+    cursor: pointer;
+
+    .card-picture{
+      position: relative;
+      max-width: 100%;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    &.fade .card-picture{
+      transition: opacity .1s ease-in;
+      opacity: 1;
+    }
+
+    &.loaded .card-picture{
+      opacity: 1;
+    }
+  }
+
+  .placeholder{
+    position: absolute;
+    width: 300px;
+    height: 442px;
+    top: -20px;
+    opacity: .6;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 1;
+  }
+
+  .card-overlay{
+    position: absolute;
+    width: 300px;
+    height: 432px;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+
+  .card-title{
+    position: absolute;
+    top: 210px;
+    left: 0;
+    width: 300px;
+    height: 60px;
+    z-index: 10;
+  }
+  .card-cost{
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    top: 34px;
+    left: 12px;
+    font-family: 'Merriweather', serif;
+    font-size: 3.4em;
+    color: white;
+    text-shadow:
+   -2px -2px 0 #000,
+    2px -2px 0 #000,
+   -2px  2px 0 #000,
+    2px  2px 0 #000,
+    0  3px 0 #000,
+    0  -3px 0 #000,
+    -3px 0 0 #000,
+    3px 0 0 #000;
+    z-index: 10;
+  }
+
+  .card-attack{
+    position: absolute;
+    width: 45px;
+    text-align: center;
+    top: 360px;
+    left: 26px;
+    font-family: 'Merriweather', serif;
+    font-size: 3em;
+    color: white;
+    text-shadow:
+   -2px -2px 0 #000,
+    2px -2px 0 #000,
+   -2px  2px 0 #000,
+    2px  2px 0 #000,
+    0  3px 0 #000,
+    0  -3px 0 #000,
+    -3px 0 0 #000,
+    3px 0 0 #000;
+    z-index: 10;
+  }
+
+  .card-health{
+    position: absolute;
+    width: 50px;
+    text-align: center;
+    top: 360px;
+    right: 12px;
+    font-family: 'Merriweather', serif;
+    font-size: 3em;
+    color: white;
+    text-shadow:
+   -2px -2px 0 #000,
+    2px -2px 0 #000,
+   -2px  2px 0 #000,
+    2px  2px 0 #000,
+    0  3px 0 #000,
+    0  -3px 0 #000,
+    -3px 0 0 #000,
+    3px 0 0 #000;
+    z-index: 10;
+  }
+
+  .card-durability{
+    position: absolute;
+    width: 50px;
+    text-align: center;
+    top: 360px;
+    right: 12px;
+    font-family: 'Merriweather', serif;
+    font-size: 3em;
+    color: white;
+    text-shadow:
+   -2px -2px 0 #000,
+    2px -2px 0 #000,
+   -2px  2px 0 #000,
+    2px  2px 0 #000,
+    0  3px 0 #000,
+    0  -3px 0 #000,
+    -3px 0 0 #000,
+    3px 0 0 #000;
+    z-index: 10;
+  }
+
+  .card-race{
+    position: absolute;
+    width: 130px;
+    text-align: center;
+    top: 384px;
+    left: 90px;
+    font-family: 'Merriweather', serif;
+    font-size: .9em;
+    letter-spacing: .5px;
+    color: white;
+    text-shadow:
+   -1px -1px 0 #000,
+    2px -1px 0 #000,
+   -1px  2px 0 #000,
+    2px  2px 0 #000,
+    0  2px 0 #000,
+    0  -2px 0 #000,
+    -2px 0 0 #000,
+    2px 0 0 #000;
+    z-index: 10;
+  }
+
+  .card-description{
+    position: absolute;
+    top: 285px;
+    left: 65px;
+    width: 180px;
+    text-align: center;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 1em;
+    letter-spacing: .3px;
+    z-index: 10;
+  }
+
+  .card-description span{
+    vertical-align: middle;
+    display: table-cell;
+    height: 100px;
+    width: 180px;
+
+  }
+
+  .card-description em{
+    background-color: rgba(yellow,.2);
+    font-style: normal;
+  }
+
+  .card-details{
+    display: none;
+  }
+
+  text{
+    font-family: 'Merriweather', serif;
+    font-size: .95em;
+    letter-spacing: 1px;
+    paint-order: stroke;
+    stroke:#000000;
+    stroke-width:4px;
+    stroke-linecap:butt;
+    stroke-linejoin:miter;
+    stroke-opacity:1;
+  }
+
+  tspan{
+    width: 100%;
+    text-align: left;
+    fill: white;
+  }
+
+  tspan tspan{
+    fill: yellow;
+  }
+
+  .card-race em {
+    color: yellow;
+    font-style: normal;
+  }
+
+  .card-infos {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: rgba(white,.6);
+    font-family: 'Archivo Narrow', sans-serif;
+    position: relative;
+    top: -10px;
+
+    em{
+      font-style: normal;
+      color: rgba(yellow,.7);
+    }
+  }
+}
+
 .card-detail-wrapper{
   z-index: 9000;
+
   .card-wrapper{
     transform: scale(1)!important;
   }
 }
 
-.ais-hits, .card-detail-wrapper {
-  .ais-hits--item {
-    float: left;
-    width: 240px;
-    height: 330px;
-    margin-bottom: 16px;
-    animation: flipInX .4s ease;
-    animation-fill-mode: backwards;
 
-    @for $i from 1 to 13 {
-      &:nth-child(#{$i}) {
-        animation-delay: $i * .02s;
-      }
-    }
-
-    .card-wrapper{
-      transform: scale(.75);
-      transform-origin: 0 0;
-      width: 300px;
-      height: 432px;
-      position: relative;
-      &:hover{
-        cursor: pointer;
-      }
-    }
-    .card-picture{
-      max-width: 100%;
-    }
-
-    .card-title{
-      position: absolute;
-      top: 210px;
-      left: 0;
-      width: 300px;
-      height: 60px;
-
-    }
-    .card-cost{
-      position: absolute;
-      width: 70px;
-      text-align: center;
-      top: 34px;
-      left: 12px;
-      font-family: 'Merriweather', serif;
-      font-size: 3.4em;
-      color: white;
-      text-shadow:
-     -2px -2px 0 #000,
-      2px -2px 0 #000,
-     -2px  2px 0 #000,
-      2px  2px 0 #000,
-      0  3px 0 #000,
-      0  -3px 0 #000,
-      -3px 0 0 #000,
-      3px 0 0 #000;
-    }
-
-    .card-attack{
-      position: absolute;
-      width: 45px;
-      text-align: center;
-      top: 360px;
-      left: 26px;
-      font-family: 'Merriweather', serif;
-      font-size: 3em;
-      color: white;
-      text-shadow:
-     -2px -2px 0 #000,
-      2px -2px 0 #000,
-     -2px  2px 0 #000,
-      2px  2px 0 #000,
-      0  3px 0 #000,
-      0  -3px 0 #000,
-      -3px 0 0 #000,
-      3px 0 0 #000;
-    }
-
-    .card-health{
-      position: absolute;
-      width: 50px;
-      text-align: center;
-      top: 360px;
-      right: 12px;
-      font-family: 'Merriweather', serif;
-      font-size: 3em;
-      color: white;
-      text-shadow:
-     -2px -2px 0 #000,
-      2px -2px 0 #000,
-     -2px  2px 0 #000,
-      2px  2px 0 #000,
-      0  3px 0 #000,
-      0  -3px 0 #000,
-      -3px 0 0 #000,
-      3px 0 0 #000;
-    }
-
-    .card-durability{
-      position: absolute;
-      width: 50px;
-      text-align: center;
-      top: 360px;
-      right: 12px;
-      font-family: 'Merriweather', serif;
-      font-size: 3em;
-      color: white;
-      text-shadow:
-     -2px -2px 0 #000,
-      2px -2px 0 #000,
-     -2px  2px 0 #000,
-      2px  2px 0 #000,
-      0  3px 0 #000,
-      0  -3px 0 #000,
-      -3px 0 0 #000,
-      3px 0 0 #000;
-    }
-
-    .card-race{
-      position: absolute;
-      width: 130px;
-      text-align: center;
-      top: 384px;
-      left: 90px;
-      font-family: 'Merriweather', serif;
-      font-size: .9em;
-      letter-spacing: .5px;
-      color: white;
-      text-shadow:
-     -1px -1px 0 #000,
-      2px -1px 0 #000,
-     -1px  2px 0 #000,
-      2px  2px 0 #000,
-      0  2px 0 #000,
-      0  -2px 0 #000,
-      -2px 0 0 #000,
-      2px 0 0 #000;
-    }
-
-    .card-description{
-      position: absolute;
-      top: 285px;
-      left: 70px;
-      width: 160px;
-      text-align: center;
-      font-family: 'Archivo Narrow', sans-serif;
-      font-size: 1em;
-      letter-spacing: .3px;
-    }
-
-    .card-description span{
-      vertical-align: middle;
-      display: table-cell;
-      height: 100px;
-      width: 180px;
-    }
-
-    .card-description em{
-      background-color: rgba(yellow,.2);
-      font-style: normal;
-    }
-
-    text{
-      font-family: 'Merriweather', serif;
-      font-size: .95em;
-      letter-spacing: 1px;
-      paint-order: stroke;
-      stroke:#000000;
-      stroke-width:4px;
-      stroke-linecap:butt;
-      stroke-linejoin:miter;
-      stroke-opacity:1;
-    }
-
-    tspan{
-      width: 100%;
-      text-align: left;
-      fill: white;
-    }
-
-    tspan tspan{
-      fill: yellow;
-    }
-
-    .card-race em {
-      color: yellow;
-      font-style: normal;
-    }
-
-    .card-infos {
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      color: rgba(white,.6);
-      font-family: 'Archivo Narrow', sans-serif;
-      position: relative;
-      top: -10px;
-
-      em{
-        font-style: normal;
-        color: rgba(yellow,.7);
-      }
-    }
-  }
-}
 
 .type-Weapon .card-description {
   color: white;

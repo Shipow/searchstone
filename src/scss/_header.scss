@@ -21,8 +21,10 @@ header {
     padding: 30px 0 0;
     float: left;
     margin: 0 20px 20px;
+    position: relative;
   }
 }
+
 
 .sbx-custom {
   @include searchbox($custom...);

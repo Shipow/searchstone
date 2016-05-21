@@ -53,27 +53,26 @@
 
   }
 
-  20% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
-    opacity: 0;
-    transition-timing-function: ease-in;
-  }
-
-  40% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 20deg);
-    opacity: 0;
-  }
-
-  60% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -10deg);
-  }
-
-  80% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 5deg);
-  }
+  // 20% {
+  //   transform: perspective(400px) rotate3d(1, -.5, 0, -90deg);
+  //   opacity: 0;
+  //   transition-timing-function: ease-in;
+  // }
+  //
+  // 40% {
+  //   transform: perspective(400px) rotate3d(1, -.5, 0, 20deg);
+  //   opacity: 0;
+  // }
+  //
+  // 60% {
+  //   transform: perspective(400px) rotate3d(1, -.5, 0, -10deg);
+  // }
+  //
+  // 80% {
+  //   transform: perspective(400px) rotate3d(1, -.5, 0, 5deg);
+  // }
 
   100% {
-    transform: perspective(400px);
-    opacity: 1;
+    opacity: .5;
   }
 }

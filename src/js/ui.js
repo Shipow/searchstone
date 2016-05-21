@@ -1,14 +1,16 @@
 function openLightbox() {
   $('.lightbox').toggleClass('hidden');
   $('body, html').css('overflow:hidden');
-  $('.container-fluid').addClass('no-scroll');
+  $('.container-fluid').addClass('no-scroll blur');
+  $('.background-image').addClass('blur');
 }
 
 function closeLightbox() {
   $('.lightbox_frame').remove();
   $('.lightbox').addClass('hidden');
   $('body, html').css('overflow:auto');
-  $('.container-fluid').removeClass('no-scroll');
+  $('.container-fluid').removeClass('no-scroll blur');
+  $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
 }
 
@@ -38,3 +40,14 @@ $('#results').on('click touchstart', '.ais-hits--item', function(e) {
   openLightbox();
   cardDetail(e);
 });
+
+
+$("#results").on('dataavailable','.card-picture', function(){
+  var el = $(this);
+  el.parent('.card-wrapper').addClass('fade');
+
+  function removePlaceholder(){
+    el.siblings('.placeholder').remove();
+  }
+  setTimeout( removePlaceholder, 200 );
+})
