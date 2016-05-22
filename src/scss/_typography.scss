@@ -1,3 +1,11 @@
 :root {
   font-family: 'Archivo Narrow', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+  font-family: Belwe;
+  src: url(../font/Belwe-Bold.ttf);
+  font-weight: bold;
 }

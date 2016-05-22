@@ -4,7 +4,7 @@
   %title Searchstone - Instant Search Hearthstone Cards
   %link{href: "http://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css", rel: "stylesheet", type: "text/css"}
   %link{href: "app.css", rel: "stylesheet", type: "text/css"}
-  %link{href: "https://fonts.googleapis.com/css?family=Merriweather:700|Archivo+Narrow:400,700", rel: "stylesheet", type: "text/css"}
+  %link{href: "https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700", rel: "stylesheet", type: "text/css"}
   %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
   -# %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
 
@@ -42,12 +42,12 @@
               .card-cost {{cost}}
               .card-durability {{durability}}
               .card-race {{{_highlightResult.race.value}}}
-              %svg.card-title{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
+              %svg.card-title{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink", class: "{{nameLengthClass}}"}
                 %text.card-text{text-anchor: "middle"}
                   %textPath{ startOffset:"50%", xlink:href: "{{textPath}}"}
                     %tspan{dy: "0.3em"}
                       {{{_highlightResult.name.value}}}
-              .card-description
+              .card-description{class: "{{textLengthClass}}"}
                 %span
                   {{{_highlightResult.text.value}}}
             .card-infos {{set}}{{#nameVO}} - {{{_highlightResult.nameVO.value}}}{{/nameVO}}

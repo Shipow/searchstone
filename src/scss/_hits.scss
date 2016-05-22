@@ -51,6 +51,8 @@
     top: 0;
     left: 0;
     z-index: 3;
+    font-family: Belwe;
+    font-weight: bold;
   }
 
   .card-title{
@@ -60,25 +62,61 @@
     width: 300px;
     height: 60px;
     z-index: 10;
+    text{
+      -webkit-font-smoothing: subpixel-antialiased;
+	    -moz-osx-font-smoothing: inherit;
+      font-size: 1.2em;
+      font-weight: bold;
+      paint-order: stroke;
+      letter-spacing: .5px;
+      stroke: #000000;
+      stroke-width:4px;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-opacity:.8;
+    }
+    &.md{
+      font-size: 1em;
+    }
+    &.lg{
+      font-size: .9em;
+    }
+    &.xl{
+      font-size: .75em;
+    }
+
+    tspan{
+      width: 100%;
+      text-align: left;
+      fill: white;
+    }
+
+    tspan tspan{
+      fill: yellow;
+    }
   }
+
+  .card-cost, .card-attack, .card-health, .card-durability{
+    text-shadow:
+    1px 1px 0 #000,
+    -1px 1px 0 #000,
+    0 1px 0 #000,
+    0 -1px 0 #000,
+    0 0 2px #000,
+    0 0 2px #000,
+    0 0 2px #000,
+    0 0 2px #000;
+  }
+
   .card-cost{
     position: absolute;
     width: 70px;
     text-align: center;
-    top: 34px;
+    top: 38px;
     left: 12px;
-    font-family: 'Merriweather', serif;
-    font-size: 3.4em;
+    font-size: 3.2em;
+    line-height: 1.3em;
     color: white;
-    text-shadow:
-   -2px -2px 0 #000,
-    2px -2px 0 #000,
-   -2px  2px 0 #000,
-    2px  2px 0 #000,
-    0  3px 0 #000,
-    0  -3px 0 #000,
-    -3px 0 0 #000,
-    3px 0 0 #000;
     z-index: 10;
   }
 
@@ -86,20 +124,11 @@
     position: absolute;
     width: 45px;
     text-align: center;
-    top: 360px;
+    top: 364px;
     left: 26px;
-    font-family: 'Merriweather', serif;
     font-size: 3em;
+    line-height: 1.3em;
     color: white;
-    text-shadow:
-   -2px -2px 0 #000,
-    2px -2px 0 #000,
-   -2px  2px 0 #000,
-    2px  2px 0 #000,
-    0  3px 0 #000,
-    0  -3px 0 #000,
-    -3px 0 0 #000,
-    3px 0 0 #000;
     z-index: 10;
   }
 
@@ -107,20 +136,12 @@
     position: absolute;
     width: 50px;
     text-align: center;
-    top: 360px;
+    top: 364px;
     right: 12px;
-    font-family: 'Merriweather', serif;
     font-size: 3em;
+    line-height: 1.3em;
     color: white;
-    text-shadow:
-   -2px -2px 0 #000,
-    2px -2px 0 #000,
-   -2px  2px 0 #000,
-    2px  2px 0 #000,
-    0  3px 0 #000,
-    0  -3px 0 #000,
-    -3px 0 0 #000,
-    3px 0 0 #000;
+
     z-index: 10;
   }
 
@@ -128,20 +149,10 @@
     position: absolute;
     width: 50px;
     text-align: center;
-    top: 360px;
+    top: 364px;
     right: 12px;
-    font-family: 'Merriweather', serif;
     font-size: 3em;
     color: white;
-    text-shadow:
-   -2px -2px 0 #000,
-    2px -2px 0 #000,
-   -2px  2px 0 #000,
-    2px  2px 0 #000,
-    0  3px 0 #000,
-    0  -3px 0 #000,
-    -3px 0 0 #000,
-    3px 0 0 #000;
     z-index: 10;
   }
 
@@ -149,22 +160,19 @@
     position: absolute;
     width: 130px;
     text-align: center;
-    top: 384px;
+    top: 382px;
     left: 90px;
-    font-family: 'Merriweather', serif;
-    font-size: .9em;
+    font-size: 1.1em;
     letter-spacing: .5px;
     color: white;
-    text-shadow:
-   -1px -1px 0 #000,
-    2px -1px 0 #000,
-   -1px  2px 0 #000,
-    2px  2px 0 #000,
-    0  2px 0 #000,
-    0  -2px 0 #000,
-    -2px 0 0 #000,
-    2px 0 0 #000;
     z-index: 10;
+    font-weight: 700;
+    font-family: 'Archivo Narrow', sans-serif;
+    text-shadow:
+    0 0 2px #000,
+    0 0 2px #000,
+    0 0 2px #000,
+    0 0 2px #000,
   }
 
   .card-description{
@@ -177,6 +185,14 @@
     font-size: 1em;
     letter-spacing: .3px;
     z-index: 10;
+    line-height: 1.2em;
+    font-weight: normal;
+    &.lg{
+      font-size: .9em;
+    }
+    &.xl{
+      font-size: .85em;
+    }
 
     span{
       vertical-align: middle;
@@ -197,28 +213,6 @@
     display: none;
   }
 
-  text{
-    font-family: 'Merriweather', serif;
-    font-size: .95em;
-    letter-spacing: 1px;
-    paint-order: stroke;
-    stroke:#000000;
-    stroke-width:4px;
-    stroke-linecap:butt;
-    stroke-linejoin:miter;
-    stroke-opacity:1;
-  }
-
-  tspan{
-    width: 100%;
-    text-align: left;
-    fill: white;
-  }
-
-  tspan tspan{
-    fill: yellow;
-  }
-
   .card-race em {
     color: yellow;
     font-style: normal;
@@ -228,12 +222,14 @@
     display: block;
     width: 100%;
     text-align: center;
-    color: rgba(white,.6);
+    color: rgba(white,.7);
     position: relative;
     top: -10px;
+    font-size: 1.1em;
+
     em{
       font-style: normal;
-      color: rgba(yellow,.7);
+      color: rgba(yellow,.8);
     }
   }
 }
@@ -278,7 +274,6 @@
     display: block;
     float: left;
     color: white;
-    -webkit-font-smoothing: antialiased;
   }
   .card-infos{
     display: none;

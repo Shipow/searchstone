@@ -35,9 +35,25 @@ searchstone.addWidget(
     },
     transformData: function(hit) {
       hit.textPath = "#" + hit.type;
-      if (typeof hit !== 'undefined' && typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
+      if (typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
         hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<em>/g,'<tspan>');
         hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
+      }
+      if(hit.name.length > 24){
+        hit.nameLengthClass = "xl";
+      }
+      else if(hit.name.length > 16){
+        hit.nameLengthClass = "lg";
+      }
+      else if(hit.name.length > 12){
+        hit.nameLengthClass = "md";
+      }
+
+      if(typeof hit.text !== "undefined" && hit.text.length > 100){
+        hit.textLengthClass = "xl";
+      }
+      else if(typeof hit.text !== "undefined" && hit.text.length > 80){
+        hit.textLengthClass = "lg";
       }
       return hit;
     }
@@ -255,7 +271,6 @@ searchstone.on('render', function() {
     cardObj.text = "";
     cardObj.playerClass = $(e).data("card-playerclass");
     cardObj.texture = $(e).data("card-id");
-
 
     if ( $(e).data("card-race") !== ""){
       cardObj.race = " ";

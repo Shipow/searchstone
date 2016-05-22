@@ -269,14 +269,22 @@ gulp.task('cname', function () {
 });
 
 // -------------------------------------
+//   Task: Font
+// -------------------------------------
+gulp.task('font', function () {
+	return gulp.src('src/font/*')
+		.pipe(gulp.dest('build/font'));
+});
+
+// -------------------------------------
 //   Task: Build DEV - PROD - HAML
 // -------------------------------------
 gulp.task('build:dev',['clean'], function(callback) {
-  runSequence('scss', 'images', 'haml', 'icons', 'js', 'favicons', callback);
+  runSequence('scss', 'images', 'haml', 'icons', 'js', 'font', 'favicons', callback);
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'cname', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'haml', 'icons', 'js:min', 'favicons', 'font', 'rev', 'cname', callback);
 });
 
 gulp.task('build:haml', function(callback) {
