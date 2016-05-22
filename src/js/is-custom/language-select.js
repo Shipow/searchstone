@@ -117,7 +117,6 @@ function languageSelect($container) {
         });
 
 
-
         $('.wz-select ul li').not('.active').on('click', function() {
           var v = $(this).html();
           $('.wz-select ul li').removeClass('active');

@@ -4,7 +4,7 @@
   %title Searchstone - Instant Search Hearthstone Cards
   %link{href: "http://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css", rel: "stylesheet", type: "text/css"}
   %link{href: "app.css", rel: "stylesheet", type: "text/css"}
-  %link{href: "https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700", rel: "stylesheet", type: "text/css"}
+  %link{href: "https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700&subset=latin,latin-ext", rel: "stylesheet", type: "text/css"}
   %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
   -# %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
 
@@ -33,7 +33,7 @@
 
       %script#hit-template{type: "text/template"}
         .hit
-          .card-wrapper{class: "type-{{type}}"}
+          .card-wrapper{class: "type-{{type}} lang-{{lang}}"}
             .placeholder{style:"background-image: url(data:image/png;base64,{{previewImage}}) "}
             %img.card-picture{width:300, heigh:432, data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
             .card-overlay

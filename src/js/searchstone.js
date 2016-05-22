@@ -48,11 +48,13 @@ searchstone.addWidget(
       else if(hit.name.length > 12){
         hit.nameLengthClass = "md";
       }
-
-      if(typeof hit.text !== "undefined" && hit.text.length > 100){
+      if(typeof hit.text !== "undefined" && hit.text.length > 150){
+        hit.textLengthClass = "xxl";
+      }
+      else if(typeof hit.text !== "undefined" && hit.text.length > 130){
         hit.textLengthClass = "xl";
       }
-      else if(typeof hit.text !== "undefined" && hit.text.length > 80){
+      else if(typeof hit.text !== "undefined" && hit.text.length > 100){
         hit.textLengthClass = "lg";
       }
       return hit;
