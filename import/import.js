@@ -191,10 +191,12 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
           var cl = _.clone(c);
           cl.lang = l;
           cl.name = c.name[l];
-          cl.nameVO = c.name.enUS;
+
+          if ( l !== 'enUS' ){
+            cl.nameVO = c.name.enUS;
+          }
           if(typeof c.text !== "undefined") {
             cl.text = c.text[l];
-            // cl.textVO = c.text.enUS;
           };
           if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
           cards_to_keep.push(cl);
@@ -205,7 +207,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
 
 
   }, function(err){
-    console.log(err);
+    // console.log(err);
     // output
     fs.writeFile('out/algolia-hearthstone.json', JSON.stringify(cards_to_keep, null, 2), 'utf8', function (err) {
        if (err) return console.log(err);

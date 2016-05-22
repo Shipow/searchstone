@@ -6,13 +6,6 @@
   }
 }
 
-@mixin flex-setting {
-  display: flex;
-  flex-flow: wrap;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 @mixin searchbox(
   $input-width: 500px,
   $input-height: 40px,

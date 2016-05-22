@@ -1,29 +1,3 @@
-@keyframes fadeleft {
-
-  0% {
-    transform: translateX(-30vw);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes faderight {
-
-  0% {
-    transform: translateX(30vw);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 @keyframes bounce {
 
   0% {

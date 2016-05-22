@@ -189,6 +189,7 @@
       background-repeat: no-repeat;
       background-size: 100%;
       &.active{
+        color: yellow;
         background-image: url(img/cristal--active.svg);
       }
     }

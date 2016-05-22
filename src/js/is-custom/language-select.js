@@ -106,9 +106,17 @@ function languageSelect($container) {
          "</div>";
         $container.html(html);
 
-        $('.wz-select').on('click', function(){
+        $('.wz-select').on('click', function(e){
+          e.stopPropagation();
           $(this).toggleClass('active');
+
         });
+
+        $('html').click(function() {
+          $('.wz-select').removeClass('active');
+        });
+
+
 
         $('.wz-select ul li').not('.active').on('click', function() {
           var v = $(this).html();
@@ -117,6 +125,7 @@ function languageSelect($container) {
           $(this).find('.wz-select label button').html(v);
           helper.clearRefinements('lang');
           helper.addDisjunctiveFacetRefinement('lang', $(this).data('lang')).search();
+          $('body').unbind();
         });
       }
     }

@@ -1,19 +1,18 @@
 .poweredby {
   float: left;
   width: 100%;
+  margin-bottom: 40px;
   color: rgba(white,.6);
-  display: block;
   text-align: center;
   -webkit-font-smoothing: antialiased;
-  margin-bottom: 40px;
   .instantsearch {
     position: relative;
     display: inline-block;
+    width: 150px;
     height: 20px;
     top: -1px;
-    width: 150px;
-    text-indent: -9999px;
     background: url('img/logo-instantsearch.svg') no-repeat center center / contain;
+    text-indent: -9999px;
     color: transparent;
   }
 }

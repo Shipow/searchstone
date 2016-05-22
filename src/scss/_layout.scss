@@ -34,10 +34,6 @@ html, body {
   transition: opacity .4s ease;
   margin: 0 auto;
 
-  @media (max-width: $bp-small) {
-    padding: 0 12px;
-  }
-
   &.no-scroll {
     position: relative;
     height: 100vh;

@@ -73,8 +73,7 @@ searchstone.addWidget(
     ],
     onlyListedAttributes: true,
     templates: {
-      item: '<a href="javascript:void(0)">{{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>',
-      clearAll: '<a href="javascript:void(0)"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Clear All</a>',
+      item: '<a href="javascript:void(0)">{{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>'
     }
   })
 );
@@ -228,6 +227,15 @@ searchstone.addWidget(
   })
 );
 
+// search.addWidget(
+//   instantsearch.widgets.clearAll({
+//     container: '#clear-all',
+//     templates: {
+//       link: 'Reset everything'
+//     },
+//     autoHideContainer: true
+//   })
+// );
 
 searchstone.on('render', function() {
 

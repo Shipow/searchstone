@@ -11,12 +11,12 @@
     width: 40px;
     line-height: 40px;
     padding: 8px;
-    background-color: rgba(darken($ais_blue,25%),.5);
-    color: $ais_blue;
+    background-color: rgba(lighten(#3C10C9,5%),.5);
+    color: rgba(white,.4);
     text-decoration: none;
     transition: background .2s ease;
     &:hover {
-      background-color: darken($ais_blue,15%);
+      background-color: lighten(#3C10C9,5%);
     }
   }
   .ais-pagination--item__active a {

@@ -6,7 +6,7 @@
   %link{href: "app.css", rel: "stylesheet", type: "text/css"}
   %link{href: "https://fonts.googleapis.com/css?family=Merriweather:700|Archivo+Narrow:400,700", rel: "stylesheet", type: "text/css"}
   %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
-  %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
+  -# %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
 
 %body
   %a.github-source{href: "https://github.com/shipow/searchstone", target:"_blank"}
@@ -16,7 +16,7 @@
   .container-fluid
     %header
       %a.logo{href:"/"}
-        %img{src: "img/searchstone.svg", width:360}
+        %img{src: "img/searchstone.svg", width:360, alt:"heartstone search engine powered by algolia API"}
 
       %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false;"}
         %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards by name, race or mechanics", autocomplete: "off", required: true, spellcheck: false}
@@ -26,7 +26,7 @@
         %button.sbx-custom__reset{type: "reset"}
           %svg{role: "img", aria-label: "Reset"}
             %use{xlink:href: "#sbx-icon-clear-3"}
-        %a.poweredby{href:"https://www.algolia.com/"}
+        %a.poweredby{href:"https://www.algolia.com/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"}
           %img{src:"img/powered-by-algolia.svg"}
 
       %section#lang-select
@@ -50,7 +50,7 @@
               .card-description
                 %span
                   {{{_highlightResult.text.value}}}
-            .card-infos {{set}} - {{{_highlightResult.nameVO.value}}}
+            .card-infos {{set}}{{#nameVO}} - {{{_highlightResult.nameVO.value}}}{{/nameVO}}
           .card-details
             %dl
               %p.detail-set {{setFull}} - {{playerClass}}
@@ -65,7 +65,8 @@
 
     %aside.sidebar-facets
       %section#sort-by
-      %section#hits-per-page
+      -# %section#clear-all
+      -# %section#hits-per-page
       %section#rarity
       %section#cost
       %section#format
@@ -86,11 +87,15 @@
         Hearthstone assets used on this site are copyrighted and/or trademarked material of Blizzard Entertainment, Inc.
         %br
         %br
-        Searchtone is open-sourced on Github, read more about the making on Medium.
+        Searchtone is open-sourced on
+        %a{href: "https://github.com/shipow/searchstone", target:"_blank"} Github
+        , read the making of on Medium.
         %br
         %br
         %span Built with
-          %a.instantsearch{href: "https://community.algolia.com/instantsearch.js/"} Instantsearch.js
+          %a.instantsearch{href: "https://community.algolia.com/instantsearch.js/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"} Instantsearch.js
+
+
 
   .lightbox.hidden
     %a.close{href: "javascript:void(0);"}
