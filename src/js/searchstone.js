@@ -34,20 +34,24 @@ searchstone.addWidget(
       item: document.getElementById('hit-template').innerHTML
     },
     transformData: function(hit) {
+
       hit.textPath = "#" + hit.type;
+
       if (typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
         hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<em>/g,'<tspan>');
         hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
       }
-      if(hit.name.length > 24){
+
+      if(typeof hit.name !== "undefined" && hit.name.length > 24){
         hit.nameLengthClass = "xl";
       }
-      else if(hit.name.length > 16){
+      else if(typeof hit.name !== "undefined" && hit.name.length > 16){
         hit.nameLengthClass = "lg";
       }
-      else if(hit.name.length > 12){
+      else if(typeof hit.name !== "undefined" && hit.name.length > 12){
         hit.nameLengthClass = "md";
       }
+
       if(typeof hit.text !== "undefined" && hit.text.length > 150){
         hit.textLengthClass = "xxl";
       }

@@ -13,9 +13,19 @@
     position: relative;
     width: 300px;
     height: 432px;
-    transform: scale(.80);
-    transform-origin: 0 0;
+    transform: scale(.80) translate(-40px,-60px);
+    transform-origin: center;
     cursor: pointer;
+    transition: transform .1s ease, opacity .1s ease;
+
+    &:active {
+      transform: scale(.77) translate(-40px,-60px);
+      opacity: .7;
+    }
+
+    &:hover .card-picture{
+      filter: brightness(115%);
+    }
 
     .card-picture{
       position: relative;
@@ -33,7 +43,8 @@
       opacity: 1;
     }
 
-    &.lang-ruRU{
+    &.lang-ruRU,
+    &.lang-jaJP {
       font-size: .9em;
     }
   }
@@ -55,7 +66,7 @@
     top: 0;
     left: 0;
     z-index: 3;
-    font-family: Belwe;
+    font-family: 'Volkhov';
     font-weight: bold;
   }
 
@@ -70,7 +81,7 @@
       -webkit-font-smoothing: subpixel-antialiased;
 	    -moz-osx-font-smoothing: inherit;
       font-size: 1.2em;
-      font-weight: bold;
+      font-weight: 700;
       paint-order: stroke;
       letter-spacing: .5px;
       stroke: #000000;
@@ -80,13 +91,13 @@
       stroke-opacity:.8;
     }
     &.md{
-      font-size: 1em;
+      font-size: .95em;
     }
     &.lg{
-      font-size: .9em;
+      font-size: .85em;
     }
     &.xl{
-      font-size: .75em;
+      font-size: .65em;
     }
 
     tspan{
@@ -101,6 +112,12 @@
   }
 
   .card-cost, .card-attack, .card-health, .card-durability{
+    position: absolute;
+    color: white;
+    line-height: 1.3em;
+    z-index: 10;
+    text-align: center;
+    font-size: 2.8em;
     text-shadow:
     1px 1px 0 #000,
     -1px 1px 0 #000,
@@ -113,51 +130,28 @@
   }
 
   .card-cost{
-    position: absolute;
     width: 70px;
-    text-align: center;
     top: 38px;
     left: 12px;
     font-size: 3.2em;
-    line-height: 1.3em;
-    color: white;
-    z-index: 10;
   }
 
   .card-attack{
-    position: absolute;
     width: 45px;
-    text-align: center;
     top: 364px;
     left: 26px;
-    font-size: 3em;
-    line-height: 1.3em;
-    color: white;
-    z-index: 10;
   }
 
   .card-health{
-    position: absolute;
     width: 50px;
-    text-align: center;
     top: 364px;
     right: 12px;
-    font-size: 3em;
-    line-height: 1.3em;
-    color: white;
-
-    z-index: 10;
   }
 
   .card-durability{
-    position: absolute;
     width: 50px;
-    text-align: center;
     top: 364px;
     right: 12px;
-    font-size: 3em;
-    color: white;
-    z-index: 10;
   }
 
   .card-race{
@@ -315,8 +309,6 @@
 
 .type-Weapon .card-description {
   color: white;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
 }
 
 .ais-hits__empty {
