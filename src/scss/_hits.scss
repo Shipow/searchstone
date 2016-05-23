@@ -7,6 +7,8 @@
 .ais-hits--item {
   width: 250px;
   height: 360px;
+  backface-visibility: hidden;
+  perspective: 1000;
 
   @media (max-width: 1300px){
     width: 210px;
