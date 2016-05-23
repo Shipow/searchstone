@@ -4,7 +4,10 @@
   margin-bottom: 40px;
   color: rgba(white,.6);
   text-align: center;
-  -webkit-font-smoothing: antialiased;
+  a{
+    color: white;
+    text-decoration: none;
+  }
   .instantsearch {
     position: relative;
     display: inline-block;
