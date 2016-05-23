@@ -1,6 +1,9 @@
 
 #refinements {
   text-align: center;
+  @media (max-width: 960px){
+    display: none;
+  }
   > li, div {
     list-style: none;
     display: inline-block;
@@ -173,6 +176,7 @@
     margin-right: 8px;
     margin-top: 8px;
     a {
+      opacity: .7;
       font-size: 1.2em;
       font-family: Volkhov;
       font-weight: bold;
@@ -190,6 +194,7 @@
       background-size: 100%;
       &.active{
         color: yellow;
+        opacity: 1;
         background-image: url(img/cristal--active.svg);
       }
     }
@@ -212,22 +217,46 @@
 }
 
 #playerClass{
-  padding: 0 20px 20px;
+  text-align: center;
 
   .ais-menu--item {
     display: inline-block;
-    margin-right: 14px;
-
     a{
-      color: rgba(white,.8);
-      font-weight: normal;
+      width: auto;
+      color: rgba(white,.7);
       cursor: pointer;
-      font-size: 1em;
+      font-size: .9em;
       font-weight: bold;
       text-decoration: none;
+      padding: 0 12px 0 44px;
+      border: solid 2px rgba(#3C10C9,.3);
+      border-radius: 40px;
+      line-height: 42px;
+      position: relative;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      @media (max-width: 1400px){
+        display: block;
+        margin-right: 8px;
+        font-size: 0;
+        padding: 1px;
+        width: 44px;
+      }
+      .value {
+        display: block;
+      }
+
+      &:hover{
+        color: white;
+        border-color: #3C10C9;
+      }
 
       &.active{
         color:yellow;
+        border-color: #3C10C9;
+        @media (max-width: 960px){
+          border-color: white;
+        }
       }
 
       em {
@@ -240,9 +269,9 @@
   .list-group-item{
     &::before{
       content: "";
-      display: inline-block;
-      position: relative;
-      top: 11px;
+      position: absolute;;
+      top: 6px;
+      left: 8px;
       width: 32px;
       height:32px;
       margin-right: 3px;

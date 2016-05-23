@@ -1,28 +1,51 @@
-.github-source {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 9999;
-
-  svg {
-    opacity: 1;
-    width: 80px;
-    height: 80px;
-    fill: white;
-  }
-}
+// .github-source {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   z-index: 9999;
+//   @media (max-width: 960px){
+//     display: none;
+//   }
+//
+//   svg {
+//     opacity: 1;
+//     width: 60px;
+//     height: 60px;
+//     fill: white;
+//   }
+// }
 
 header {
-  float: left;
   position: relative;
-  width: 100%;
+  padding: 40px 0 30px 270px;
 
   .logo {
-    float: left;
-    position: relative;
-    margin: 0 20px 20px;
+    position: absolute;
+    top: -15px;
+    left: 20px;
     padding: 30px 0 0;
-    animation: flipInX .6s ease-in;
+    animation: bounce .3s ease-in;
+
+  }
+  @media (max-width: 960px){
+    padding: 100px 110px 30px 0;
+
+    .logo{
+      left: calc(50% - 150px);
+      img{
+        width: 300px;
+      }
+    }
+  }
+  @media (max-width: 600px){
+    padding: 80px 110px 30px 0;
+
+    .logo{
+      left: 10px;
+      img{
+        width: 220px;
+      }
+    }
   }
 }
 
@@ -31,9 +54,8 @@ header {
 }
 
 .searchbox {
-  margin: 55px 40px 20px;
+  margin: 0 auto;
   display: block;
-  float: left;
   width: 400px;
   position: relative;
 
@@ -66,9 +88,9 @@ header {
 
 .wz-select {
   display: block;
-  position: absolute;;
-  right: 40px;
-  top: 62px;
+  position: absolute;
+  right: 20px;
+  top: 30px;
 
   [type="button"] {
     width: 130px;

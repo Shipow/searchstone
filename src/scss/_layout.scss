@@ -30,7 +30,7 @@ html, body {
 .container-fluid {
   z-index: 10;
   position: relative;
-  width: 1250px;
+  width: 100%;
   transition: opacity .4s ease;
   margin: 0 auto;
 
@@ -51,8 +51,15 @@ aside {
   section {
     padding: 10px 30px;
   }
+  @media (max-width: 960px){
+    display: none;
+  }
 }
 main {
-  float: left;
-  width: 970px;
+  float: right;
+  width: 100%;
+  max-width: calc(100% - 270px);
+  @media (max-width: 960px){
+    max-width: 100%
+  }
 }

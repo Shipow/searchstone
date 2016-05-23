@@ -36,7 +36,7 @@ $('.sbx-custom__reset').on('click touchstart', function(e) {
   search.helper.setQuery('').search();
 });
 
-$('#results').on('click touchstart', '.ais-hits--item', function(e) {
+$('#results').on('click', '.ais-hits--item', function(e) {
   openLightbox();
   cardDetail(e);
 });
