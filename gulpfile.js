@@ -309,8 +309,8 @@ gulp.task('deploy',['build:prod'], function(callback) {
 // -------------------------------------
 //   Task: Algolia
 // -------------------------------------
-var client = algolia(config.algolia.appID, config.algolia.apiKey);
-var index = client.initIndex(config.algolia.index);
+//var client = algolia(config.algolia.appID, config.algolia.apiKey);
+//var index = client.initIndex(config.algolia.index);
 
 gulp.task('export:algolia-index', function(){
   fs.readFile('import/out/algolia-hearthstone.json', 'utf8', function (err, data) {
