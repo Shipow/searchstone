@@ -59,6 +59,10 @@ header {
   width: 400px;
   position: relative;
 
+  @media (max-width: 600px){
+    width: 200px;
+  }
+
   .sbx-custom__input {
     color: yellow;
     box-shadow: 0 2px #3C10C9;
@@ -90,10 +94,13 @@ header {
   display: block;
   position: absolute;
   right: 20px;
-  top: 30px;
+  top: 10px;
+  @media (max-width: 600px){
+    top: 30px;
+  }
 
   [type="button"] {
-    width: 130px;
+    width: 120px;
     height: 30px;
     border-radius: 3px;
     line-height: 28px;
