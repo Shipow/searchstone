@@ -277,6 +277,8 @@
     animation-fill-mode: backwards;
     transition: none;
     transform-origin: center;
+    backface-visibility: hidden;
+    perspective: 1000;
 
     &::after{
       content: "";
