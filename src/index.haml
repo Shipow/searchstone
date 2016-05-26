@@ -50,7 +50,8 @@
             .card-infos {{set}}{{#nameVO}} - {{{_highlightResult.nameVO.value}}}{{/nameVO}}
           .card-details
             %p.detail-set {{setFull}} - {{playerClass}}
-            %h2.detail-name {{nameVO}}
+            %h2.detail-name {{name}}
+            .detail-nameVO {{nameVO}}
             {{#dustCraft}}
               %p.detail-dust {{dustCraft}}
             {{/dustCraft}}
@@ -117,7 +118,7 @@
         sortBy:
         %section#sort-by
         %section#clear-all
-    
+
     %main
       %section#playerClass
       %section#refinements
