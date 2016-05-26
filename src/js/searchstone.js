@@ -31,7 +31,7 @@ searchstone.addWidget(
     container: '#results',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
-      item: document.getElementById('hit-template').innerHTML
+      item: document.getElementById('hit-template-card').innerHTML
     },
     transformData: function(hit) {
 
@@ -62,6 +62,25 @@ searchstone.addWidget(
         hit.textLengthClass = "lg";
       }
       return hit;
+    },
+    cssClasses: {
+      root: "results-cards",
+      item: "result-card"
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.hits({
+    hitsPerPage: 12,
+    container: '#table',
+    templates: {
+      empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
+      item: document.getElementById('hit-template-row').innerHTML
+    },
+    cssClasses: {
+      root: "results-table",
+      item: "result-row"
     }
   })
 );
@@ -139,7 +158,7 @@ searchstone.addWidget(
       {start: 9, name: '9+'}
     ],
     templates: {
-      header: 'Cost',
+      header: 'Mana',
       item: '<a href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
     }
   })
@@ -243,52 +262,34 @@ searchstone.addWidget(
 searchstone.addWidget(
   instantsearch.widgets.pagination({
     container: '#pagination',
+    autoHideContainer: true,
     maxPages: 20,
-    padding: 1,
-    showFirstLast: false
+    padding: 1
   })
 );
 
-// search.addWidget(
-//   instantsearch.widgets.clearAll({
-//     container: '#clear-all',
-//     templates: {
-//       link: 'Reset everything'
-//     },
-//     autoHideContainer: true
-//   })
-// );
+search.addWidget(
+  instantsearch.widgets.clearAll({
+    container: '#clear-all',
+    templates: {
+      link: 'Reset everything'
+    },
+    autoHideContainer: true
+  })
+);
+
+// search.addWidget({
+//   init: function(options){
+//     options.helper.on('change', function(state){
+//       console.log(state);
+//
+//     });
+//   }
+// });
 
 searchstone.on('render', function() {
 
-  $('.card-picture').each(function(i,e){
-
-    var cardObj = {};
-
-    cardObj.id = $(e).data("card-id");
-    cardObj.set = $(e).data("card-set");
-    cardObj.type = $(e).data("card-type").toUpperCase();
-    cardObj.rarity = $(e).data("card-rarity").toUpperCase();
-    cardObj.cost = " ";
-    cardObj.durability = " ";
-    cardObj.attack = " ";
-    cardObj.health = " ";
-    cardObj.name = "";
-    cardObj.text = "";
-    cardObj.playerClass = $(e).data("card-playerclass");
-    cardObj.texture = $(e).data("card-id");
-
-    if ( $(e).data("card-race") !== ""){
-      cardObj.race = " ";
-    }
-
-    sunwell.createCard(cardObj, 300, e);
-
-    if ($(e).attr("src")){
-      $(e).parents('.card-wrapper').addClass('loaded');
-    }
-  });
-
+  sunwellRender();
 
 });
 

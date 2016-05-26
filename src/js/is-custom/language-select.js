@@ -72,9 +72,25 @@ function languageSelect($container) {
 
     init: function(params) {
       var helper = params.helper;
+
       if(!helper.hasRefinements("lang")){
         helper.toggleRefinement( "lang", "enUS");
       }
+      params.helper.on('change', function(state){
+
+
+        // helper.clearRefinements('lang');
+        if(helper.hasRefinements("lang")){
+
+          helper.search();
+          // // helper.toggleRefinement( "lang", "enUS");
+          // helper.addDisjunctiveFacetRefinement('lang', "frFR").search();
+          console.log(state.disjunctiveFacetsRefinements.lang);
+          // helper.search();
+        } else if(!state.disjunctiveFacetsRefinements.lang) {
+          // helper.addDisjunctiveFacetRefinement('lang', "enUS").search();
+        }
+      });
     },
 
     render: function(params) {
@@ -122,9 +138,14 @@ function languageSelect($container) {
           $('.wz-select ul li').removeClass('active');
           $(this).addClass('active');
           $(this).find('.wz-select label button').html(v);
+
+          // helper.state.disjunctiveFacetsRefinements.lang = $(this).data('lang');
+          // helper.search();
+
           helper.clearRefinements('lang');
-          helper.addDisjunctiveFacetRefinement('lang', $(this).data('lang')).search();
-          $('body').unbind();
+          helper.addDisjunctiveFacetRefinement('lang', $(this).data('lang'));
+
+          // .search();
         });
       }
     }

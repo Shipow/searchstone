@@ -9,9 +9,6 @@
   %meta{name: "viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
 
 %body
-  -# %a.github-source{href: "https://github.com/shipow/searchstone", target:"_blank"}
-  -#   %svg
-  -#     %use{xlink:href: "#github-banner"}
   .background-image
   .container-fluid
     %header
@@ -31,8 +28,8 @@
 
       %section#lang-select
 
-      %script#hit-template{type: "text/template"}
-        .hit
+      %script#hit-template-card{type: "text/template"}
+        .hit.hit-card{id:"{{id}}",data-target: "{{id}}"}
           .card-wrapper{class: "type-{{type}} lang-{{lang}}"}
             .placeholder{style:"background-image: url(data:image/png;base64,{{previewImage}}) "}
             %img.card-picture{width:300, heigh:432, data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
@@ -52,21 +49,62 @@
                   {{{_highlightResult.text.value}}}
             .card-infos {{set}}{{#nameVO}} - {{{_highlightResult.nameVO.value}}}{{/nameVO}}
           .card-details
-            %dl
-              %p.detail-set {{setFull}} - {{playerClass}}
-              %h2.detail-name {{nameVO}}
-              {{#dustCraft}}
-                %p.detail-dust {{dustCraft}}
-              {{/dustCraft}}
-              %p.detail-quote {{flavor}}
-              %br
-              %p.detail-artist Artist: {{artist}}
+            %p.detail-set {{setFull}} - {{playerClass}}
+            %h2.detail-name {{nameVO}}
+            {{#dustCraft}}
+              %p.detail-dust {{dustCraft}}
+            {{/dustCraft}}
+            %p.detail-quote {{{flavor}}}
+            %br
+            %p.detail-artist Artist: {{artist}}
 
+      %script#hit-template-row{type: "text/template"}
+        .hit.hit-cel{data-target: "{{id}}"}
+          .cel.cel-img{style:"background-image:url('http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/{{id}}.jpg');"}
+            %span.cel-set{class:"{{set}}"} {{set}}
+
+          .cel.cel-desc
+            %span.cel-desc-name{class:"{{rarity}}"} {{{_highlightResult.name.value}}}
+            {{#nameVO}}
+              %span.cel-desc-nameVO {{{_highlightResult.nameVO.value}}}
+            {{/nameVO}}
+            %p.cel-desc-text {{{_highlightResult.text.value}}}
+
+          .cel
+            .cel-number.cel-cost
+              {{cost}}
+
+          .cel.cel-type
+            %ul{class:"{{playerClass}}"}
+              %li.cel-class {{playerClass}}
+              %li.cel-race {{type}} <strong>{{{_highlightResult.race.value}}}<strong>
+
+          {{#health}}
+            .cel
+              .cel-number.cel-health {{health}}
+          {{/health}}
+
+          {{#attack}}
+          .cel
+            .cel-number.cel-attack{class: "cel-attack__{{type}}"}
+              {{attack}}
+          {{/attack}}
+
+          {{#durability}}
+          .cel
+            .cel-number.cel-shield
+              {{durability}}
+          {{/durability}}
 
     %aside.sidebar-facets
-      %section#sort-by
-      -# %section#clear-all
-      -# %section#hits-per-page
+      %section#template-toggle
+        Display
+        %a.template-cards.active{href:"#"}
+          %svg{role: "img"}
+            %use{xlink:href: "#icon-grid"}
+        %a.tempalte-list{href:"#"}
+          %svg{role: "img"}
+            %use{xlink:href: "#icon-row"}
       %section#rarity
       %section#cost
       %section#format
@@ -74,11 +112,19 @@
       %section#type
       %section#race
       %section#mechanics
-
+      .debug
+        %h4 Debug
+        sortBy:
+        %section#sort-by
+        %section#clear-all
+    
     %main
       %section#playerClass
       %section#refinements
-      %section#results
+
+      %section#table.results.hide
+      %section#results.results
+
       %section#pagination
 
       %section.poweredby
@@ -90,7 +136,7 @@
         Searchtone is open-sourced on <a href="https://github.com/shipow/searchstone" target:"_blank">Github</a> (making of on Medium coming soon)
         %br
         %br
-        %span Built with
+        %span Built by <a href="https://twitter.com/kevin_granger">Shipow</a> with
           %a.instantsearch{href: "https://community.algolia.com/instantsearch.js/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"} Instantsearch.js
 
 

@@ -1,10 +1,10 @@
-.ais-hits{
+.results-cards{
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
-.ais-hits--item {
+.hit-card {
   width: 250px;
   height: 360px;
   backface-visibility: hidden;
@@ -35,11 +35,6 @@
       transform: scale(.6);
     }
 
-    // &:active {
-    //   transform: scale(.77) translate(-40px,-80px);
-    //   opacity: .7;
-    // }
-
     &:hover .card-picture{
       filter: brightness(115%);
     }
@@ -47,13 +42,13 @@
     .card-picture{
       position: relative;
       max-width: 100%;
-      opacity: 0;
+      opacity: 1;
       z-index: 2;
+      transition: opacity .1s ease-in;
     }
 
     &.fade .card-picture{
-      transition: opacity .1s ease-in;
-      opacity: 1;
+      opacity: 0;
     }
 
     &.loaded .card-picture{
@@ -179,19 +174,19 @@
     position: absolute;
     width: 130px;
     text-align: center;
-    top: 382px;
+    top: 381px;
     left: 90px;
+    font-weight: bold;
     font-size: 1.1em;
-    letter-spacing: .5px;
     color: white;
     z-index: 10;
-    font-weight: 700;
-    font-family: 'Archivo Narrow', sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: inherit;
     text-shadow:
     0 0 2px #000,
     0 0 2px #000,
     0 0 2px #000,
-    0 0 2px #000,
+    0 0 2px #000;
   }
 
   .card-description{
@@ -260,12 +255,13 @@
 
 .card-detail-wrapper{
   z-index: 9000;
+  top: -10%;
+  left: 8%;
+  position: relative;
 
-  .ais-hits--item {
-    width: 790px;
-    position: relative;
-    margin-left: 100px;
-    margin-bottom: 20%;
+  .hit-card {
+    width: auto;
+    height: auto;
   }
 
   .card-wrapper{
@@ -279,6 +275,10 @@
     transform-origin: center;
     backface-visibility: hidden;
     perspective: 1000;
+
+    &:hover .card-picture{
+      filter: none;
+    }
 
     &::after{
       content: "";
@@ -296,7 +296,7 @@
   }
 
   .card-details{
-    width: 450px;
+    max-width: 300px;
     display: block;
     float: left;
     color: white;
@@ -305,17 +305,16 @@
     display: none;
   }
   .detail-set{
-    font-size: 1.4em;
+    font-size: 1.3em;
     margin-top: 90px;
   }
   .detail-name{
-    font-size: 3em;
-    margin-bottom: 8px;
+    font-size: 2.4em;
   }
   .detail-quote{
     display: block;
     padding: 2em 0 1em;
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-style: italic;
   }
   .detail-dust {
@@ -349,6 +348,223 @@
     color: white;
     h2 {
       margin-bottom: .4em;
+    }
+  }
+}
+
+.results-table {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  color: white;
+  width: 890px;
+  margin: 0 auto;
+}
+
+.result-row {
+  background-color: rgba(black,.7);
+  padding: 8px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: background-color .2s ease;
+  opacity: .9;
+  &:hover{
+    opacity: 1;
+    background-color: rgba(#4011DA,.4);
+    .cel-img{
+      opacity: 1 !important;
+    }
+  }
+
+  .cel {
+    float: left;
+    width: 30px;
+    padding: 0 8px;
+    &.cel-desc{
+      width: 430px;
+      text-align: left;
+      padding: 0 10px;
+    }
+    &.cel-img{
+      width: 140px;
+      background-repeat: no-repeat;
+      background-size: 300px;
+      background-position: -80px -50px;
+      height: 64px;
+      padding: 0;
+      opacity: .8;
+      position: relative;
+    }
+    .cel-number{
+      text-align: center;
+      font-size: 1.4em;
+      font-family: Volkhov;
+      font-weight: bold;
+      color: white;
+      width: 40px;
+      margin-top: 6px;
+      text-shadow:
+      0 0 3px #000,
+      0 0 3px #000,
+      0 0 3px #000,
+      0 0 3px #000,
+      0 0 3px #000,
+      0 0 3px #000,
+      0 0 3px #000;
+      background-repeat: no-repeat;
+      padding-top: 10px;
+
+      &.cel-cost{
+        background-size: 36px;
+        background-position: center 8px;
+        background-image: url(img/cristal.svg);
+      }
+      &.cel-shield{
+        background-size: 28px;
+        background-position: center 6px;
+        background-image: url(img/shield.svg);
+      }
+      &.cel-attack{
+        background-size: 33px;
+        background-position: 0;
+        background-image: url(img/attack.svg);
+      }
+      &.cel-attack__Weapon{
+        background-size: 34px;
+        background-position: center 6px;
+        background-image: url(img/swords.svg);
+      }
+
+      &.cel-health{
+        background-size: 24px;
+        background-position: center 3px;
+        background-image: url(img/health.svg);
+      }
+    }
+
+    .cel-desc-name{
+      font-size: 1.4em;
+      white-space: nowrap;
+
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height:16px;
+        border-radius: 50%;
+        position: relative;
+        margin-left: 8px;
+        margin-right: 8px;
+        position: relative;
+        top: 2px;
+      }
+      &.Free::after {
+          background: url(img/free.svg) no-repeat;
+          background-size: 100%;
+      }
+      &.Common::after {
+        background: url(img/common.svg) no-repeat;
+        background-size: 100%;
+      }
+      &.Rare::after {
+        background: url(img/rare.svg) no-repeat;
+        background-size: 100%;
+      }
+      &.Epic::after {
+        background: url(img/epic.svg) no-repeat;
+        background-size: 100%;
+      }
+      &.Legendary::after {
+        background: url(img/legendary.svg) no-repeat;
+        background-size: 100%;
+      }
+
+      em{
+        font-style: normal;
+        color: yellow;
+      }
+    }
+
+    .cel-desc-nameVO{
+      color: rgba(white,.3);
+      white-space: nowrap;
+    }
+
+    .cel-desc-text{
+      color: rgba(white,.5);
+      margin-top: 2px;
+      letter-spacing: .2px;
+      font-size: .95em;
+      em{
+        font-style: normal;
+        color: rgba(yellow,.7);
+      }
+    }
+
+    .cel-set{
+      font-weight: bold;
+      font-size: .8em;
+      padding: 2px 4px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      text-shadow:
+      0 0 3px #000,
+      0 0 3px #000;
+    }
+
+    &.cel-type{
+      width: 110px;
+      padding-top: 12px;
+      padding-left: 8px;
+      ul {
+        margin-top: 10px;
+        border-left: solid 2px;
+        list-style: none;
+        margin: 0;
+        padding-left: 8px;
+        color: rgba(white,.6);
+        &.Hunter{
+          color: #59BD4E;
+        }
+        &.Druid{
+          color: #A38852;
+        }
+        &.Mage{
+          color: #4BA1CF;
+        }
+        &.Paladin{
+          color: #DB66D7;
+        }
+        &.Priest{
+          color: #eee;
+        }
+        &.Rogue{
+          color: #E9E066;
+        }
+        &.Shaman{
+          color: #397BEA;
+        }
+        &.Warlock{
+          color: #8857D7;
+        }
+        &.Warrior{
+          color: #BC2D37;
+        }
+
+      }
+      strong{
+        color: rgba(white,.8);
+        em {
+          font-style: normal;
+          color: yellow;
+        }
+      }
+    }
+
+    .cel-desc-separator{
+      padding: 0 6px;
+      color: rgba(white,.5)
     }
   }
 }
