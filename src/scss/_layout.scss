@@ -35,13 +35,7 @@ html, body {
   margin: 0 auto;
 
   &.no-scroll {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-    .github-source {
-      display: none;
-      visibility: hidden;
-    }
+
   }
 }
 aside {

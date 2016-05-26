@@ -386,10 +386,11 @@
       padding: 0 10px;
     }
     &.cel-img{
-      width: 140px;
+      width: 64px;
+      border-radius: 50%;
       background-repeat: no-repeat;
-      background-size: 300px;
-      background-position: -80px -50px;
+      background-size: 100px;
+      background-position: center;
       height: 64px;
       padding: 0;
       opacity: .8;
