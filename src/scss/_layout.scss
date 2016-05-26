@@ -53,7 +53,27 @@ aside {
     padding: 10px 30px;
   }
   @media (max-width: 960px){
-    display: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+    section {
+      padding: 10px 3%;
+      width: 40%;
+      order: 2;
+    }
+    #cost, #format, #mechanics {
+      display: none;
+    }
+    #type, #rarity {
+      order: 1;
+    }
+    #sort-by {
+      position: absolute;
+      top: 90px;
+      left: 5px;
+    }
+    //display: none;
   }
 }
 main {
