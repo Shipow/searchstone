@@ -73,6 +73,18 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   }
 })
 
+sunwell.settings = {
+  titleFont: 'arial',
+  bodyFont: 'arial',
+  bodyFontSize: 24,
+  bodyLineHeight: 55,
+  bodyFontOffset: {x: 0, y: 0},
+  assetFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,q_80/',
+  textureFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/',
+  autoInit: false,
+  debug: false
+};
+
 window.sunwellRender = function(){
 $('.card-picture:visible').each(function(i,e){
 

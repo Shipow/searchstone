@@ -106,6 +106,9 @@
         %a.tempalte-list{href:"#"}
           %svg{role: "img"}
             %use{xlink:href: "#icon-row"}
+      %section#sort-by
+        .sort-by-label Sort by
+        .sort-by-selector
       %section#rarity
       %section#cost
       %section#format
@@ -113,11 +116,11 @@
       %section#type
       %section#race
       %section#mechanics
+      %section#attack
+      %section#health
       .debug
         %h4 Debug
         %section#stats
-        sortBy:
-        %section#sort-by
         %section#clear-all
 
     %main
@@ -161,22 +164,6 @@
       #years.tab-panel.active
       #brands.tab-panel
 
-
-  %script
-    var sunwell= {
-      settings : {
-        titleFont: 'arial',
-        bodyFont: 'arial',
-        bodyFontSize: 24,
-        bodyLineHeight: 55,
-        bodyFontOffset: {x: 0, y: 0},
-        assetFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,q_80/',
-        textureFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/',
-        autoInit: false,
-        debug: false
-      }
-    };
-  %script{src: "js/sunwell.js"}
   %script{src: "js/app.js"}
 
   .svg-icons{style: "display:none"}

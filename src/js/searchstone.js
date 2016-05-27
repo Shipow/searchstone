@@ -250,7 +250,7 @@ searchstone.addWidget(
 
 searchstone.addWidget(
   instantsearch.widgets.sortBySelector({
-    container: '#sort-by',
+    container: '#sort-by .sort-by-selector',
     indices: [
       {name: 'searchstone_cost--asc', label: 'Lowest cost'},
       {name: 'searchstone_cost--desc', label: 'Highest cost'},
@@ -280,31 +280,51 @@ searchstone.addWidget(
   })
 );
 
-search.addWidget(
+searchstone.addWidget(
   instantsearch.widgets.clearAll({
     container: '#clear-all',
     templates: {
-      link: 'Reset everything'
+      link: 'Reset'
     },
     autoHideContainer: true
   })
 );
 
-// search.addWidget({
-//   init: function(options){
-//     options.helper.on('change', function(state){
-//       console.log(state);
-//
-//     });
-//   }
-// });
+searchstone.addWidget(
+  instantsearch.widgets.rangeSlider({
+    container: '#attack',
+    attributeName: 'attack',
+    templates: {
+      header: 'Attack'
+    },
+    collapsible: {
+      collapsed: true
+    },
+    tooltips: {
+      format: function(formattedValue, rawValue) {return '' + formattedValue}
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.rangeSlider({
+    container: '#health',
+    attributeName: 'health',
+    templates: {
+      header: 'Health'
+    },
+    collapsible: {
+      collapsed: true
+    },
+    tooltips: {
+      format: function(formattedValue, rawValue) {return '' + formattedValue}
+    }
+  })
+);
 
 searchstone.on('render', function() {
-
   sunwellRender();
-
 });
-
 
 sunwell.init();
 searchstone.start();
