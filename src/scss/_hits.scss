@@ -267,7 +267,7 @@
   .card-wrapper{
     position: relative;
     float:left;
-    transform: scale(1)!important;
+    transform: scale(1);
     margin-right: 40px;
     animation: cardDetailsAnim .7s ease-in;
     animation-fill-mode: backwards;
@@ -275,6 +275,9 @@
     transform-origin: center;
     backface-visibility: hidden;
     perspective: 1000;
+    @media (max-width: 600px){
+      transform: scale(.7) translateY(40px);
+    }
 
     &:hover .card-picture{
       filter: none;
@@ -300,6 +303,9 @@
     display: block;
     float: left;
     color: white;
+    @media (max-width: 600px){
+      font-size: .8em;
+    }
   }
   .card-infos{
     display: none;
@@ -312,7 +318,7 @@
     font-size: 2.4em;
   }
   .detail-nameVO{
-    margin: .3em;
+    margin: .2em 0;
     font-size: 1.1em;
     color: rgba(white,.4);
   }
@@ -364,6 +370,7 @@
   color: white;
   max-width: 800px;
   margin: 10px auto 0;
+  overflow: hidden;
 }
 
 .result-row {
@@ -372,7 +379,7 @@
   margin-bottom: 4px;
   cursor: pointer;
   transition: background-color .2s ease;
-  opacity: .9;
+  position: relative;
   &:hover{
     opacity: 1;
     background-color: rgba(#4011DA,.4);
@@ -410,41 +417,75 @@
       width: 40px;
       margin-top: 6px;
       text-shadow:
-      0 0 3px #000,
-      0 0 3px #000,
-      0 0 3px #000,
-      0 0 3px #000,
-      0 0 3px #000,
-      0 0 3px #000,
-      0 0 3px #000;
+        0 0 3px #000,
+        0 0 3px #000,
+        0 0 3px #000,
+        0 0 3px #000,
+        0 0 3px #000,
+        0 0 3px #000,
+        0 0 3px #000;
       background-repeat: no-repeat;
       padding-top: 10px;
+
+      @media (max-width: 600px){
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
 
       &.cel-cost{
         background-size: 36px;
         background-position: center 8px;
         background-image: url(img/cristal.svg);
+        @media (max-width: 600px){
+          top: 10px;
+          right: 100px;
+        }
       }
+
       &.cel-shield{
         background-size: 28px;
         background-position: center 6px;
         background-image: url(img/shield.svg);
+        @media (max-width: 600px){
+
+          top: 10px;
+          right: 10px;
+        }
       }
+
       &.cel-attack{
         background-size: 33px;
         background-position: 0;
         background-image: url(img/attack.svg);
+
+        @media (max-width: 600px){
+          top: 10px;
+          right: 50px;
+        }
       }
+
       &.cel-attack__Weapon{
         background-size: 34px;
         background-position: center 6px;
         background-image: url(img/swords.svg);
+
+        @media (max-width: 600px){
+          top: 10px;
+          right: 50px;
+        }
       }
 
       &.cel-health{
         background-size: 24px;
         background-position: center 3px;
         background-image: url(img/health.svg);
+
+        @media (max-width: 600px){
+          top: 10px;
+          right: 10px;
+        }
       }
     }
 
@@ -464,22 +505,27 @@
         position: relative;
         top: 2px;
       }
+
       &.Free::after {
           background: url(img/free.svg) no-repeat;
           background-size: 100%;
       }
+
       &.Common::after {
         background: url(img/common.svg) no-repeat;
         background-size: 100%;
       }
+
       &.Rare::after {
         background: url(img/rare.svg) no-repeat;
         background-size: 100%;
       }
+
       &.Epic::after {
         background: url(img/epic.svg) no-repeat;
         background-size: 100%;
       }
+
       &.Legendary::after {
         background: url(img/legendary.svg) no-repeat;
         background-size: 100%;
@@ -489,11 +535,19 @@
         font-style: normal;
         color: $active-color;
       }
+
+      @media (max-width: 600px){
+        font-size: 1.2em;
+      }
     }
 
     .cel-desc-nameVO{
       color: rgba(white,.3);
       white-space: nowrap;
+
+      @media (max-width: 600px){
+        display: none;
+      }
     }
 
     .cel-desc-text{
@@ -501,6 +555,10 @@
       margin-top: 2px;
       letter-spacing: .2px;
       font-size: .95em;
+
+      @media (max-width: 600px){
+        display: none;
+      }
       em{
         font-style: normal;
         color: rgba($active-color,.7);
@@ -523,6 +581,11 @@
       width: 110px;
       padding-top: 12px;
       padding-left: 8px;
+
+      @media (max-width: 600px){
+        width: 200px;
+      }
+
       ul {
         margin-top: 10px;
         border-left: solid 2px;
@@ -530,6 +593,14 @@
         margin: 0;
         padding-left: 8px;
         color: rgba(white,.6);
+        @media (max-width: 600px){
+
+          margin-top: 0;
+          li {
+            display: inline-block;
+            margin-right: 8px
+          }
+        }
         &.Hunter{
           color: #59BD4E;
         }
@@ -557,10 +628,11 @@
         &.Warrior{
           color: #BC2D37;
         }
-
       }
+
       strong{
         color: rgba(white,.8);
+
         em {
           font-style: normal;
           color: $active-color;

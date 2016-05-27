@@ -494,7 +494,6 @@
   }
 }
 
-
 #attack{
   .ais-range-slider--connect{
     background-color: #DCBD1C;
@@ -553,7 +552,6 @@
   font-weight: bold;
   font-size: .9em;
 }
-
 
 //languageSelect
 .wz-select {
@@ -654,17 +652,20 @@
   left: -40px;
   top: 6px;
   border: none;
-  fill: $active-color;
   cursor: pointer;
+  fill: white;
+
   @media (min-width: 960px){
     display: none;
   }
+
   &:active, &:focus{
     outline: 0;
     box-shadow: none;
   }
+
   &:hover{
-    fill: white;
+    fill: $active-color;
   }
   svg{
     width: 28px;

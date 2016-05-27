@@ -49,13 +49,13 @@ aside {
 
   @media (max-width: 960px){
     display: none;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     width: 100%;
-    background-color: rgba(black,1);
+    background-color: rgba(black,.7);
     z-index: 9;
     animation: slideDown .2s ease-out;
     transform-origin: 0 0;
-    height: 680px;
+    margin-bottom: 20px;;
     &.show{
       display: flex;
     }
@@ -63,7 +63,7 @@ aside {
       padding: 10px 3%;
       margin: 0 auto;
       width: 27%;
-      order: 2;
+      order: 4;
     }
 
     #template-toggle{
@@ -72,32 +72,37 @@ aside {
     #sort-by{
 
     }
-    #rarity{
-
-    }
     #cost{
-
+      width: 60%;
+      order: 1;
     }
+    #rarity{
+      width: 28%;
+      order: 1
+    }
+
     #format{
 
     }
     #set{
-
+      order: 3;
     }
     #type{
-
+      order: 5;
     }
     #race{
-
+      order: 5;
     }
     #mechanics{
-
+      order: 3;
     }
     #attack{
-
+      width: 44%;
+      order: 2;
     }
     #health{
-
+      width: 44%;
+      order: 2;
     }
 
     .debug{

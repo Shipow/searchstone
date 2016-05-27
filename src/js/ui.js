@@ -68,7 +68,7 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   } else {
     search.helper
       .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,nameVO,playerClass,flavor,artist')
+      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist')
       .search();
   }
 })
