@@ -218,6 +218,9 @@ searchstone.addWidget(
     templates: {
       header: 'Race',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    },
+    collapsible: {
+      collapsed: true
     }
   })
 );
@@ -231,7 +234,16 @@ searchstone.addWidget(
     templates: {
       header: 'Mechanics',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+    },
+    collapsible: {
+      collapsed: true
     }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.stats({
+    container: '#stats'
   })
 );
 

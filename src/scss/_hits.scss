@@ -123,7 +123,7 @@
     }
 
     tspan tspan{
-      fill: yellow;
+      fill: $active-color;
     }
   }
 
@@ -222,7 +222,7 @@
     }
 
     em{
-      background-color: rgba(yellow,.2);
+      background-color: rgba($active-color,.2);
       font-style: normal;
     }
   }
@@ -233,7 +233,7 @@
   }
 
   .card-race em {
-    color: yellow;
+    color: $active-color;
     font-style: normal;
   }
 
@@ -248,7 +248,7 @@
 
     em{
       font-style: normal;
-      color: rgba(yellow,.8);
+      color: rgba($active-color,.8);
     }
   }
 }
@@ -487,7 +487,7 @@
 
       em{
         font-style: normal;
-        color: yellow;
+        color: $active-color;
       }
     }
 
@@ -503,7 +503,7 @@
       font-size: .95em;
       em{
         font-style: normal;
-        color: rgba(yellow,.7);
+        color: rgba($active-color,.7);
       }
     }
 
@@ -563,7 +563,7 @@
         color: rgba(white,.8);
         em {
           font-style: normal;
-          color: yellow;
+          color: $active-color;
         }
       }
     }

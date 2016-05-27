@@ -64,7 +64,7 @@ header {
   }
 
   .sbx-custom__input {
-    color: yellow;
+    color: $active-color;
     box-shadow: 0 2px #3C10C9;
     background: transparent;
   }
@@ -170,7 +170,7 @@ header {
       -webkit-font-smoothing: antialiased;
 
       &:focus, &:hover, &.active {
-         color: yellow;
+         color: $active-color;
       }
     }
   }

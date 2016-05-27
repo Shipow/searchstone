@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="194px" height="169px" viewBox="0 0 194 169" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 3.8.2 (29753) - http://www.bohemiancoding.com/sketch -->
     <title>cristal--active</title>
     <desc>Created with Sketch.</desc>
     <defs>
@@ -10,8 +10,8 @@
             <use xlink:href="#path-1" fill="black"></use>
         </mask>
         <radialGradient cx="46.7669845%" cy="50%" fx="46.7669845%" fy="50%" r="51.3552581%" id="radialGradient-3">
-            <stop stop-color="#3AF0FF" offset="0%"></stop>
-            <stop stop-color="#00C5FF" offset="100%"></stop>
+            <stop stop-color="#3AA6FF" offset="0%"></stop>
+            <stop stop-color="#009FFF" offset="100%"></stop>
         </radialGradient>
         <polygon id="path-4" points="115 27.5115057 194.674337 73.5115057 194.674337 165.511506 115 211.511506 35.3256629 165.511506 35.3256629 73.5115057"></polygon>
         <mask id="mask-5" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-4" y="-4" width="167.348674" height="192">
@@ -40,8 +40,8 @@
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Desktop-HD" transform="translate(-308.000000, -89.000000)">
-            <g id="cristal--active" transform="translate(290.000000, 54.000000)">
+        <g id="Desktop-HD" transform="translate(-291.000000, -587.000000)">
+            <g id="cristal--active" transform="translate(273.000000, 552.000000)">
                 <g id="Polygon-1" transform="translate(115.000000, 119.511506) rotate(-330.000000) translate(-115.000000, -119.511506) ">
                     <use fill="#1E2129" fill-rule="evenodd" xlink:href="#path-1"></use>
                     <use stroke="#000000" mask="url(#mask-2)" stroke-width="8" xlink:href="#path-1"></use>
@@ -52,7 +52,7 @@
                 </g>
                 <polygon id="Path-1" fill="url(#linearGradient-6)" opacity="0.812091884" points="70.6640625 198.980469 116.236853 118.012864 161.371094 199.023438"></polygon>
                 <polygon id="Path-1" fill="url(#linearGradient-7)" opacity="0.625058302" transform="translate(116.017578, 79.518151) scale(-1, -1) translate(-116.017578, -79.518151) " points="70.6640625 119.980469 116.236853 39.0128637 161.371094 120.023438"></polygon>
-                <polygon id="Path-1" fill="#FFFFFF" opacity="0.625058302" transform="translate(149.767578, 99.085138) scale(-1, -1) rotate(60.000000) translate(-149.767578, -99.085138) " points="104.414062 138.681431 148.986853 59.4458764 195.121094 138.724399"></polygon>
+                <polygon id="Path-1" fill="#FFFFFF" opacity="0.625058302" transform="translate(149.767578, 99.085138) scale(-1, -1) rotate(60.000000) translate(-149.767578, -99.085138) " points="104.414063 138.681431 148.986853 59.4458764 195.121094 138.724399"></polygon>
                 <polygon id="Path-1" fill="url(#linearGradient-8)" opacity="0.625058302" transform="translate(149.767578, 139.085138) scale(-1, 1) rotate(60.000000) translate(-149.767578, -139.085138) " points="104.414063 178.681431 148.986853 99.4458764 195.121094 178.724399"></polygon>
                 <polygon id="Path-1" fill="url(#linearGradient-9)" opacity="0.38671875" transform="translate(80.767578, 140.085138) rotate(60.000000) translate(-80.767578, -140.085138) " points="35.4140625 179.681431 79.9868528 100.445876 126.121094 179.724399"></polygon>
                 <polygon id="Path-1" opacity="0.625058302" transform="translate(81.767578, 99.085138) scale(1, -1) rotate(60.000000) translate(-81.767578, -99.085138) " points="36.4140625 138.681431 80.9868528 59.4458764 127.121094 138.724399"></polygon>

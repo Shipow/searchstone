@@ -101,10 +101,25 @@
       color: white;
     }
     &.active{
-      color: yellow;
+      color: $active-color;
       font-weight: bold;
     }
   }
+}
+
+.ais-root__collapsible .ais-header::before{
+  content: "";
+  background: url(img/icon-collapse.svg) no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  color: white;
+  width: 18px;
+  height: 10px;
+  margin-right: 8px;
+}
+
+.ais-root__collapsed .ais-header::before{
+  background-image: url(img/icon-expand.svg);
 }
 
 .badge {
@@ -201,7 +216,7 @@
       background-repeat: no-repeat;
       background-size: 100%;
       &.active{
-        color: yellow;
+        color: $active-color;
         opacity: 1;
         background-image: url(img/cristal--active.svg);
       }
@@ -263,7 +278,7 @@
       }
 
       &.active{
-        color:yellow;
+        color:$active-color;
         border-color: #3C10C9;
         @media (max-width: 960px){
           border-color: white;
@@ -399,6 +414,7 @@
   color: white;
   font-size: 1.1em;
   font-weight: bold;
+  text-align: right;
   a {
     margin-left: 12px;
     svg {
