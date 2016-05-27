@@ -116,10 +116,12 @@
   width: 18px;
   height: 10px;
   margin-right: 8px;
+  opacity: .4;
 }
 
 .ais-root__collapsed .ais-header::before{
   background-image: url(img/icon-expand.svg);
+  opacity: 1;
 }
 
 .badge {
@@ -508,10 +510,12 @@
 .ais-range-slider--base {
   border: none;
 }
+
 .ais-range-slider--background,
 .ais-range-slider--marker{
   background-color: #4011DA;
 }
+
 .ais-range-slider--tooltip{
   background-color: transparent;
   font-size: 1.1em;
@@ -529,6 +533,7 @@
   0 0 3px #000,
   0 0 3px #000;
 }
+
 .ais-range-slider--handle {
   width: 24px;
   height: 24px;
@@ -640,5 +645,29 @@
     padding: 8px;
     z-index: 999;
     transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
+  }
+}
+
+#toggleFilters{
+  background-color: transparent;
+  position: absolute;
+  left: -40px;
+  top: 6px;
+  border: none;
+  fill: $active-color;
+  cursor: pointer;
+  @media (min-width: 960px){
+    display: none;
+  }
+  &:active, &:focus{
+    outline: 0;
+    box-shadow: none;
+  }
+  &:hover{
+    fill: white;
+  }
+  svg{
+    width: 28px;
+    height: 28px;
   }
 }

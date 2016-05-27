@@ -192,7 +192,8 @@ searchstone.addWidget(
     templates: {
       header: 'Set',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
+    },
+    collapsible: true
   })
 );
 
@@ -205,7 +206,8 @@ searchstone.addWidget(
     templates: {
       header: 'Type',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    }
+    },
+    collapsible: true
   })
 );
 
