@@ -10,7 +10,7 @@ let searchstone = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_cost--asc',
-  urlSync: true
+  urlSync: false
 });
 
 //expose instantsearch because of webpack
@@ -193,7 +193,7 @@ searchstone.addWidget(
       header: 'Set',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
-    collapsible: true
+    // collapsible: true
   })
 );
 
@@ -207,7 +207,7 @@ searchstone.addWidget(
       header: 'Type',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
-    collapsible: true
+    // collapsible: true
   })
 );
 
