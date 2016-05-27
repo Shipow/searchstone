@@ -54,10 +54,12 @@ $("#results").on('dataavailable','.card-picture', function(){
   setTimeout( removePlaceholder(el), 200 );
 })
 
-$("#template-toggle a").on('click', function(e){
+$("#template-toggle").on('click', 'a:not(.active)', function(e){
   e.preventDefault();
+
   $('#template-toggle a').toggleClass('active');
   $('.results').toggleClass('hide');
+
   if($(this).hasClass('template-cards')){
     search.helper
       .setQueryParameter('hitsPerPage',12)
@@ -65,7 +67,7 @@ $("#template-toggle a").on('click', function(e){
       .search();
   } else {
     search.helper
-      .setQueryParameter('hitsPerPage',120)
+      .setQueryParameter('hitsPerPage',150)
       .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,nameVO,playerClass,flavor,artist')
       .search();
   }
