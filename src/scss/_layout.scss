@@ -44,7 +44,7 @@ aside {
   margin-bottom: 30px;
   animation: fadeInLeft .3s ease-in;
   section {
-    padding: 10px 30px;
+    padding: 0 20px 20px;
   }
 
   @media (max-width: 960px){
@@ -55,54 +55,75 @@ aside {
     z-index: 9;
     animation: slideDown .2s ease-out;
     transform-origin: 0 0;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
+    padding-top: 20px;
+
+    .ais-header{
+      display: none;
+    }
+
     &.show{
       display: flex;
     }
+
     section {
-      padding: 10px 3%;
       margin: 0 auto;
-      width: 27%;
+      width: 50%;
       order: 4;
     }
 
-    #template-toggle{
-
-    }
     #sort-by{
-
+      display: none;
     }
+
     #cost{
-      width: 60%;
+      width: 100%;
       order: 1;
     }
+
     #rarity{
-      width: 28%;
-      order: 1
+      width: 100%;
+      order: 2;
     }
 
     #format{
-
+      order: 3;
+      width: 100%
     }
     #set{
-      order: 3;
+      order: 4;
+      width: 100%;
+      .ais-refinement-list--list{
+        display: flex;
+        flex-flow: row wrap;
+      }
+      .ais-refinement-list--item{
+        width: 33%;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .badge {
+        display: none;
+      }
     }
     #type{
-      order: 5;
+      display: none;
     }
     #race{
-      order: 5;
+      display: none;
     }
     #mechanics{
-      order: 3;
+      display: none;
     }
     #attack{
-      width: 44%;
-      order: 2;
+      display: none;
     }
     #health{
-      width: 44%;
-      order: 2;
+      display: none;
+    }
+    #template-toggle{
+      display: none;
     }
 
     .debug{

@@ -278,7 +278,10 @@ searchstone.addWidget(
     container: '#pagination',
     autoHideContainer: true,
     maxPages: 20,
-    padding: 1
+    padding: 1,
+    showFirstLast : false
+
+
   })
 );
 
