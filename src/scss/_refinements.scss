@@ -165,6 +165,9 @@
   float: right;
   color: #7F6CBA;
   line-height: 1.2em;
+  @media (max-width: 600px){
+    display: none;
+  }
 }
 
 .ais-header{
@@ -593,19 +596,6 @@
         image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%232897c5\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>");
       }
     }
-  }
-}
-
-#clear-all {
-  a {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: block;
-    text-align: center;
-    border: solid 2px #4011DA;
-    border-radius: 4px;
-    padding: 3px 8px;
   }
 }
 

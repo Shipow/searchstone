@@ -27,7 +27,7 @@ searchstone.addWidget(
 // hits, the template is called from index.haml
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 12,
+    hitsPerPage: 20,
     container: '#results',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -72,7 +72,7 @@ searchstone.addWidget(
 
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 12,
+    hitsPerPage: 20,
     container: '#table',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -291,7 +291,10 @@ searchstone.addWidget(
 
 searchstone.addWidget(
   instantsearch.widgets.stats({
-    container: '#stats'
+    container: '#stats',
+    templates: {
+      body: "<span class='nbPages' data-nb-pages='{{nbPages}}'></span> {{nbHits}} results rin {{processingTimeMS}}ms"
+    }
   })
 );
 
@@ -307,15 +310,15 @@ searchstone.addWidget(
   })
 );
 
-searchstone.addWidget(
-  instantsearch.widgets.pagination({
-    container: '#pagination',
-    autoHideContainer: true,
-    maxPages: 20,
-    padding: 1,
-    showFirstLast : false
-  })
-);
+// searchstone.addWidget(
+//   instantsearch.widgets.pagination({
+//     container: '#pagination',
+//     autoHideContainer: true,
+//     maxPages: 20,
+//     padding: 1,
+//     showFirstLast : false
+//   })
+// );
 
 searchstone.addWidget(
   instantsearch.widgets.rangeSlider({
@@ -350,6 +353,11 @@ searchstone.addWidget(
 );
 
 searchstone.on('render', function() {
+ if( $('#stats').find('.nbPages').data('nb-pages') === 1 ){
+  $('.load-more').addClass('hide');
+} else {
+  $('.load-more').removeClass('hide');
+}
   sunwellRender();
 });
 

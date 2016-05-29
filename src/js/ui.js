@@ -63,13 +63,11 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   if($(this).hasClass('template-cards')){
     search.helper
       .setQueryParameter('hitsPerPage',12)
-      .setQueryParameter('attributesToRetrieve', '*')
-      .search();
+      .setQueryParameter('attributesToRetrieve', '*');
   } else {
     search.helper
       .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist')
-      .search();
+      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist');
   }
 })
 
@@ -80,6 +78,21 @@ $("#toggleFilters").on('click', function(e){
   $("#active-refinements").toggleClass('hide');
 })
 
+
+var defaultHitsPerPage = 20;
+var hitsPerPage = defaultHitsPerPage;
+
+$(".load-more").on('click', function(e){
+  e.preventDefault();
+  hitsPerPage = hitsPerPage + defaultHitsPerPage;
+  search.helper.setQueryParameter('hitsPerPage', hitsPerPage);
+})
+
+$('.searchbox').on('focus','.ais-search-box--input', function(){
+  if($('.template-cards').hasClass('active')){
+    search.helper.setQueryParameter('hitsPerPage', defaultHitsPerPage);
+  }
+})
 
 sunwell.settings = {
   titleFont: 'arial',

@@ -3,9 +3,14 @@
   flex-flow: row wrap;
   justify-content: left;
   padding-left: 40px;
+
   @media (max-width: 960px){
     justify-content: center;
     padding-left: 0;
+  }
+
+  @media (max-width: 600px){
+    padding-top: 8px;
   }
 }
 
