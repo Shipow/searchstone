@@ -85,7 +85,7 @@ searchstone.addWidget(
   })
 );
 
-// languages
+// custom widget languages
 searchstone.addWidget(
   instantsearch.widgets.languageSelect($('#lang-select'))
 );
@@ -105,16 +105,45 @@ searchstone.addWidget(
   })
 );
 
+//Player Class - mobile
+searchstone.addWidget(
+  instantsearch.widgets.menu({
+    container: '#playerClassFiltersPanel',
+    attributeName: 'playerClass',
+    limit: 10,
+    sortBy: function(a,b){
+      return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
+    },
+    templates: {
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
+    }
+  })
+);
+
 searchstone.addWidget(
   instantsearch.widgets.currentRefinedValues({
-    container: "#refinements",
+    container: "#player-class-refinement",
     clearAll: false,
     attributes: [
       {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'}
     ],
+    onlyListedAttributes: true
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.currentRefinedValues({
+    container: "#active-refinements",
+    clearAll: 'after',
+    attributes: [
+      {name: 'playerClass',template: '<span class="active-refinements-player-class"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}</span>'},
+      {name: 'cost', template: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Mana:{{name}}'},
+      {name: 'rarity'},
+      {name: 'set'}
+    ],
     onlyListedAttributes: true,
     templates: {
-      item: '<a href="javascript:void(0)">{{name}} <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg></a>'
+      item: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}'
     }
   })
 );
@@ -122,7 +151,9 @@ searchstone.addWidget(
 var rarity = ['Free', 'Common', 'Rare', 'Epic', 'Legendary'];
 var playerClass = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest','Rogue','Shaman', 'Warlock','Warrior','Neutral'];
 var set = ['Reward','Basic', 'Expert', 'Naxxramas', 'Goblins vs Gnomes', 'Blackrock Mountain', 'League of Explorers', 'The Grand Tournament', 'Old Gods'];
+var setShort = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG'];
 set.reverse();
+setShort.reverse();
 
 searchstone.addWidget(
   instantsearch.widgets.refinementList({
@@ -191,9 +222,24 @@ searchstone.addWidget(
     },
     templates: {
       header: 'Set',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
+    }
+  })
+);
+
+searchstone.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#setShort',
+    attributeName: 'set',
+    operator: 'and',
+    limit: 10,
+    sortBy: function(a,b){
+      return setShort.indexOf(a.name) - setShort.indexOf(b.name);
     },
-    // collapsible: true
+    templates: {
+      header: 'Set',
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
+    }
   })
 );
 
@@ -261,18 +307,6 @@ searchstone.addWidget(
   })
 );
 
-// searchstone.addWidget(
-//   instantsearch.widgets.hitsPerPageSelector({
-//     container: '#hits-per-page',
-//     options: [
-//       {value: 8, label: '8 per page'},
-//       {value: 12, label: '12 per page'},
-//       {value: 24, label: '24 per page'},
-//       {value: 40, label: '40 per page'}
-//     ]
-//   })
-// );
-
 searchstone.addWidget(
   instantsearch.widgets.pagination({
     container: '#pagination',
@@ -280,18 +314,6 @@ searchstone.addWidget(
     maxPages: 20,
     padding: 1,
     showFirstLast : false
-
-
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.clearAll({
-    container: '#clear-all',
-    templates: {
-      link: 'Reset'
-    },
-    autoHideContainer: true
   })
 );
 

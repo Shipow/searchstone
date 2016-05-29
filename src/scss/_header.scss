@@ -17,19 +17,18 @@
 
 header {
   position: relative;
-  padding: 40px 70px 30px 270px;
+  padding: 40px 0 0 270px;
 
   .logo {
     position: absolute;
-    top: -15px;
+    top: -20px;
     left: 20px;
     padding: 30px 0 0;
     animation: bounce .3s ease-in;
 
   }
   @media (max-width: 960px){
-    padding: 100px 110px 30px 0;
-
+    padding: 100px 0 0 0;
     .logo{
       left: calc(50% - 150px);
       img{
@@ -38,12 +37,13 @@ header {
     }
   }
   @media (max-width: 600px){
-    padding: 80px 110px 30px 0;
+    padding: 60px 0 0 0;
 
     .logo{
+      top: -22px;
       left: 10px;
       img{
-        width: 220px;
+        width: 200px;
       }
     }
   }
@@ -53,9 +53,73 @@ header {
   @include searchbox($custom...);
 }
 
+.searchbox-wrapper{
+  text-align: center;
+  @media (max-width: 960px){
+    padding: 0 0 8px 0;
+  }
+  @media (max-width: 600px){
+    background-color: rgba(#4011DA,.7);
+    padding: 8px 0;
+  }
+}
+
+#toggleFilters{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  fill: white;
+  color: white;
+  font-size: .9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 4px 0;
+  line-height: 26px;
+  margin-right: 20px;
+  width: 100px;
+
+  .open-filters{
+    display: inline-block;
+  }
+
+  .close-filters{
+    display: none;
+  }
+  &.active{
+    .open-filters{
+      display: none;
+    }
+    .close-filters{
+      display: inline-block;
+    }
+  }
+
+  @media (min-width: 960px){
+    display: none;
+  }
+
+  &:active, &:focus{
+    outline: 0;
+  }
+
+  &:hover{
+    fill: $active-color;
+  }
+  svg{
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    position: relative;
+    top: -1px;
+  }
+}
+
 .searchbox {
   margin: 0 auto;
-  display: block;
+  display: inline-block;
   width: 300px;
   position: relative;
 
@@ -77,15 +141,153 @@ header {
     fill: #fff
   }
 
-  .poweredby{
-    display: block;
-    position: absolute;
-    width: 100px;
-    top: 28px;
-    right: -110px;
-  }
 
   @media (max-width: 600px){
     width: 200px;
+  }
+}
+
+#template-toggle{
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: right;
+  position: absolute;
+  top: 12px;
+  right: 160px;
+  @media (max-width: 960px){
+    top: 32px;
+    right: 95px;
+    color: transparent;
+  }
+  @media (max-width: 600px){
+    top: 17px;
+  }
+
+  a {
+    margin-left: 10px;
+    svg {
+      fill: #4011DA;
+      width: 20px;
+      height: 26px;
+      vertical-align: middle;
+    }
+    &.active{
+      svg {
+        fill: white;
+      }
+    }
+  }
+}
+
+//languageSelect
+.wz-select {
+  display: block;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 120px;
+  .short{
+    display: none;
+  }
+
+  @media (max-width: 960px){
+    top: 30px;
+    width: 55px;
+
+    .short{
+      display: inline-block;
+    }
+
+    .long{
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px){
+    top: 15px;
+  }
+
+  [type="button"] {
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    line-height: 28px;
+    display: block;
+    text-align: left;
+    padding: 0 8px;
+    font-size: .9em;
+    color: rgba(white, 0.9);
+    border: none;
+    outline: 0;
+    font-weight: bold;
+    border: solid 1px #3C10C9;
+    cursor: pointer;
+    background: {
+      image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%23979797\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>");
+      size: 14px;
+      position: center right 8px;
+      repeat: no-repeat;
+      color: transparent;
+    }
+    &:focus,
+    &:active {
+      background: {
+        image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%232897c5\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>");
+      }
+    }
+  }
+
+  *, :after, :before {
+    box-sizing: border-box;
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+    display: block;
+    line-height: 32px;
+    margin: 6px 0;
+    fill: rgba(0, 0, 0, 0.5);
+    margin: 8px 6px;
+    width: 20px;
+    height: 14px;
+    position: absolute;
+    top: 0;
+  }
+
+
+  ul {
+    position: absolute;
+    background: black;
+    cursor: default;
+    list-style: none;
+    line-height: 32px;
+    top: 30px;
+    right: 0;
+    display: none;
+    width: 200px;
+
+    li {
+      height: 32px;
+      width: 100%;
+      padding: 0 8px;
+      cursor: pointer;
+      color: white;
+      -webkit-font-smoothing: antialiased;
+
+      &:focus, &:hover, &.active {
+         color: $active-color;
+      }
+    }
+  }
+
+  &.active ul {
+    display: block;
+    max-height: 500px;
+    overflow: auto;
+    padding: 8px;
+    z-index: 999;
+    transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
   }
 }

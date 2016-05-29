@@ -76,6 +76,8 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
 $("#toggleFilters").on('click', function(e){
   e.preventDefault();
   $('aside').toggleClass('show');
+  $(this).toggleClass('active');
+  $("#active-refinements").toggleClass('hide');
 })
 
 

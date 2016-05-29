@@ -1,6 +1,49 @@
-
-#refinements {
+#active-refinements {
   text-align: center;
+  display: none;
+  padding: 16px 0 8px;
+
+  @media (max-width: 960px){
+    display: block;
+  }
+
+  > li, div {
+    list-style: none;
+    display: inline-block;
+    font-size: 1em;
+    color: $active-color;
+    font-weight: bold;
+    white-space: nowrap;
+    user-select: inherit;
+    margin-right: 8px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      div {
+        display: inline-block;
+      }
+    }
+  }
+
+  .ais-current-refined-values--list {
+    svg {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      fill: white;
+      position: relative;
+      top: -2px;
+    }
+  }
+}
+
+
+#player-class-refinement {
+  text-align: center;
+  position: relative;
+  top: 8px;
   @media (max-width: 960px){
     display: none;
   }
@@ -18,12 +61,6 @@
       div {
         display: inline-block;
       }
-    }
-  }
-
-  .ais-current-refined-values--list {
-    svg {
-      fill: #BD245E;
     }
   }
   .ais-current-refined-values--item {
@@ -132,7 +169,7 @@
 
 .ais-header{
   color: white;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   font-family: 'Archivo Narrow', sans-serif;
   padding-bottom: 4px;
@@ -142,6 +179,9 @@
 
 
 #rarity{
+  .ais-refinement-list--list{
+    text-align: center;
+  }
   .ais-refinement-list--item{
     width: 28px;
     display: inline-block;
@@ -192,14 +232,16 @@
 }
 
 #cost{
+  .ais-refinement-list--list{
+    text-align: center;
+  }
   .ais-refinement-list--item{
     display: inline-block;
     text-align: center;
     width: 34px;
     height: 34px;
     line-height: 30px;
-    margin-right: 8px;
-    margin-top: 8px;
+    margin: 8px 8px 0 0;
     a {
       opacity: .7;
       font-size: 1.2em;
@@ -246,7 +288,10 @@
 
 #playerClass{
   text-align: center;
-
+  margin-top: 20px;
+  @media (max-width: 600px){
+    display: none;
+  }
   .ais-menu--item {
     display: inline-block;
     a{
@@ -263,6 +308,7 @@
       position: relative;
       margin-right: 8px;
       margin-bottom: 8px;
+      opacity: .7;
       @media (max-width: 1400px){
         display: block;
         margin-right: 8px;
@@ -277,14 +323,13 @@
       &:hover{
         color: white;
         border-color: #3C10C9;
+        opacity: 1;
       }
 
       &.active{
-        color:$active-color;
-        border-color: #3C10C9;
-        @media (max-width: 960px){
-          border-color: white;
-        }
+        opacity: 1;
+        color:$active-color;;
+        background-color: #4011DA;
       }
 
       em {
@@ -348,7 +393,85 @@
   }
 }
 
-#set{
+#playerClassFiltersPanel{
+  text-align: center;
+  @media (min-width: 600px){
+    display: none;
+  }
+  .ais-menu--item {
+    display: inline-block;
+    width: 32px;
+    height:32px;
+    margin: 0 4px;
+    // border: solid 1px red;
+    overflow: hidden;
+    a{
+      cursor: pointer;
+      position: relative;
+      display: block;
+
+      &:hover{
+      }
+
+      &.active{
+      }
+
+    }
+  }
+
+  .list-group-item{
+    &::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 32px;
+      height:32px;
+      background: url('img/ClassIcons.png');
+      background-size: 170px;
+    }
+    &[data-facet-value="Druid"]::before {
+      background-position: 100px 32px;
+    }
+
+    &[data-facet-value="Hunter"]::before {
+      background-position: 66px 32px;
+    }
+
+    &[data-facet-value="Shaman"]::before {
+      background-position: 32px -2px;
+    }
+
+    &[data-facet-value="Warrior"]::before {
+      background-position: 134px 32px;
+    }
+
+    &[data-facet-value="Paladin"]::before {
+      background-position: 134px -2px;
+    }
+
+    &[data-facet-value="Warlock"]::before {
+      background-position: -2px 32px;
+    }
+
+    &[data-facet-value="Priest"]::before {
+      background-position: 100px -2px;
+    }
+
+    &[data-facet-value="Rogue"]::before {
+      background-position: 66px -2px;
+    }
+
+    &[data-facet-value="Mage"]::before {
+      background-position: -2px -2px;
+    }
+
+    &[data-facet-value="Neutral"]::before {
+      background-position: 32px 32px;
+    }
+  }
+}
+
+#set, #setShort{
   .ais-refinement-list--item {
     line-height: 1.4em;
   }
@@ -374,63 +497,55 @@
       background-size: 140px;
     }
 
-    &[data-facet-value="Old Gods"]::before {
+    &[data-facet-value="Old Gods"]::before,
+    &[data-facet-value="OG"]::before {
       background-position: 68px 0;
     }
 
-    &[data-facet-value="The Grand Tournament"]::before {
+    &[data-facet-value="The Grand Tournament"]::before,
+    &[data-facet-value="TGT"]::before {
       background-position: 90px 0;
     }
 
-    &[data-facet-value="League of Explorers"]::before {
+    &[data-facet-value="League of Explorers"]::before,
+    &[data-facet-value="LOE"]::before {
       background-position: 68px 24px;
     }
 
-    &[data-facet-value="Blackrock Mountain"]::before {
+    &[data-facet-value="Blackrock Mountain"]::before,
+    &[data-facet-value="BRM"]::before {
       background-position: 46px 24px;
     }
 
-    &[data-facet-value="Goblins vs Gnomes"]::before {
+    &[data-facet-value="Goblins vs Gnomes"]::before,
+    &[data-facet-value="GVG"]::before {
       background-position: 116px 0;
     }
 
-    &[data-facet-value="Naxxramas"]::before {
+    &[data-facet-value="Naxxramas"]::before,
+    &[data-facet-value="NAXX"]::before {
       background-position: 22px 0;
     }
 
-    &[data-facet-value="Expert"]::before {
+    &[data-facet-value="Expert"]::before,
+    &[data-facet-value="EXPERT1"]::before {
       background-position: 0 0;
     }
 
-    &[data-facet-value="Basic"]::before {
+    &[data-facet-value="Basic"]::before,
+    &[data-facet-value="CORE"]::before {
       background-position: 46px 0;
     }
 
-    &[data-facet-value="Reward"]::before {
+    &[data-facet-value="Reward"]::before,
+    &[data-facet-value="REWARD"]::before {
       background-position: 116px 24px;
     }
   }
 }
 
-#template-toggle{
-  color: white;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-align: letf;
-  a {
-    margin-left: 12px;
-    svg {
-      fill: rgba(white,.5);
-      width: 20px;
-      height: 26px;
-      vertical-align: middle;
-    }
-    &.active{
-      svg {
-        fill: white;
-      }
-    }
-  }
+#setShort {
+  display: none;
 }
 
 .debug{
@@ -551,124 +666,4 @@
   color: rgba(white,.5);
   font-weight: bold;
   font-size: .9em;
-}
-
-//languageSelect
-.wz-select {
-  display: block;
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  @media (max-width: 600px){
-    top: 30px;
-  }
-
-  [type="button"] {
-    width: 120px;
-    height: 30px;
-    border-radius: 3px;
-    line-height: 28px;
-    display: block;
-    text-align: left;
-    padding: 0 8px;
-    font-size: .9em;
-    color: rgba(white, 0.9);
-    border: none;
-    outline: 0;
-    border: solid 1px #3C10C9;
-    cursor: pointer;
-    background: {
-      image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%23979797\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>");
-      size: 14px;
-      position: center right 8px;
-      repeat: no-repeat;
-      color: transparent;
-    }
-    &:focus,
-    &:active {
-      background: {
-        image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%232897c5\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>");
-      }
-    }
-  }
-
-  *, :after, :before {
-    box-sizing: border-box;
-  }
-
-  svg {
-    width: 25px;
-    height: 25px;
-    display: block;
-    line-height: 32px;
-    margin: 6px 0;
-    fill: rgba(0, 0, 0, 0.5);
-    margin: 8px 6px;
-    width: 20px;
-    height: 14px;
-    position: absolute;
-    top: 0;
-  }
-
-
-  ul {
-    position: absolute;
-    background: black;
-    cursor: default;
-    list-style: none;
-    line-height: 32px;
-    top: 30px;
-    right: 0;
-    display: none;
-    width: 200px;
-
-    li {
-      height: 32px;
-      width: 100%;
-      padding: 0 8px;
-      cursor: pointer;
-      color: white;
-      -webkit-font-smoothing: antialiased;
-
-      &:focus, &:hover, &.active {
-         color: $active-color;
-      }
-    }
-  }
-
-  &.active ul {
-    display: block;
-    max-height: 500px;
-    overflow: auto;
-    padding: 8px;
-    z-index: 999;
-    transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
-  }
-}
-
-#toggleFilters{
-  background-color: transparent;
-  position: absolute;
-  left: -40px;
-  top: 6px;
-  border: none;
-  cursor: pointer;
-  fill: white;
-
-  @media (min-width: 960px){
-    display: none;
-  }
-
-  &:active, &:focus{
-    outline: 0;
-    box-shadow: none;
-  }
-
-  &:hover{
-    fill: $active-color;
-  }
-  svg{
-    width: 28px;
-    height: 28px;
-  }
 }

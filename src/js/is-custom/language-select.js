@@ -5,59 +5,73 @@ function languageSelect($container) {
   var langMap = {
     "enUS": {
       "name": "English",
-      "native": "English"
+      "native": "English",
+      "short": 'US'
     },
     "deDE": {
       "name": "German",
-      "native": "Deutsch"
+      "native": "Deutsch",
+      "short": 'DE'
     },
     "esES": {
       "name": "Spanish",
-      "native": "Español"
+      "native": "Español",
+      "short": 'ES'
     },
     "esMX": {
       "name": "Mexican",
-      "native": "Mexicano"
+      "native": "Mexicano",
+      "short": 'MX'
     },
     "frFR": {
       "name": "French",
-      "native": "Français"
+      "native": "Français",
+      "short": 'FR'
     },
     "itIT": {
       "name": "Italian",
-      "native": "Italiano"
+      "native": "Italiano",
+      "short": 'IT'
     },
     "jaJP": {
       "name": "Japanese",
-      "native": "日本語"
+      "native": "日本語",
+      "short": 'JP'
     },
     "koKR": {
       "name": "Korean",
-      "native": "한국어"
+      "native": "한국어",
+      "short": 'KR'
     },
     "plPL": {
       "name": "Polish",
-      "native": "Język polski"
+      "native": "Język polski",
+      "short": 'PL'
     },
     "ptBR": {
       "name": "Portuguese",
-      "native": "Português"
+      "native": "Português",
+      "short": 'BR'
     },
     "ruRU": {
       "name": "Russian",
-      "native": "Русский"
+      "native": "Русский",
+      "short": 'RU'
     },
     "thTH": {
       "name": "Thai",
-      "native": "ไทย"
+      "native": "ไทย",
+      "short": 'TH'
     },
     "zhCN": {
       "name": "Chinese",
-      "native": "中文"
+      "native": "中文",
+      "short": 'CN'
     },
     "zhTW": {
       "name": "Taiwanese",
-      "native": "國語"
+      "native": "國語",
+      "short": 'TW'
     }
   };
 
@@ -85,7 +99,7 @@ function languageSelect($container) {
           helper.search();
           // // helper.toggleRefinement( "lang", "enUS");
           // helper.addDisjunctiveFacetRefinement('lang', "frFR").search();
-          console.log(state.disjunctiveFacetsRefinements.lang);
+          // console.log(state.disjunctiveFacetsRefinements.lang);
           // helper.search();
         } else if(!state.disjunctiveFacetsRefinements.lang) {
           // helper.addDisjunctiveFacetRefinement('lang', "enUS").search();
@@ -104,7 +118,7 @@ function languageSelect($container) {
         html = 'No results';
       } else {
         html = "<div class='wz-select'>" +
-          "<button type='button'>" + langMap[languages[0].name].name + "</button>" +
+          "<button type='button'><span class='short'>" + langMap[languages[0].name].short + "</span> <span class='long'>" + langMap[languages[0].name].name + "</span></button>" +
           "<ul id='ul-id'>";
 
         $.each(languages,function(){

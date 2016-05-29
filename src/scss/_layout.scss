@@ -11,6 +11,10 @@ html, body {
   background-color: #0E0226;
 }
 
+body{
+  overflow-y: scroll;
+}
+
 .blur{
   filter: blur(10px);
 }
@@ -38,24 +42,25 @@ html, body {
 
   }
 }
+
+
 aside {
   width: 270px;
   float: left;
-  margin-bottom: 30px;
+  padding-top: 40px;
   animation: fadeInLeft .3s ease-in;
+
   section {
     padding: 0 20px 20px;
   }
 
   @media (max-width: 960px){
     display: none;
-    flex-flow: row wrap;
     width: 100%;
     background-color: rgba(black,.7);
     z-index: 9;
     animation: slideDown .2s ease-out;
     transform-origin: 0 0;
-    margin-bottom: 20px;
     padding-top: 20px;
 
     .ais-header{
@@ -63,36 +68,22 @@ aside {
     }
 
     &.show{
-      display: flex;
+      display: block;
     }
 
     section {
       margin: 0 auto;
-      width: 50%;
+      padding:  0 0 10px;
+      width: 100%;
+      max-width: 420px;
+      clear: both;
       order: 4;
     }
 
-    #sort-by{
-      display: none;
-    }
-
-    #cost{
-      width: 100%;
-      order: 1;
-    }
-
-    #rarity{
-      width: 100%;
-      order: 2;
-    }
-
-    #format{
-      order: 3;
-      width: 100%
-    }
-    #set{
-      order: 4;
-      width: 100%;
+    #setShort{
+      display: block;
+      padding: 12px 0;
+      width: 90%;
       .ais-refinement-list--list{
         display: flex;
         flex-flow: row wrap;
@@ -104,38 +95,42 @@ aside {
         margin-bottom: 8px;
       }
       .badge {
-        display: none;
+        float: none;
       }
     }
-    #type{
-      display: none;
-    }
-    #race{
-      display: none;
-    }
-    #mechanics{
-      display: none;
-    }
-    #attack{
-      display: none;
-    }
-    #health{
-      display: none;
-    }
-    #template-toggle{
+
+    #type, #race, #mechanics, #attack,#health, #sort-by, #set, #format {
       display: none;
     }
 
-    .debug{
-      display: none;
-    }
   }
 }
+
 main {
   float: right;
   width: 100%;
   max-width: calc(100% - 270px);
   @media (max-width: 960px){
     max-width: 100%
+  }
+}
+
+#branding{
+  color: rgba(white,.6);
+  text-align: center;
+  font-size: .9em;
+  letter-spacing: 1px;
+
+  #stats{
+    margin-right: 12px;
+    display: inline-block;
+  }
+  .poweredby{
+    position: relative;
+    top: 5px;
+    img {
+      margin-left: 4px;
+      width: 55px;
+    }
   }
 }

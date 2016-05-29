@@ -13,25 +13,38 @@
   .container-fluid
     %header
       %a.logo{href:"/"}
-        %img{src: "img/searchstone.svg", width:320, alt:"heartstone search engine powered by algolia API"}
-
-
-
-      %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false"}
-        %button#toggleFilters{type: "button"}
-          %svg{role: "img", aria-label: "Search"}
-            %use{xlink:href: "#icon-filters"}
-        %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards", autocomplete: "off", required: true, spellcheck: false}
-        %button.sbx-custom__submit{type: "submit"}
-          %svg{role: "img", aria-label: "Search"}
-            %use{xlink:href: "#sbx-icon-search-6"}
-        %button.sbx-custom__reset{type: "reset"}
-          %svg{role: "img", aria-label: "Reset"}
-            %use{xlink:href: "#sbx-icon-clear-3"}
-        %a.poweredby{href:"https://www.algolia.com/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"}
-          %img{src:"img/powered-by-algolia.svg"}
+        %img{src: "img/searchstone.svg", width:300, alt:"heartstone search engine powered by algolia API"}
 
       %section#lang-select
+      %section#template-toggle
+        Display
+        %a.template-cards.active{href:"#"}
+          %svg{role: "img"}
+            %use{xlink:href: "#icon-grid"}
+        %a.tempalte-list{href:"#"}
+          %svg{role: "img"}
+            %use{xlink:href: "#icon-row"}
+
+      .searchbox-wrapper
+        %button#toggleFilters{type: "button"}
+          .close-filters
+            %svg{role: "img"}
+              %use{xlink:href: "#icon-collapse"}
+            Filters
+          .open-filters
+            %svg{role: "img"}
+              %use{xlink:href: "#icon-filters"}
+            Filters
+        %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false"}
+          %input#search.sbx-custom__input{type: "search", placeholder: "Search for cards", autocomplete: "off", required: true, spellcheck: false}
+          %button.sbx-custom__submit{type: "submit"}
+            %svg{role: "img", aria-label: "Search"}
+              %use{xlink:href: "#sbx-icon-search-6"}
+          %button.sbx-custom__reset{type: "reset"}
+            %svg{role: "img", aria-label: "Reset"}
+              %use{xlink:href: "#sbx-icon-clear-3"}
+
+        #active-refinements
 
       %script#hit-template-card{type: "text/template"}
         .hit.hit-card{id:"{{id}}",data-target: "{{id}}"}
@@ -103,41 +116,36 @@
           {{/durability}}
 
     %aside.sidebar-facets
-      %section#template-toggle
-        Display
-        %a.template-cards.active{href:"#"}
-          %svg{role: "img"}
-            %use{xlink:href: "#icon-grid"}
-        %a.tempalte-list{href:"#"}
-          %svg{role: "img"}
-            %use{xlink:href: "#icon-row"}
-      %section#sort-by
-        .sort-by-label Sort by
-        .sort-by-selector
-      %section#rarity
+      %section#playerClassFiltersPanel
       %section#cost
+      %section#rarity
       %section#format
+      %section#setShort
       %section#set
       %section#type
       %section#race
       %section#mechanics
       %section#attack
       %section#health
-      .debug
-        %h4 Debug
-        %section#stats
-        %section#clear-all
+      %section#sort-by
+        .sort-by-label Sort by
+        .sort-by-selector
 
     %main
+      %section#branding
+        %span#stats
+        Search by
+        %a.poweredby{href:"https://www.algolia.com/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"}
+          %img{src:"img/powered-by-algolia.svg"}
       %section#playerClass
-      %section#refinements
+      %section#player-class-refinement
 
       %section#table.results.hide
       %section#results.results
 
       %section#pagination
 
-      %section.poweredby
+      %section#footer
         This site is <strong>not</strong> affiliated with Blizzard Entertainment, Inc.
         %br
         Hearthstone assets used on this site are copyrighted and/or trademarked material of Blizzard Entertainment, Inc.
