@@ -241,10 +241,14 @@
   .ais-refinement-list--item{
     display: inline-block;
     text-align: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     line-height: 30px;
     margin: 8px 8px 0 0;
+
+    @media (max-width: 600px){
+      margin: 4px 4px 0;
+    }
     a {
       opacity: .7;
       font-size: 1.2em;
@@ -406,7 +410,7 @@
     width: 32px;
     height:32px;
     margin: 0 4px;
-    // border: solid 1px red;
+    opacity: .7;
     overflow: hidden;
     a{
       cursor: pointer;
@@ -416,9 +420,9 @@
       &:hover{
       }
 
-      &.active{
-      }
-
+    }
+    &.ais-menu--item__active{
+      opacity: 1;
     }
   }
 

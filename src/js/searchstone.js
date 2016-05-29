@@ -293,7 +293,7 @@ searchstone.addWidget(
   instantsearch.widgets.stats({
     container: '#stats',
     templates: {
-      body: "<span class='nbPages' data-nb-pages='{{nbPages}}'></span> {{nbHits}} results rin {{processingTimeMS}}ms"
+      body: "<span class='nbPages' data-nb-pages='{{nbPages}}'></span> {{nbHits}} results in {{processingTimeMS}}ms"
     }
   })
 );
