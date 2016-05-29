@@ -55,9 +55,7 @@ header {
 
 .searchbox-wrapper{
   text-align: center;
-  @media (max-width: 960px){
-    padding: 0 0 8px 0;
-  }
+  padding: 0 0 8px 0;
   @media (max-width: 600px){
     background-color: rgba(#4011DA,.7);
     padding: 8px 0;
@@ -78,6 +76,8 @@ header {
   line-height: 26px;
   margin-right: 20px;
   width: 100px;
+  position: relative;
+  top: 2px;
 
   .open-filters{
     display: inline-block;
@@ -167,7 +167,7 @@ header {
   a {
     margin-left: 10px;
     svg {
-      fill: #4011DA;
+      fill: #7F6CBA;
       width: 20px;
       height: 26px;
       vertical-align: middle;

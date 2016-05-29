@@ -50,7 +50,7 @@
         .hit.hit-card{id:"{{id}}",data-target: "{{id}}"}
           .card-wrapper{class: "type-{{type}} lang-{{lang}}"}
             .placeholder{style:"background-image: url(data:image/png;base64,{{previewImage}}) "}
-            %img.card-picture{width:300, heigh:432, data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
+            %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
             .card-overlay
               .card-health {{health}}
               .card-attack {{attack}}

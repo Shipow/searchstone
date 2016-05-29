@@ -21,7 +21,7 @@
   }
   @media (max-width: 700px){
     width: 180px;
-    height: 280px;
+    height: 270px;
   }
 
   .card-wrapper{
@@ -50,6 +50,7 @@
       opacity: 1;
       z-index: 2;
       transition: opacity .1s ease-in;
+      outline: 0;
     }
 
     &.fade .card-picture{
@@ -246,10 +247,10 @@
     display: block;
     width: 100%;
     text-align: center;
-    color: rgba(white,.7);
+    color: #7F6CBA;
     position: relative;
-    top: -10px;
-    font-size: 1.1em;
+    top: -14px;
+    font-size: 1.2em;
 
     em{
       font-style: normal;
