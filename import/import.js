@@ -170,6 +170,22 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       delete c.playRequierements;
       delete c.collectible;
 
+      // Fixing french plurals
+      if (c.text && c.text.frFR) {
+        var frenchDescription = c.text.frFR;
+        var regexp = /(.*?) \|4\((.*?),(.*?)\)/g;
+        function frenchReplacer(match, number, singular, plural, offset, string) {
+          var realNumber = _.parseInt(number.replace('(', '').replace(')', ''));
+          var word = (realNumber > 1) ? plural : singular;
+          var replacedMatch = number + ' ' + word;
+          return replacedMatch;
+        }
+
+        var newDescription = frenchDescription.replace(regexp, frenchReplacer);
+        c.text.frFR = newDescription;
+      }
+
+
       c.previewImage = image;
 
       if ( typeof c.playerClass === "undefined"  ){
