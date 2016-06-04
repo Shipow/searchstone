@@ -183,12 +183,17 @@
 
 #rarity{
   .ais-refinement-list--list{
-    text-align: center;
+    position: relative;
+    height: 30px;
+    width: 200px;
+    margin: 0 auto;
   }
   .ais-refinement-list--item{
     width: 28px;
-    display: inline-block;
     margin-right: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
     a{
       opacity: .4;
       &.active {
@@ -207,29 +212,34 @@
       width: 28px;
       height:28px;
       border-radius: 50%;
-      position: relative;
+      position: absolute;
       top: 5px;
     }
   }
   .list-group-item[data-facet-value="Free"]:before {
       background: url(img/free.svg) no-repeat;
       background-size: 100%;
+      left: 0;
   }
   .list-group-item[data-facet-value="Common"]:before {
     background: url(img/common.svg) no-repeat;
     background-size: 100%;
+    left: 40px;
   }
   .list-group-item[data-facet-value="Rare"]:before {
     background: url(img/rare.svg) no-repeat;
     background-size: 100%;
+    left: 80px;
   }
   .list-group-item[data-facet-value="Epic"]:before {
     background: url(img/epic.svg) no-repeat;
     background-size: 100%;
+    left: 120px;
   }
   .list-group-item[data-facet-value="Legendary"]:before {
     background: url(img/legendary.svg) no-repeat;
     background-size: 100%;
+    left: 160px;
   }
 
 }
@@ -590,7 +600,7 @@
       size: 14px;
       position: center right 8px;
       repeat: no-repeat;
-      color: transparent;
+      color: black;
     }
     &:focus,
     &:active {
