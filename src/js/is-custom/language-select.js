@@ -85,10 +85,27 @@ function languageSelect($container) {
     },
 
     init: function(params) {
+
+      // navigator language
+      var navLang = window.navigator.userLanguage || window.navigator.language;
+      if (navLang.indexOf('-') !== -1)
+        navLang = navLang.split('-')[0] + navLang.split('-')[1].toUpperCase();
+      else {
+        navLang = navLang + navLang.toUpperCase();
+      }
+
+      //fallback to English
+      if (typeof langMap[navLang] === 'undefined'){
+        navlang = 'enUS';
+      }
+
+      // Retrieve in local storage fallback to navLang
+      var lang = localStorage.getItem("lang") || navLang;
+
       var helper = params.helper;
 
       if(!helper.hasRefinements("lang")){
-        helper.toggleRefinement( "lang", "enUS");
+        helper.toggleRefinement( "lang", lang);
       }
 
       $container.on('click','.wz-select', function(e){
@@ -97,17 +114,17 @@ function languageSelect($container) {
       });
 
       $('html').click(function() {
-        $('.wz-select').removeClass('active');
+        $container.find('.wz-select').removeClass('active');
       });
 
-      $container.on('click', '.wz-select ul li', function() {
-        console.log('test');
+      $container.on('click', '.wz-select ul li:not(.active)', function() {
         var v = $(this).html();
         $('.wz-select ul li').removeClass('active');
         $(this).addClass('active');
         $(this).find('.wz-select label button').html(v);
         helper.clearRefinements('lang');
         helper.addDisjunctiveFacetRefinement('lang', $(this).data('lang')).search();
+        localStorage.setItem("lang",$(this).data('lang'));
       });
     },
 
@@ -132,7 +149,6 @@ function languageSelect($container) {
             html+= '<li data-lang="' + this.name + '">';
           }
           html += langMap[this.name].name + " (" + langMap[this.name].native + ")</li>";
-
         });
 
         html +=

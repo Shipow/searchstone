@@ -63,11 +63,11 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   if($(this).hasClass('template-cards')){
     search.helper
       .setQueryParameter('hitsPerPage',12)
-      .setQueryParameter('attributesToRetrieve', '*');
+      .setQueryParameter('attributesToRetrieve', '*').search();
   } else {
     search.helper
       .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist');
+      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist').search();
   }
 });
 
