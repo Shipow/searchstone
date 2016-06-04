@@ -1,6 +1,5 @@
 // todo
 // add popularity in deck
-// french plurals regex
 // add generated cards
 var fs = require('fs');
 var _ = require('lodash');
@@ -173,12 +172,19 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       // Fixing french plurals
       if (c.text && c.text.frFR) {
         var frenchDescription = c.text.frFR;
-        var regexp = /(.*?) \|4\((.*?),(.*?)\)/g;
-        function frenchReplacer(match, number, singular, plural, offset, string) {
+        var regexp = /\s(.*?) \|4\((.*?),(.*?)\)/g;
+        function frenchReplacer() {
+          var originalString = arguments[arguments.length - 1];
+          var match = arguments[0];
+          var number = arguments[1];
+          var singular = arguments[2];
+          var plural = arguments[3];
+          var placeholder = '|4(' + singular + ',' + plural + ')';
+
           var realNumber = _.parseInt(number.replace('(', '').replace(')', ''));
           var word = (realNumber > 1) ? plural : singular;
-          var replacedMatch = number + ' ' + word;
-          return replacedMatch;
+
+          return match.replace(placeholder, word);
         }
 
         var newDescription = frenchDescription.replace(regexp, frenchReplacer);
