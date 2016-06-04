@@ -275,6 +275,14 @@
     height: auto;
   }
 
+  .golden-wrapper{
+    position: absolute;
+    top: -20px;
+    left:0;
+    z-index: 9000;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
   .card-wrapper{
     position: relative;
     float:left;

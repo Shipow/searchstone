@@ -12,9 +12,15 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
+  $('.golden-wrapper').empty();
 }
 
 function cardDetail(el) {
+
+  var golden = $(el).find('.golden-wrapper');
+  golden.html('<img src="' + golden.data('golden')  + '">');
+  console.log(golden);
+
   var target = $(el).find('.hit').data('target');
   $('.card-detail-wrapper').append($('#results #'+ target).clone());
   setTimeout( sunwellRender, 200 );
@@ -24,11 +30,22 @@ function removePlaceholder(el){
   el.siblings('.placeholder').remove();
 }
 
-$('.lightbox').on('click', function(){
-  closeLightbox();
-}).find('.lightbox_sharing').click(function(e) {
-    return false;
+// $('.lightbox').on('click', function(){
+//   closeLightbox();
+// });
+
+$('.card-detail-wrapper').on('click', '.show-golden', function(e){
+  e.preventDefault();
+  if ($(this).hasClass('shown')){
+    $(this).text('Show Golden');
+  } else {
+    $(this).text('Show normal');
+  }
+  $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('hide');
+  $('.card-detail-wrapper').find('.card-picture').toggleClass('hide');
+  $(this).toggleClass('shown');
 });
+
 
 $(document).keyup(function(e) {
    if (e.keyCode == 27 && $('.lightbox:not(.hidden)') !== null) {
@@ -45,7 +62,9 @@ $('.sbx-custom__reset').on('click touchstart', function(e) {
 $('#results, #table').on('click', '.ais-hits--item', function(e) {
   e.stopPropagation();
   openLightbox();
+
   cardDetail(this);
+
 });
 
 $("#results").on('dataavailable','.card-picture', function(){

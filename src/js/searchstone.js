@@ -191,7 +191,8 @@ searchstone.addWidget(
     templates: {
       header: 'Mana',
       item: '<a href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
-    }
+    },
+    autoHideContainer: false
   })
 );
 

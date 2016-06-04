@@ -49,6 +49,7 @@
       %script#hit-template-card{type: "text/template"}
         .hit.hit-card{id:"{{id}}",data-target: "{{id}}"}
           .card-wrapper{class: "type-{{type}} lang-{{lang}}"}
+            .golden-wrapper.hide{data-golden:"http://res.cloudinary.com/hilnmyskv/image/fetch/q_90,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/animated/{{id}}_premium.gif"}
             .placeholder{style:"background-image: url(data:image/png;base64,{{previewImage}}) "}
             %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}"}
             .card-overlay
@@ -76,6 +77,8 @@
             %p.detail-quote {{{flavor}}}
             %br
             %p.detail-artist Artist: {{artist}}
+            %br
+            %button.show-golden{type:"button"} Show Golden
 
       %script#hit-template-row{type: "text/template"}
         .hit.hit-cel{data-target: "{{id}}"}
