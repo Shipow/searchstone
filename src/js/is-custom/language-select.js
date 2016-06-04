@@ -90,20 +90,24 @@ function languageSelect($container) {
       if(!helper.hasRefinements("lang")){
         helper.toggleRefinement( "lang", "enUS");
       }
-      params.helper.on('change', function(state){
 
+      $container.on('click','.wz-select', function(e){
+        e.stopPropagation();
+        $(this).toggleClass('active');
+      });
 
-        // helper.clearRefinements('lang');
-        if(helper.hasRefinements("lang")){
+      $('html').click(function() {
+        $('.wz-select').removeClass('active');
+      });
 
-          helper.search();
-          // // helper.toggleRefinement( "lang", "enUS");
-          // helper.addDisjunctiveFacetRefinement('lang', "frFR").search();
-          // console.log(state.disjunctiveFacetsRefinements.lang);
-          // helper.search();
-        } else if(!state.disjunctiveFacetsRefinements.lang) {
-          // helper.addDisjunctiveFacetRefinement('lang', "enUS").search();
-        }
+      $container.on('click', '.wz-select ul li', function() {
+        console.log('test');
+        var v = $(this).html();
+        $('.wz-select ul li').removeClass('active');
+        $(this).addClass('active');
+        $(this).find('.wz-select label button').html(v);
+        helper.clearRefinements('lang');
+        helper.addDisjunctiveFacetRefinement('lang', $(this).data('lang')).search();
       });
     },
 
@@ -136,31 +140,7 @@ function languageSelect($container) {
          "</div>";
         $container.html(html);
 
-        $('.wz-select').on('click', function(e){
-          e.stopPropagation();
-          $(this).toggleClass('active');
 
-        });
-
-        $('html').click(function() {
-          $('.wz-select').removeClass('active');
-        });
-
-
-        $('.wz-select ul li').not('.active').on('click', function() {
-          var v = $(this).html();
-          $('.wz-select ul li').removeClass('active');
-          $(this).addClass('active');
-          $(this).find('.wz-select label button').html(v);
-
-          // helper.state.disjunctiveFacetsRefinements.lang = $(this).data('lang');
-          // helper.search();
-
-          helper.clearRefinements('lang');
-          helper.addDisjunctiveFacetRefinement('lang', $(this).data('lang'));
-
-          // .search();
-        });
       }
     }
   }

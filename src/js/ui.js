@@ -52,7 +52,7 @@ $("#results").on('dataavailable','.card-picture', function(){
   var el = $(this);
   el.parent('.card-wrapper').removeClass('fade');
   setTimeout( removePlaceholder(el), 200 );
-})
+});
 
 $("#template-toggle").on('click', 'a:not(.active)', function(e){
   e.preventDefault();
@@ -69,30 +69,30 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
       .setQueryParameter('hitsPerPage',150)
       .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist');
   }
-})
+});
 
 $("#toggleFilters").on('click', function(e){
   e.preventDefault();
   $('aside').toggleClass('show');
   $(this).toggleClass('active');
   $("#active-refinements").toggleClass('hide');
-})
+});
 
 
-var defaultHitsPerPage = 20;
+var defaultHitsPerPage = 12;
 var hitsPerPage = defaultHitsPerPage;
 
 $(".load-more").on('click', function(e){
   e.preventDefault();
   hitsPerPage = hitsPerPage + defaultHitsPerPage;
-  search.helper.setQueryParameter('hitsPerPage', hitsPerPage);
-})
+  search.helper.setQueryParameter('hitsPerPage', hitsPerPage).search();
+});
 
 $('.searchbox').on('focus','.ais-search-box--input', function(){
   if($('.template-cards').hasClass('active')){
-    search.helper.setQueryParameter('hitsPerPage', defaultHitsPerPage);
+    search.helper.setQueryParameter('hitsPerPage', defaultHitsPerPage).search();
   }
-})
+});
 
 sunwell.settings = {
   titleFont: 'arial',
@@ -134,4 +134,4 @@ $('.card-picture:visible').each(function(i,e){
       $(e).parents('.card-wrapper').addClass('loaded');
     }
   });
-}
+};

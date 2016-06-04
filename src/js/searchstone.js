@@ -24,10 +24,10 @@ searchstone.addWidget(
   })
 );
 
-// hits, the template is called from index.haml
+// hits, the template is in index.haml
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 20,
+    hitsPerPage: 12,
     container: '#results',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -72,7 +72,7 @@ searchstone.addWidget(
 
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 20,
+    hitsPerPage: 12,
     container: '#table',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -331,7 +331,7 @@ searchstone.addWidget(
       collapsed: true
     },
     tooltips: {
-      format: function(formattedValue, rawValue) {return '' + formattedValue}
+      format: function(formattedValue, rawValue) {return '' + formattedValue;}
     }
   })
 );
@@ -347,7 +347,7 @@ searchstone.addWidget(
       collapsed: true
     },
     tooltips: {
-      format: function(formattedValue, rawValue) {return '' + formattedValue}
+      format: function(formattedValue, rawValue) {return '' + formattedValue;}
     }
   })
 );
