@@ -30,17 +30,13 @@ function removePlaceholder(el){
   el.siblings('.placeholder').remove();
 }
 
-// $('.lightbox').on('click', function(){
-//   closeLightbox();
-// });
+$('.lightbox').on('click', function(){
+  closeLightbox();
+});
 
 $('.card-detail-wrapper').on('click', '.show-golden', function(e){
   e.preventDefault();
-  if ($(this).hasClass('shown')){
-    $(this).text('Show Golden');
-  } else {
-    $(this).text('Show normal');
-  }
+  e.stopPropagation();
   $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('hide');
   $('.card-detail-wrapper').find('.card-picture').toggleClass('hide');
   $(this).toggleClass('shown');
