@@ -17,12 +17,16 @@ function closeLightbox() {
 
 function cardDetail(el) {
 
-  var golden = $(el).find('.golden-wrapper');
-  golden.html('<img src="' + golden.data('golden')  + '">');
-  console.log(golden);
+  var $golden = $(el).find('.golden-wrapper');
+  var goldenImg =  new Image();
+  goldenImg.onload = function(){
+    $('.golden-loading-msg').hide();
+  };
 
   var target = $(el).find('.hit').data('target');
   $('.card-detail-wrapper').append($('#results #'+ target).clone());
+  $('.card-detail-wrapper').find('.golden-wrapper').append(goldenImg);
+  goldenImg.src = $golden.data('golden');
   setTimeout( sunwellRender, 200 );
 }
 
@@ -37,8 +41,8 @@ $('.lightbox').on('click', function(){
 $('.card-detail-wrapper').on('click', '.show-golden', function(e){
   e.preventDefault();
   e.stopPropagation();
-  $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('hide');
-  $('.card-detail-wrapper').find('.card-picture').toggleClass('hide');
+  $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('flip');
+  $('.card-detail-wrapper').find('.normal-wrapper').toggleClass('flip');
   $(this).toggleClass('shown');
 });
 

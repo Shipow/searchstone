@@ -77,7 +77,7 @@
     width: 300px;
     height: 442px;
     top: -20px;
-    opacity: .7;
+    opacity: .8;
     background-repeat: no-repeat;
     background-size: 100%;
     z-index: 1;
@@ -104,7 +104,7 @@
     text{
       -webkit-font-smoothing: subpixel-antialiased;
 	    -moz-osx-font-smoothing: inherit;
-      font-size: 1.2em;
+      font-size: 1.25em;
       font-weight: 700;
       paint-order: stroke;
       letter-spacing: .5px;
@@ -207,10 +207,9 @@
     width: 180px;
     text-align: center;
     font-family: 'Archivo Narrow', sans-serif;
-    font-size: 1.1em;
-    letter-spacing: .3px;
+    font-size: 1.17em;
     z-index: 10;
-    line-height: 1.15em;
+    line-height: 1.1em;
     font-weight: normal;
 
     &.lg{
@@ -277,18 +276,36 @@
 
   .golden-wrapper{
     position: absolute;
-    top: -20px;
+    top: -24px;
     left:0;
     z-index: 9000;
-    transition: transform .2s ease, opacity .2s ease;
+    opacity: 0;
+    &.flip{
+      transform-origin: center!important;
+      animation: cardDetailsAnim .4s ease;
+      opacity: 1;
+    }
   }
+
+  .normal-wrapper{
+    transform-origin: center!important;
+    animation-fill-mode: forwards!important;
+    animation: cardDetailsAnim .4s ease;
+    z-index: 8000;
+    position: relative;
+    &.flip{
+      transform-origin: center!important;
+      animation-fill-mode: forwards!important;
+      animation: flipOutCard .2s ease;
+    }
+  }
+
 
   .card-wrapper{
     position: relative;
     float:left;
     transform: scale(1);
     margin-right: 40px;
-    animation: cardDetailsAnim .7s ease-in;
     animation-fill-mode: backwards;
     transition: none;
     transform-origin: center;
@@ -312,8 +329,10 @@
       top:50px;
       left:0;
       animation: cardBackAnim .6s ease;
-      animation-delay: .3s;
+      opacity: 0;
       animation-fill-mode: forwards;
+      user-select: none;
+      pointer-events: none;
     }
   }
 
@@ -624,7 +643,7 @@
           color: #59BD4E;
         }
         &.Druid{
-          color: #A38852;
+          color: #FA6030;
         }
         &.Mage{
           color: #4BA1CF;
@@ -639,13 +658,13 @@
           color: #E9E066;
         }
         &.Shaman{
-          color: #397BEA;
+          color: #006DE1;
         }
         &.Warlock{
           color: #8857D7;
         }
         &.Warrior{
-          color: #BC2D37;
+          color: #B77F4A;
         }
       }
 
