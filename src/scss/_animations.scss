@@ -1,5 +1,4 @@
 @keyframes bounce {
-
   0% {
     transform: scale(.6);
   }
@@ -22,7 +21,6 @@
 }
 
 @keyframes fadeInLeft {
-
   0% {
     transform: translateX(-200px);
     opacity: 0;
@@ -35,7 +33,6 @@
 }
 
 @keyframes slideDown {
-
   0% {
     transform: scaleY(0);
     opacity: 0;
@@ -47,10 +44,7 @@
   }
 }
 
-
-
 @keyframes flipOutCard {
-
   0% {
     transform: scale(1) rotateY(0);
     opacity: 1;
@@ -65,8 +59,6 @@
 
 
 @keyframes cardDetailsAnim {
-
-
   20% {
     transform: perspective(400px) rotate3d(1, .5, 0, -30deg) scale(.8);
     transition-timing-function: ease-in;
@@ -92,9 +84,9 @@
     transform: rotate(-2deg);
     opacity: 0;
   }
-  
+
   100% {
+    transform: rotate(-12deg) translate(-70px, 50px) scale(1);
     opacity: 1;
-    transform: rotate(-12deg) translate(-70px,50px) scale(1);
   }
 }

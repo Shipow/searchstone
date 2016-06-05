@@ -1,15 +1,19 @@
-.results-cards{
+/////////////////////////
+// CARD VIEW
+/////////////////////////
+
+.results-cards {
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
   padding-left: 40px;
 
-  @media (max-width: 960px){
+  @media (max-width: 960px) {
     justify-content: center;
     padding-left: 0;
   }
 
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     padding-top: 8px;
   }
 }
@@ -20,16 +24,17 @@
   backface-visibility: hidden;
   perspective: 1000;
 
-  @media (max-width: 1300px){
+  @media (max-width: 1300px) {
     width: 210px;
     height: 320px;
   }
-  @media (max-width: 700px){
+
+  @media (max-width: 700px) {
     width: 180px;
     height: 270px;
   }
 
-  .card-wrapper{
+  .card-wrapper {
     position: relative;
     width: 300px;
     height: 360px;
@@ -38,18 +43,18 @@
     cursor: pointer;
     transition: transform .2s ease, opacity .2s ease;
 
-    @media (max-width: 1300px){
+    @media (max-width: 1300px) {
       transform: scale(.7);
     }
-    @media (max-width: 700px){
+    @media (max-width: 700px) {
       transform: scale(.6);
     }
 
-    &:hover .card-picture{
+    &:hover .card-picture {
       filter: brightness(115%);
     }
 
-    .card-picture{
+    .card-picture {
       position: relative;
       max-width: 100%;
       opacity: 1;
@@ -58,11 +63,11 @@
       outline: 0;
     }
 
-    &.fade .card-picture{
+    &.fade .card-picture {
       opacity: 0;
     }
 
-    &.loaded .card-picture{
+    &.loaded .card-picture {
       opacity: 1;
     }
 
@@ -72,7 +77,7 @@
     }
   }
 
-  .placeholder{
+  .placeholder {
     position: absolute;
     width: 300px;
     height: 442px;
@@ -83,7 +88,7 @@
     z-index: 1;
   }
 
-  .card-overlay{
+  .card-overlay {
     position: absolute;
     width: 300px;
     top: 0;
@@ -93,7 +98,7 @@
     font-weight: bold;
   }
 
-  .card-title{
+  .card-title {
     position: absolute;
     top: 210px;
     left: 0;
@@ -101,7 +106,7 @@
     height: 60px;
     z-index: 10;
 
-    text{
+    text {
       -webkit-font-smoothing: subpixel-antialiased;
 	    -moz-osx-font-smoothing: inherit;
       font-size: 1.25em;
@@ -115,32 +120,35 @@
       stroke-opacity:.8;
     }
 
-    &.md{
+    &.md {
       font-size: .95em;
     }
 
-    &.lg{
+    &.lg {
       font-size: .85em;
     }
 
-    &.xl{
+    &.xl {
       font-size: .65em;
     }
 
-    tspan{
+    tspan {
       width: 100%;
       text-align: left;
-      fill: white;
+      fill: #fff;
     }
 
-    tspan tspan{
+    tspan tspan {
       fill: $active-color;
     }
   }
 
-  .card-cost, .card-attack, .card-health, .card-durability{
+  .card-cost,
+  .card-attack,
+  .card-health,
+  .card-durability {
     position: absolute;
-    color: white;
+    color: #fff;
     line-height: 1.3em;
     z-index: 10;
     text-align: center;
@@ -156,32 +164,32 @@
     0 0 2px #000;
   }
 
-  .card-cost{
+  .card-cost {
     width: 70px;
     top: 38px;
     left: 12px;
     font-size: 3.2em;
   }
 
-  .card-attack{
+  .card-attack {
     width: 45px;
     top: 364px;
     left: 26px;
   }
 
-  .card-health{
+  .card-health {
     width: 50px;
     top: 364px;
     right: 12px;
   }
 
-  .card-durability{
+  .card-durability {
     width: 50px;
     top: 364px;
     right: 12px;
   }
 
-  .card-race{
+  .card-race {
     position: absolute;
     width: 130px;
     text-align: center;
@@ -189,7 +197,7 @@
     left: 90px;
     font-weight: bold;
     font-size: 1.1em;
-    color: white;
+    color: #fff;
     z-index: 10;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: inherit;
@@ -200,7 +208,7 @@
     0 0 2px #000;
   }
 
-  .card-description{
+  .card-description {
     position: absolute;
     top: 285px;
     left: 65px;
@@ -212,33 +220,31 @@
     line-height: 1.1em;
     font-weight: normal;
 
-    &.lg{
+    &.lg {
       font-size: 1em;
     }
-    &.xl{
+    &.xl {
       font-size: .85em;
     }
 
-    &.xxl{
+    &.xxl {
       font-size: .8em;
     }
 
-    span{
+    span {
       vertical-align: middle;
       display: table-cell;
       height: 100px;
       width: 180px;
-
     }
 
-    em{
+    em {
       background-color: rgba($active-color,.2);
       font-style: normal;
     }
   }
 
-
-  .card-details{
+  .card-details {
     display: none;
   }
 
@@ -263,11 +269,15 @@
   }
 }
 
-.card-detail-wrapper{
+/////////////////////////
+// DETAIL VIEW - LIGHTBOX
+/////////////////////////
+
+.card-detail-wrapper {
+  position: relative;
   z-index: 9000;
   top: -10%;
   left: 8%;
-  position: relative;
 
   .hit-card {
     width: auto;
@@ -280,6 +290,7 @@
     left:0;
     z-index: 9000;
     opacity: 0;
+
     &.flip{
       transform-origin: center!important;
       animation: cardDetailsAnim .4s ease;
@@ -293,6 +304,7 @@
     animation: cardDetailsAnim .4s ease;
     z-index: 8000;
     position: relative;
+
     &.flip{
       transform-origin: center!important;
       animation-fill-mode: forwards!important;
@@ -300,8 +312,7 @@
     }
   }
 
-
-  .card-wrapper{
+  .card-wrapper {
     position: relative;
     float:left;
     transform: scale(1);
@@ -311,16 +322,21 @@
     transform-origin: center;
     backface-visibility: hidden;
     perspective: 1000;
-    @media (max-width: 600px){
+
+    @media (max-width: 600px) {
       transform: scale(.7) translateY(40px);
     }
 
-    &:hover .card-picture{
+    &:hover .card-picture {
       filter: none;
     }
 
-    &::after{
-      content: "";
+    tspan tspan {
+      fill: #fff;
+    }
+
+    &::after {
+      content: '';
       position: absolute;
       background: url('../img/cardback-legendrank.png') no-repeat;
       background-size: 100%;
@@ -336,36 +352,43 @@
     }
   }
 
-  .card-details{
+  .card-details {
     max-width: 300px;
     display: block;
     float: left;
-    color: white;
+    color: #fff;
+
     @media (max-width: 600px){
       font-size: .8em;
     }
   }
+
   .card-infos{
     display: none;
   }
+
   .detail-set{
     font-size: 1.3em;
     margin-top: 90px;
   }
-  .detail-name{
+
+  .detail-name {
     font-size: 2.4em;
   }
-  .detail-nameVO{
+
+  .detail-nameVO {
     margin: .2em 0;
     font-size: 1.1em;
-    color: rgba(white,.4);
+    color: rgba(#fff,.4);
   }
-  .detail-quote{
+
+  .detail-quote {
     display: block;
     padding: 2em 0 1em;
     font-size: 1.3em;
     font-style: italic;
   }
+
   .detail-dust {
     display: block;
     background: url('../img/dust.png') no-repeat;
@@ -373,13 +396,13 @@
     padding: 4px 0 4px 30px;
     font-size: 1.4em;
   }
-  .detail-artist{
+  .detail-artist {
     font-size: 1.2em;
   }
 }
 
 .type-Weapon .card-description {
-  color: white;
+  color: #fff;
 }
 
 .ais-hits__empty {
@@ -387,6 +410,7 @@
   min-height: 70vh;
   background: transparent;
   padding-top: 10px;
+
   .no-results {
     padding: 1.4em 0;
     font-size: 1.1em;
@@ -394,18 +418,23 @@
     width: 360px;
     margin: 40px auto 0;
     text-align: center;
-    color: white;
+    color: #fff;
+
     h2 {
       margin-bottom: .4em;
     }
   }
 }
 
+/////////////////////////
+// LIST VIEW
+/////////////////////////
+
 .results-table {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  color: white;
+  color: #fff;
   max-width: 800px;
   margin: 10px auto 0;
   overflow: hidden;
@@ -418,10 +447,12 @@
   cursor: pointer;
   transition: background-color .2s ease;
   position: relative;
-  &:hover{
+
+  &:hover {
     opacity: 1;
     background-color: rgba(#4011DA,.4);
-    .cel-img{
+
+    .cel-img {
       opacity: 1 !important;
     }
   }
@@ -430,12 +461,14 @@
     float: left;
     width: 30px;
     padding: 0 8px;
-    &.cel-desc{
+
+    &.cel-desc {
       width: 50%;
       text-align: left;
       padding: 0 10px;
     }
-    &.cel-img{
+
+    &.cel-img {
       width: 64px;
       border-radius: 50%;
       background-repeat: no-repeat;
@@ -446,12 +479,13 @@
       opacity: .8;
       position: relative;
     }
-    .cel-number{
+
+    .cel-number {
       text-align: center;
       font-size: 1.4em;
       font-family: Volkhov;
       font-weight: bold;
-      color: white;
+      color: #fff;
       width: 40px;
       margin-top: 6px;
       text-shadow:
@@ -465,24 +499,25 @@
       background-repeat: no-repeat;
       padding-top: 10px;
 
-      @media (max-width: 600px){
+      @media (max-width: 600px) {
         float: right;
         position: absolute;
         top: 0;
         right: 0;
       }
 
-      &.cel-cost{
+      &.cel-cost {
         background-size: 36px;
         background-position: center 8px;
         background-image: url(img/cristal.svg);
-        @media (max-width: 600px){
+
+        @media (max-width: 600px) {
           top: 10px;
           right: 100px;
         }
       }
 
-      &.cel-shield{
+      &.cel-shield {
         background-size: 28px;
         background-position: center 6px;
         background-image: url(img/shield.svg);
@@ -493,46 +528,46 @@
         }
       }
 
-      &.cel-attack{
+      &.cel-attack {
         background-size: 33px;
         background-position: 0;
         background-image: url(img/attack.svg);
 
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
           top: 10px;
           right: 50px;
         }
       }
 
-      &.cel-attack__Weapon{
+      &.cel-attack__Weapon {
         background-size: 34px;
         background-position: center 6px;
         background-image: url(img/swords.svg);
 
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
           top: 10px;
           right: 50px;
         }
       }
 
-      &.cel-health{
+      &.cel-health {
         background-size: 24px;
         background-position: center 3px;
         background-image: url(img/health.svg);
 
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
           top: 10px;
           right: 10px;
         }
       }
     }
 
-    .cel-desc-name{
+    .cel-desc-name {
       font-size: 1.4em;
       white-space: nowrap;
 
       &::after {
-        content: "";
+        content: '';
         display: inline-block;
         width: 16px;
         height:16px;
@@ -574,30 +609,31 @@
         color: $active-color;
       }
 
-      @media (max-width: 600px){
+      @media (max-width: 600px) {
         font-size: 1.2em;
       }
     }
 
-    .cel-desc-nameVO{
-      color: rgba(white,.3);
+    .cel-desc-nameVO {
+      color: rgba(#fff,.3);
       white-space: nowrap;
 
-      @media (max-width: 600px){
+      @media (max-width: 600px) {
         display: none;
       }
     }
 
-    .cel-desc-text{
-      color: rgba(white,.5);
+    .cel-desc-text {
+      color: rgba(#fff,.5);
       margin-top: 2px;
       letter-spacing: .2px;
       font-size: .95em;
 
-      @media (max-width: 600px){
+      @media (max-width: 600px) {
         display: none;
       }
-      em{
+
+      em {
         font-style: normal;
         color: rgba($active-color,.7);
       }
@@ -615,12 +651,12 @@
       0 0 3px #000;
     }
 
-    &.cel-type{
+    &.cel-type {
       width: 110px;
       padding-top: 12px;
       padding-left: 8px;
 
-      @media (max-width: 600px){
+      @media (max-width: 600px) {
         width: 200px;
       }
 
@@ -630,8 +666,9 @@
         list-style: none;
         margin: 0;
         padding-left: 8px;
-        color: rgba(white,.6);
-        @media (max-width: 600px){
+        color: rgba(#fff, .6);
+
+        @media (max-width: 600px) {
 
           margin-top: 0;
           li {
@@ -639,37 +676,46 @@
             margin-right: 8px
           }
         }
-        &.Hunter{
+
+        &.Hunter {
           color: #59BD4E;
         }
-        &.Druid{
+
+        &.Druid {
           color: #FA6030;
         }
-        &.Mage{
+
+        &.Mage {
           color: #4BA1CF;
         }
-        &.Paladin{
+
+        &.Paladin {
           color: #DB66D7;
         }
-        &.Priest{
+
+        &.Priest {
           color: #eee;
         }
-        &.Rogue{
+
+        &.Rogue {
           color: #E9E066;
         }
-        &.Shaman{
+
+        &.Shaman {
           color: #006DE1;
         }
-        &.Warlock{
+
+        &.Warlock {
           color: #8857D7;
         }
-        &.Warrior{
+
+        &.Warrior {
           color: #B77F4A;
         }
       }
 
-      strong{
-        color: rgba(white,.8);
+      strong {
+        color: rgba(#fff, .8);
 
         em {
           font-style: normal;
@@ -678,9 +724,9 @@
       }
     }
 
-    .cel-desc-separator{
+    .cel-desc-separator {
       padding: 0 6px;
-      color: rgba(white,.5)
+      color: rgba(#fff, .5)
     }
   }
 }

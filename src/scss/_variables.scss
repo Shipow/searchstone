@@ -2,13 +2,13 @@ $custom: (
   input-width: 400px,
   input-height: 36px,
   border-width: 3px,
-  border-radius: 0px,
-  input-border-color: #3C10C9,
+  border-radius: 0,
+  input-border-color: #3c10c9,
   input-focus-border-color: #fff,
-  input-background: #001B3A,
-  input-focus-background: #001B3A,
+  input-background: #001b3a,
+  input-focus-background: #001b3a,
   font-size: 1em,
-  placeholder-color: rgba(white,.6),
+  placeholder-color: rgba(#fff, .6),
   icon-size: 24px,
   icon-position: left,
   icon-color: #fff,
@@ -17,4 +17,4 @@ $custom: (
   icon-clear-size: 16px
 );
 
-$active-color: #F8E71B;
+$active-color: #f8e71b;

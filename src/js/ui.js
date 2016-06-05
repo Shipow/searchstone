@@ -12,21 +12,33 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
-  $('.golden-wrapper').empty();
 }
 
 function cardDetail(el) {
+  // hit reference
+  var target = $(el).find('.hit').data('target');
 
-  var $golden = $(el).find('.golden-wrapper');
+  // url of the golden card
+  var golden = $('#results #'+ target).find('.golden-wrapper').data('golden');
+
+  // create the golden image
   var goldenImg =  new Image();
+
+  // do something when loaded
   goldenImg.onload = function(){
-    $('.golden-loading-msg').hide();
+    // todo: loading/loaded message
   };
 
-  var target = $(el).find('.hit').data('target');
+  // clone in lightbox
   $('.card-detail-wrapper').append($('#results #'+ target).clone());
+
+  // append golden in lightbox
   $('.card-detail-wrapper').find('.golden-wrapper').append(goldenImg);
-  goldenImg.src = $golden.data('golden');
+
+  // set image src
+  goldenImg.src = golden;
+
+  // delay a bit sunwell
   setTimeout( sunwellRender, 200 );
 }
 
