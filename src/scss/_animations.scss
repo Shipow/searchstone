@@ -91,12 +91,12 @@
 
 @keyframes cardBackAnim {
   0% {
-    transform: rotate(-2deg);
+    transform: rotate(-2deg) translateZ(-1000px);
     opacity: 0;
   }
 
   100% {
-    transform: rotate(-12deg) translate(-70px, 50px) scale(1);
+    transform: rotate(-12deg) translate(-80px, 55px) scale(1) translateZ(-10px);
     opacity: 1;
   }
 }

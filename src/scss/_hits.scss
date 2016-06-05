@@ -352,6 +352,9 @@
       animation-fill-mode: forwards;
       user-select: none;
       pointer-events: none;
+      z-index: 7000;
+      perspective: 1000;
+      transform: translateZ(1000px);
     }
   }
 
@@ -495,7 +498,7 @@
     padding: 4px 0 4px 30px;
     font-size: 1.4em;
   }
-  
+
   .detail-artist {
     font-size: 1.2em;
   }

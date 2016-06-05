@@ -37,7 +37,6 @@
     margin: 16px;
     cursor: pointer;
 
-
     svg {
       height: 30px;
       width: 30px;
@@ -54,11 +53,11 @@
     opacity: 0;
     visibility: hidden;
   }
-  
+
   .loading {
     position: absolute;;
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     color: #FEF68E;
     z-index: 9999;
 
