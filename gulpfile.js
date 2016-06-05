@@ -202,6 +202,15 @@ gulp.task('images:optim', function () {
     .pipe(gulp.dest('build/img'));
 });
 
+
+// -------------------------------------
+//   Task: Fonts
+// -------------------------------------
+gulp.task('fonts', function () {
+  return gulp.src('src/fonts/**')
+    .pipe(gulp.dest('build/fonts'));
+});
+
 // -------------------------------------
 //   Task: Favicons
 // -------------------------------------
@@ -280,7 +289,7 @@ gulp.task('font', function () {
 //   Task: Build DEV - PROD - HAML
 // -------------------------------------
 gulp.task('build:dev',['clean'], function(callback) {
-  runSequence('scss', 'images', 'haml', 'icons', 'js', 'font', 'favicons', callback);
+  runSequence('scss', 'images', 'fonts', 'haml', 'icons', 'js', 'font', 'favicons', callback);
 });
 
 gulp.task('build:prod',['clean'], function(callback) {

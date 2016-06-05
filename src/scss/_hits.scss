@@ -97,8 +97,7 @@
     top: 0;
     left: 0;
     z-index: 3;
-    font-family: 'Tienne';
-    font-weight: 900;
+    font-family: 'Belwe';
   }
 
   .card-title {
@@ -108,14 +107,12 @@
     width: 300px;
     height: 60px;
     z-index: 10;
-    font-family: 'Volkhov';
-    font-weight: 700;
+    font-family: 'Belwe';
 
     text {
       -webkit-font-smoothing: subpixel-antialiased;
 	    -moz-osx-font-smoothing: inherit;
-      font-size: 1.25em;
-      font-weight: 700;
+      font-size: 1.4em;
       paint-order: stroke;
       letter-spacing: .5px;
       stroke: #000000;
@@ -157,34 +154,33 @@
     line-height: 1.3em;
     z-index: 10;
     text-align: center;
-    font-size: 2.8em;
+    font-size: 4em;
     text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    0 1px 0 #000,
-    0 -1px 0 #000,
-    0 0 3px #000,
-    0 0 3px #000,
-    0 0 3px #000,
-    0 0 3px #000;
+       0px -1px 2px #000, // Top
+       1px -1px 2px #000, // Top Right
+       1px  0px 2px #000, // Right
+       1px  1px 2px #000, // Bottom Right
+       0px  1px 2px #000, // Bottom
+      -1px  1px 2px #000, // Bottom Left
+      -1px  0px 2px #000, // Left
+      -1px -1px 1px #000; // Top Left
   }
 
   .card-cost {
     width: 70px;
-    top: 38px;
-    left: 12px;
-    font-size: 3.2em;
+    top: 20px;
+    left: 11px;
   }
 
   .card-attack {
     width: 45px;
-    top: 364px;
-    left: 26px;
+    top: 345px;
+    left: 28px;
   }
 
   .card-health {
     width: 50px;
-    top: 364px;
+    top: 347px;
     right: 12px;
   }
 
