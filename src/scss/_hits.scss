@@ -75,7 +75,12 @@
 
     &.lang-ruRU,
     &.lang-jaJP {
-      font-size: .9em;
+      .card-title{
+        font-size: .8em;
+      }
+      .card-description{
+        font-size: .9em;
+      }
     }
   }
 
@@ -107,14 +112,12 @@
     width: 300px;
     height: 60px;
     z-index: 10;
-    font-family: 'Belwe';
+    font-family: 'Belwe', 'Archivo Narrow', sans-serif;
+    font-weight: bold;
 
     text {
-      -webkit-font-smoothing: subpixel-antialiased;
-	    -moz-osx-font-smoothing: inherit;
       font-size: 1.4em;
       paint-order: stroke;
-      letter-spacing: .5px;
       stroke: #000000;
       stroke-width:4px;
       stroke-linecap:round;
@@ -194,17 +197,14 @@
     position: absolute;
     width: 130px;
     text-align: center;
-    top: 381px;
+    top: 380px;
     left: 90px;
+    font-size: 1.15em;
+    font-family: 'Belwe';
     font-weight: bold;
-    font-size: 1.1em;
-    font-family: 'Volkhov';
-    font-weight: 700;
     color: #fff;
     z-index: 10;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: inherit;
-    text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
+    text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
   }
 
   .card-description {
@@ -581,9 +581,8 @@
 
     .cel-number {
       text-align: center;
-      font-size: 1.4em;
-      font-family: Tienne;
-      font-weight: 900;
+      font-size: 1.6em;
+      font-family: Belwe;
       color: #fff;
       width: 40px;
       margin-top: 6px;
@@ -596,7 +595,7 @@
         0 0 3px #000,
         0 0 3px #000;
       background-repeat: no-repeat;
-      padding-top: 10px;
+      padding-top: 6px;
 
       @media (max-width: 600px) {
         float: right;
