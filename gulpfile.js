@@ -277,23 +277,17 @@ gulp.task('cname', function () {
 		.pipe(gulp.dest('build'));
 });
 
-// -------------------------------------
-//   Task: Font
-// -------------------------------------
-gulp.task('font', function () {
-	return gulp.src('src/font/*')
-		.pipe(gulp.dest('build/font'));
-});
+
 
 // -------------------------------------
 //   Task: Build DEV - PROD - HAML
 // -------------------------------------
 gulp.task('build:dev',['clean'], function(callback) {
-  runSequence('scss', 'images', 'fonts', 'haml', 'icons', 'js', 'font', 'favicons', callback);
+  runSequence('scss', 'images', 'fonts', 'haml', 'icons', 'js', 'favicons', callback);
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'haml', 'icons', 'js:min', 'favicons', 'font', 'rev', 'cname', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'cname', callback);
 });
 
 gulp.task('build:haml', function(callback) {
