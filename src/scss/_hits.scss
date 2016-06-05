@@ -8,12 +8,12 @@
   justify-content: left;
   padding-left: 40px;
 
-  @media (max-width: 960px) {
+  @media (max-width: $bkp-md) {
     justify-content: center;
     padding-left: 0;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $bkp-sm) {
     padding-top: 8px;
   }
 }
@@ -24,7 +24,7 @@
   backface-visibility: hidden;
   perspective: 1000;
 
-  @media (max-width: 1300px) {
+  @media (max-width: $bkp-lg) {
     width: 210px;
     height: 320px;
   }
@@ -88,14 +88,15 @@
     z-index: 1;
   }
 
+
   .card-overlay {
     position: absolute;
     width: 300px;
     top: 0;
     left: 0;
     z-index: 3;
-    font-family: 'Volkhov';
-    font-weight: bold;
+    font-family: 'Tienne';
+    font-weight: 900;
   }
 
   .card-title {
@@ -105,6 +106,8 @@
     width: 300px;
     height: 60px;
     z-index: 10;
+    font-family: 'Volkhov';
+    font-weight: 700;
 
     text {
       -webkit-font-smoothing: subpixel-antialiased;
@@ -158,10 +161,10 @@
     -1px 1px 0 #000,
     0 1px 0 #000,
     0 -1px 0 #000,
-    0 0 2px #000,
-    0 0 2px #000,
-    0 0 2px #000,
-    0 0 2px #000;
+    0 0 3px #000,
+    0 0 3px #000,
+    0 0 3px #000,
+    0 0 3px #000;
   }
 
   .card-cost {
@@ -197,15 +200,13 @@
     left: 90px;
     font-weight: bold;
     font-size: 1.1em;
+    font-family: 'Volkhov';
+    font-weight: 700;
     color: #fff;
     z-index: 10;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: inherit;
-    text-shadow:
-    0 0 2px #000,
-    0 0 2px #000,
-    0 0 2px #000,
-    0 0 2px #000;
+    text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
   }
 
   .card-description {
@@ -483,8 +484,8 @@
     .cel-number {
       text-align: center;
       font-size: 1.4em;
-      font-family: Volkhov;
-      font-weight: bold;
+      font-family: Tienne;
+      font-weight: 900;
       color: #fff;
       width: 40px;
       margin-top: 6px;

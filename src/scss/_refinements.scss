@@ -292,8 +292,8 @@
     a {
       opacity: .7;
       font-size: 1.2em;
-      font-family: Volkhov;
-      font-weight: bold;
+      font-family: 'Tienne';
+      font-weight: 900;
       color: #fff;
       text-shadow:
       0 0 3px #000,
@@ -677,11 +677,11 @@
 
 #sort-by {
   .sort-by-label {
-    font-size: 1.1em;
-    font-weight: bold;
     display: inline-block;
     margin-right: 12px;
     color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
   }
 
   .sort-by-selector {
@@ -689,25 +689,25 @@
   }
 
   select {
-    color: #fff;
-    font-size: .9em;
     display: block;
     border: solid 2px #4011da;
     border-radius: 4px;
+    color: #fff;
+    font-size: .9em;
     padding: 4px 26px 4px 12px;
     appearance: none;
     background: {
-      image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%23979797\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>');
-      size: 14px;
-      position: center right 8px;
-      repeat: no-repeat;
       color: #000;
+      image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%23979797\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>');
+      repeat: no-repeat;
+      position: center right 8px;
+      size: 14px;
     }
 
     &:focus,
     &:active {
-      box-shadow: none;
       outline: 0;
+      box-shadow: none;
       background: {
         image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' version=\'1\' viewBox=\'0 0 100 100\'><path fill=\'%232897c5\' d=\'M21.364 42.218l24.33 24.33c.025.026.033.064.06.09 1.146 1.146 2.66 1.715 4.17 1.71 1.51.005 3.023-.563 4.17-1.71.027-.027.034-.064.06-.09l24.33-24.33c2.285-2.285 2.285-6.024 0-8.308s-6.024-2.285-8.308 0L49.923 54.16l-20.25-20.25c-2.286-2.285-6.025-2.285-8.31 0s-2.284 6.024 0 8.308z\'/></svg>');
       }
@@ -737,30 +737,25 @@
 }
 
 .ais-range-slider--tooltip {
-  background-color: transparent;
-  font-size: 1.1em;
-  left: 0;
-  width: 24px;
   top: 1px;
+  left: 0;
+  background-color: transparent;
+  width: 24px;
   text-align: center;
-  font-family: Volkhov;
-  font-weight: bold;
+  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
   color: #fff;
-  text-shadow:
-  0 0 3px #000,
-  0 0 3px #000,
-  0 0 3px #000,
-  0 0 3px #000,
-  0 0 3px #000;
+  font-family: Volkhov;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .ais-range-slider--handle {
+  top: -10px;
+  border: 0;
+  box-shadow: inset 0 0 0 2px #4011da;
+  background-color: #000;
   width: 24px;
   height: 24px;
-  top: -10px;
-  background-color: #000;
-  box-shadow: inset 0 0 0 2px #4011da;
-  border: 0;
 }
 
 .ais-range-slider--target {
