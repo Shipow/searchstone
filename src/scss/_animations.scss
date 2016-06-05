@@ -20,6 +20,16 @@
   }
 }
 
+@keyframes flash {
+  0% {
+    filter: brightness(200%);
+  }
+
+  100% {
+    filter: brightness(100%);
+  }
+}
+
 @keyframes fadeInLeft {
   0% {
     transform: translateX(-200px);

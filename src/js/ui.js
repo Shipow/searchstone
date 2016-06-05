@@ -14,6 +14,8 @@ function closeLightbox() {
   $('.card-detail-wrapper').empty();
 }
 
+var goldenLoaded = false;
+
 function cardDetail(el) {
   // hit reference
   var target = $(el).find('.hit').data('target');
@@ -25,8 +27,14 @@ function cardDetail(el) {
   var goldenImg =  new Image();
 
   // do something when loaded
+  goldenLoaded = false;
+  $('.loading .msg').text('loading...');
+  $('.loading .loader').removeClass('hide');
+
   goldenImg.onload = function(){
-    // todo: loading/loaded message
+    goldenLoaded = true;
+    $('.loading .msg').text('Golden ready! (click the card)');
+    $('.loading .loader').addClass('hide');
   };
 
   // clone in lightbox
@@ -46,6 +54,10 @@ function removePlaceholder(el){
   el.siblings('.placeholder').remove();
 }
 
+function playFlash(){
+  $('.lightbox').removeClass('flash');
+}
+
 $('.lightbox').on('click', function(){
   closeLightbox();
 });
@@ -53,9 +65,13 @@ $('.lightbox').on('click', function(){
 $('.card-detail-wrapper').on('click', '.show-golden', function(e){
   e.preventDefault();
   e.stopPropagation();
-  $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('flip');
-  $('.card-detail-wrapper').find('.normal-wrapper').toggleClass('flip');
-  $(this).toggleClass('shown');
+  $('.lightbox').removeClass('flash');
+  if (goldenLoaded){
+    $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('flip');
+    $('.card-detail-wrapper').find('.normal-wrapper').toggleClass('flip');
+    $('.lightbox').addClass('flash');
+    setTimeout(playFlash,150);
+  }
 });
 
 

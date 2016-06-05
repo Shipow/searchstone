@@ -42,6 +42,8 @@
     transform-origin: 0 0;
     cursor: pointer;
     transition: transform .2s ease, opacity .2s ease;
+    user-select: none;
+    cursor: pointer;
 
     @media (max-width: 1300px) {
       transform: scale(.7);
@@ -358,6 +360,102 @@
     display: block;
     float: left;
     color: #fff;
+    text-shadow: 0 1px 1px #000;
+
+    .Hunter {
+      color: $hunter-color;
+    }
+
+    .Druid {
+      color: $druid-color;
+    }
+
+    .Mage {
+      color: $mage-color;
+    }
+
+    .Paladin {
+      color: $paladin-color;
+    }
+
+    .Priest {
+      color: $priest-color;
+    }
+
+    .Rogue {
+      color: $rogue-color;
+    }
+
+    .Shaman {
+      color: $shaman-color;
+    }
+
+    .Warlock {
+      color: $warlock-color;
+    }
+
+    .Warrior {
+      color: $warrior-color;
+    }
+
+    .Neutral {
+      color: $neutral-color;
+    }
+
+    .detail-set {
+      box-sizing: border-box;
+      padding-left: 26px;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-right: 4px;
+        background: url('img/SetIcons.png');
+        background-size: 140px;
+      }
+
+      &.OG::before {
+        background-position: 68px 0;
+      }
+
+      &.GT::before {
+        background-position: 90px 0;
+      }
+
+      &.LOE::before {
+        background-position: 68px 24px;
+      }
+
+      &.BRM::before {
+        background-position: 46px 24px;
+      }
+
+      &.GVG::before {
+        background-position: 116px 0;
+      }
+
+      &.NAXX::before {
+        background-position: 22px 0;
+      }
+
+      &.EXPERT1::before {
+        background-position: 0 0;
+      }
+
+      &.CORE::before {
+        background-position: 46px 0;
+      }
+
+      &.REWARD::before {
+        background-position: 116px 24px;
+      }
+    }
 
     @media (max-width: 600px){
       font-size: .8em;
@@ -397,6 +495,7 @@
     padding: 4px 0 4px 30px;
     font-size: 1.4em;
   }
+  
   .detail-artist {
     font-size: 1.2em;
   }

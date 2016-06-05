@@ -13,7 +13,11 @@
   z-index: 9999;
   transition: transform .5s ease, opacity .5s ease;
 
-  &:before {
+  &.flash {
+    animation: flash .15s ease-out;
+  }
+
+  &::before {
     content: '';
     background: rgba(#0E0226, 0.5);
     position: absolute;
@@ -49,5 +53,19 @@
   &.hidden {
     opacity: 0;
     visibility: hidden;
+  }
+  
+  .loading {
+    position: absolute;;
+    bottom: 20px;
+    left: 20px;
+    color: #FEF68E;
+    z-index: 9999;
+
+    .loader{
+      position: relative;
+      top: 6px;
+      margin-right: 4px;
+    }
   }
 }

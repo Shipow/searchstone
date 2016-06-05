@@ -8,18 +8,18 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #0E0226;
+  background-color: #0e0226;
 }
 
-body{
+body {
   overflow-y: scroll;
 }
 
-.blur{
+.blur {
   filter: blur(10px);
 }
 
-.background-image{
+.background-image {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -37,10 +37,6 @@ body{
   width: 100%;
   transition: opacity .4s ease;
   margin: 0 auto;
-
-  &.no-scroll {
-
-  }
 }
 
 

@@ -69,7 +69,9 @@
                     {{{_highlightResult.text.value}}}
               .card-infos {{set}}{{#nameVO}} - {{{_highlightResult.nameVO.value}}}{{/nameVO}}
           .card-details
-            %p.detail-set {{setFull}} - {{playerClass}}
+            %p.detail-set{class: "{{set}}"}
+              %span {{setFull}} -&nbsp;
+              %span{class: "{{playerClass}}"} {{playerClass}}
             %h2.detail-name {{name}}
             .detail-nameVO {{nameVO}}
             {{#dustCraft}}
@@ -169,8 +171,11 @@
     %a.close{href: "javascript:void(0);"}
       %svg{role: "img"}
         %use{xlink:href: "#sbx-icon-clear-3"}
+    .loading
+      %span.loader
+        %img{src:"img/ripple.svg", width: 24, height: 24}
+      %span.msg Loading...
     .card-detail-wrapper
-
   .filters-panel.hide.overlay
     %button.close{type: "button"} BACK
     .overlay-content
