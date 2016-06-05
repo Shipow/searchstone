@@ -678,39 +678,39 @@
         }
 
         &.Hunter {
-          color: #59BD4E;
+          color: $hunter-color;
         }
 
         &.Druid {
-          color: #FA6030;
+          color: $druid-color;
         }
 
         &.Mage {
-          color: #4BA1CF;
+          color: $mage-color;
         }
 
         &.Paladin {
-          color: #DB66D7;
+          color: $paladin-color;
         }
 
         &.Priest {
-          color: #eee;
+          color: $priest-color;
         }
 
         &.Rogue {
-          color: #E9E066;
+          color: $rogue-color;
         }
 
         &.Shaman {
-          color: #006DE1;
+          color: $shaman-color;
         }
 
         &.Warlock {
-          color: #8857D7;
+          color: $warlock-color;
         }
 
         &.Warrior {
-          color: #B77F4A;
+          color: $warrior-color;
         }
       }
 

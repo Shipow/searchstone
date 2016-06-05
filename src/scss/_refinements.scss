@@ -407,44 +407,114 @@
       background-size: 170px;
     }
 
-    &[data-facet-value="Druid"]::before {
-      background-position: 100px 32px;
+    &[data-facet-value="Druid"] {
+      &.active {
+        background-color: rgba($druid-color, .2);
+        border-color: $druid-color;
+      }
+
+      &::before {
+        background-position: 100px 32px;
+      }
     }
 
-    &[data-facet-value="Hunter"]::before {
-      background-position: 66px 32px;
+    &[data-facet-value="Hunter"] {
+      &.active {
+        background-color: rgba($hunter-color, .2);
+        border-color: $hunter-color;
+      }
+
+      &::before {
+        background-position: 66px 32px;
+      }
     }
 
-    &[data-facet-value="Shaman"]::before {
-      background-position: 32px -2px;
+    &[data-facet-value="Shaman"] {
+      &.active {
+        background-color: rgba($shaman-color, .2);
+        border-color: $shaman-color;
+      }
+
+      &::before {
+        background-position: 32px -2px;
+      }
     }
 
-    &[data-facet-value="Warrior"]::before {
-      background-position: 134px 32px;
+    &[data-facet-value="Warrior"] {
+      &.active {
+        background-color: rgba($warrior-color, .2);
+        border-color: $warrior-color;
+      }
+
+      &::before {
+        background-position: 134px 32px;
+      }
     }
 
-    &[data-facet-value="Paladin"]::before {
-      background-position: 134px -2px;
+    &[data-facet-value="Paladin"] {
+      &.active {
+        background-color: rgba($paladin-color, .2);
+        border-color: $paladin-color;
+      }
+
+      &::before {
+        background-position: 134px -2px;
+      }
     }
 
-    &[data-facet-value="Warlock"]::before {
-      background-position: -2px 32px;
+    &[data-facet-value="Warlock"] {
+      &.active {
+        background-color: rgba($warlock-color, .2);
+        border-color: $warlock-color;
+      }
+
+      &::before {
+        background-position: -2px 32px;
+      }
     }
 
-    &[data-facet-value="Priest"]::before {
-      background-position: 100px -2px;
+    &[data-facet-value="Priest"] {
+      &.active {
+        background-color: rgba($priest-color, .2);
+        border-color: $priest-color;
+      }
+
+      &::before {
+        background-position: 100px -2px;
+      }
     }
 
-    &[data-facet-value="Rogue"]::before {
-      background-position: 66px -2px;
+    &[data-facet-value="Rogue"] {
+      &.active {
+        background-color: rgba($rogue-color, .2);
+        border-color: $rogue-color;
+      }
+
+      &::before {
+        background-position: 66px -2px;
+      }
     }
 
-    &[data-facet-value="Mage"]::before {
-      background-position: -2px -2px;
+    &[data-facet-value="Mage"] {
+      &.active {
+        background-color: rgba($mage-color, .2);
+        border-color: $mage-color;
+      }
+
+      &::before {
+        background-position: -2px -2px;
+      }
     }
 
-    &[data-facet-value="Neutral"]::before {
-      background-position: 32px 32px;
+    &[data-facet-value="Neutral"] {
+      &.active {
+        background-color: rgba($neutral-color, .2);
+        border-color: $neutral-color;
+      }
+
+      &::before {
+        background-position: 32px 32px;
+      }
     }
   }
 }
