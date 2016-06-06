@@ -95,14 +95,14 @@
     z-index: 1;
   }
 
-
   .card-overlay {
     position: absolute;
     width: 300px;
     top: 0;
     left: 0;
     z-index: 3;
-    font-family: 'Belwe';
+    font-family: 'Belwe', 'Archivo Narrow', sans-serif;
+    font-weight: bold;
   }
 
   .card-title {
@@ -112,8 +112,7 @@
     width: 300px;
     height: 60px;
     z-index: 10;
-    font-family: 'Belwe', 'Archivo Narrow', sans-serif;
-    font-weight: bold;
+
 
     text {
       font-size: 1.4em;
@@ -189,7 +188,7 @@
 
   .card-durability {
     width: 50px;
-    top: 364px;
+    top: 347px;
     right: 12px;
   }
 
@@ -619,8 +618,8 @@
         background-size: 28px;
         background-position: center 6px;
         background-image: url(img/shield.svg);
-        @media (max-width: 600px){
 
+        @media (max-width: 600px){
           top: 10px;
           right: 10px;
         }
