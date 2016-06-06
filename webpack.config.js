@@ -22,6 +22,11 @@ module.exports = {
             jQuery : "jquery",
             "window.jQuery" : "jquery",
             "root.jQuery" : "jquery"
+        }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+          }
         })
     ]
 };
