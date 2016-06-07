@@ -87,10 +87,13 @@ function languageSelect($container) {
     init: function(params) {
 
       // navigator language
-      var navLang = window.navigator.userLanguage || window.navigator.language;
-      if (navLang.indexOf('-') !== -1)
+      var navLang = window.navigator.userLanguage || window.navigator.language || 'en-US';
+      
+      if (navLang.indexOf('-') !== -1){
         navLang = navLang.split('-')[0] + navLang.split('-')[1].toUpperCase();
-      else {
+      } else if (navLang.indexOf('_') !== -1) {
+        navLang = navLang.split('_')[0] + navLang.split('_')[1].toUpperCase();
+      } else {
         navLang = navLang + navLang.toUpperCase();
       }
 
