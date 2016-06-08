@@ -99,7 +99,7 @@ function languageSelect($container) {
 
       //fallback to English
       if (typeof langMap[navLang] === 'undefined'){
-        navlang = 'enUS';
+        navLang = 'enUS';
       }
 
       // Retrieve in local storage fallback to navLang
