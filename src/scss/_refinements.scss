@@ -598,7 +598,7 @@
   }
 }
 
-#set, #setShort {
+#set {
   .ais-refinement-list--item {
     line-height: 1.4em;
   }
@@ -610,6 +610,10 @@
   .list-group-item {
     box-sizing: border-box;
     padding-left: 26px;
+
+    .value {
+      display: none;
+    }
 
     &::before {
       content: '';
@@ -671,9 +675,6 @@
   }
 }
 
-#setShort {
-  display: none;
-}
 
 #sort-by {
   .sort-by-label {

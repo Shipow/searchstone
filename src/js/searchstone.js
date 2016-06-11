@@ -11,7 +11,7 @@ let searchstone = instantsearch({
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_cost--asc',
   urlSync: {
-    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:setFull','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health','attribute:format']
+    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health','attribute:format']
   }
 });
 
@@ -152,10 +152,6 @@ searchstone.addWidget(
 
 var rarity = ['Free', 'Common', 'Rare', 'Epic', 'Legendary'];
 var playerClass = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest','Rogue','Shaman', 'Warlock','Warrior','Neutral'];
-var set = ['Reward','Basic', 'Expert', 'Naxxramas', 'Goblins vs Gnomes', 'Blackrock Mountain', 'League of Explorers', 'The Grand Tournament', 'Old Gods'];
-var setShort = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG'];
-set.reverse();
-setShort.reverse();
 
 searchstone.addWidget(
   instantsearch.widgets.refinementList({
@@ -214,34 +210,37 @@ searchstone.addWidget(
   })
 );
 
+var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG'];
+var setFull = {
+  OG : "Old Gods",
+  TGT : "The Grand Tournament",
+  LOE : "League of Explorers",
+  BRM : "Blackrock Mountain",
+  GVG : "Goblins vs Gnomes",
+  NAXX : "Naxxramas",
+  EXPERT1 : "Classic",
+  CORE : "Basic",
+  REWARD : "Reward"
+}
+
 searchstone.addWidget(
   instantsearch.widgets.refinementList({
     container: '#set',
-    attributeName: 'setFull',
+    attributeName: 'set',
     operator: 'and',
     limit: 10,
     sortBy: function(a,b){
       return set.indexOf(a.name) - set.indexOf(b.name);
     },
-    templates: {
-      header: 'Set',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
-    }
-  })
-);
-
-searchstone.addWidget(
-  instantsearch.widgets.refinementList({
-    container: '#setShort',
-    attributeName: 'set',
-    operator: 'and',
-    limit: 10,
-    sortBy: function(a,b){
-      return setShort.indexOf(a.name) - setShort.indexOf(b.name);
+    transformData: {
+      item: function(item){
+        item.fullName = setFull[item.name];
+        return item
+      }
     },
     templates: {
       header: 'Set',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
+      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value-full">{{fullName}}</span> <span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
     }
   })
 );

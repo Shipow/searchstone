@@ -76,7 +76,7 @@ aside {
       order: 4;
     }
 
-    #setShort{
+    #set{
       display: block;
       padding: 12px 0;
       width: 90%;
@@ -90,12 +90,18 @@ aside {
         overflow: hidden;
         margin-bottom: 8px;
       }
+      .value{
+        display: inline-block!important;
+      }
+      .value-full {
+        display: none;
+      }
       .badge {
         float: none;
       }
     }
 
-    #type, #race, #mechanics, #attack,#health, #sort-by, #set, #format {
+    #type, #race, #mechanics, #attack,#health, #sort-by, #format {
       display: none;
     }
   }
