@@ -24,7 +24,7 @@ var lang = [
 ]
 
 var set = {
-  "EXPERT1" : "Expert",
+  "EXPERT1" : "Classic",
   "CORE" : "Basic",
   "OG" : "Old Gods",
   "TGT" : "The Grand Tournament",
@@ -32,7 +32,7 @@ var set = {
   "LOE" : "League of Explorers",
   "BRM" : "Blackrock Mountain",
   "NAXX" : "Naxxramas",
-  "PROMO" : "Promo",
+  "PROMO" : "Promotion",
   "REWARD" : "Reward"
 }
 

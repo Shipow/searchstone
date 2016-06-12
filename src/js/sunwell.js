@@ -716,9 +716,13 @@
         }
 
 
-        if (['BRM', 'GVG', 'LOE', 'NAX', 'TGT', 'OG'].indexOf(card.set) === -1) {
+        if (['BRM', 'GVG', 'LOE', 'NAXX', 'TGT', 'OG'].indexOf(card.set) === -1) {
             card.sunwell.bgLogo = 'bg-cl';
         } else {
+            //quick fix for naming consistency issue: https://github.com/HearthSim/sunwell/issues/12
+            if (card.set === 'NAXX'){
+              card.set = 'NAX';
+            }
             card.sunwell.bgLogo = 'bg-' + card.set.toLowerCase();
         }
 
