@@ -88,7 +88,7 @@
             {{/dustCraft}}
             %p.detail-quote {{{flavor}}}
             %br
-            %p.detail-artist Artist: {{artist}}
+            %p.detail-artist Artist: <a href="/?fR[artist][0]={{artist}}">{{artist}}</a>
 
       %script#hit-template-row{type: "text/template"}
         .hit.hit-cel{data-target: "{{id}}"}
