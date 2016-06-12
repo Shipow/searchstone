@@ -671,7 +671,7 @@
         var cvs = getBuffer(),
             ctx = cvs.getContext('2d'),
             s = (resolution || 512) / 764,
-            loadList = ['silence-x'];
+            loadList = [];
 
         cvs.width = resolution || 512;
         cvs.height = Math.round(cvs.width * 1.4397905759);
@@ -813,7 +813,6 @@
         settings.attackStyle = settings.attackStyle || '0';
         settings.durabilityStyle = settings.durabilityStyle || '0';
 
-        settings.silenced = settings.silenced || false;
         settings.costHealth = settings.costHealth || false;
 
         settings.width = width;

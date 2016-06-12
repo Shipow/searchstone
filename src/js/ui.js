@@ -141,14 +141,24 @@ $('.searchbox').on('focus','.ais-search-box--input', function(){
   }
 });
 
+// detect Chrome
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
+var cloudinaryUrl = 'http://res.cloudinary.com/hilnmyskv/image/upload/';
+
+if (isChrome){
+  cloudinaryUrl = 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,';
+}
+
+
 sunwell.settings = {
   titleFont: 'arial',
   bodyFont: 'arial',
   bodyFontSize: 24,
   bodyLineHeight: 55,
   bodyFontOffset: {x: 0, y: 0},
-  assetFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/q_80/',
-  textureFolder: 'http://res.cloudinary.com/hilnmyskv/image/upload/w_300,q_80/',
+  assetFolder: cloudinaryUrl + 'q_60/',
+  textureFolder: cloudinaryUrl + 'w_300,q_80/',
   autoInit: false,
   debug: false
 };
