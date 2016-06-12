@@ -87,12 +87,12 @@ searchstone.addWidget(
   })
 );
 
-// custom widget languages
+// Custom widget languages
 searchstone.addWidget(
   instantsearch.widgets.languageSelect($('#lang-select'))
 );
 
-//Player Class
+// Player class
 searchstone.addWidget(
   instantsearch.widgets.menu({
     container: '#playerClass',
@@ -107,7 +107,7 @@ searchstone.addWidget(
   })
 );
 
-//Player Class - mobile
+// Player class - mobile
 searchstone.addWidget(
   instantsearch.widgets.menu({
     container: '#playerClassFiltersPanel',
@@ -122,6 +122,7 @@ searchstone.addWidget(
   })
 );
 
+// Selected player class title
 searchstone.addWidget(
   instantsearch.widgets.currentRefinedValues({
     container: "#player-class-refinement",
@@ -133,6 +134,7 @@ searchstone.addWidget(
   })
 );
 
+// Mobile refinements
 searchstone.addWidget(
   instantsearch.widgets.currentRefinedValues({
     container: "#active-refinements",
@@ -140,11 +142,40 @@ searchstone.addWidget(
     attributes: [
       {name: 'playerClass',template: '<span class="active-refinements-player-class"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}</span>'},
       {name: 'cost', template: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Mana:{{name}}'},
+      {name: 'attack', template: ''},
+      {name: 'health', template: ''},
+      {name: 'mechanics'},
+      {name: 'race'},
+      {name: 'type'},
       {name: 'rarity'},
       {name: 'set'}
     ],
     onlyListedAttributes: true,
     templates: {
+      item: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}'
+    }
+  })
+);
+
+//sidebar clear all filters button
+searchstone.addWidget(
+  instantsearch.widgets.currentRefinedValues({
+    container: "#clearAll",
+    clearAll: 'after',
+    attributes: [
+      {name: 'playerClass',template: ''},
+      {name: 'cost', template: ''},
+      {name: 'attack', template: ''},
+      {name: 'health', template: ''},
+      {name: 'mechanics', template: ''},
+      {name: 'race', template: ''},
+      {name: 'type', template: ''},
+      {name: 'rarity', template: ''},
+      {name: 'set', template: ''}
+    ],
+    onlyListedAttributes: true,
+    templates: {
+      clearAll: 'Clear all filters',
       item: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}'
     }
   })
@@ -211,6 +242,8 @@ searchstone.addWidget(
 );
 
 var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG'];
+set.reverse();
+
 var setFull = {
   OG : "Old Gods",
   TGT : "The Grand Tournament",
@@ -311,16 +344,6 @@ searchstone.addWidget(
     ]
   })
 );
-
-// searchstone.addWidget(
-//   instantsearch.widgets.pagination({
-//     container: '#pagination',
-//     autoHideContainer: true,
-//     maxPages: 20,
-//     padding: 1,
-//     showFirstLast : false
-//   })
-// );
 
 searchstone.addWidget(
   instantsearch.widgets.rangeSlider({

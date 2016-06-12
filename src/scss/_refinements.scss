@@ -660,12 +660,12 @@
 
     &[data-facet-value="Expert"]::before,
     &[data-facet-value="EXPERT1"]::before {
-      background-position: 0 0;
+      background-position: 46px 0;
     }
 
     &[data-facet-value="Basic"]::before,
     &[data-facet-value="CORE"]::before {
-      background-position: 46px 0;
+      background-position: 0 0;
     }
 
     &[data-facet-value="Reward"]::before,
@@ -768,4 +768,31 @@
   color: rgba(#fff, .5);
   font-size: .9em;
   font-weight: bold;
+}
+
+
+#clearAll {
+  .ais-current-refined-values--clear-all{
+    display: block;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none;
+    background-color: rgba(lighten(#3c10c9, 5%), .5);
+    cursor: pointer;
+    color: rgba(#fff, .4);
+    font-size: 1em;
+    line-height: 2em;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      background-color: lighten(#3c10c9, 5%);
+      color: #fff;
+    }
+  }
+  .ais-current-refined-values--list {
+    display: none;
+  }
 }
