@@ -44,13 +44,16 @@ searchstone.addWidget(
         hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
       }
 
-      if(typeof hit.name !== "undefined" && hit.name.length > 24){
+      if(typeof hit.name !== "undefined" && hit.name.length > 22){
+        hit.nameLengthClass = "xxl";
+      }
+      else if(typeof hit.name !== "undefined" && hit.name.length > 18){
         hit.nameLengthClass = "xl";
       }
-      else if(typeof hit.name !== "undefined" && hit.name.length > 16){
+      else if(typeof hit.name !== "undefined" && hit.name.length > 14){
         hit.nameLengthClass = "lg";
       }
-      else if(typeof hit.name !== "undefined" && hit.name.length > 12){
+      else if(typeof hit.name !== "undefined" && hit.name.length > 10){
         hit.nameLengthClass = "md";
       }
 

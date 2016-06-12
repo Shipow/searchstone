@@ -133,7 +133,11 @@
     }
 
     &.xl {
-      font-size: .65em;
+      font-size: .8em;
+    }
+
+    &.xxl {
+      font-size: .7em;
     }
 
     tspan {
@@ -443,11 +447,11 @@
       }
 
       &.EXPERT1::before {
-        background-position: 0 0;
+        background-position: 46px 0;
       }
 
       &.CORE::before {
-        background-position: 46px 0;
+        background-position: 0 0;
       }
 
       &.REWARD::before {
