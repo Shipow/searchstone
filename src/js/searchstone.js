@@ -11,7 +11,10 @@ let searchstone = instantsearch({
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_cost--asc',
   urlSync: {
-    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health','attribute:format']
+    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health','attribute:format', 'attribute:artist']
+  },
+  searchParameters: {
+    facets: ['artist']
   }
 });
 
@@ -131,7 +134,8 @@ searchstone.addWidget(
     container: "#player-class-refinement",
     clearAll: false,
     attributes: [
-      {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'}
+      {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'},
+      {name: 'artist', template: '<h2 class="artist">{{name}}</h2>'}
     ],
     onlyListedAttributes: true
   })
@@ -151,7 +155,8 @@ searchstone.addWidget(
       {name: 'race'},
       {name: 'type'},
       {name: 'rarity'},
-      {name: 'set'}
+      {name: 'set'},
+      {name: 'artist'}
     ],
     onlyListedAttributes: true,
     templates: {
@@ -174,7 +179,8 @@ searchstone.addWidget(
       {name: 'race', template: ''},
       {name: 'type', template: ''},
       {name: 'rarity', template: ''},
-      {name: 'set', template: ''}
+      {name: 'set', template: ''},
+      {name: 'artist'}
     ],
     onlyListedAttributes: true,
     templates: {
