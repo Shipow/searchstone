@@ -24,7 +24,7 @@ var lang = [
 ]
 
 var set = {
-  "EXPERT1" : "Classic",
+  "EXPERT1" : "Expert",
   "CORE" : "Basic",
   "OG" : "Old Gods",
   "TGT" : "The Grand Tournament",
@@ -33,7 +33,8 @@ var set = {
   "BRM" : "Blackrock Mountain",
   "NAXX" : "Naxxramas",
   "PROMO" : "Promotion",
-  "REWARD" : "Reward"
+  "REWARD" : "Reward",
+  "KARA" : "One Night in Karazhan"
 }
 
 var setID = {
@@ -45,6 +46,7 @@ var setID = {
   "LOE" : 5,
   "TGT" : 6,
   "OG" : 7,
+  "KARA" : 8,
   "REWARD" : 99
 }
 
@@ -199,7 +201,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       }
 
       // 2016 standard
-      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" ){
+      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" || c.set === "KARA" ){
         c.format = ['Wild','Standard'];
       }
       else {

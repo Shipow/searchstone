@@ -676,6 +676,11 @@
     &[data-facet-value="REWARD"]::before {
       background-position: 116px 24px;
     }
+
+    &[data-facet-value="One Night in Karazhan"]::before,
+    &[data-facet-value="KARA"]::before {
+      background-position: 22px 24px;
+    }
   }
 }
 

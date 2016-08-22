@@ -250,17 +250,18 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG'];
+var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA'];
 set.reverse();
 
 var setFull = {
+  KARA : "One Night in Karazhan",
   OG : "Old Gods",
   TGT : "The Grand Tournament",
   LOE : "League of Explorers",
   BRM : "Blackrock Mountain",
   GVG : "Goblins vs Gnomes",
   NAXX : "Naxxramas",
-  EXPERT1 : "Classic",
+  EXPERT1 : "Expert",
   CORE : "Basic",
   REWARD : "Reward"
 }
