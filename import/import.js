@@ -68,6 +68,7 @@ var map = {
   "ROGUE" : "Rogue",
   "SHAMAN" : "Shaman",
   "WARLOCK" : "Warlock",
+  "NEUTRAL" : "Neutral",
 
   // "HERO_SKINS" : "",
   "BEAST" : "Beast",
@@ -114,7 +115,10 @@ var map = {
   "SILENCE" : "Silence",
   "ADJACENT_BUFF" : "Adjacent buff",
   "TOPDECK" : "Top deck",
-  "InvisibleDeathrattle" : "Invisible deathrattle"
+  "InvisibleDeathrattle" : "Invisible deathrattle",
+  "CANT_BE_TARGETED_BY_HERO_POWERS": "Can't be targeted by hero power",
+  "CANT_BE_TARGETED_BY_SPELLS": "Can't be targeted by spells",
+  "CANT_ATTACK": "Can't attack"
 };
 
 var specialChars = {
