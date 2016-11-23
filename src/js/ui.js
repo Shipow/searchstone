@@ -3,6 +3,7 @@ function openLightbox() {
   $('body, html').css('overflow:hidden');
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
+  dataLayer.push({'event': 'open_cardDetails'});
 }
 
 function closeLightbox() {
@@ -12,6 +13,7 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
+  dataLayer.push({'event': 'close_cardDetails'});
 }
 
 var goldenLoaded = false;
