@@ -402,7 +402,7 @@ var sendAnalytics = function() {
   var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
 
   if(lastSentGa !== paramsToSend) {
-    dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params});
+    dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
     lastSentGa = paramsToSend;
 
     // console.log('sent - ' + paramsToSend);
