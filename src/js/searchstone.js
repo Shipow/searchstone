@@ -403,8 +403,6 @@ var sendAnalytics = function() {
 
   if(lastSentGa !== paramsToSend) {
 
-    console.log('sent', params);
-
     //GTM
     dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
 
