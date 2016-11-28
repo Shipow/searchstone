@@ -402,7 +402,13 @@ var sendAnalytics = function() {
   var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
 
   if(lastSentGa !== paramsToSend) {
+
+    //GTM
     dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
+
+    //segment.io
+    analytics.page( 'algolia instantsearch', {path: '/instantsearch/?query=' + search.helper.state.query + '&' + params });
+
     lastSentGa = paramsToSend;
 
     // console.log('sent - ' + paramsToSend);
@@ -417,7 +423,6 @@ var serializeRefinements = function(obj) {
       str.push(encodeURIComponent(p) + '_' + encodeURIComponent(values));
     }
   }
-
   return str.join('|');
 };
 

@@ -4,6 +4,7 @@ function openLightbox() {
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
   dataLayer.push({'event': 'open_cardDetails'});
+  analytics.track('Opened Card', {name: 'cardName',positon:'hitPosition'});
 }
 
 function closeLightbox() {
