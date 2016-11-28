@@ -397,11 +397,13 @@ var sendAnalytics = function() {
 
   params = params.filter(function(n) {
     return n != '';
-  }).join('|');
+  }).join('&');
 
   var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
 
   if(lastSentGa !== paramsToSend) {
+
+    console.log('sent', params);
 
     //GTM
     dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
@@ -420,10 +422,10 @@ var serializeRefinements = function(obj) {
   for(var p in obj) {
     if (obj.hasOwnProperty(p)) {
       var values = obj[p].join('+');
-      str.push(encodeURIComponent(p) + '_' + encodeURIComponent(values));
+      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(p) + '_' + encodeURIComponent(values));
     }
   }
-  return str.join('|');
+  return str.join('&');
 };
 
 var serializeNumericRefinements = function(numericRefinements) {
@@ -435,17 +437,17 @@ var serializeNumericRefinements = function(numericRefinements) {
 
       if(filter.hasOwnProperty('>=') && filter.hasOwnProperty('<=')) {
         if(filter['>='][0] == filter['<='][0]) {
-          numericStr.push(attr + '_' + filter['>=']);
+          numericStr.push(attr + '=' + attr + '_' + filter['>=']);
         }
         else {
-          numericStr.push(attr + '_' + filter['>='] + 'to' + filter['<=']);
+          numericStr.push(attr + '=' + attr + '_' + filter['>='] + 'to' + filter['<=']);
         }
       }
       else if(filter.hasOwnProperty('>=')) {
-        numericStr.push(attr + '_from' + filter['>=']);
+        numericStr.push(attr + '=' + attr + '_from' + filter['>=']);
       }
       else if(filter.hasOwnProperty('<=')) {
-        numericStr.push(attr + '_to' + filter['<=']);
+        numericStr.push(attr + '=' + attr + '_to' + filter['<=']);
       }
       else if(filter.hasOwnProperty('=')) {
         var equals = [];
@@ -455,12 +457,12 @@ var serializeNumericRefinements = function(numericRefinements) {
           }
         }
 
-        numericStr.push(attr + '_' + equals.join('-'));
+        numericStr.push(attr + '=' + attr + '_' + equals.join('-'));
       }
     }
   }
 
-  return numericStr.join('|');
+  return numericStr.join('&');
 };
 
 $('body').on('click', function(e) {
