@@ -387,25 +387,95 @@ searchstone.addWidget(
   })
 );
 
-var serialize = function(obj) {
-  var str = [];
-  for(var p in obj)
-    if (obj.hasOwnProperty(p)) {
-      str.push( encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]) );
-    }
-  return str.join("&");
-}
+var lastSentGa = null;
 
+var sendAnalytics = function() {
+  var params = [];
+
+  params.push(serializeRefinements(Object.assign({}, search.helper.state.disjunctiveFacetsRefinements, search.helper.state.facetsRefinements)));
+  params.push(serializeNumericRefinements(search.helper.state.numericRefinements));
+
+  params = params.filter(function(n) {
+    return n != '';
+  }).join('|');
+
+  var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
+
+  if(lastSentGa !== paramsToSend) {
+    dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params});
+    lastSentGa = paramsToSend;
+
+    // console.log('sent - ' + paramsToSend);
+  }
+};
+
+var serializeRefinements = function(obj) {
+  var str = [];
+  for(var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      var values = obj[p].join('+');
+      str.push(encodeURIComponent(p) + '_' + encodeURIComponent(values));
+    }
+  }
+
+  return str.join('|');
+};
+
+var serializeNumericRefinements = function(numericRefinements) {
+  var numericStr = [];
+
+  for(var attr in numericRefinements) {
+    if(numericRefinements.hasOwnProperty(attr)) {
+      var filter = numericRefinements[attr];
+
+      if(filter.hasOwnProperty('>=') && filter.hasOwnProperty('<=')) {
+        if(filter['>='][0] == filter['<='][0]) {
+          numericStr.push(attr + '_' + filter['>=']);
+        }
+        else {
+          numericStr.push(attr + '_' + filter['>='] + 'to' + filter['<=']);
+        }
+      }
+      else if(filter.hasOwnProperty('>=')) {
+        numericStr.push(attr + '_from' + filter['>=']);
+      }
+      else if(filter.hasOwnProperty('<=')) {
+        numericStr.push(attr + '_to' + filter['<=']);
+      }
+      else if(filter.hasOwnProperty('=')) {
+        var equals = [];
+        for(var equal in filter['=']) {
+          if(filter['='].hasOwnProperty(equal)) {
+            equals.push(filter['='][equal]);
+          }
+        }
+
+        numericStr.push(attr + '_' + equals.join('-'));
+      }
+    }
+  }
+
+  return numericStr.join('|');
+};
+
+$('body').on('click', function(e) {
+  sendAnalytics();
+});
+
+window.onbeforeunload = function() {
+  sendAnalytics();
+};
+
+var analyticsTimeout;
 
 searchstone.on('render', function() {
+  if(analyticsTimeout) {
+    clearTimeout(analyticsTimeout);
+  }
 
- // does not support numeric search.helper.state.numericRefinements
+  analyticsTimeout = setTimeout(sendAnalytics, 3000);
 
-  var params = serialize(Object.assign({}, search.helper.state.disjunctiveFacetsRefinements, search.helper.state.facetsRefinements));
-
-  dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params});
-
-   if( $('#stats').find('.nbPages').data('nb-pages') === 1 ){
+  if( $('#stats').find('.nbPages').data('nb-pages') === 1 ){
     $('.load-more').addClass('hide');
   } else {
     $('.load-more').removeClass('hide');
