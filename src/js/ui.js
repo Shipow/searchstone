@@ -3,8 +3,6 @@ function openLightbox() {
   $('body, html').css('overflow:hidden');
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
-  dataLayer.push({'event': 'open_cardDetails'});
-  analytics.track('Opened Card', {name: 'cardName',positon:'hitPosition'});
 }
 
 function closeLightbox() {
@@ -14,14 +12,15 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
-  dataLayer.push({'event': 'close_cardDetails'});
 }
 
 var goldenLoaded = false;
 
 function cardDetail(el) {
+
   // hit reference
   var target = $(el).find('.hit').data('target');
+  var position = $(el).find('.hit').data('position');
 
   // url of the golden card
   var golden = $('#results #'+ target).find('.golden-wrapper').data('golden');
@@ -51,15 +50,21 @@ function cardDetail(el) {
 
   // delay a bit sunwell
   setTimeout( sunwellRender, 200 );
-}
+
+  //tracking goal
+  dataLayer.push({'event': 'open_cardDetails'});
+  //analytics.track('[SGMNT] Opened Card', {name: 'cardName',positon:'hitPosition'});
+  _kmq.push(['record', '[KM] Opened Card', {'Clicked Hit Position': position, 'Card ID': target}]);
+
+};
 
 function removePlaceholder(el){
   el.siblings('.placeholder').remove();
-}
+};
 
 function playFlash(){
   $('.lightbox').removeClass('flash');
-}
+};
 
 $('.lightbox').on('click', function(){
   closeLightbox();
@@ -76,7 +81,6 @@ $('.card-detail-wrapper').on('click', '.show-golden', function(e){
     setTimeout(playFlash,150);
   }
 });
-
 
 $(document).keyup(function(e) {
    if (e.keyCode == 27 && $('.lightbox:not(.hidden)') !== null) {

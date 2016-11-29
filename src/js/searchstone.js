@@ -38,38 +38,42 @@ searchstone.addWidget(
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
       item: document.getElementById('hit-template-card').innerHTML
     },
-    transformData: function(hit) {
+    transformData: {
+      item: function(hit) {
 
-      hit.textPath = "#" + hit.type;
+        hit.position = hit.__hitIndex + 1;
 
-      if (typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
-        hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<em>/g,'<tspan>');
-        hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
-      }
+        hit.textPath = "#" + hit.type;
 
-      if(typeof hit.name !== "undefined" && hit.name.length > 22){
-        hit.nameLengthClass = "xxl";
-      }
-      else if(typeof hit.name !== "undefined" && hit.name.length > 18){
-        hit.nameLengthClass = "xl";
-      }
-      else if(typeof hit.name !== "undefined" && hit.name.length > 14){
-        hit.nameLengthClass = "lg";
-      }
-      else if(typeof hit.name !== "undefined" && hit.name.length > 10){
-        hit.nameLengthClass = "md";
-      }
+        if (typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
+          hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<em>/g,'<tspan>');
+          hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
+        }
 
-      if(typeof hit.text !== "undefined" && hit.text.length > 150){
-        hit.textLengthClass = "xxl";
+        if(typeof hit.name !== "undefined" && hit.name.length > 22){
+          hit.nameLengthClass = "xxl";
+        }
+        else if(typeof hit.name !== "undefined" && hit.name.length > 18){
+          hit.nameLengthClass = "xl";
+        }
+        else if(typeof hit.name !== "undefined" && hit.name.length > 14){
+          hit.nameLengthClass = "lg";
+        }
+        else if(typeof hit.name !== "undefined" && hit.name.length > 10){
+          hit.nameLengthClass = "md";
+        }
+
+        if(typeof hit.text !== "undefined" && hit.text.length > 150){
+          hit.textLengthClass = "xxl";
+        }
+        else if(typeof hit.text !== "undefined" && hit.text.length > 130){
+          hit.textLengthClass = "xl";
+        }
+        else if(typeof hit.text !== "undefined" && hit.text.length > 100){
+          hit.textLengthClass = "lg";
+        }
+        return hit;
       }
-      else if(typeof hit.text !== "undefined" && hit.text.length > 130){
-        hit.textLengthClass = "xl";
-      }
-      else if(typeof hit.text !== "undefined" && hit.text.length > 100){
-        hit.textLengthClass = "lg";
-      }
-      return hit;
     },
     cssClasses: {
       root: "results-cards",
@@ -390,28 +394,46 @@ searchstone.addWidget(
 var lastSentGa = null;
 
 var sendAnalytics = function() {
-  var params = [];
 
+  //params to url
+  var params = [];
   params.push(serializeRefinements(Object.assign({}, search.helper.state.disjunctiveFacetsRefinements, search.helper.state.facetsRefinements)));
   params.push(serializeNumericRefinements(search.helper.state.numericRefinements));
-
   params = params.filter(function(n) {
     return n != '';
   }).join('&');
+
+  //convert url to object
+  var objParams = JSON.parse('{"' + decodeURI(params.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+
+  //convert object to array
+  var arrParams = $.map(objParams, function(value, index) {
+      return [value];
+  });
 
   var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
 
   if(lastSentGa !== paramsToSend) {
 
+    //Google Analytics
+    //ga('set', 'page', '/algoliasearch/?query=' + search.helper.state.query + '&' + params);
+    //ga('send', 'pageview');
+
     //GTM
     dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
 
     //segment.io
-    analytics.page( 'algolia instantsearch', {path: '/instantsearch/?query=' + search.helper.state.query + '&' + params });
+    //analytics.page( '[SEGMENT] instantsearch', {path: '/instantsearch/?query=' + search.helper.state.query + '&' + params });
+
+    //kissmetrics
+    _kmq.push(['record', '[KM] Viewed Result page', {
+      'Query': search.helper.state.query ,
+      'Number of Hits': search.helper.lastResults.nbHits,
+      'Search Params': arrParams
+    }]);
 
     lastSentGa = paramsToSend;
-
-    // console.log('sent - ' + paramsToSend);
+    //console.log('sent - ' + paramsToSend);
   }
 };
 
@@ -454,12 +476,10 @@ var serializeNumericRefinements = function(numericRefinements) {
             equals.push(filter['='][equal]);
           }
         }
-
         numericStr.push(attr + '=' + attr + '_' + equals.join('-'));
       }
     }
   }
-
   return numericStr.join('&');
 };
 
@@ -474,11 +494,11 @@ window.onbeforeunload = function() {
 var analyticsTimeout;
 
 searchstone.on('render', function() {
+
   if(analyticsTimeout) {
     clearTimeout(analyticsTimeout);
   }
-
-  analyticsTimeout = setTimeout(sendAnalytics, 3000);
+  analyticsTimeout = setTimeout(sendAnalytics, 2000);
 
   if( $('#stats').find('.nbPages').data('nb-pages') === 1 ){
     $('.load-more').addClass('hide');

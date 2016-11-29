@@ -21,3 +21,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 analytics.load("b1EnU092c9zFiUe4WhKM46Bu9hSN0y63");
 analytics.page();
 }}();
+
+//kissmetrics
+var _kmq = _kmq || [];
+var _kmk = _kmk || '48c6c32e10ce72788509b898a879715ae35416e8';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
