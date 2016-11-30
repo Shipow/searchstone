@@ -254,11 +254,12 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA'];
+var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS'];
 set.reverse();
 
 var setFull = {
-  KARA : "One Night in Karazhan",
+  GANGS : "Gadgetzan",
+  KARA : "Karazhan",
   OG : "Old Gods",
   TGT : "The Grand Tournament",
   LOE : "League of Explorers",

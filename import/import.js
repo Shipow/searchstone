@@ -34,7 +34,8 @@ var set = {
   "NAXX" : "Naxxramas",
   "PROMO" : "Promotion",
   "REWARD" : "Reward",
-  "KARA" : "One Night in Karazhan"
+  "KARA" : "Karazhan",
+  "GANGS" : "Gadtgetzan"
 }
 
 var setID = {
@@ -47,7 +48,8 @@ var setID = {
   "TGT" : 6,
   "OG" : 7,
   "KARA" : 8,
-  "REWARD" : 99
+  "KARA" : 9,
+  "GANGS" : 99
 }
 
 var dust = {
@@ -110,7 +112,7 @@ var map = {
   "FREEZE" : "Freeze",
   "FORGETFUL" : "Forgetful",
   "POISONOUS" : "Poisonous",
-  "TREASURE" : "Discover",
+  "DISCOVER" : "Discover",
   "ImmuneToSpellpower" : "Immune to spell power",
   "SILENCE" : "Silence",
   "ADJACENT_BUFF" : "Adjacent buff",
@@ -205,7 +207,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       }
 
       // 2016 standard
-      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" || c.set === "KARA" ){
+      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" || c.set === "KARA" || c.set === "GANGS" ){
         c.format = ['Wild','Standard'];
       }
       else {

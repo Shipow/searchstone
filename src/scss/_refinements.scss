@@ -644,12 +644,12 @@
 
     &[data-facet-value="League of Explorers"]::before,
     &[data-facet-value="LOE"]::before {
-      background-position: 68px 24px;
+      background-position: -70px 44px;
     }
 
     &[data-facet-value="Blackrock Mountain"]::before,
     &[data-facet-value="BRM"]::before {
-      background-position: 46px 24px;
+      background-position: -94px 44px;
     }
 
     &[data-facet-value="Goblins vs Gnomes"]::before,
@@ -677,9 +677,14 @@
       background-position: 116px 24px;
     }
 
-    &[data-facet-value="One Night in Karazhan"]::before,
+    &[data-facet-value="Karazhan"]::before,
     &[data-facet-value="KARA"]::before {
-      background-position: 22px 24px;
+      background-position: -118px 44px;
+    }
+
+    &[data-facet-value="Gadgetzan"]::before,
+    &[data-facet-value="GANGS"]::before {
+      background-position: 0 22px;
     }
   }
 }

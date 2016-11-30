@@ -6,7 +6,7 @@
 [Searchstone.io](http://searchstone.io) is an open source search engine for the Heartstone card playing video game.
 It relies on [Algolia](https://community.algolia.com/?utm_medium=link&utm_source=github&utm_campaign=searchstone) API for the search and [instantsearch.js](https://community.algolia.com/instantsearch.js/?utm_medium=link&utm_source=githubm&utm_campaign=searchstone) for the UI.
 
-I've published an article on Medium that explain a bit more the project: 
+I've published an article on Medium that explain a bit more the project:
 [A painstakingly crafted search for Hearthstone]
 (https://medium.com/@Kevin_Granger/a-painstakingly-crafted-search-for-hearthstone-c21b3fa4223c)
 
@@ -35,3 +35,12 @@ $> NODE_ENV=production gulp deploy
 ```
 
 
+https://github.com/HearthSim/UnityPack
+https://github.com/hearthsim/hearthstonejson
+
+
+Extract pics
+pip install lz4 hearthstone unitypack pillow
+python ./generate_card_textures.py --outdir=textures/ /Applications/Hearthstone/Data/OSX/card*.unity3d
+
+Download latest cardcollectible.json
