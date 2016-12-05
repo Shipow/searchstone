@@ -526,7 +526,7 @@
         drawProgress = 5;
 
         if (card.multiClassGroup && card.type === "MINION") {
-          ctx.drawImage(getAsset(sw.multiBanner), 0, 0, 184, 369, 17 * s, 88 * s, 184 * s, 369 * s);
+          ctx.drawImage(getAsset(sw.multiBanner), -15, 0, 184, 369, 17 * s, 88 * s, 184 * s, 369 * s);
         }
 
         if(card.costHealth){

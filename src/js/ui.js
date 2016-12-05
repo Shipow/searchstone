@@ -179,7 +179,7 @@ $('.card-picture:visible').each(function(i,e){
     cardObj.type = $(e).data("card-type").toUpperCase();
     cardObj.rarity = $(e).data("card-rarity").toUpperCase();
     cardObj.cost = " ";
-    cardObj.multiClassGroup = $(e).data("card-multiClassGroup");
+    cardObj.multiClassGroup = $(e).data("card-multiclassgroup");
     cardObj.durability = " ";
     cardObj.attack = " ";
     cardObj.health = " ";
@@ -187,6 +187,13 @@ $('.card-picture:visible').each(function(i,e){
     cardObj.text = "";
     cardObj.playerClass = $(e).data("card-playerclass");
     cardObj.texture = $(e).data("card-id");
+
+
+    //quick fix
+
+    if(cardObj.playerClass.length > 15 ){
+      cardObj.playerClass = "Neutral";
+    }
 
     if ( $(e).data("card-race") !== ""){
       cardObj.race = " ";
