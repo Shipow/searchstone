@@ -151,12 +151,11 @@ $('.searchbox').on('focus','.ais-search-box--input', function(){
 // detect Chrome
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
-var cloudinaryUrl = 'http://res.cloudinary.com/hilnmyskv/image/upload/';
+var cloudinaryUrl = 'https://res.cloudinary.com/hilnmyskv/image/upload/';
 
 if (isChrome){
-  cloudinaryUrl = 'http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,';
+  cloudinaryUrl = 'https://res.cloudinary.com/hilnmyskv/image/upload/f_auto,';
 }
-
 
 sunwell.settings = {
   titleFont: 'arial',
@@ -180,6 +179,7 @@ $('.card-picture:visible').each(function(i,e){
     cardObj.type = $(e).data("card-type").toUpperCase();
     cardObj.rarity = $(e).data("card-rarity").toUpperCase();
     cardObj.cost = " ";
+    cardObj.multiClassGroup = $(e).data("card-multiClassGroup");
     cardObj.durability = " ";
     cardObj.attack = " ";
     cardObj.health = " ";

@@ -525,6 +525,10 @@
 
         drawProgress = 5;
 
+        if (card.multiClassGroup && card.type === "MINION") {
+          ctx.drawImage(getAsset(sw.multiBanner), 0, 0, 184, 369, 17 * s, 88 * s, 184 * s, 369 * s);
+        }
+
         if(card.costHealth){
             ctx.drawImage(getAsset('health'), 0, 0, 167, 218, 24 * s, 62 * s, 167 * s, 218 * s);
             ctx.save();
@@ -584,33 +588,27 @@
 
 
         if (card.set !== 'CORE') {
-            (function () {
-                var xPos;
-
-                if (card.type === 'SPELL') {
-                    xPos = 265;
-                }
-
-                if (card.type === 'MINION') {
-                    xPos = 265;
-                }
-
-                if (card.race && card.type === 'MINION') {
-                    ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 281, 244, xPos * s, 734 * s, (281 * 0.95) * s, (244 * 0.95) * s);
+          (function () {
+            ctx.globalCompositeOperation = 'color-burn';
+            if (card.type === 'MINION') {
+                if (card.race) {
+                    ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 128, 128, 270 * s, 723 * s, 256 * s, 256 * s);
                 } else {
-                    if (card.type === 'SPELL') {
-                        ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 281, 244, xPos * s, 740 * s, 253 * s, 220 * s);
-                    } else {
-                        ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 281, 244, xPos * s, 734 * s, 281 * s, 244 * s);
-                    }
-
+                    ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 128, 128, 270 * s, 735 * s, 256 * s, 256 * s);
                 }
-            })();
+            } else if (card.type === 'SPELL') {
+                ctx.globalAlpha = 0.7;
+                ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 128, 128, 264 * s, 726 * s, 256 * s, 256 * s);
+            } else if (card.type === 'WEAPON') {
+                ctx.globalCompositeOperation = 'lighten';
+                ctx.globalAlpha = 0.07;
+                ctx.drawImage(getAsset(sw.bgLogo), 0, 0, 128, 128, 264 * s, 735 * s, 256 * s, 256 * s);
+            }
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.globalAlpha = 1;
+          })();
         }
 
-        drawProgress = 9;
-        drawProgress = 10;
-        drawProgress = 11;
         drawProgress = 12;
 
         ctx.restore();
@@ -715,19 +713,10 @@
             }
         }
 
-
-        if (['BRM', 'GVG', 'LOE', 'NAXX', 'TGT', 'OG'].indexOf(card.set) === -1) {
-            card.sunwell.bgLogo = 'bg-cl';
+        if (['BRM', 'GVG', 'KARA', 'LOE', 'NAXX', 'TGT', 'OG', 'GANGS'].indexOf(card.set) === -1) {
+            card.sunwell.bgLogo = 'set-classic';
         } else {
-            //quick fix for naming consistency issue: https://github.com/HearthSim/sunwell/issues/12
-            if (card.set === 'NAXX'){
-              card.set = 'NAX';
-            }
-            card.sunwell.bgLogo = 'bg-' + card.set.toLowerCase();
-        }
-
-        if (card.type === 'SPELL') {
-            card.sunwell.bgLogo = 'spell-' + card.sunwell.bgLogo;
+            card.sunwell.bgLogo = 'set-' + card.set.toLowerCase();
         }
 
         loadList.push(card.sunwell.bgLogo);
@@ -736,6 +725,10 @@
             loadList.push('race');
         }
 
+        if (['GRIMY_GOONS', 'JADE_LOTUS', 'KABAL'].indexOf(card.multiClassGroup) !== -1) {
+          card.sunwell.multiBanner = 'multi-' + card.multiClassGroup.toLowerCase();
+          loadList.push(card.sunwell.multiBanner);
+        }
 
         if (typeof card.texture === 'string' && card.set !== 'CHEAT') {
             if (s <= 0.5) {
