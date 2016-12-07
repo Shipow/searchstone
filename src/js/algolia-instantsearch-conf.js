@@ -11,7 +11,7 @@ let searchstone = instantsearch({
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_cost--asc',
   urlSync: {
-    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health','attribute:format', 'attribute:artist']
+    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist']
   },
   searchParameters: {
     facets: ['artist']

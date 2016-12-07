@@ -1,8 +1,10 @@
-function openLightbox() {
+function openLightbox(e) {
   $('.lightbox').toggleClass('hidden');
   $('body, html').css('overflow:hidden');
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
+  jHash.val('card', $(e).find('.hit-card').data('target'));
+  cardDetail(e);
 }
 
 function closeLightbox() {
@@ -12,6 +14,7 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
+  jHash.clearQuery();
 }
 
 var goldenLoaded = false;
@@ -96,10 +99,7 @@ $('.sbx-custom__reset').on('click touchstart', function(e) {
 
 $('#results, #table').on('click', '.ais-hits--item', function(e) {
   e.stopPropagation();
-  openLightbox();
-
-  cardDetail(this);
-
+  openLightbox(this);
 });
 
 $("#results").on('dataavailable','.card-picture', function(){
