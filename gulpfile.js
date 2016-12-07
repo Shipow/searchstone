@@ -277,7 +277,13 @@ gulp.task('cname', function () {
 		.pipe(gulp.dest('build'));
 });
 
-
+// -------------------------------------
+//   Task: sitemap
+// -------------------------------------
+gulp.task('sitemap', function () {
+	return gulp.src('src/sitemap.xml')
+		.pipe(gulp.dest('build'));
+});
 
 // -------------------------------------
 //   Task: Build DEV - PROD - HAML
@@ -287,7 +293,7 @@ gulp.task('build:dev',['clean'], function(callback) {
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'cname', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'cname', 'sitemap', callback);
 });
 
 gulp.task('build:haml', function(callback) {
@@ -337,7 +343,6 @@ gulp.task('export:algolia-index', function(){
     });
   });
 });
-
 
 gulp.task('export:algolia-settings', function(){
   var client = algolia(config.algolia.appID, config.algolia.apiKey);
