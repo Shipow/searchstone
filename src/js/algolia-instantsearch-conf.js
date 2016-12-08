@@ -112,7 +112,7 @@ searchstone.addWidget(
       return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
+      item: '<a href="?hFR[playerClass][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
     }
   })
 );
@@ -127,7 +127,7 @@ searchstone.addWidget(
       return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
+      item: '<a href="?hFR[playerClass][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
     }
   })
 );
@@ -207,7 +207,7 @@ searchstone.addWidget(
     },
     templates: {
       header: 'Rarity',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
+      item: '<a href="?dFR[rarity][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}">{{name}}</a>'
     }
   })
 );
@@ -231,7 +231,7 @@ searchstone.addWidget(
     ],
     templates: {
       header: 'Mana',
-      item: '<a href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
+      item: '<a rel="nofollow" href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
     },
     autoHideContainer: false
   })
@@ -286,7 +286,7 @@ searchstone.addWidget(
     },
     templates: {
       header: 'Set',
-      item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value-full">{{fullName}}</span> <span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
+      item: '<a href="?fR[set][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value-full">{{fullName}}</span> <span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
     }
   })
 );
@@ -298,7 +298,7 @@ searchstone.addWidget(
     operator: 'or',
     templates: {
       header: 'Type',
-      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?dFR[type][0]={{name}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     // collapsible: true
   })
@@ -311,7 +311,7 @@ searchstone.addWidget(
     operator: 'or',
     templates: {
       header: 'Race',
-      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?dFR[race][0]={{name}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     collapsible: {
       collapsed: true
@@ -327,7 +327,7 @@ searchstone.addWidget(
     limit: 50,
     templates: {
       header: 'Mechanics',
-      item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?fR[mechanics][0]={{name}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     collapsible: {
       collapsed: true
