@@ -11,7 +11,7 @@ let searchstone = instantsearch({
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_cost--asc',
   urlSync: {
-    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist']
+    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist', 'attribute:lang']
   },
   searchParameters: {
     facets: ['artist']
@@ -32,7 +32,7 @@ searchstone.addWidget(
 // hits, the template is in index.haml
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 12,
+    hitsPerPage: 24,
     container: '#results',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -84,7 +84,7 @@ searchstone.addWidget(
 
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 12,
+    hitsPerPage: 24,
     container: '#table',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -202,7 +202,6 @@ searchstone.addWidget(
     container: '#rarity',
     attributeName: 'rarity',
     operator: 'or',
-    limit: 10,
     sortBy: function(a,b){
       return rarity.indexOf(a.name) - rarity.indexOf(b.name);
     },
@@ -276,7 +275,6 @@ searchstone.addWidget(
     container: '#set',
     attributeName: 'set',
     operator: 'and',
-    limit: 10,
     sortBy: function(a,b){
       return set.indexOf(a.name) - set.indexOf(b.name);
     },
@@ -298,7 +296,6 @@ searchstone.addWidget(
     container: '#type',
     attributeName: 'type',
     operator: 'or',
-    limit: 10,
     templates: {
       header: 'Type',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
@@ -312,7 +309,6 @@ searchstone.addWidget(
     container: '#race',
     attributeName: 'race',
     operator: 'or',
-    limit: 10,
     templates: {
       header: 'Race',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
@@ -328,7 +324,7 @@ searchstone.addWidget(
     container: '#mechanics',
     attributeName: 'mechanics',
     operator: 'and',
-    limit: 20,
+    limit: 50,
     templates: {
       header: 'Mechanics',
       item: '<a href="#" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
@@ -507,6 +503,12 @@ searchstone.on('render', function() {
     $('.load-more').removeClass('hide');
   }
   sunwellRender();
+
+  if (typeof jHash.val('card') !== 'undefined'){
+    var e = $('#'+ jHash.val('card')).parent() ;
+    openLightbox(e);
+  }
+
 });
 
 sunwell.init();

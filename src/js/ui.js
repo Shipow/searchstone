@@ -1,9 +1,10 @@
-function openLightbox(e) {
+window.openLightbox = function(e) {
   $('.lightbox').toggleClass('hidden');
   $('body, html').css('overflow:hidden');
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
   jHash.val('card', $(e).find('.hit-card').data('target'));
+  console.log(e);
   cardDetail(e);
 }
 
@@ -116,7 +117,7 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
 
   if($(this).hasClass('template-cards')){
     search.helper
-      .setQueryParameter('hitsPerPage',12)
+      .setQueryParameter('hitsPerPage',24)
       .setQueryParameter('attributesToRetrieve', '*').search();
   } else {
     search.helper
@@ -133,7 +134,7 @@ $("#toggleFilters").on('click', function(e){
 });
 
 
-var defaultHitsPerPage = 12;
+var defaultHitsPerPage = 24;
 var hitsPerPage = defaultHitsPerPage;
 
 $(".load-more").on('click', function(e){

@@ -23,7 +23,7 @@ analytics.page();
 }}();
 
 //kissmetrics
-var _kmq = _kmq || [];
+window._kmq = window._kmq || [];
 var _kmk = _kmk || '48c6c32e10ce72788509b898a879715ae35416e8';
 function _kms(u){
   setTimeout(function(){

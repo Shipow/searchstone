@@ -479,8 +479,11 @@
     margin-top: 90px;
   }
 
-  .detail-name {
+  .detail-name a{
+    text-decoration: none;
+    color: white;
     font-size: 2.4em;
+    line-height: 1.1em;
   }
 
   .detail-nameVO {
