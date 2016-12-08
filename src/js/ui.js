@@ -3,8 +3,7 @@ window.openLightbox = function(e) {
   $('body, html').css('overflow:hidden');
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
-  jHash.val('card', $(e).find('.hit-card').data('target'));
-  console.log(e);
+  //jHash.val('card', $(e).find('.hit-card').data('target'));
   cardDetail(e);
 }
 
