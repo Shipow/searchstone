@@ -4,18 +4,11 @@
 var algoliasearch = require('algoliasearch');
 var _ = require('lodash');
 var fs = require('fs');
-
-var config = {
-  appId: 'OWD8XOXT0U',
-  adminAPIKey: 'efe427236d904504fdad0b60a9dd4ec3',
-  indexName: 'searchstone_cost--asc',
-};
-
-var domainName = 'http://searchstone.io';
+var config = require('../config.json');
 
 var nameCollection = {};
-var client = algoliasearch(config.appId, config.adminAPIKey);
-var index = client.initIndex(config.indexName);
+var client = algoliasearch(config.algolia.appID, config.algolia.apiKey);
+var index = client.initIndex(config.algolia.index);
 var browser = index.browseAll();
 var hits = [];
 
@@ -27,7 +20,7 @@ function buildSitemapIndex(urls) {
       'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
 
   urls.forEach(function (url) {
-    xml.push('<url><loc>' + domainName + url + '</loc></url>');
+    xml.push('<url><loc>' + config.prod.protocol + '://' +  config.prod.domain + url + '</loc></url>');
   });
 
   xml.push('</urlset>');
@@ -52,7 +45,7 @@ browser.on('end', function onEnd() {
 
   var urls = [];
   _.each(nameCollection, function(item) {
-    urls.push('?q=' + encodeURIComponent(item.name)  + '&amp;dFR[lang][0]=' + item.lang + '&amp;is_v=1');
+    urls.push('?q=' + encodeURIComponent(item.name) + '&amp;dFR[lang][0]=' + item.lang + '&amp;is_v=1');
   });
 
   console.log(urls.length + ' urls');
