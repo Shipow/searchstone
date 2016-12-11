@@ -1,3 +1,6 @@
+//https://support.google.com/webmasters/answer/183668?hl=en
+//A sitemap file can't contain more than 50,000 URLs and must be no larger than 10 MB uncompressed.
+
 var algoliasearch = require('algoliasearch');
 var _ = require('lodash');
 var fs = require('fs');
@@ -8,7 +11,7 @@ var config = {
   indexName: 'searchstone_cost--asc',
 };
 
-var domainName = 'http://searchstone.io/';
+var domainName = 'http://searchstone.io';
 
 var nameCollection = {};
 var client = algoliasearch(config.appId, config.adminAPIKey);
@@ -32,7 +35,6 @@ function buildSitemapIndex(urls) {
   return xml.join('\n');
 }
 
-
 browser.on('result', function onResult(content) {
   _.each(content.hits, function(hit) {
 
@@ -50,7 +52,7 @@ browser.on('end', function onEnd() {
 
   var urls = [];
   _.each(nameCollection, function(item) {
-    urls.push('/?q=' + encodeURIComponent(item.name)  + '&dFR[lang][0]=' + item.lang + '&is_v=1');
+    urls.push('?q=' + encodeURIComponent(item.name)  + '&amp;dFR[lang][0]=' + item.lang + '&amp;is_v=1');
   });
 
   console.log(urls.length + ' urls');
