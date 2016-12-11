@@ -1,0 +1,16 @@
+{
+  "name": "algolia-sitemap-generator",
+  "version": "1.0.0",
+  "description": "Toolbox helping generate a sitemap file based on an Algolia index",
+  "main": "app.js",
+  "dependencies": {
+    "algoliasearch": "^3.19.2",
+    "lodash": "^4.17.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "null"
+  },
+  "author": "Alexandre Collin alex@algolia.com",
+  "license": "ISC"
+}
