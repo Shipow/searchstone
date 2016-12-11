@@ -342,11 +342,11 @@
     &::after {
       content: '';
       position: absolute;
-      background: url('../img/cardback-legendrank.png') no-repeat;
+      background: url('../img/back-loading.png') no-repeat;
       background-size: 100%;
-      width: 250px;
-      height: 452px;
-      top:50px;
+      width: 270px;
+      height: 462px;
+      top:40px;
       left:0;
       animation: cardBackAnim .6s ease;
       opacity: 0;
