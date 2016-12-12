@@ -86,7 +86,7 @@
     background-size: 90%;
     background-position: center bottom;
     z-index: 1;
-    background-image: url('./img/back-loading.png');
+    background-image: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,w_240,q_60,fl_lossy/http://searchstone.io/img/back-loading.png');
   }
 
   .card-overlay {
@@ -340,7 +340,7 @@
     &::after {
       content: '';
       position: absolute;
-      background: url('../img/back-loading.png') no-repeat;
+      background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,w_240,q_60,fl_lossy/http://searchstone.io/img/back-loading.png') no-repeat;
       background-size: 100%;
       width: 230px;
       height: 330px;

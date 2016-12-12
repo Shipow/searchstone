@@ -5,7 +5,7 @@ window.openLightbox = function(e) {
   $('.background-image').addClass('blur');
   //jHash.val('card', $(e).find('.hit-card').data('target'));
   cardDetail(e);
-}
+};
 
 function closeLightbox() {
   $('.lightbox_frame').remove();
@@ -46,15 +46,15 @@ function cardDetail(el) {
   //analytics.track('[SGMNT] Opened Card', {name: 'cardName',positon:'hitPosition'});
   _kmq.push(['record', '[KM] Opened Card', {'Clicked Hit Position': position, 'Card ID': target}]);
 
-};
+}
 
 function removePlaceholder(el){
   el.siblings('.placeholder').remove();
-};
+}
 
 function playFlash(){
   $('.lightbox').removeClass('flash');
-};
+}
 
 $('.lightbox').on('click', function(){
   closeLightbox();
@@ -142,8 +142,8 @@ sunwell.settings = {
   bodyFontSize: 24,
   bodyLineHeight: 55,
   bodyFontOffset: {x: 0, y: 0},
-  assetFolder: cloudinaryUrl + 'q_60,fl_lossy/',
-  textureFolder: cloudinaryUrl + 'w_300,q_80,fl_lossy/',
+  assetFolder: cloudinaryUrl + 'q_20,fl_lossy/',
+  textureFolder: cloudinaryUrl + 'w_300,q_60,fl_lossy/',
   autoInit: false,
   debug: false
 };
