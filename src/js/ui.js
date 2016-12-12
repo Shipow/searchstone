@@ -34,7 +34,9 @@ function cardDetail(el) {
     type:"video/webm"
   });
 
-  video.appendTo($('#results #'+ target).find('.golden-wrapper'));
+  if ($('#results #'+ target).find('video').length === 0){
+    video.appendTo($('#results #'+ target).find('.golden-wrapper'));
+  }
 
   // clone in lightbox
   $('.card-detail-wrapper').append($('#results #'+ target).clone());
