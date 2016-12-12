@@ -53,18 +53,5 @@
     opacity: 0;
     visibility: hidden;
   }
-
-  .loading {
-    position: absolute;;
-    bottom: 20px;
-    right: 20px;
-    color: #FEF68E;
-    z-index: 9999;
-
-    .loader{
-      position: relative;
-      top: 6px;
-      margin-right: 4px;
-    }
-  }
+  
 }

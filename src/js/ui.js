@@ -17,42 +17,27 @@ function closeLightbox() {
   jHash.clearQuery();
 }
 
-var goldenLoaded = false;
-
 function cardDetail(el) {
 
   // hit reference
   var target = $(el).find('.hit').data('target');
   var position = $(el).find('.hit').data('position');
 
-  // url of the golden card
-  var golden = $('#results #'+ target).find('.golden-wrapper').data('golden');
+  var goldenAnimation = $('#results #'+ target).find('.golden-wrapper').data('golden');
 
-  // create the golden image
-  var goldenImg =  new Image();
+  var video = $('<video />', {
+    autoplay:"autoplay",
+    loop:"loop",
+    width:"286",
+    height:"395",
+    src: goldenAnimation,
+    type:"video/webm"
+  });
 
-  // do something when loaded
-  goldenLoaded = false;
-  $('.loading .msg').text('loading...');
-  $('.loading .loader').removeClass('hide');
-
-  goldenImg.onload = function(){
-    goldenLoaded = true;
-    $('.loading .msg').text('Golden ready! (click the card)');
-    $('.loading .loader').addClass('hide');
-  };
+  video.appendTo($('#results #'+ target).find('.golden-wrapper'));
 
   // clone in lightbox
   $('.card-detail-wrapper').append($('#results #'+ target).clone());
-
-  // append golden in lightbox
-  $('.card-detail-wrapper').find('.golden-wrapper').append(goldenImg);
-
-  // set image src
-  goldenImg.src = golden;
-
-  // delay a bit sunwell
-  setTimeout( sunwellRender, 200 );
 
   //tracking goal
   dataLayer.push({'event': 'open_cardDetails'});
@@ -77,12 +62,10 @@ $('.card-detail-wrapper').on('click', '.show-golden', function(e){
   e.preventDefault();
   e.stopPropagation();
   $('.lightbox').removeClass('flash');
-  if (goldenLoaded){
-    $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('flip');
-    $('.card-detail-wrapper').find('.normal-wrapper').toggleClass('flip');
-    $('.lightbox').addClass('flash');
-    setTimeout(playFlash,150);
-  }
+  $('.card-detail-wrapper').find('.golden-wrapper').toggleClass('flip');
+  $('.card-detail-wrapper').find('.normal-wrapper').toggleClass('flip');
+  $('.lightbox').addClass('flash');
+  setTimeout(playFlash,150);
 });
 
 $(document).keyup(function(e) {
