@@ -2,10 +2,6 @@
 %head
   %meta{charset: "UTF-8"}
   %title Searchstone - Instant Search Hearthstone Cards
-  %link{href: "http://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css", rel: "stylesheet", type: "text/css"}
-  %link{href: "app.css", rel: "stylesheet", type: "text/css"}
-  %link{href: "https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700&subset=latin,latin-ext", rel: "stylesheet", type: "text/css"}
-  %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
   %meta{name: "viewport", content:"width=device-width, initial-scale=0.9, maximum-scale=0.9, user-scalable=0"}
   -# twitter
   %meta{name: "twitter:card", content: "summary_large_image"}
@@ -17,6 +13,11 @@
   %meta{property: "og:description", content: "Search and browse all existing cards in Hearthstone: Heroes of Warcraft"}
   %meta{property: "og:image", content: "http://searchstone.io/img/og_screen.png"}
   %meta{name: "google-site-verification", content: "O2oib5j8AJKivxViD5MYZt1y4vNvqer2JZ_Esdm5rns"}
+
+  %link{href: "app.css", rel: "stylesheet", type: "text/css"}
+  %link{href: "https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700&subset=latin,latin-ext", rel: "stylesheet", type: "text/css"}
+  %link{href: "https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css", rel: "stylesheet", type: "text/css"}
+  %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
 
 %body
   .background-image
@@ -179,8 +180,6 @@
         %span Built by <a href="https://twitter.com/kevin_granger">Shipow</a> with
           %a.instantsearch{href: "https://community.algolia.com/instantsearch.js/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"} Instantsearch.js
 
-
-
   .lightbox.hidden
     %a.close{href: "javascript:void(0);"}
       %svg{role: "img"}
@@ -198,8 +197,6 @@
       #years.tab-panel.active
       #brands.tab-panel
 
-  %script{src: "js/app.js"}
-
   .svg-icons{style: "display:none"}
     <!-- inject:svg --><!-- endinject -->
     %svg{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
@@ -207,3 +204,5 @@
         %path#Spell{d: "M 43, 37 C 122, 10, 188, 13, 268, 37", fill: "none", stroke: "black", stroke-width:"1"}
         %path#Minion{d: "M 49, 40 C 131, 46, 152, 8, 258, 29", fill: "none", stroke: "black", stroke-width:"1"}
         %path#Weapon{d: "M 49, 25, 258, 25", fill: "none", stroke: "black", stroke-width:"1"}
+
+  %script{src: "js/app.js"}

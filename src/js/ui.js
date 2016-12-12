@@ -142,8 +142,8 @@ sunwell.settings = {
   bodyFontSize: 24,
   bodyLineHeight: 55,
   bodyFontOffset: {x: 0, y: 0},
-  assetFolder: cloudinaryUrl + 'q_60/',
-  textureFolder: cloudinaryUrl + 'w_300,q_80/',
+  assetFolder: cloudinaryUrl + 'q_60,fl_lossy/',
+  textureFolder: cloudinaryUrl + 'w_300,q_80,fl_lossy/',
   autoInit: false,
   debug: false
 };
