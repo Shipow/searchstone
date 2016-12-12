@@ -87,12 +87,6 @@ $('#results, #table').on('click', '.ais-hits--item', function(e) {
   openLightbox(this);
 });
 
-$("#results").on('dataavailable','.card-picture', function(){
-  var el = $(this);
-  el.parent('.card-wrapper').removeClass('fade');
-  setTimeout( removePlaceholder(el), 200 );
-});
-
 $("#template-toggle").on('click', 'a:not(.active)', function(e){
   e.preventDefault();
 
@@ -186,8 +180,5 @@ $('.card-picture:visible').each(function(i,e){
 
     sunwell.createCard(cardObj, 300, e);
 
-    if ($(e).attr("src")){
-      $(e).parents('.card-wrapper').addClass('loaded');
-    }
   });
 };

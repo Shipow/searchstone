@@ -506,7 +506,9 @@ searchstone.on('render', function() {
 
   if (typeof jHash.val('card') !== 'undefined'){
     var e = $('#'+ jHash.val('card')).parent() ;
-    openLightbox(e);
+    setTimeout(function(){
+      openLightbox(e);
+    }, 500);
   }
 
 });

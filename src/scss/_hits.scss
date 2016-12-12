@@ -65,14 +65,6 @@
       outline: 0;
     }
 
-    &.fade .card-picture {
-      opacity: 0;
-    }
-
-    &.loaded .card-picture {
-      opacity: 1;
-    }
-
     &.lang-ruRU,
     &.lang-jaJP {
       .card-title{
