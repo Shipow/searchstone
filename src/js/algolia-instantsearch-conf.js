@@ -5,7 +5,7 @@ let instantsearch = require('instantsearch.js');
 import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
-//config
+//config cards
 let searchstone = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
@@ -490,6 +490,28 @@ window.onbeforeunload = function() {
 
 var analyticsTimeout;
 
+//config decks
+let hearthpwn = instantsearch({
+  appId: 'OWD8XOXT0U',
+  apiKey: '4c77c51c3822c8a719b418b0cb47913e',
+  indexName: 'hs-deck',
+  searchParameters: {
+    facets: ['cards']
+  }
+});
+
+hearthpwn.addWidget(
+  instantsearch.widgets.hits({
+    hitsPerPage: 5,
+    container: '#topdecks',
+    templates: {
+      empty: 'Nothing for this card yet. Please come back soon!',
+      item: document.getElementById('hit-template-topdeck').innerHTML
+    }
+  })
+);
+window.hearthpwn = hearthpwn;
+
 searchstone.on('render', function() {
 
   if(analyticsTimeout) {
@@ -503,6 +525,7 @@ searchstone.on('render', function() {
     $('.load-more').removeClass('hide');
   }
   sunwellRender();
+  hearthpwn.start();
 
   if (typeof jHash.val('card') !== 'undefined'){
     var e = $('#'+ jHash.val('card')).parent() ;

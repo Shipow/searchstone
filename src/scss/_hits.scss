@@ -78,9 +78,10 @@
 
   .placeholder {
     position: absolute;
-    width: 300px;
+    width: 290px;
     height: 442px;
-    top: -20px;
+    left: 5px;
+    top: -25px;
     opacity: .8;
     background-repeat: no-repeat;
     background-size: 90%;
@@ -364,46 +365,6 @@
     color: #fff;
     text-shadow: 0 1px 1px #000;
 
-    .Hunter {
-      color: $hunter-color;
-    }
-
-    .Druid {
-      color: $druid-color;
-    }
-
-    .Mage {
-      color: $mage-color;
-    }
-
-    .Paladin {
-      color: $paladin-color;
-    }
-
-    .Priest {
-      color: $priest-color;
-    }
-
-    .Rogue {
-      color: $rogue-color;
-    }
-
-    .Shaman {
-      color: $shaman-color;
-    }
-
-    .Warlock {
-      color: $warlock-color;
-    }
-
-    .Warrior {
-      color: $warrior-color;
-    }
-
-    .Neutral {
-      color: $neutral-color;
-    }
-
     .detail-set {
       box-sizing: border-box;
       padding-left: 26px;
@@ -459,7 +420,11 @@
       }
 
       &.KARA::before {
-        background-position: 22px 24px;
+        background-position: 24px 46px;
+      }
+
+      &.GANGS::before {
+        background-position: 0 24px;
       }
     }
 
@@ -475,13 +440,15 @@
   .detail-set{
     font-size: 1.3em;
     margin-top: 90px;
+    margin-bottom: 8px;
   }
 
   .detail-name a{
     text-decoration: none;
     color: white;
     font-size: 2.4em;
-    line-height: 1.1em;
+    line-height: 1em;
+    margin-bottom: 8px;
   }
 
   .detail-nameVO {
@@ -492,17 +459,31 @@
 
   .detail-quote {
     display: block;
-    padding: 2em 0 1em;
+    padding: 1.5em 0 .8em;
     font-size: 1.3em;
     font-style: italic;
   }
 
   .detail-link {
     display: block;
-    margin: 1em 0 1em;
+    margin: .5em 0 1em;
     font-size: 1.1em;
-    color: #F7D839;
+    color: white;
     text-decoration: none;
+
+    &:hover{
+      color: #F7D839;
+    }
+
+    svg {
+      fill: white;
+      width: 20px;
+      height: 16px;
+      display: inline-block;
+      margin-right: 4px;
+      position: relative;
+      top: 3px;
+    }
   }
 
   .detail-dust {
@@ -796,42 +777,6 @@
             margin-right: 8px
           }
         }
-
-        &.Hunter {
-          color: $hunter-color;
-        }
-
-        &.Druid {
-          color: $druid-color;
-        }
-
-        &.Mage {
-          color: $mage-color;
-        }
-
-        &.Paladin {
-          color: $paladin-color;
-        }
-
-        &.Priest {
-          color: $priest-color;
-        }
-
-        &.Rogue {
-          color: $rogue-color;
-        }
-
-        &.Shaman {
-          color: $shaman-color;
-        }
-
-        &.Warlock {
-          color: $warlock-color;
-        }
-
-        &.Warrior {
-          color: $warrior-color;
-        }
       }
 
       strong {
@@ -848,5 +793,86 @@
       padding: 0 6px;
       color: rgba(#fff, .5)
     }
+  }
+}
+
+.Hunter {
+  color: $hunter-color;
+}
+
+.Druid {
+  color: $druid-color;
+}
+
+.Mage {
+  color: $mage-color;
+}
+
+.Paladin {
+  color: $paladin-color;
+}
+
+.Priest {
+  color: $priest-color;
+}
+
+.Rogue {
+  color: $rogue-color;
+}
+
+.Shaman {
+  color: $shaman-color;
+}
+
+.Warlock {
+  color: $warlock-color;
+}
+
+.Warrior {
+  color: $warrior-color;
+}
+
+.Neutral {
+  color: $neutral-color;
+}
+
+
+///DECK
+.topdecks-wrapper{
+  z-index: 10;
+  background: rgba(#0E0325,.5);
+  padding: 12px 18px;
+  border-radius: 8px;
+
+  h2 {
+    font-size: 1em;
+    color: white;
+    margin-bottom: 1em;
+
+    svg {
+      fill: white;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin-right: 4px;
+    }
+  }
+
+  a {
+    color: white;
+    font-size: 1.1em;
+    line-height: 1.6em;
+    text-decoration: none;
+
+    &:hover{
+      color: #F7D839;
+    }
+  }
+
+  .ais-hits__empty{
+    display: inline-block;
+    min-height: inherit;
+    color: rgba(white,.7);
+    margin-bottom: 20px;
   }
 }

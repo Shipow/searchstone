@@ -32,7 +32,7 @@
         %a.template-cards.active{href:"#"}
           %svg{role: "img"}
             %use{xlink:href: "#icon-grid"}
-        %a.tempalte-list{href:"#"}
+        %a.template-list{href:"#"}
           %svg{role: "img"}
             %use{xlink:href: "#icon-row"}
 
@@ -58,7 +58,7 @@
         #active-refinements
 
       %script#hit-template-card{type: "text/template"}
-        .hit.hit-card{id:"{{id}}",data-target: "{{id}}", data-position: "{{position}}"}
+        .hit.hit-card{id:"{{id}}",data-target: "{{id}}", data-hearthpwn: "{{hearthpwnID}}", data-position: "{{position}}"}
           .card-wrapper.show-golden{class: "type-{{type}} lang-{{lang}}"}
             .golden-wrapper{data-golden:"{{anim}}"}
             .normal-wrapper
@@ -94,7 +94,10 @@
             %br
             %p.detail-artist Artist: <a href="/?fR[artist][0]={{artist}}">{{artist}}</a>
             %br
-            %a.detail-link{href:"http://hearthpwn.com{{hearthpwnUrl}}", target:"_blank"} ▸ Hearthpwn.com
+            %a.detail-link{href:"http://hearthpwn.com{{hearthpwnUrl}}", target:"_blank"}
+              %svg{role: "img"}
+                %use{xlink:href: "#icon-link"}
+              hearthpwn.com
 
 
       %script#hit-template-row{type: "text/template"}
@@ -185,6 +188,19 @@
       %svg{role: "img"}
         %use{xlink:href: "#sbx-icon-clear-3"}
     .card-detail-wrapper
+    .topdecks-wrapper
+      %h2
+        %svg{role: "img"}
+          %use{xlink:href: "#icon-hot"}
+        Featured Hot Decks
+      #topdecks
+      %script#hit-template-topdeck{type: "text/template"}
+        %a.hit-topdeck{id:"{{objectID}}", href:"{{href}}", target:"_blank"}
+          • {{name}}
+          {{#type}}
+            &nbsp;–&nbsp;
+            %span{class:"{{class}}"} {{type}}
+          {{/type}}
   .filters-panel.hide.overlay
     %button.close{type: "button"} BACK
     .overlay-content

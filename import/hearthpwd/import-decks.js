@@ -7,19 +7,19 @@
 
   var x = new Xray();
   // var x = new Xray().driver(phantom());
-  const makeDriver = require('request-x-ray')
+  const makeDriver = require('request-x-ray');
 
   const options = {
       method: "GET",                      //Set HTTP method
       jar: true,                          //Enable cookies
       headers: {                          //Set headers
-          "User-Agent": "Firefox/48.0"
+          "User-Agent": "Chrome/18.0.1025.133"
       }
-  }
-  const driver = makeDriver(options)      //Create driver
-  x.driver(driver)                        //Set driver
+  };
+  const driver = makeDriver(options);      //Create driver
+  x.driver(driver);                        //Set driver
 
-
+  x.concurrency(4);
 
   var client = algoliasearch(config.algolia.appID, config.algolia.apiKey);
   client.setRequestTimeout(3600000);
@@ -41,13 +41,13 @@
     "unretrievableAttributes":null,
     "optionalWords":null,
     "slaves":[],
-    "attributesForFaceting":["class","type"],
+    "attributesForFaceting":["class","type","cards"],
     "attributesToSnippet":["text:60"],
     "attributesToHighlight":null,
     "attributeForDistinct":null,
     "ranking":["typo","geo","words","proximity",
     "attribute","exact","custom"],
-    "customRanking":["desc(rating)"],
+    "customRanking":["desc(rating)","desc(views)"],
     "separatorsToIndex":"",
     "removeWordsIfNoResults":"none",
     "queryType":"prefixLast",
@@ -64,7 +64,7 @@
   console.log('Start scrap');
 
   // ranked deck - last extension: gadgetzan
-  x('http://www.hearthpwn.com/decks?filter-build=31&filter-show-standard=1&filter-deck-tag=1&filter-deck-type-val=10&filter-deck-type-op=3', '.listing tbody tr', [{
+  x('http://www.hearthpwn.com/decks?filter-build=31&filter-show-standard=1&filter-deck-type-val=10&filter-deck-type-op=3', '.listing tbody tr', [{
     objectID: '.col-name a@href',
     href: '.col-name a@href',
     name: '.col-name div a',
@@ -75,14 +75,14 @@
     rating: '.rating-average',
     dust: '.col-dust-cost',
     timestamp: '.standard-date@data-epoch',
-    cards: x('.col-name a@href', ['.infobox tbody a@data-id'])
-
+    cards: x('td.col-name a@href', ['.infobox tbody td.col-name a@data-id'])
   }])
   .paginate('a[rel="next"]@href')
-  .limit(5)
-  //.write('decks.json');
+  .limit(100)
+  // .write('decks.json');
 
   (function(err, data) {
+
     _.forEach(data, function(item,k){
 
       data[k] = item;

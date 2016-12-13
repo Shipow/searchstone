@@ -19,11 +19,20 @@ function closeLightbox() {
 
 function cardDetail(el) {
 
+
   // hit reference
   var target = $(el).find('.hit').data('target');
-  var position = $(el).find('.hit').data('position');
+  var hearthpwnID = $('#'+ target).data('hearthpwn');
 
-  var goldenAnimation = $('#results #'+ target).find('.golden-wrapper').data('golden');
+  hearthpwn.helper.clearRefinements('cards');
+  hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
+  hearthpwn.helper.search();
+
+
+  var position = $('#'+ target).data('position');
+  var goldenAnimation = $('#'+ target).find('.golden-wrapper').data('golden');
+
+  console.log(target, position, hearthpwnID);
 
   var video = $('<video />', {
     autoplay:"autoplay",
@@ -37,6 +46,8 @@ function cardDetail(el) {
   if ($('#results #'+ target).find('video').length === 0){
     video.appendTo($('#results #'+ target).find('.golden-wrapper'));
   }
+
+  setTimeout(sunwellRender,200);
 
   // clone in lightbox
   $('.card-detail-wrapper').append($('#results #'+ target).clone());
@@ -100,7 +111,7 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   } else {
     search.helper
       .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist').search();
+      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim').search();
   }
 });
 
@@ -167,9 +178,7 @@ $('.card-picture:visible').each(function(i,e){
     cardObj.playerClass = $(e).data("card-playerclass");
     cardObj.texture = $(e).data("card-id");
 
-
     //quick fix
-
     if(cardObj.playerClass.length > 15 ){
       cardObj.playerClass = "Neutral";
     }
