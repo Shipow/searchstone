@@ -80,22 +80,27 @@ aside {
       display: block;
       padding: 12px 0;
       width: 90%;
+
       .ais-refinement-list--list{
         display: flex;
         flex-flow: row wrap;
       }
+
       .ais-refinement-list--item{
         width: 33%;
         white-space: nowrap;
         overflow: hidden;
         margin-bottom: 8px;
       }
+
       .value{
         display: inline-block!important;
       }
+
       .value-full {
         display: none;
       }
+
       .badge {
         float: none;
       }
@@ -111,6 +116,7 @@ main {
   float: right;
   width: 100%;
   max-width: calc(100% - 270px);
+
   @media (max-width: 960px){
     max-width: 100%
   }
@@ -126,12 +132,15 @@ main {
     margin-right: 12px;
     display: inline-block;
   }
+
   .poweredby{
     position: relative;
     top: 5px;
+
     img {
-      margin-left: 4px;
-      width: 55px;
+      margin-left: 7px;
+      width: 67px;
+      height: 18px;
     }
   }
 }
