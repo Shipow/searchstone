@@ -35,7 +35,8 @@ var set = {
   "PROMO" : "Promotion",
   "REWARD" : "Reward",
   "KARA" : "Karazhan",
-  "GANGS" : "Gadtgetzan"
+  "GANGS" : "Gadtgetzan",
+  "UNGORO" : "Un'Goro"
 }
 
 var setID = {
@@ -49,6 +50,7 @@ var setID = {
   "OG" : 7,
   "KARA" : 8,
   "GANGS" : 9,
+  "UNGORO" : 10,
   "REWARD": 99
 }
 
@@ -123,7 +125,9 @@ var map = {
   "CANT_ATTACK": "Can't attack",
   "JADE_GOLEM": "Jade Golem",
   "IMMUNE": "Immune",
-  "COUNTER": "Counter"
+  "COUNTER": "Counter",
+  "RECEIVES_DOUBLE_SPELLDAMAGE_BONUS": "Double spell bonus",
+  "QUEST" : "Quest"
 
 };
 
@@ -147,7 +151,7 @@ function langRulesReplacer() {
   return match.replace(placeholder, word);
 }
 
-fs.readFile('in/cards.json', 'utf8', function (err, data) {
+fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
 
   if (err) {
     return console.log(err);
@@ -192,8 +196,8 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
         c.playerClass = 'Neutral';
       }
 
-      // 2016 standard
-      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "TGT" || c.set === "LOE" || c.set === "BRM" || c.set === "KARA" || c.set === "GANGS" ){
+      // Year of Mammoth
+      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" ){
         c.format = ['Wild','Standard'];
       }
       else {

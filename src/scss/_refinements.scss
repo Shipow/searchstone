@@ -629,7 +629,7 @@
       top: 0;
       left: 0;
       margin-right: 4px;
-      background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,q_80,fl_lossy/http://searchstone.io/img/SetIcons.png');
+      background: url('img/SetIcons.png');
       background-size: 140px;
     }
 
@@ -686,6 +686,16 @@
     &[data-facet-value="Gadgetzan"]::before,
     &[data-facet-value="GANGS"]::before {
       background-position: 0 22px;
+    }
+
+    &[data-facet-value="Un'Goro"]::before,
+    &[data-facet-value="UNGORO"]::before {
+      background-position: -22px 22px;
+    }
+
+    &[data-facet-value="HOF"]::before,
+    &[data-facet-value="HOF"]::before {
+      background-position: 0 44px;
     }
   }
 }

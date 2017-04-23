@@ -253,10 +253,11 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD','CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO'];
 set.reverse();
 
 var setFull = {
+  UNGORO : "Un'Goro",
   GANGS : "Gadgetzan",
   KARA : "Karazhan",
   OG : "Old Gods",
@@ -267,6 +268,7 @@ var setFull = {
   NAXX : "Naxxramas",
   EXPERT1 : "Expert",
   CORE : "Basic",
+  HOF: "Hall of Fame",
   REWARD : "Reward"
 }
 
@@ -275,6 +277,7 @@ searchstone.addWidget(
     container: '#set',
     attributeName: 'set',
     operator: 'and',
+    limit: 15,
     sortBy: function(a,b){
       return set.indexOf(a.name) - set.indexOf(b.name);
     },
