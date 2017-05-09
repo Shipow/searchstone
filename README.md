@@ -1,7 +1,6 @@
 # [Searchstone.io](http://searchstone.io)
 
-![Searchstone]
-(https://cdn-images-1.medium.com/max/2000/1*TDiE4_ANWjtekDNZmisj-g.png)
+![Searchstone](https://cdn-images-1.medium.com/max/2000/1*TDiE4_ANWjtekDNZmisj-g.png)
 
 [Searchstone.io](http://searchstone.io) is an open source search engine for the Heartstone card playing video game.
 It relies on [Algolia](https://community.algolia.com/?utm_medium=link&utm_source=github&utm_campaign=searchstone) API for the search and [instantsearch.js](https://community.algolia.com/instantsearch.js/?utm_medium=link&utm_source=githubm&utm_campaign=searchstone) for the UI.
