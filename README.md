@@ -9,12 +9,12 @@ I've published an article on Medium that explain a bit more the project:
 [A painstakingly crafted search for Hearthstone](https://medium.com/@Kevin_Granger/a-painstakingly-crafted-search-for-hearthstone-c21b3fa4223c)
 
 ## Features
-- As-you-type experience
+- Search as-you-type experience
 - Full-text search in name, description and attributes
 - Smart Highlighting
 - Multi-language support
 - Typo tolerance
-- Switch between grid/card and list view
+- List and grid views
 - Refinement on every attributes (Set, Race, Type, Mana, Class, Mechanics, Attack, Health)
 - Golden animations cards
 - Responsive Design
