@@ -334,7 +334,7 @@
     position: relative;
     top: 4px;
     margin-right: 4px;
-    background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,q_80,fl_lossy/http://searchstone.io/img/SetIcons.png');
+    background: url('../img/setIcons.svg');
     background-size: 140px;
     background-position: 138px -22px;
   }
@@ -616,6 +616,14 @@
     box-sizing: border-box;
     padding-left: 26px;
 
+    .value-full {
+      display: inline-block;
+      width: 85%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     .value {
       display: none;
     }
@@ -629,7 +637,7 @@
       top: 0;
       left: 0;
       margin-right: 4px;
-      background: url('img/SetIcons.png');
+      background: url('img/setIcons.svg');
       background-size: 140px;
     }
 
@@ -697,6 +705,12 @@
     &[data-facet-value="HOF"]::before {
       background-position: 0 44px;
     }
+
+    &[data-facet-value="Knight of the Frozen Throne"]::before,
+    &[data-facet-value="ICECROWN"]::before {
+      background-position: -46px 21px;
+    }
+
   }
 }
 

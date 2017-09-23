@@ -379,7 +379,7 @@
         top: 0;
         left: 0;
         margin-right: 4px;
-        background: url('img/SetIcons.png');
+        background: url('img/setIcons.svg');
         background-size: 140px;
       }
 
@@ -425,6 +425,14 @@
 
       &.GANGS::before {
         background-position: 0 24px;
+      }
+
+      &.UNGORO::before {
+        background-position: -24px 22px;
+      }
+
+      &.ICECROWN::before {
+        background-position: -46px 22px;
       }
     }
 
