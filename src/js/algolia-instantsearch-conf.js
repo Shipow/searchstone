@@ -253,10 +253,11 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN'];
 set.reverse();
 
 var setFull = {
+  ICECROWN : "Knight of the Frozen Throne",
   UNGORO : "Un'Goro",
   GANGS : "Gadgetzan",
   KARA : "Karazhan",

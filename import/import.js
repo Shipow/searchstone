@@ -1,10 +1,8 @@
-// todo
-// add popularity in deck
-// add generated cards
 var fs = require('fs');
 var _ = require('lodash');
-var base64 = require('node-base64-image');
 var async = require('async');
+
+//var base64 = require('node-base64-image');
 
 var lang = [
   "deDE",
@@ -36,7 +34,8 @@ var set = {
   "REWARD" : "Reward",
   "KARA" : "Karazhan",
   "GANGS" : "Gadtgetzan",
-  "UNGORO" : "Un'Goro"
+  "UNGORO" : "Un'Goro",
+  "ICECROWN" : "Knight of the Frozen Throne"
 }
 
 var setID = {
@@ -51,6 +50,7 @@ var setID = {
   "KARA" : 8,
   "GANGS" : 9,
   "UNGORO" : 10,
+  "ICECROWN": 11,
   "REWARD": 99
 }
 
@@ -73,8 +73,6 @@ var map = {
   "SHAMAN" : "Shaman",
   "WARLOCK" : "Warlock",
   "NEUTRAL" : "Neutral",
-
-  // "HERO_SKINS" : "",
   "BEAST" : "Beast",
   "MECHANICAL" : "Mech",
   "DRAGON" : "Dragon",
@@ -82,21 +80,17 @@ var map = {
   "MURLOC" : "Murloc",
   "PIRATE" : "Pirate",
   "TOTEM" : "Totem",
-
+  "ELEMENTAL" : "Elemental",
   "MINION" : "Minion",
   "SPELL" : "Spell",
   "WEAPON" : "Weapon",
-  //"HERO" : "",
-
   "COMMON" : "Common",
   "RARE" : "Rare",
   "EPIC" : "Epic",
   "LEGENDARY" : "Legendary",
   "FREE" : "Free",
-
   "ALLIANCE" : "Alliance",
   "HORDE" : "Horde",
-
   "BATTLECRY" : "Battlecry",
   "DEATHRATTLE" : "Deathrattle",
   "TAUNT" : "Taunt",
@@ -127,8 +121,12 @@ var map = {
   "IMMUNE": "Immune",
   "COUNTER": "Counter",
   "RECEIVES_DOUBLE_SPELLDAMAGE_BONUS": "Double spell bonus",
-  "QUEST" : "Quest"
-
+  "QUEST": "Quest",
+  "ADAPT": "Adapt",
+  "OVERLOAD": "Overload",
+  "SPELLPOWER": "Spell Power",
+  "LIFESTEAL": "Lifesteal",
+  "DEATH_KNIGHT" : "Death Knight"
 };
 
 var specialChars = {
@@ -170,7 +168,6 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
     result = result.replace(reg, specialChars[k]);
   });
 
-
   var cards_to_keep = [];
 
   // filtering the collection
@@ -204,10 +201,15 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
         c.format = 'Wild';
       }
 
+      if ( typeof c.referencedTags === "object") {
+        if ( typeof c.mechanics === "undefined" ){
+          c.mechanics = [];
+        }
+        c.mechanics = c.mechanics.concat(c.referencedTags);
+      }
+
       //remove heroes
       if ( ['HERO'].indexOf(c.type) === -1 && c.collectible === true){
-
-        //console.log(c.multiClassGroup);
 
         delete c.howToEarnGolden;
         delete c.howToEarn;
@@ -215,6 +217,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
         delete c.collectible;
         delete c.targetingArrowText
 
+        //GANG groups
         if (typeof c.multiClassGroup !== "undefined"){
           switch (c.multiClassGroup) {
             case "KABAL":
@@ -229,6 +232,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
           }
         }
 
+        // localisation
         lang.forEach(function(l, i){
           var cl = _.clone(c);
           cl.lang = l;

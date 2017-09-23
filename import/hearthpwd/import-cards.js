@@ -66,25 +66,25 @@
   // ranked deck - last extension: gadgetzan
   x('http://www.hearthpwn.com/cards?display=3&filter-premium=1', '.card-image-item', [{
     href: 'img@data-href',
-    goldenAnimation: 'img@data-animationurl',
-    goldenImg: 'img@data-goldurl',
-
+    goldenAnimation: 'img@data-animationurl'
   }])
   .paginate('a[rel="next"]@href')
   .limit(50)
   //.write('decks.json');
 
   (function(err, data) {
+    console.log(data.length);
     _.forEach(data, function(item,k){
+
       data[k] = item;
-      data[k].href = 'http://www.hearthpwn.com/'+(item.href).match(idPattern)[1];
+      data[k].href = 'http://www.hearthpwn.com/'+ item.href;
       data[k].name = (item.href).match(idPattern)[1];
       data[k].id = parseInt((item.href).match(numberPattern)[1]);
       data[k].objectID = k;
     });
     // split our results into chunks of 200 objects, to get a good indexing/insert performance
     var chunkedResults = _.chunk(data, 200);
-    console.log(data);
+    //console.log("results", data, chunkedResults);
     async.each(chunkedResults, index.saveObjects.bind(index), end);
     function end(err) {
       if (err) {

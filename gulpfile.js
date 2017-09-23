@@ -47,24 +47,21 @@ const cloudinary = require("cloudinary");
 
 //var requireDir = require('require-dir');
 
-
 const gulpsync = require('gulp-sync')(gulp);
-
 const config = require('./config.json');
-
 const fs = require('fs');
-
 const async = require('async');
 
 // *************************************
-//
 // Available tasks:
 //   `gulp dev`
 //   `gulp build`
 //   `gulp deploy`
-//
+//   `gulp algolia:index`
+//   `gulp algolia:set-settings`
+//   `gulp cloudinary:upload`
+//   `gulp cloudinary:clean`
 // *************************************
-
 
 // -------------------------------------
 //   Task: Clean build directory
@@ -202,7 +199,6 @@ gulp.task('images:optim', function () {
     .pipe(gulp.dest('build/img'));
 });
 
-
 // -------------------------------------
 //   Task: Fonts
 // -------------------------------------
@@ -259,7 +255,7 @@ gulp.task('webserver', function() {
 });
 
 // -------------------------------------
-//   Task: Revision
+//   Task: revision
 // -------------------------------------
 gulp.task('rev', function () {
 	return gulp.src('build/*.html')
@@ -316,10 +312,9 @@ gulp.task('deploy',['build:prod'], function(callback) {
 });
 
 // -------------------------------------
-//   Task: Algolia
+//   Task: Algolia -- OUTDATED use manual import from dashboard
 // -------------------------------------
-
-gulp.task('export:algolia-index', function(){
+gulp.task('algolia:index', function(){
   var client = algolia(config.algolia.appID, config.algolia.apiKey);
   var index = client.initIndex(config.algolia.index);
   fs.readFile('import/out/algolia-hearthstone.json', 'utf8', function (err, data) {
@@ -344,7 +339,7 @@ gulp.task('export:algolia-index', function(){
   });
 });
 
-gulp.task('export:algolia-settings', function(){
+gulp.task('algolia:set-settings', function(){
   var client = algolia(config.algolia.appID, config.algolia.apiKey);
   var index = client.initIndex(config.algolia.index);
   index.setSettings(config.algolia.settings,function(err, content) {});
@@ -386,15 +381,13 @@ gulpCloudinary.prototype.uploader = function(){
   });
 }
 
-var tags = "hs";
-
-gulp.task('export:cloudinary_upload', function(){
-  var builderDefault = new gulpCloudinary(config.cloudinary, tags);
-  return gulp.src(['./import/in/art/*'])
-    .pipe(builderDefault.uploader());
+gulp.task('cloudinary:clean', function(){
+  var builderDefault = new gulpCloudinary(config.cloudinary, "hs");
+  builderDefault.deleteOldByTag();
 });
 
-gulp.task('export:cloudinary_clean', function(){
-  var builderDefault = new gulpCloudinary(config.cloudinary, tags);
-  builderDefault.deleteOldByTag();
+gulp.task('cloudinary:upload', function(){
+  var builderDefault = new gulpCloudinary(config.cloudinary, "hs");
+  return gulp.src(['./import/in/art/*'])
+    .pipe(builderDefault.uploader());
 });

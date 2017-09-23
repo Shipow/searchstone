@@ -19,22 +19,70 @@ I've published an article on Medium that explain a bit more the project:
 - Golden animations cards
 - Responsive Design
 
-## Dev
+## Development
+
+### Run the website
+```shell
+$> yarn install
+$> gulp dev
+```
+
+### Deploy
 
 ```shell
-$> npm install
-$> gulp dev
 $> NODE_ENV=production gulp deploy
 ```
 
-https://github.com/HearthSim/UnityPack
+### Extension Release Update
 
-https://github.com/hearthsim/hearthstonejson
+#### Config API keys
 
-```
-Extract pics
-pip install lz4 hearthstone unitypack pillow
-python ./generate_card_textures.py --outdir=textures/ /Applications/Hearthstone/Data/OSX/card*.unity3d
-```
+- edit 'config.json', add your Algolia and Cloudinary credentials (App ID/ API key).
 
-Download latest cardcollectible.json
+#### Extract pics
+
+- First, update your game to latest version.
+- The following commands will install dependencies in a virtual environment:
+  ```shell
+  $> python3 -m venv myenv
+  $> source myenv/bin/activate
+  $> pip install --upgrade pip setuptools wheel
+  $> pip install unitypack decrunch
+  $> pip install lz4 hearthstone unitypack pillow
+  ```
+- Now, download and run HearthSim's extract script:
+  ```shell
+  $> git clone https://github.com/HearthSim/HearthstoneJSON.git
+  $> cd HearthstoneJSON
+  $> python ./generate_card_textures.py --outdir=textures/ /Applications/Hearthstone/Data/OSX/card*.unity3d //or whatever is your game directory
+  $> deactivate
+  ```
+- put all the 512px jpg in the import/art/ folder
+- run script gulp cloudinary
+
+#### Update records in Algolia Index
+
+- Select the latest version here https://api.hearthstonejson.com/v1/
+- Download card collectible in 'all' languages https://api.hearthstonejson.com/v1/20970/all/cards.collectible.json
+- Put the file in import/in
+- Run import.js script:
+  ```shell
+  $> node import
+  ```
+- upload import/out/algolia-hearthstone.json manually to Algolia (do not use the gulp script, setup is outdated)
+
+### Script update
+- look at potential changes on https://hearthstonejson.com/
+- update variables set (ie. "ICECROWN": "Knight of the Frozen Throne"), setID (ie. "ICECROWN": 11) and map (ie. "OVERLOAD": "Overload")
+
+### Algolia instantSearch.js configuration
+- edit src/js/algolia-instantsearch-conf.js
+- update set (ie: ICECROWN), setFull (ie. ICECROWN : "Knight of the Frozen Throne")
+
+### UI
+
+### Sitemap
+
+### Top Decks
+
+### Golden Cards

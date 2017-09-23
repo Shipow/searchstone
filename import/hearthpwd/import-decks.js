@@ -58,7 +58,6 @@
 
   index.setSettings(settings);
 
-  var numberPattern = /\d+/g;
   var idPattern = /\/([0-9]*)-/;
 
   console.log('Start scrap');
@@ -78,7 +77,7 @@
     cards: x('td.col-name a@href', ['.infobox tbody td.col-name a@data-id'])
   }])
   .paginate('a[rel="next"]@href')
-  .limit(100)
+  .limit(50)
   // .write('decks.json');
 
   (function(err, data) {
@@ -86,17 +85,16 @@
     _.forEach(data, function(item,k){
 
       data[k] = item;
-      data[k].objectID = (item.objectID).match(idPattern)[1];
+      data[k].objectID = (item.objectID).match(idPattern)[1] || 0;
       data[k].views = parseInt((item.views));
       data[k].comments = parseInt((item.comments));
-      data[k].dust = parseInt( item.dust.replace(',','').replace('.','').replace('k','00') );
-      data[k].timestamp = parseInt((item.timestamp));
-      data[k].rating = parseInt((item.rating));
-
+      //data[k].dust = parseInt( item.dust.replace(',','').replace('.','').replace('k','00') );
+      //data[k].timestamp = parseInt((item.timestamp));
+      //data[k].rating = parseInt((item.rating));
     });
-    // split our results into chunks of 200 objects, to get a good indexing/insert performance
-    var chunkedResults = _.chunk(data, 200);
+    // split our results into chunks of 100 objects, to get a good indexing/insert performance
     console.log(data);
+    var chunkedResults = _.chunk(data, 100);
     async.each(chunkedResults, index.saveObjects.bind(index), end);
     function end(err) {
       if (err) {
