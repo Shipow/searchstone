@@ -57,32 +57,39 @@ $> NODE_ENV=production gulp deploy
   $> python ./generate_card_textures.py --outdir=textures/ /Applications/Hearthstone/Data/OSX/card*.unity3d //or whatever is your game directory
   $> deactivate
   ```
-- put all the 512px jpg in the import/art/ folder
-- run script gulp cloudinary
+- copy only the .jpg images from HearthstoneJSON/textures/512px/ to your searchstone/import/art/ folder
+- run script to upload files to Cloudinary
+  ```shell
+  $> gulp cloudinary:upload
+  ```
 
 #### Update records in Algolia Index
 
 - Select the latest version here https://api.hearthstonejson.com/v1/
-- Download card collectible in 'all' languages https://api.hearthstonejson.com/v1/20970/all/cards.collectible.json
+- Download card collectible in 'all' languages (ie. https://api.hearthstonejson.com/v1/20970/all/cards.collectible.json)
 - Put the file in import/in
 - Run import.js script:
   ```shell
   $> node import
   ```
 - upload import/out/algolia-hearthstone.json manually to Algolia (do not use the gulp script, setup is outdated)
+  ```shell
+  $> gulp algolia:index
+  ```
 
 ### Script update
 - look at potential changes on https://hearthstonejson.com/
-- update variables set (ie. "ICECROWN": "Knight of the Frozen Throne"), setID (ie. "ICECROWN": 11) and map (ie. "OVERLOAD": "Overload")
+- update variables set (ie. "ICECROWN": "Frozen Throne"), setID (ie. "ICECROWN": 11), map (ie. "OVERLOAD": "Overload"), configure condition for set.format regarding the current year for standard.
 
 ### Algolia instantSearch.js configuration
 - edit src/js/algolia-instantsearch-conf.js
-- update set (ie: ICECROWN), setFull (ie. ICECROWN : "Knight of the Frozen Throne")
+- update set (ie: ICECROWN), setFull (ie. ICECROWN : "Frozen Throne")
 
 ### UI
+- add set icons to the sketch file and export setIcons.svg
+- add set class definition to hits.scss and refinements.scss
 
-### Sitemap
-
-### Top Decks
-
-### Golden Cards
+### Animated Golden Cards, Top Decks and Hearthpwn links
+- update card list from Hearthpwn -> import-cards.js
+- update deck list -> import-decks.js
+- merge new data to your card index - merge-data.js

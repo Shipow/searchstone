@@ -1,8 +1,14 @@
 var fs = require('fs');
 var _ = require('lodash');
 var async = require('async');
-
 //var base64 = require('node-base64-image');
+
+var algoliasearch = require('algoliasearch');
+var config = require('../config.json')
+
+// golden card animation + hearthpwnID
+var hearthpwnCards = algoliasearch(config.algolia.appID, config.algolia.apiKey).initIndex('hearthpwn-cards');
+
 
 var lang = [
   "deDE",
@@ -35,7 +41,7 @@ var set = {
   "KARA" : "Karazhan",
   "GANGS" : "Gadtgetzan",
   "UNGORO" : "Un'Goro",
-  "ICECROWN" : "Knight of the Frozen Throne"
+  "ICECROWN" : "Frozen Throne"
 }
 
 var setID = {
@@ -194,7 +200,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       }
 
       // Year of Mammoth
-      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" ){
+      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" || c.set === "ICECROWN" ){
         c.format = ['Wild','Standard'];
       }
       else {
@@ -232,38 +238,51 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
           }
         }
 
-        // localisation
-        lang.forEach(function(l, i){
-          var cl = _.clone(c);
-          cl.lang = l;
-          cl.name = c.name[l];
+        // golden card animation + hearthpwnID
+        if (typeof c.name !== 'undefined' && typeof c.name.enUS !== 'undefined'){
+          hearthpwnCards.search(c.name.enUS, function searchDone(err, content) {
+            if (err){
+              console.log(err);
+              return;
+            }
+            if (content.hits.length > 0){
+              c.hearthpwnID = content.hits[0].id;
+              c.hearthpwnUrl = content.hits[0].href;
+              c.anim = content.hits[0].goldenAnimation;
+            };
 
-          if ( l !== 'enUS' ){
-            cl.nameVO = c.name.enUS;
-          }
+            // localisation
+            lang.forEach(function(l, i){
+              var cl = _.clone(c);
+              cl.lang = l;
+              cl.name = c.name[l];
 
-          if(typeof c.collectionText !== "undefined") {
-            // use collectionText if available
-            cl.text = c.collectionText[l];
-          }
-          else if(typeof c.text !== "undefined") {
-            // clean language rules
-            cl.text = c.text[l].replace(regexp, langRulesReplacer);
-          };
+              if ( l !== 'enUS' ){
+                cl.nameVO = c.name.enUS;
+              }
 
-          if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
-          cards_to_keep.push(cl);
-        });
+              if(typeof c.collectionText !== "undefined") {
+                // use collectionText if available
+                cl.text = c.collectionText[l].replace(regexp, langRulesReplacer);
+              }
+              else if(typeof c.text !== "undefined") {
+                // clean language rules
+                cl.text = c.text[l].replace(regexp, langRulesReplacer);
+              };
+
+              if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
+
+              cards_to_keep.push(cl);
+            });
+          });
+        }
       };
       callback();
     }, 1);
 
   }, function(err){
-    // console.log(err);
-    // output
     fs.writeFile('out/algolia-hearthstone.json', JSON.stringify(cards_to_keep, null, 2), 'utf8', function (err) {
        if (err) return console.log(err);
     });
   });
-
 });

@@ -19,7 +19,6 @@ function closeLightbox() {
 
 function cardDetail(el) {
 
-
   // hit reference
   var target = $(el).find('.hit').data('target');
   var hearthpwnID = $('#'+ target).data('hearthpwn');
@@ -28,11 +27,8 @@ function cardDetail(el) {
   hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
   hearthpwn.helper.search();
 
-
   var position = $('#'+ target).data('position');
   var goldenAnimation = $('#'+ target).find('.golden-wrapper').data('golden');
-
-  console.log(target, position, hearthpwnID);
 
   var video = $('<video />', {
     autoplay:"autoplay",
@@ -121,7 +117,6 @@ $("#toggleFilters").on('click', function(e){
   $(this).toggleClass('active');
   $("#active-refinements").toggleClass('hide');
 });
-
 
 var defaultHitsPerPage = 24;
 var hitsPerPage = defaultHitsPerPage;

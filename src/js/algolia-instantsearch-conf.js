@@ -257,7 +257,7 @@ var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT
 set.reverse();
 
 var setFull = {
-  ICECROWN : "Knight of the Frozen Throne",
+  ICECROWN : "Frozen Throne",
   UNGORO : "Un'Goro",
   GANGS : "Gadgetzan",
   KARA : "Karazhan",
@@ -498,7 +498,7 @@ var analyticsTimeout;
 let hearthpwn = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
-  indexName: 'hs-deck',
+  indexName: 'hearthpwn-decks',
   searchParameters: {
     facets: ['cards']
   }
