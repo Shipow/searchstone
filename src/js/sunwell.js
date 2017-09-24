@@ -713,7 +713,7 @@
             }
         }
 
-        if (['BRM', 'GVG', 'KARA', 'LOE', 'NAXX', 'TGT', 'OG', 'GANGS'].indexOf(card.set) === -1) {
+        if (['BRM', 'GVG', 'KARA', 'LOE', 'NAXX', 'TGT', 'OG', 'GANGS', 'UNGORO', 'ICECROWN'].indexOf(card.set) === -1) {
             card.sunwell.bgLogo = 'set-classic';
         } else {
             card.sunwell.bgLogo = 'set-' + card.set.toLowerCase();
