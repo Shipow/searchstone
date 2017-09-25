@@ -365,7 +365,7 @@
       position: relative;
       margin-right: 8px;
       margin-bottom: 8px;
-      opacity: .7;
+      opacity: .8;
 
       @media (max-width: 1400px) {
         display: block;
@@ -408,8 +408,9 @@
       width: 32px;
       height: 32px;
       margin-right: 3px;
-      background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,q_80,fl_lossy/http://searchstone.io/img/ClassIcons.png');
+      background: url('../img/classIcons.svg');
       background-size: 170px;
+      //transform: scale(1.3);
     }
 
     &[data-facet-value="Druid"] {
@@ -557,7 +558,7 @@
       left: 0;
       width: 32px;
       height: 32px;
-      background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,q_80,fl_lossy/http://searchstone.io/img/ClassIcons.png');
+      background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,q_80,fl_lossy/http://searchstone.io/img/classIcons.svg');
       background-size: 170px;
     }
 
