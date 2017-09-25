@@ -617,14 +617,6 @@
     box-sizing: border-box;
     padding-left: 26px;
 
-    .value-full {
-      display: inline-block;
-      width: 85%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
     .value {
       display: none;
     }
