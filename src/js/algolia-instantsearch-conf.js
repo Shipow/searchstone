@@ -383,6 +383,7 @@ searchstone.addWidget(
   instantsearch.widgets.rangeSlider({
     container: '#health',
     attributeName: 'health',
+    pips: true,
     templates: {
       header: 'Health'
     },

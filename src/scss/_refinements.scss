@@ -749,14 +749,14 @@
 }
 
 #attack {
-  .ais-range-slider--connect {
-    background-color: #dcbd1c;
+  .ais-range-slider .rheostat-progress {
+    background-color: #dcbd1c !important;
   }
 }
 
 #health {
-  .ais-range-slider--connect {
-    background-color: #bd191c;
+  .ais-range-slider .rheostat-progress {
+    background-color: #bd191c !important;
   }
 }
 
@@ -827,4 +827,7 @@
   .ais-current-refined-values--list {
     display: none;
   }
+}
+.sbx-custom__input.ais-search-box--input {
+  padding-left: 35px !important;
 }
