@@ -262,14 +262,6 @@ gulp.task('rev', function () {
 });
 
 // -------------------------------------
-//   Task: CNAME
-// -------------------------------------
-gulp.task('cname', function () {
-	return gulp.src('src/CNAME')
-		.pipe(gulp.dest('build'));
-});
-
-// -------------------------------------
 //   Task: sitemap
 // -------------------------------------
 gulp.task('sitemap', function () {
@@ -285,7 +277,7 @@ gulp.task('build:dev',['clean'], function(callback) {
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'cname', 'sitemap', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'sitemap', callback);
 });
 
 gulp.task('build:haml', function(callback) {
