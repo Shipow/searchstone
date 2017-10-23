@@ -53,6 +53,7 @@
     "instantsearch.js": "2.2.2-beta.0",
     "jquery": "^2.2.0",
     "lodash": "^3.10.1",
-    "mustache": "^2.2.1"
+    "mustache": "^2.2.1",
+    "react": "^16.0.0"
   }
 }

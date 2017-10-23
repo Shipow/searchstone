@@ -5,7 +5,7 @@
 [Searchstone.io](http://searchstone.io) is an open source search engine for the Heartstone card playing video game.
 It relies on [Algolia](https://community.algolia.com/?utm_medium=link&utm_source=github&utm_campaign=searchstone) API for the search and [instantsearch.js](https://community.algolia.com/instantsearch.js/?utm_medium=link&utm_source=githubm&utm_campaign=searchstone) for the UI.
 
-I've published an article on Medium that explain a bit more the project:
+Read the project story on Medium:
 [A painstakingly crafted search for Hearthstone](https://medium.com/@Kevin_Granger/a-painstakingly-crafted-search-for-hearthstone-c21b3fa4223c)
 
 ## Features
@@ -17,7 +17,10 @@ I've published an article on Medium that explain a bit more the project:
 - List and grid views
 - Refinement on every attributes (Set, Race, Type, Mana, Class, Mechanics, Attack, Health)
 - Golden animations cards
-- Responsive Design
+- Responsive design + Retina support
+- Top decks
+- Search by Artist
+- Speed ⚡
 
 ## Development
 
