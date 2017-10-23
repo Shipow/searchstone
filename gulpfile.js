@@ -8,9 +8,6 @@ const runSequence = require('run-sequence');
 const webserver = require('gulp-webserver');
 const livereload = require('gulp-livereload');
 
-//deploy
-const ghPages = require('gulp-gh-pages');
-
 //css
 const sass = require('gulp-sass');
 const scsslint = require('gulp-scss-lint');
@@ -56,7 +53,6 @@ const async = require('async');
 // Available tasks:
 //   `gulp dev`
 //   `gulp build`
-//   `gulp deploy`
 //   `gulp algolia:index`
 //   `gulp algolia:set-settings`
 //   `gulp cloudinary:upload`
@@ -301,14 +297,6 @@ gulp.task('build:haml', function(callback) {
 // -------------------------------------
 gulp.task('dev', function(callback) {
   runSequence('build:dev', 'watch', 'webserver', callback);
-});
-
-// -------------------------------------
-//   Task: Deploy Github Page
-// -------------------------------------
-gulp.task('deploy',['build:prod'], function(callback) {
-  return gulp.src('build/**/*')
-    .pipe(ghPages());
 });
 
 // -------------------------------------

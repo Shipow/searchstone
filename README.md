@@ -27,13 +27,13 @@ Read the project story on Medium:
 ### Run the website
 ```shell
 $> yarn install
-$> gulp dev
+$> npm run dev
 ```
 
-### Deploy
+### Build for production (deployed by Netlify)
 
 ```shell
-$> NODE_ENV=production gulp deploy
+$> npm run build
 ```
 
 ### Extension Release Update
