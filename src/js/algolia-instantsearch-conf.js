@@ -14,7 +14,8 @@ let searchstone = instantsearch({
     trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist', 'attribute:lang']
   },
   searchParameters: {
-    facets: ['artist']
+    facets: ['artist'],
+    hitsPerPage: 24
   }
 });
 
@@ -25,14 +26,15 @@ window.search = searchstone;
 searchstone.addWidget(
   instantsearch.widgets.searchBox({
     container: '#search',
-    wrapInput: false
+    wrapInput: false,
+    magnifier: false,
+    reset: false
   })
 );
 
 // hits, the template is in index.haml
 searchstone.addWidget(
   instantsearch.widgets.hits({
-    hitsPerPage: 24,
     container: '#results',
     templates: {
       empty: `<div class="no-results"><h2>No Results</h2><p>What about starting a new search?</p></div>`,
@@ -112,7 +114,7 @@ searchstone.addWidget(
       return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?hFR[playerClass][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span></a>'
+      item: '<a href="?hFR[playerClass][0]={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
     }
   })
 );
@@ -127,7 +129,7 @@ searchstone.addWidget(
       return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?hFR[playerClass][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"></a>'
+      item: '<a href="?hFR[playerClass][0]={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
     }
   })
 );
@@ -207,7 +209,7 @@ searchstone.addWidget(
     },
     templates: {
       header: 'Rarity',
-      item: '<a href="?dFR[rarity][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}">{{name}}</a>'
+      item: '<a href="?dFR[rarity][0]={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}">{{value}}</a>'
     }
   })
 );
@@ -231,7 +233,7 @@ searchstone.addWidget(
     ],
     templates: {
       header: 'Mana',
-      item: '<a rel="nofollow" href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'
+      item: '<a rel="nofollow" href="#" data-facet-value="{{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{label}}</span></a>'
     },
     autoHideContainer: false
   })
@@ -271,7 +273,7 @@ var setFull = {
   CORE : "Basic",
   HOF: "Hall of Fame",
   REWARD : "Reward"
-}
+};
 
 searchstone.addWidget(
   instantsearch.widgets.refinementList({
@@ -284,13 +286,14 @@ searchstone.addWidget(
     },
     transformData: {
       item: function(item){
-        item.fullName = setFull[item.name];
-        return item
+        console.log(item);
+        item.fullName = setFull[item.value];
+        return item;
       }
     },
     templates: {
       header: 'Set',
-      item: '<a href="?fR[set][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{name}}"><span class="value-full">{{fullName}}</span> <span class="value">{{name}}</span> <span class="badge">{{count}}</span></a>'
+      item: '<a href="?fR[set][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value-full">{{fullName}}</span> <span class="value">{{value}}</span> <span class="badge">{{count}}</span></a>'
     }
   })
 );
@@ -302,7 +305,7 @@ searchstone.addWidget(
     operator: 'or',
     templates: {
       header: 'Type',
-      item: '<a href="?dFR[type][0]={{name}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?dFR[type][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     // collapsible: true
   })
@@ -315,7 +318,7 @@ searchstone.addWidget(
     operator: 'or',
     templates: {
       header: 'Race',
-      item: '<a href="?dFR[race][0]={{name}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?dFR[race][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     collapsible: {
       collapsed: true
@@ -331,7 +334,7 @@ searchstone.addWidget(
     limit: 50,
     templates: {
       header: 'Mechanics',
-      item: '<a href="?fR[mechanics][0]={{name}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{name}}"><span class="value">{{name}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?fR[mechanics][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     collapsible: {
       collapsed: true
@@ -380,6 +383,7 @@ searchstone.addWidget(
   instantsearch.widgets.rangeSlider({
     container: '#health',
     attributeName: 'health',
+    pips: true,
     templates: {
       header: 'Health'
     },
