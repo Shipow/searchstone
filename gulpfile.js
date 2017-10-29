@@ -186,7 +186,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('images:optim', function () {
-  return gulp.src('src/img/*')
+  return gulp.src('src/img/**/*')
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
