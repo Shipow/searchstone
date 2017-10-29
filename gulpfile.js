@@ -246,6 +246,7 @@ gulp.task('webserver', function() {
       port: 1337,
       livereload: true,
       directoryListing: false,
+      https: true,
       open: true
     }));
 });
