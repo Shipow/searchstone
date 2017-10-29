@@ -286,7 +286,7 @@ gulp.task('build:dev',['clean'], function(callback) {
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'sitemap', 'manifest', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'manifest', 'rev', 'sitemap', callback);
 });
 
 gulp.task('build:haml', function(callback) {
