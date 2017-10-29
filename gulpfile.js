@@ -271,14 +271,22 @@ gulp.task('sitemap', function () {
 });
 
 // -------------------------------------
+//   Task: manifest
+// -------------------------------------
+gulp.task('manifest', function () {
+  return gulp.src('src/manifest.json')
+    .pipe(gulp.dest('build'));
+});
+
+// -------------------------------------
 //   Task: Build DEV - PROD - HAML
 // -------------------------------------
 gulp.task('build:dev',['clean'], function(callback) {
-  runSequence('scss', 'images', 'fonts', 'haml', 'icons', 'js', 'favicons', callback);
+  runSequence('scss', 'images', 'fonts', 'haml', 'icons', 'js', 'favicons', 'manifest', callback);
 });
 
 gulp.task('build:prod',['clean'], function(callback) {
-  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'sitemap', callback);
+  runSequence('scss', 'css:min', 'images:optim', 'fonts', 'haml', 'icons', 'js:min', 'favicons', 'rev', 'sitemap', 'manifest', callback);
 });
 
 gulp.task('build:haml', function(callback) {
