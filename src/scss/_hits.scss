@@ -277,12 +277,14 @@
 .card-detail-wrapper {
   position: relative;
   z-index: 9000;
-  top: -10%;
   left: 8%;
 
   .hit-card {
     width: auto;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 500px;
   }
 
   .golden-wrapper{
@@ -317,7 +319,6 @@
 
   .card-wrapper {
     position: relative;
-    float:left;
     transform: scale(1);
     margin-right: 40px;
     animation-fill-mode: backwards;
