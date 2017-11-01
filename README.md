@@ -8,6 +8,9 @@ It relies on [Algolia](https://community.algolia.com/?utm_medium=link&utm_source
 Read the project story on Medium:
 [A painstakingly crafted search for Hearthstone](https://medium.com/@Kevin_Granger/a-painstakingly-crafted-search-for-hearthstone-c21b3fa4223c)
 
+If you want to be involved in that project there are many ways to participate. You could obviously open issues or submit some PR on this github repo and we initiated the discussion on the [Show & Tell section of Algolia's community forum](https://discourse.algolia.com/t/searchstone-io-search-for-hearthstone-updated/2902/5).
+You can also find us participating to the [Hearthsim community](https://hearthsim.info/) on Discord.
+
 ## Features
 - Search as-you-type experience
 - Full-text search in name, description and attributes
