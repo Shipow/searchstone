@@ -24,6 +24,7 @@ You can also find us participating to the [Hearthsim community](https://hearthsi
 - Top decks
 - Search by Artist
 - Speed ⚡
+- PWA (in progress)
 
 ## Development
 
@@ -95,7 +96,7 @@ $> npm run build
 - add set icons to the sketch file and export setIcons.svg
 - add set class definition to hits.scss and refinements.scss
 
-### Animated Golden Cards, Top Decks and Hearthpwn links
+### Extra: Animated Golden Cards, Top Decks and Hearthpwn links
 - update card list from Hearthpwn -> import-cards.js
 - update deck list -> import-decks.js
 - merge new data to your card index - merge-data.js
