@@ -4,7 +4,7 @@
   left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -12,6 +12,7 @@
   max-width: 100% !important;
   z-index: 9999;
   transition: transform .5s ease, opacity .5s ease;
+  overflow: scroll;
 
   &.flash {
     animation: flash .15s ease-out;
@@ -20,7 +21,7 @@
   &::before {
     content: '';
     background: rgba(#0E0226, 0.5);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
