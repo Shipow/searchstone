@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "algoliasearch": "^3.24.6",
     "request-x-ray": "^0.1.4",
     "x-ray": "^2.3.2"
   }
