@@ -27,7 +27,7 @@ self.addEventListener('install', function(e) {
        '/img/icon-collapse.svg',
        '/img/icon-expand.svg',
        '/img/legendary.svg',
-       '/img/logo-instantsearch.svg*',
+       '/img/logo-instantsearch.svg',
        '/img/og_screen.png',
        '/img/powered-by-algolia.svg',
        '/img/rare.svg',
