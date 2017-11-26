@@ -3,7 +3,7 @@ module.exports = {
   "globPatterns": [
     "**/*.{css,png,ico,ttf,woff,woff2,svg,html,js,map,json,xml}"
   ],
-  "swDest": "build/js/sw.js",
+  "swDest": "build/sw.js",
   "globIgnores": [
     "../workbox-cli-config.js"
   ]
