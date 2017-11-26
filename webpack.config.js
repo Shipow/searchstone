@@ -6,7 +6,6 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     app: './src/js/app.js',
-    sw: './src/js/sw/index.js',
   },
   output: {
     path: __dirname,
