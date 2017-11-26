@@ -286,7 +286,6 @@ searchstone.addWidget(
     },
     transformData: {
       item: function(item){
-        console.log(item);
         item.fullName = setFull[item.value];
         return item;
       }
@@ -438,7 +437,6 @@ var sendAnalytics = function() {
     }]);
 
     lastSentGa = paramsToSend;
-    //console.log('sent - ' + paramsToSend);
   }
 };
 
