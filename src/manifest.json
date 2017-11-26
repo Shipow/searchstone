@@ -22,5 +22,5 @@
   }],
   "background_color": "#0e0226",
   "theme_color": "#0e0226",
-  "start_url": "/index.html?launcher=true"
+  "start_url": "."
 }
