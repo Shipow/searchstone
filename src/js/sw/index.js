@@ -5,7 +5,6 @@ self.addEventListener('install', function(e) {
        '/',
        '/index.html',
        '/app.css',
-       '/index.html?launcher=true',
        '/js/app.js',
        '/js/sunwell.js',
        '/fonts/Belwe.ttf',
