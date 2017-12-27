@@ -41,7 +41,8 @@ var set = {
   "KARA" : "Karazhan",
   "GANGS" : "Gadtgetzan",
   "UNGORO" : "Un'Goro",
-  "ICECROWN" : "Frozen Throne"
+  "ICECROWN" : "Frozen Throne",
+  "LOOTAPALOOZA" : "Kobolds and Catacombs"
 }
 
 var setID = {
@@ -57,6 +58,7 @@ var setID = {
   "GANGS" : 9,
   "UNGORO" : 10,
   "ICECROWN": 11,
+  "LOOTAPALOOZA":12,
   "REWARD": 99
 }
 
@@ -200,7 +202,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
       }
 
       // Year of Mammoth
-      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" || c.set === "ICECROWN" ){
+      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" || c.set === "ICECROWN" || c.set === "LOOTAPALOOZA" ){
         c.format = ['Wild','Standard'];
       }
       else {
