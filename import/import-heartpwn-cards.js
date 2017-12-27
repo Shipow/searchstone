@@ -53,7 +53,7 @@
   index.setSettings(settings);
 
   var numberPattern = /\/([0-9]*)-/;
-  var idPattern = /[0-9]*-([-a-z]*)/;
+  var idPattern = /[0-9]*-(.*)/;
 
   console.log('Start scrap');
 
