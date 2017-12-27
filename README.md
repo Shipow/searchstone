@@ -99,6 +99,6 @@ $> npm run build
 - add set class definition to hits.scss and refinements.scss
 
 ### Extra: Animated Golden Cards, Top Decks and Hearthpwn links
-- update card list from Hearthpwn -> import-hearthpwn-cards.js
-- update deck list -> import-hearthpwn-decks.js
-- merge new data to your card index - merge-data.js
+- update card list from Hearthpwn -> $node import-hearthpwn-cards.js
+- update deck list -> $node import-hearthpwn-decks.js
+- merge data by running again $node import.js

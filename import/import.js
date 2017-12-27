@@ -134,7 +134,8 @@ var map = {
   "OVERLOAD": "Overload",
   "SPELLPOWER": "Spell Power",
   "LIFESTEAL": "Lifesteal",
-  "DEATH_KNIGHT" : "Death Knight"
+  "DEATH_KNIGHT" : "Death Knight",
+  "RECRUIT" : "Recruit"
 };
 
 var specialChars = {

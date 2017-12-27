@@ -255,10 +255,11 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN','LOOTAPALOOZA'];
 set.reverse();
 
 var setFull = {
+  LOOTAPALOOZA : "Kobolds and Catacombs",
   ICECROWN : "Frozen Throne",
   UNGORO : "Un'Goro",
   GANGS : "Gadgetzan",
