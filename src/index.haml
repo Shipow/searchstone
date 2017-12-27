@@ -104,7 +104,7 @@
 
       %script#hit-template-row{type: "text/template"}
         .hit.hit-cel{data-target: "{{id}}"}
-          .cel.cel-img{style:"background-image:url('http://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/{{id}}.jpg');"}
+          .cel.cel-img{style:"background-image:url('https://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/{{id}}.jpg');"}
             %span.cel-set{class:"{{set}}"} {{set}}
 
           .cel.cel-desc
@@ -234,8 +234,9 @@
     <!-- inject:svg --><!-- endinject -->
     %svg{xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink"=> "http://www.w3.org/1999/xlink"}
       %defs
-        %path#Spell{d: "M 43, 37 C 122, 10, 188, 13, 268, 37", fill: "none", stroke: "black", stroke-width:"1"}
-        %path#Minion{d: "M 49, 40 C 131, 46, 152, 8, 258, 29", fill: "none", stroke: "black", stroke-width:"1"}
+        %path#Spell{d: "M 43, 39 C 122, 10, 188, 10, 268, 39", fill: "none", stroke: "black", stroke-width:"1"}
+        %path#Minion{d: "M 52, 40 C 120, 40, 170, 8, 258, 29", fill: "none", stroke: "black", stroke-width:"1"}
         %path#Weapon{d: "M 49, 25, 258, 25", fill: "none", stroke: "black", stroke-width:"1"}
+        %path#Hero{d: "M 40, 45 C 122, 9, 188, 9, 268, 45", fill: "none", stroke: "black", stroke-width:"1"}
 
   %script{src: "js/app.js"}

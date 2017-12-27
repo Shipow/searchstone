@@ -517,6 +517,15 @@
             ctx.fillRect(0, 0, 765 * s, 1100 * s);
             ctx.drawImage(t, 0, 0, t.width, t.height, 150 * s, 135 * s, 476 * s, 476 * s);
         }
+
+        if (card.type === 'HERO') {
+            drawEllipse(ctx, 150 * s, 135 * s, 476 * s, 468 * s);
+            ctx.clip();
+            ctx.fillStyle = 'grey';
+            ctx.fillRect(0, 0, 765 * s, 1100 * s);
+            ctx.drawImage(t, 0, 0, t.width, t.height, 150 * s, 135 * s, 476 * s, 476 * s);
+        }
+
         ctx.restore();
 
         drawProgress = 4;
@@ -530,7 +539,7 @@
         }
 
         if(card.costHealth){
-            ctx.drawImage(getAsset('health'), 0, 0, 167, 218, 24 * s, 62 * s, 167 * s, 218 * s);
+            ctx.drawImage(getAsset('health'), 0, 0, 167, 218, 24 * s, 62 * s, 167 * s , 218 * s);
             ctx.save();
             ctx.shadowBlur=50*s;
             ctx.shadowColor='#FF7275';
@@ -556,7 +565,7 @@
             }
 
             ctx.drawImage(getAsset('attack'), 0, 0, 214, 238, 0, 862 * s, 214 * s, 238 * s);
-            ctx.drawImage(getAsset('health'), 0, 0, 167, 218, 575 * s, 876 * s, 167 * s, 218 * s);
+            ctx.drawImage(getAsset('health'), 0, 0, 167, 218, 600 * s, 876 * s, 167 * s * 1.3, 218 * s * 1.3);
 
             if (card.rarity === 'LEGENDARY') {
                 ctx.drawImage(getAsset('dragon'), 0, 0, 569, 417, 196 * s, 0, 569 * s, 417 * s);
@@ -577,11 +586,20 @@
             if (sw.rarity) {
                 ctx.drawImage(getAsset(sw.rarity), 0, 0, 146, 144, 315 * s, 592 * s, 146 * s, 144 * s);
             }
-
             ctx.drawImage(getAsset('title-weapon'), 0, 0, 660, 140, 56 * s, 551 * s, 660 * s, 140 * s);
-
             ctx.drawImage(getAsset('swords'), 0, 0, 312, 306, 32 * s, 906 * s, 187 * s, 183 * s);
             ctx.drawImage(getAsset('shield'), 0, 0, 301, 333, 584 * s, 890 * s, 186 * s, 205 * s);
+        }
+
+        if (card.type === 'HERO') {
+          ctx.drawImage(getAsset('shield'), 0, 0, 301, 333, 584 * s, 890 * s, 186 * s, 205 * s);
+          if (card.rarity === 'LEGENDARY') {
+              ctx.drawImage(getAsset('dragon'), 0, 0, 569, 417, 180 * s, 10, 569 * s, 417 * s);
+          }
+          if (sw.rarity) {
+              ctx.drawImage(getAsset(sw.rarity), 0, 0, 146, 144, 358 * s, 625 * s, 170 * s, 170 * s);
+          }
+          ctx.drawImage(getAsset('name-banner-hero'), 0, 0, 660, 140, 64 * s, 527 * s, 660 * s *1.3, 140 * s *1.3);
         }
 
         drawProgress = 8;
@@ -713,7 +731,21 @@
             }
         }
 
-        if (['BRM', 'GVG', 'KARA', 'LOE', 'NAXX', 'TGT', 'OG', 'GANGS', 'UNGORO', 'ICECROWN'].indexOf(card.set) === -1) {
+        if (card.type === 'HERO') {
+            loadList.push('shield', 'name-banner-hero');
+
+            if (card.rarity !== 'FREE' ) {
+              card.sunwell.rarity = 'rarity-' + card.rarity.toLowerCase();
+              loadList.push(card.sunwell.rarity);
+            }
+
+            if (card.rarity === 'LEGENDARY') {
+                loadList.push('dragon');
+            }
+
+        }
+
+        if (['BRM', 'GVG', 'KARA', 'LOE', 'NAXX', 'TGT', 'OG', 'GANGS', 'UNGORO', 'ICECROWN', 'LOOTAPALOOZA'].indexOf(card.set) === -1) {
             card.sunwell.bgLogo = 'set-classic';
         } else {
             card.sunwell.bgLogo = 'set-' + card.set.toLowerCase();

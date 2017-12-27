@@ -30,6 +30,9 @@ var lang = [
 var set = {
   "EXPERT1" : "Expert",
   "CORE" : "Basic",
+  "TB" : "Tavern Brawl",
+  "HERO_SKINS" : "Hero Skin",
+  "MISSIONS" : "Missions",
   "OG" : "Old Gods",
   "TGT" : "The Grand Tournament",
   "GVG" : "Goblins vs Gnomes",
@@ -134,8 +137,12 @@ var map = {
   "OVERLOAD": "Overload",
   "SPELLPOWER": "Spell Power",
   "LIFESTEAL": "Lifesteal",
-  "DEATH_KNIGHT" : "Death Knight",
-  "RECRUIT" : "Recruit"
+  "DEATHKNIGHT" : "Death Knight",
+  "RECRUIT" : "Recruit",
+  "HERO_POWER" : "Hero Power",
+  "HERO" : "Hero",
+  "ENCHANTMENT" : "Token",
+  "EVIL_GLOW" : "While is in your hand"
 };
 
 var specialChars = {
@@ -158,7 +165,12 @@ function langRulesReplacer() {
   return match.replace(placeholder, word);
 }
 
-fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
+function remove(array, element) {
+  const index = array.indexOf(element);
+  array.splice(index, 1);
+}
+
+fs.readFile('in/cards.json', 'utf8', function (err, data) {
 
   if (err) {
     return console.log(err);
@@ -183,47 +195,57 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
   async.eachSeries(JSON.parse(result), function(c, callback) {
 
     setTimeout(function () {
-      if ( c.set === "PROMO"  ){
-        c.set = 'REWARD';
-      }
-      c.setFull = set[c.set];
-      c.dustCraft =  dust[c.rarity];
-      c.setID =  setID[c.set];
+      //remove unwanted ie ['HERO'].indexOf(c.type) === -1 && c.collectible === true
+      if (c.collectible === true && c.set !== "HERO_SKINS" && ( c.set !== "CORE" && c.type !== "HERO" )){
 
-      // old base64 image preview
-      // var options = {string: true};
-      // var url = 'http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_35,q_50,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/' + c.id + '.png';
-      // base64.base64encoder(url, options, function (err, image) {
-      //c.previewImage = image;
-      //callback();
-      // });
+        // rename
+        if ( c.set === "PROMO"  ){
+          c.set = 'REWARD';
+        }
 
-      if ( typeof c.playerClass === "undefined"  ){
-        c.playerClass = 'Neutral';
-      }
+        c.setFull = set[c.set];
+        c.dustCraft =  dust[c.rarity];
+        c.setID =  setID[c.set];
 
-      // Year of Mammoth
-      if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" || c.set === "ICECROWN" || c.set === "LOOTAPALOOZA" ){
-        c.format = ['Wild','Standard'];
-      }
-      else {
-        c.format = 'Wild';
-      }
+        // old base64 image preview
+        // var options = {string: true};
+        // var url = 'http://res.cloudinary.com/hilnmyskv/image/fetch/c_scale,h_35,q_50,e_blur:100,fl_lossy,f_auto/http://wow.zamimg.com/images/hearthstone/cards/enus/original/' + c.id + '.png';
+        // base64.base64encoder(url, options, function (err, image) {
+        //c.previewImage = image;
+        //callback();
+        // });
 
-      if ( typeof c.referencedTags === "object") {
+        if ( typeof c.playerClass === "undefined"  ){
+          c.playerClass = 'Neutral';
+        }
+
+        // Year of Mammoth
+        if ( c.set === "EXPERT1" || c.set === "CORE" || c.set === "OG" || c.set === "KARA" || c.set === "GANGS" || c.set === "UNGORO" || c.set === "ICECROWN" || c.set === "LOOTAPALOOZA" ){
+          c.format = ['Wild','Standard'];
+        } else {
+          c.format = 'Wild';
+        }
+
         if ( typeof c.mechanics === "undefined" ){
           c.mechanics = [];
         }
-        c.mechanics = c.mechanics.concat(c.referencedTags);
-      }
+        // remove system mechanics
+        remove(c.mechanics,"AI_MUST_PLAY");
+        remove(c.mechanics,"TAG_ONE_TURN_EFFECT");
+        remove(c.mechanics,"UNTOUCHABLE");
+        remove(c.mechanics,"MORPH");
+        remove(c.mechanics,"APPEAR_FUNCTIONALLY_DEAD");
+        remove(c.mechanics,"CANT_BE_DESTROYED");
+        remove(c.mechanics,"CANT_BE_SILENCED");
 
-      //remove heroes
-      if ( ['HERO'].indexOf(c.type) === -1 && c.collectible === true){
+        // merge referencedTags
+        if ( typeof c.referencedTags === "object") {
+          c.mechanics = c.mechanics.concat(c.referencedTags);
+        }
 
         delete c.howToEarnGolden;
         delete c.howToEarn;
         delete c.playRequirements;
-        delete c.collectible;
         delete c.targetingArrowText
 
         //GANG groups
@@ -268,13 +290,12 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, data) {
                 // use collectionText if available
                 cl.text = c.collectionText[l].replace(regexp, langRulesReplacer);
               }
-              else if(typeof c.text !== "undefined") {
+              else if(typeof c.text !== "undefined" && typeof c.text[l] !== "undefined") {
                 // clean language rules
                 cl.text = c.text[l].replace(regexp, langRulesReplacer);
               };
 
               if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
-
               cards_to_keep.push(cl);
             });
           });

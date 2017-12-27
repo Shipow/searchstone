@@ -31,13 +31,13 @@ You can also find us participating to the [Hearthsim community](https://hearthsi
 ### Run the website
 ```shell
 $> yarn install
-$> npm run dev
+$> yarn dev
 ```
 
 ### Build for production (deployed by Netlify)
 
 ```shell
-$> npm run build
+$> yarn build
 ```
 
 ### Extension Release Update
@@ -99,6 +99,6 @@ $> npm run build
 - add set class definition to hits.scss and refinements.scss
 
 ### Extra: Animated Golden Cards, Top Decks and Hearthpwn links
-- update card list from Hearthpwn -> $node import-hearthpwn-cards.js
-- update deck list -> $node import-hearthpwn-decks.js
-- merge data by running again $node import.js
+- update card list from Hearthpwn ```$>node import-hearthpwn-cards.js```
+- update deck list from Hearthpwn ```$>node import-hearthpwn-decks.js```
+- merge data by running again ```$> node import.js```

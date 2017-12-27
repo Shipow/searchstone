@@ -244,7 +244,7 @@ gulp.task('webserver', function() {
     .pipe(webserver({
       host: '0.0.0.0',
       port: 1337,
-      livereload: true,
+      //livereload: true,
       directoryListing: false,
       https: true,
       open: true
@@ -375,8 +375,14 @@ gulp.task('cloudinary:clean', function(){
   builderDefault.deleteOldByTag();
 });
 
-gulp.task('cloudinary:upload', function(){
+gulp.task('cloudinary:art', function(){
   var builderDefault = new gulpCloudinary(config.cloudinary, "hs");
   return gulp.src(['./import/in/art/*'])
+    .pipe(builderDefault.uploader());
+});
+
+gulp.task('cloudinary:assets', function(){
+  var builderDefault = new gulpCloudinary(config.cloudinary, "hs");
+  return gulp.src(['./import/in/assets/*'])
     .pipe(builderDefault.uploader());
 });
