@@ -54,6 +54,7 @@ $> npm run build
   $> python3 -m venv myenv
   $> source myenv/bin/activate
   $> pip install --upgrade pip setuptools wheel
+  $> pip install pckcfg
   $> pip install unitypack decrunch
   $> pip install lz4 hearthstone unitypack pillow
   ```
@@ -61,7 +62,8 @@ $> npm run build
   ```shell
   $> git clone https://github.com/HearthSim/HearthstoneJSON.git
   $> cd HearthstoneJSON
-  $> python ./generate_card_textures.py --outdir=textures/ /Applications/Hearthstone/Data/OSX/card*.unity3d //or whatever is your game directory
+  // adapt with your game directory
+  $> python ./generate_card_textures.py --outdir=textures/ /Applications/Hearthstone/Data/OSX/{rad_base,card,premiummaterials,shared}*.unity3d --skip-existing
   $> deactivate
   ```
 - copy only the .jpg images from HearthstoneJSON/textures/512px/ to your searchstone/import/art/ folder
