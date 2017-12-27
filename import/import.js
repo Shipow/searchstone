@@ -151,7 +151,7 @@ var specialChars = {
   "\\[x\\]" : ""
 }
 
-var regexp = /\s(.*?) \|4\((.*?),(.*?)\)/g;
+var regexp = /\$(\d)\W\|4\((.*?),(.*?)\)/g;
 
 function langRulesReplacer() {
   var originalString = arguments[arguments.length - 1];
@@ -182,11 +182,6 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
   Object.keys(map).forEach(function(k){
     var reg = new RegExp('"' + k + '"',"g");
     result = result.replace(reg, '"'+map[k]+'"');
-  });
-
-  Object.keys(specialChars).forEach(function(k){
-    var reg = new RegExp( k ,"g");
-    result = result.replace(reg, specialChars[k]);
   });
 
   var cards_to_keep = [];
@@ -286,14 +281,21 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
                 cl.nameVO = c.name.enUS;
               }
 
-              if(typeof c.collectionText !== "undefined") {
+              if(typeof c.collectionText !== "undefined" && typeof c.collectionText[l] !== "undefined") {
                 // use collectionText if available
-                cl.text = c.collectionText[l].replace(regexp, langRulesReplacer);
+                cl.text = c.collectionText[l];
               }
               else if(typeof c.text !== "undefined" && typeof c.text[l] !== "undefined") {
-                // clean language rules
-                cl.text = c.text[l].replace(regexp, langRulesReplacer);
+                cl.text = c.text[l];
               };
+
+              if(typeof cl.text !== "undefined") {
+                cl.text = cl.text.replace(regexp, langRulesReplacer);
+                Object.keys(specialChars).forEach(function(k){
+                  var reg = new RegExp( k ,"g");
+                  cl.text = cl.text.replace(reg, specialChars[k]);
+                });
+              }
 
               if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
               cards_to_keep.push(cl);
