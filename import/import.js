@@ -145,24 +145,20 @@ var map = {
   "EVIL_GLOW" : "While is in your hand"
 };
 
-var specialChars = {
-  "\#" : "",
-  "\\$" : "",
-  "\\[x\\]" : ""
+function langRulesReplacer() {
+  var number = arguments[2];
+  var singular = arguments[3];
+  var plural = arguments[4];
+  var realNumber = _.parseInt(number);
+  var word = (realNumber > 1) ? plural : singular;
+  var newString = arguments[1] + ' ' + word;
+  return newString;
 }
 
-var regexp = /\$(\d)\W\|4\((.*?),(.*?)\)/g;
-
-function langRulesReplacer() {
-  var originalString = arguments[arguments.length - 1];
-  var match = arguments[0];
-  var number = arguments[1];
-  var singular = arguments[2];
-  var plural = arguments[3];
-  var placeholder = '|4(' + singular + ',' + plural + ')';
-  var realNumber = _.parseInt(number.replace('(', '').replace(')', ''));
-  var word = (realNumber > 1) ? plural : singular;
-  return match.replace(placeholder, word);
+var specialChars = {
+  "\\[x\\]" : "",
+  "\\#?\\$?" : "",
+  "(\\(?(\\d*)\\)?)\\s\\|4\\((\\w*),(\\w*)\\)" : langRulesReplacer
 }
 
 function remove(array, element) {
@@ -190,14 +186,13 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
   async.eachSeries(JSON.parse(result), function(c, callback) {
 
     setTimeout(function () {
-      //remove unwanted ie ['HERO'].indexOf(c.type) === -1 && c.collectible === true
-      if (c.collectible === true && c.set !== "HERO_SKINS" && ( c.set !== "CORE" && c.type !== "HERO" )){
+      //remove unwanted
+      if (c.collectible === true && c.set !== "HERO_SKINS" && !(c.set === "CORE" && c.type === "Hero")){
 
         // rename
         if ( c.set === "PROMO"  ){
           c.set = 'REWARD';
         }
-
         c.setFull = set[c.set];
         c.dustCraft =  dust[c.rarity];
         c.setID =  setID[c.set];
@@ -289,8 +284,7 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
                 cl.text = c.text[l];
               };
 
-              if(typeof cl.text !== "undefined") {
-                cl.text = cl.text.replace(regexp, langRulesReplacer);
+              if(typeof cl.text === "string") {
                 Object.keys(specialChars).forEach(function(k){
                   var reg = new RegExp( k ,"g");
                   cl.text = cl.text.replace(reg, specialChars[k]);
@@ -298,6 +292,10 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
               }
 
               if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
+
+              cl.objectID = c.id + '-' + cl.lang;
+              //console.log(cl.objectID);
+
               cards_to_keep.push(cl);
             });
           });
