@@ -68,75 +68,80 @@ function cardDetail(el) {
   hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
   hearthpwn.helper.search();
 
-  index.getObject(dbfId).then( function(data){
-    var chartWinrate = new Chart(ctxWinrate, {
-        type: 'line',
-        data: {
-            labels: data.winrateOT.map(function(v){
-              return v.x;
-            }),
-            datasets: [{
-                label: "Winrate over time",
-                tension: .6,
-                fill: false,
-                borderWidth: 2,
-                pointRadius: 0,
-                data: data.winrateOT.map(function(v){
-                  return v.y.toFixed(2);
-                })
-            }]
-        },
-        options: {
-          maintainAspectRatio: false,
-          linearGradientLine: 'winrate',
-          legend: {
-            display: false
+  index.getObject(dbfId,function(err, data){
+    $('.stats-wrapper').addClass('hide');
+    if(err === null){
+      $('.stats-wrapper').removeClass('hide');
+      var chartWinrate = new Chart(ctxWinrate, {
+          type: 'line',
+          data: {
+              labels: data.winrateOT.map(function(v){
+                return v.x;
+              }),
+              datasets: [{
+                  label: "Winrate over time",
+                  tension: .6,
+                  fill: false,
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  data: data.winrateOT.map(function(v){
+                    return v.y.toFixed(2);
+                  })
+              }]
           },
-          scales: {
-            yAxes: [{
-              ticks: {
-                min: 20,
-                max: 80,
-                stepSize: 10
-              }
-            }]
+          options: {
+            maintainAspectRatio: false,
+            linearGradientLine: 'winrate',
+            legend: {
+              display: false
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  min: 20,
+                  max: 80,
+                  stepSize: 10
+                }
+              }]
+            }
           }
-        }
-    });
-    var chartPopularity = new Chart(ctxPopularity, {
-        type: 'line',
-        data: {
-            labels: data.popularityOT.map(function(v){
-              return v.x;
-            }),
-            datasets: [{
-                label: "Popularity over time",
-                tension: .6,
-                fill: false,
-                borderWidth: 2,
-                pointRadius: 0,
-                data: data.popularityOT.map(function(v){
-                  return v.y.toFixed(2);
-                })
-            }]
-        },
-        options: {
-          maintainAspectRatio: false,
-          linearGradientLine: 'popularity',
-          legend: {
-            display: false
+      });
+      var chartPopularity = new Chart(ctxPopularity, {
+          type: 'line',
+          data: {
+              labels: data.popularityOT.map(function(v){
+                return v.x;
+              }),
+              datasets: [{
+                  label: "Popularity over time",
+                  tension: .6,
+                  fill: false,
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  data: data.popularityOT.map(function(v){
+                    return v.y.toFixed(2);
+                  })
+              }]
           },
-          scales: {
-            yAxes: [{
-              ticks: {
-                min: 0,
-                max: 20,
-                stepSize: 5
-              }
-            }]
+          options: {
+            maintainAspectRatio: false,
+            linearGradientLine: 'popularity',
+            legend: {
+              display: false
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  min: 0,
+                  max: 20,
+                  stepSize: 5
+                }
+              }]
+            }
           }
-        }
-    });
+      });
+
+    };
   });
 
   var position = $('#'+ target).data('position');

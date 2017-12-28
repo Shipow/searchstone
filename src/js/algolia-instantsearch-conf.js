@@ -9,7 +9,7 @@ instantsearch.widgets.languageSelect = languageSelect;
 let searchstone = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
-  indexName: 'searchstone_cost--asc',
+  indexName: 'searchstone_popularity',
   urlSync: {
     trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist', 'attribute:lang']
   },
@@ -351,11 +351,11 @@ searchstone.addWidget(
   })
 );
 
-
 searchstone.addWidget(
   instantsearch.widgets.sortBySelector({
     container: '#sort-by .sort-by-selector',
     indices: [
+      {name: 'searchstone_popularity', label: 'Popularity'},
       {name: 'searchstone_cost--asc', label: 'Lowest cost'},
       {name: 'searchstone_cost--desc', label: 'Highest cost'},
       {name: 'searchstone_name', label: 'Alphabetical'}
