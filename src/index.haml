@@ -60,14 +60,14 @@
         #active-refinements
 
       %script#hit-template-card{type: "text/template"}
-        .hit.hit-card{id:"{{id}}",data-target: "{{id}}", data-hearthpwn: "{{hearthpwnID}}", data-position: "{{position}}"}
+        .hit.hit-card{id:"{{id}}",data-target: "{{id}}", data-hearthpwn: "{{hearthpwnID}}", data-position: "{{position}}", data-dbfid: "{{dbfId}}"}
           .card-wrapper.show-golden{class: "type-{{type}} lang-{{lang}}"}
             .golden-wrapper{data-golden:"{{anim}}"}
             .normal-wrapper
               .placeholder
               %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}", data-card-multiclassgroup: "{{multiClassGroup}}"}
               .card-overlay
-                .card-health {{health}}
+                .card-health {{health}} {{dbf_id}}
                 .card-attack {{attack}}
                 .card-cost {{cost}}
                 .card-durability {{durability}}
@@ -205,6 +205,13 @@
       %svg{role: "img"}
         %use{xlink:href: "#sbx-icon-clear-3"}
     .card-detail-wrapper
+    .stats-wrapper
+      .chart-container
+        %h2 Winrate
+        %canvas#chart-winrate
+      .chart-container
+        %h2 Popularity
+        %canvas#chart-popularity
     .topdecks-wrapper
       %h2
         %svg{role: "img"}

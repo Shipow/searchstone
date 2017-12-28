@@ -8,7 +8,7 @@ var config = require('../config.json')
 
 // golden card animation + hearthpwnID
 var hearthpwnCards = algoliasearch(config.algolia.appID, config.algolia.apiKey).initIndex('hearthpwn-cards');
-
+var hsreplayStats = algoliasearch(config.algolia.appID, config.algolia.apiKey).initIndex('hsreplay-stats');
 
 var lang = [
   "deDE",
@@ -253,53 +253,73 @@ fs.readFile('in/cards.json', 'utf8', function (err, data) {
           }
         }
 
-        // golden card animation + hearthpwnID
-        if (typeof c.name !== 'undefined' && typeof c.name.enUS !== 'undefined'){
-          hearthpwnCards.search(c.name.enUS, function searchDone(err, content) {
+        // hsreplay popularity stats
+        if (typeof c.dbfId !== 'undefined'){
+          hsreplayStats.search(c.dbfId, function searchDone(err, content) {
             if (err){
               console.log(err);
               return;
             }
             if (content.hits.length > 0){
-              c.hearthpwnID = content.hits[0].id;
-              c.hearthpwnUrl = content.hits[0].href;
-              c.anim = content.hits[0].goldenAnimation;
+              c.popularity = content.hits[0].popularity;
+              c.winrate = content.hits[0].winrate;
             };
 
-            // localisation
-            lang.forEach(function(l, i){
-              var cl = _.clone(c);
-              cl.lang = l;
-              cl.name = c.name[l];
+            // golden card animation + hearthpwnID
+            if (typeof c.name !== 'undefined' && typeof c.name.enUS !== 'undefined'){
+              hearthpwnCards.search(c.name.enUS, function searchDone(err, content) {
+                if (err){
+                  console.log(err);
+                  return;
+                }
+                if (content.hits.length > 0){
+                  c.hearthpwnID = content.hits[0].id;
+                  c.hearthpwnUrl = content.hits[0].href;
+                  c.anim = content.hits[0].goldenAnimation;
+                };
 
-              if ( l !== 'enUS' ){
-                cl.nameVO = c.name.enUS;
-              }
+                // localisation
+                lang.forEach(function(l, i){
+                  var cl = _.clone(c);
+                  cl.lang = l;
+                  cl.name = c.name[l];
 
-              if(typeof c.collectionText !== "undefined" && typeof c.collectionText[l] !== "undefined") {
-                // use collectionText if available
-                cl.text = c.collectionText[l];
-              }
-              else if(typeof c.text !== "undefined" && typeof c.text[l] !== "undefined") {
-                cl.text = c.text[l];
-              };
+                  if ( l !== 'enUS' ){
+                    cl.nameVO = c.name.enUS;
+                  }
 
-              if(typeof cl.text === "string") {
-                Object.keys(specialChars).forEach(function(k){
-                  var reg = new RegExp( k ,"g");
-                  cl.text = cl.text.replace(reg, specialChars[k]);
+                  if(typeof c.collectionText !== "undefined" && typeof c.collectionText[l] !== "undefined") {
+                    // use collectionText if available
+                    cl.text = c.collectionText[l];
+                  }
+                  else if(typeof c.text !== "undefined" && typeof c.text[l] !== "undefined") {
+                    cl.text = c.text[l];
+                  };
+
+                  if(typeof cl.text === "string") {
+                    Object.keys(specialChars).forEach(function(k){
+                      var reg = new RegExp( k ,"g");
+                      cl.text = cl.text.replace(reg, specialChars[k]);
+                    });
+                  }
+
+                  if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
+
+                  cl.objectID = c.id + '-' + cl.lang;
+                  //console.log(cl.objectID);
+
+                  cards_to_keep.push(cl);
                 });
-              }
+              });
+            }
 
-              if(typeof c.flavor !== "undefined") cl.flavor = c.flavor[l];
-
-              cl.objectID = c.id + '-' + cl.lang;
-              //console.log(cl.objectID);
-
-              cards_to_keep.push(cl);
-            });
           });
         }
+
+
+
+
+
       };
       callback();
     }, 1);

@@ -7,6 +7,46 @@ window.openLightbox = function(e) {
   cardDetail(e);
 };
 
+require('chart.js');
+var algoliasearch = require('algoliasearch');
+
+var client = algoliasearch('OWD8XOXT0U', '4c77c51c3822c8a719b418b0cb47913e');
+var index = client.initIndex('hsreplay-stats');
+
+var gradientLinePlugin = {
+  // Called at start of update.
+  beforeUpdate: function(chartInstance) {
+    if (chartInstance.options.linearGradientLine) {
+      var ctx = chartInstance.chart.ctx;
+      var dataset = chartInstance.data.datasets[0];
+      var gradient = ctx.createLinearGradient(0, 10, 0, 140);
+
+      switch (chartInstance.options.linearGradientLine) {
+        case 'winrate':
+          gradient.addColorStop(.7, '#EE7A57');
+          gradient.addColorStop(0.52, '#FD4255');
+          gradient.addColorStop(0.48, '#51A93F');
+          gradient.addColorStop(0.2, '#34FFAC');
+          break;
+        case 'popularity':
+          gradient.addColorStop(1, '#2C5EE3');
+          gradient.addColorStop(.8, '#6B3FC8');
+          gradient.addColorStop(0, '#FFB95D');
+          break;
+      }
+
+      // Assign the gradient to the dataset's border color.
+      dataset.borderColor = gradient;
+      // Uncomment this for some effects, especially together with commenting the `fill: false` option below.
+      // dataset.backgroundColor = gradient;
+    }
+  }
+};
+
+Chart.pluginService.register(gradientLinePlugin);
+var ctxWinrate = document.getElementById('chart-winrate').getContext('2d');
+var ctxPopularity = document.getElementById('chart-popularity').getContext('2d');
+
 function closeLightbox() {
   $('.lightbox_frame').remove();
   $('.lightbox').addClass('hidden');
@@ -22,10 +62,82 @@ function cardDetail(el) {
   // hit reference
   var target = $(el).find('.hit').data('target');
   var hearthpwnID = $('#'+ target).data('hearthpwn');
+  var dbfId = $('#'+ target).data('dbfid');
 
   hearthpwn.helper.clearRefinements('cards');
   hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
   hearthpwn.helper.search();
+
+  index.getObject(dbfId).then( function(data){
+    var chartWinrate = new Chart(ctxWinrate, {
+        type: 'line',
+        data: {
+            labels: data.winrateOT.map(function(v){
+              return v.x;
+            }),
+            datasets: [{
+                label: "Winrate over time",
+                tension: .6,
+                fill: false,
+                borderWidth: 2,
+                pointRadius: 0,
+                data: data.winrateOT.map(function(v){
+                  return v.y.toFixed(2);
+                })
+            }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          linearGradientLine: 'winrate',
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                min: 20,
+                max: 80,
+                stepSize: 10
+              }
+            }]
+          }
+        }
+    });
+    var chartPopularity = new Chart(ctxPopularity, {
+        type: 'line',
+        data: {
+            labels: data.popularityOT.map(function(v){
+              return v.x;
+            }),
+            datasets: [{
+                label: "Popularity over time",
+                tension: .6,
+                fill: false,
+                borderWidth: 2,
+                pointRadius: 0,
+                data: data.popularityOT.map(function(v){
+                  return v.y.toFixed(2);
+                })
+            }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          linearGradientLine: 'popularity',
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                min: 0,
+                max: 20,
+                stepSize: 5
+              }
+            }]
+          }
+        }
+    });
+  });
 
   var position = $('#'+ target).data('position');
   var goldenAnimation = $('#'+ target).find('.golden-wrapper').data('golden');

@@ -857,6 +857,8 @@
   background: rgba(#0E0325,.5);
   padding: 12px 18px;
   border-radius: 8px;
+  margin-bottom: 80px;
+  clear: both;
 
   h2 {
     font-size: 1em;
@@ -888,5 +890,40 @@
     min-height: inherit;
     color: rgba(white,.7);
     margin-bottom: 20px;
+  }
+}
+
+/// CHARTS Details view
+.stats-wrapper{
+  positon: relative;
+  z-index: 11;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 260px;
+  width: 96%;
+  max-width: 1000px;
+  h2 {
+    font-size: 1em;
+    color: white;
+    margin-bottom: 2em;
+  }
+  .chart-container{
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: rgba(#0E0325,.7);
+    padding: 12px 18px 50px 18px ;
+    height: 280px;
+    min-width: 300px;
+    width: 48%;
+    margin: 0 auto 20px;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    min-height: 520px;
+    .chart-container{
+      width: 100%;
+      min-width: 250px;
+    }
   }
 }
