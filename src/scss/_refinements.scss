@@ -1,7 +1,9 @@
 #active-refinements {
   display: none;
-  padding: 16px 0 8px;
   text-align: center;
+  .ais-current-refined-values {
+    padding: 16px 0 8px;
+  }
 
   @media (max-width: 960px) {
     display: block;

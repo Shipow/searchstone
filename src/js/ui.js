@@ -14,15 +14,6 @@ document.addEventListener('touchend', function (event) {
   lastTouchEnd = now;
 }, false);
 
-
-window.openLightbox = function(e) {
-  $('.lightbox').toggleClass('hidden');
-  document.body.classList.toggle('no-scroll');
-  $('.container-fluid').addClass('no-scroll blur');
-  $('.background-image').addClass('blur');
-  cardDetail(e);
-};
-
 require('chart.js');
 var algoliasearch = require('algoliasearch');
 
@@ -50,11 +41,7 @@ var gradientLinePlugin = {
           gradient.addColorStop(0, '#FFB95D');
           break;
       }
-
-      // Assign the gradient to the dataset's border color.
       dataset.borderColor = gradient;
-      // Uncomment this for some effects, especially together with commenting the `fill: false` option below.
-      // dataset.backgroundColor = gradient;
     }
   }
 };
@@ -62,6 +49,87 @@ var gradientLinePlugin = {
 Chart.pluginService.register(gradientLinePlugin);
 var ctxWinrate = document.getElementById('chart-winrate').getContext('2d');
 var ctxPopularity = document.getElementById('chart-popularity').getContext('2d');
+
+var chartWinrate = new Chart(ctxWinrate, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: "Winrate over time",
+            tension: .6,
+            fill: false,
+            borderWidth: 2,
+            pointRadius: 0,
+            data: []
+        }]
+    },
+    options: {
+      animation: {
+        duration: 0
+      },
+      maintainAspectRatio: false,
+      linearGradientLine: 'winrate',
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: 20,
+            max: 80,
+            stepSize: 10
+          }
+        }]
+      }
+    }
+});
+var chartPopularity = new Chart(ctxPopularity, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: "Popularity over time",
+            tension: .6,
+            fill: false,
+            borderWidth: 2,
+            pointRadius: 0,
+            data: []
+        }]
+    },
+    options: {
+      animation: {
+        duration: 0
+      },
+      maintainAspectRatio: false,
+      linearGradientLine: 'popularity',
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: 0,
+            max: 20,
+            stepSize: 5
+          }
+        }]
+      }
+    }
+});
+
+function addData(chart, labels, data) {
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = data;
+    chart.update();
+}
+
+window.openLightbox = function(e) {
+  $('.lightbox').toggleClass('hidden');
+  document.body.classList.toggle('no-scroll');
+  $('.container-fluid').addClass('no-scroll blur');
+  $('.background-image').addClass('blur');
+  cardDetail(e);
+};
 
 function closeLightbox() {
   $('.lightbox_frame').remove();
@@ -80,83 +148,24 @@ function cardDetail(el) {
   var hearthpwnID = $('#'+ target).data('hearthpwn');
   var dbfId = $('#'+ target).data('dbfid');
 
+  $('.stats-wrapper').addClass('hide');
+
   hearthpwn.helper.clearRefinements('cards');
   hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
   hearthpwn.helper.search();
 
   index.getObject(dbfId,function(err, data){
-    $('.stats-wrapper').addClass('hide');
+
+    var dataPopularity = data.popularityOT.map(function(v){return v.y.toFixed(2)});
+    var labelsPopularity = data.popularityOT.map(function(v){return v.x;});
+    var dataWinrate = data.winrateOT.map(function(v){return v.y.toFixed(2)});
+    var labelsWinrate = data.winrateOT.map(function(v){return v.x});
+
+    addData(chartWinrate, labelsWinrate, dataWinrate);
+    addData(chartPopularity, labelsPopularity, dataPopularity);
+
     if(err === null){
       $('.stats-wrapper').removeClass('hide');
-      var chartWinrate = new Chart(ctxWinrate, {
-          type: 'line',
-          data: {
-              labels: data.winrateOT.map(function(v){
-                return v.x;
-              }),
-              datasets: [{
-                  label: "Winrate over time",
-                  tension: .6,
-                  fill: false,
-                  borderWidth: 2,
-                  pointRadius: 0,
-                  data: data.winrateOT.map(function(v){
-                    return v.y.toFixed(2);
-                  })
-              }]
-          },
-          options: {
-            maintainAspectRatio: false,
-            linearGradientLine: 'winrate',
-            legend: {
-              display: false
-            },
-            scales: {
-              yAxes: [{
-                ticks: {
-                  min: 20,
-                  max: 80,
-                  stepSize: 10
-                }
-              }]
-            }
-          }
-      });
-      var chartPopularity = new Chart(ctxPopularity, {
-          type: 'line',
-          data: {
-              labels: data.popularityOT.map(function(v){
-                return v.x;
-              }),
-              datasets: [{
-                  label: "Popularity over time",
-                  tension: .6,
-                  fill: false,
-                  borderWidth: 2,
-                  pointRadius: 0,
-                  data: data.popularityOT.map(function(v){
-                    return v.y.toFixed(2);
-                  })
-              }]
-          },
-          options: {
-            maintainAspectRatio: false,
-            linearGradientLine: 'popularity',
-            legend: {
-              display: false
-            },
-            scales: {
-              yAxes: [{
-                ticks: {
-                  min: 0,
-                  max: 20,
-                  stepSize: 5
-                }
-              }]
-            }
-          }
-      });
-
     };
   });
 
@@ -240,7 +249,7 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   } else {
     search.helper
       .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim').search();
+      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId').search();
   }
 });
 

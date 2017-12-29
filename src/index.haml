@@ -56,7 +56,7 @@
             %svg{role: "img"}
               %use{xlink:href: "#icon-filters"}
             Filters
-        %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "return false"}
+        %form.searchbox.sbx-custom{name: "searchquery", novalidate: true, onsubmit: "javascript: document.activeElement.blur(); return false", action:"."}
           %input#search.sbx-custom__input{type: "search", placeholder: "Search cards", autocomplete: "off", required: true, spellcheck: false}
           %button.sbx-custom__submit{type: "submit"}
             %svg{role: "img", aria-label: "Search"}
@@ -68,7 +68,7 @@
         #active-refinements
 
       %script#hit-template-card{type: "text/template"}
-        .hit.hit-card{id:"{{id}}",data-target: "{{id}}", data-hearthpwn: "{{hearthpwnID}}", data-position: "{{position}}", data-dbfid: "{{dbfId}}"}
+        .hit.hit-card{id:"{{id}}",data-target: "{{id}}", data-hearthpwn: "{{hearthpwnID}}", data-dbfid: "{{dbfId}}", data-position: "{{position}}"}
           .card-wrapper.show-golden{class: "type-{{type}} lang-{{lang}}"}
             .golden-wrapper{data-golden:"{{anim}}"}
             .normal-wrapper
