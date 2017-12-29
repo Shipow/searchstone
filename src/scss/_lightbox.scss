@@ -9,10 +9,11 @@
   width: 100%;
   height: 100%;
   visibility: visible;
-  max-width: 100% !important;
+  /* max-width: 100% !important; */
   z-index: 9999;
   transition: transform .5s ease, opacity .5s ease;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 
   &.flash {
     animation: flash .15s ease-out;
@@ -24,19 +25,23 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right:0;
+    bottom:0;
     z-index: 1;
   }
 
   // Lightbox close
   .close {
     position: absolute;
-    top: 20%;
-    right: 10%;
+    top: 5%;
+    right: 5%;
     z-index: 5;
     margin: 16px;
     cursor: pointer;
+    @media (max-width: 600px) {
+      top: 20px;
+      right: 20px;
+    }
 
     svg {
       height: 30px;
@@ -54,5 +59,5 @@
     opacity: 0;
     visibility: hidden;
   }
-  
+
 }

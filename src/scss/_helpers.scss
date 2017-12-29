@@ -1,3 +1,8 @@
 .hide {
   display: none !important;
 }
+
+.no-scroll {
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+}

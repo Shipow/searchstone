@@ -48,6 +48,7 @@
     @media (max-width: 1300px) {
       transform: scale(.7);
     }
+
     @media (max-width: 700px) {
       transform: scale(.6);
     }
@@ -107,7 +108,6 @@
     width: 300px;
     height: 60px;
     z-index: 10;
-
 
     text {
       font-size: 1.4em;
@@ -277,7 +277,6 @@
 .card-detail-wrapper {
   position: relative;
   z-index: 9000;
-  left: 8%;
   margin-bottom: 40px;
 
   .hit-card {
@@ -321,7 +320,6 @@
   .card-wrapper {
     position: relative;
     transform: scale(1);
-    margin-right: 40px;
     animation-fill-mode: backwards;
     transition: none;
     transform-origin: center;
@@ -329,7 +327,7 @@
     perspective: 1000;
 
     @media (max-width: 600px) {
-      transform: scale(.7) translateY(40px);
+      transform: scale(.8) translateX(80px);
     }
 
     &:hover .card-picture {
@@ -362,6 +360,7 @@
 
   .card-details {
     max-width: 300px;
+    padding-left: 20px;
     display: block;
     float: left;
     color: #fff;
@@ -872,6 +871,11 @@
       height: 16px;
       display: inline-block;
       margin-right: 4px;
+    }
+  }
+  .hit-topdeck {
+    @media (max-width: 600px) {
+      font-size: .95em;
     }
   }
 

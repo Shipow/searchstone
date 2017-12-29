@@ -2,18 +2,25 @@
 %head
   %meta{charset: "UTF-8"}
   %title Searchstone - Instant Search Hearthstone Cards
-  %meta{name: "viewport", content:"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"}
+  %meta{property: "description", content: "Search and browse all collectible standard and wild cards of Hearthstone"}
   -# twitter
   %meta{name: "twitter:card", content: "summary_large_image"}
   %meta{name: "twitter:site", content: "@kevin_granger"}
   %meta{name: "twitter:creator", content: "@kevin_granger"}
   -# og
   %meta{property: "og:url", content: "http://searchstone.io/"}
-  %meta{property: "og:title", content: "Searchstone.io - Hearthstone search"}
-  %meta{property: "og:description", content: "Search and browse all existing cards in Hearthstone: Heroes of Warcraft"}
+  %meta{property: "og:title", content: "Searchstone.io - Hearthstone Cards Instant Search"}
+  %meta{property: "og:description", content: "Search and browse all collectible cards of Hearthstone"}
   %meta{property: "og:image", content: "http://searchstone.io/img/og_screen.png"}
   %meta{name: "google-site-verification", content: "O2oib5j8AJKivxViD5MYZt1y4vNvqer2JZ_Esdm5rns"}
+  -# mobile
+  %meta{name: "viewport", content:"width=device-width, initial-scale=0.9, minimum-scale=0.9, maximum-scale=0.9, user-scalable=no,  shrink-to-fit=no",}
   %meta{name: "theme-color", content: "#0e0226"}
+  -# ios
+  %meta{name: "apple-mobile-web-app-title", content:"Searchstone"}
+  %meta{name: "apple-mobile-web-app-capable", content:"yes"}
+  %meta{name: "apple-mobile-web-app-status-bar-style", content:"black"}
+  %link{rel: "apple-touch-icon", href: "img/touch/apple-touch-icon.png"}
 
   %link{rel: "manifest", href: "/manifest.json"}
   %link{href: "https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700&subset=latin,latin-ext", rel: "stylesheet", type: "text/css"}
@@ -27,6 +34,7 @@
     %header
       %a.logo{href:"/"}
         %img{src: "img/searchstone.svg", width:300, alt:"heartstone search engine powered by algolia API"}
+
 
       %section#lang-select
       %section#template-toggle

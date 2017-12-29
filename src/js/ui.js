@@ -1,9 +1,25 @@
+document.addEventListener('touchmove', function(event) {
+    event = event.originalEvent || event;
+    if (event.scale !== 1) {
+       event.preventDefault();
+    }
+}, false);
+
+var lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+  var now = (new Date()).getTime();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+
 window.openLightbox = function(e) {
   $('.lightbox').toggleClass('hidden');
-  $('body, html').css('overflow:hidden');
+  document.body.classList.toggle('no-scroll');
   $('.container-fluid').addClass('no-scroll blur');
   $('.background-image').addClass('blur');
-  //jHash.val('card', $(e).find('.hit-card').data('target'));
   cardDetail(e);
 };
 
@@ -50,7 +66,7 @@ var ctxPopularity = document.getElementById('chart-popularity').getContext('2d')
 function closeLightbox() {
   $('.lightbox_frame').remove();
   $('.lightbox').addClass('hidden');
-  $('body, html').css('overflow:auto');
+  document.body.classList.toggle('no-scroll');
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
