@@ -20,7 +20,7 @@ function buildSitemapIndex(urls) {
       'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
 
   urls.forEach(function (url) {
-    xml.push('<url><loc>' + config.prod.protocol + '://' +  config.prod.domain + url + '</loc></url>');
+    xml.push('<url><loc>https://searchstone.io/' + url + '</loc></url>');
   });
 
   xml.push('</urlset>');
