@@ -42,7 +42,7 @@
     "attributeForDistinct":null,
     "ranking":["typo","geo","words","proximity",
     "attribute","exact","custom"],
-    "customRanking":["desc(rating)","desc(views)"],
+    "customRanking":["desc(views)"],
     "separatorsToIndex":"",
     "removeWordsIfNoResults":"none",
     "queryType":"prefixLast",
@@ -55,12 +55,12 @@
 
   var idPattern = /\/([0-9]*)-/;
   var offset = 1;
-  var pageLimit = 20;
+  var pageLimit = 100;
 
   console.log('Start scrap');
 
   // ranked deck
-  x('http://www.hearthpwn.com/decks?filter-build=40&filter-show-standard=1&filter-deck-type-val=10&filter-deck-type-op=3&page=' + offset, '.listing tbody tr', [{
+  x('http://www.hearthpwn.com/decks?filter-build=40&filter-show-standard=1&filter-show-constructed-only=y&filter-deck-tag=5&page=' + offset, '.listing tbody tr', [{
     objectID: '.col-name a@href',
     href: '.col-name a@href',
     name: '.col-name div a',
@@ -79,13 +79,10 @@
 
   (function(err, data) {
     _.forEach(data, function(item,k){
-      //console.log('Scrapped '+ item.name);
       data[k] = item;
       data[k].objectID = (item.objectID).match(idPattern)[1] || 0;
       data[k].views = parseInt((item.views));
       data[k].comments = parseInt((item.comments));
-      //data[k].dust = parseInt( item.dust.replace(',','').replace('.','').replace('k','00') );
-      //data[k].timestamp = parseInt((item.timestamp));
       //data[k].rating = parseInt((item.rating));
     });
     // split our results into chunks of 100 objects, to get a good indexing/insert performance
