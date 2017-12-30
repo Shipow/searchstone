@@ -1,0 +1,72 @@
+.icon {
+  position: relative;
+  margin-right: 24px;
+  line-height: 1em;
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('img/setIcons.svg');
+    background-size: 140px;
+  }
+
+  &.OG::before {
+    background-position: 68px 0;
+  }
+
+  &.GT::before {
+    background-position: 90px 0;
+  }
+
+  &.LOE::before {
+    background-position: 68px 24px;
+  }
+
+  &.BRM::before {
+    background-position: 46px 24px;
+  }
+
+  &.GVG::before {
+    background-position: 116px 0;
+  }
+
+  &.NAXX::before {
+    background-position: 22px 0;
+  }
+
+  &.EXPERT1::before {
+    background-position: 46px 0;
+  }
+
+  &.CORE::before {
+    background-position: 0 0;
+  }
+
+  &.REWARD::before {
+    background-position: 116px 24px;
+  }
+
+  &.KARA::before {
+    background-position: 24px 46px;
+  }
+
+  &.GANGS::before {
+    background-position: 0 24px;
+  }
+
+  &.UNGORO::before {
+    background-position: -24px 22px;
+  }
+
+  &.ICECROWN::before {
+    background-position: -46px 22px;
+  }
+
+  &.LOOTAPALOOZA::before {
+    background-position: -68px 22px;
+  }
+}

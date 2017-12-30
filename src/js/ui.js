@@ -77,7 +77,10 @@ var chartWinrate = new Chart(ctxWinrate, {
           ticks: {
             min: 20,
             max: 80,
-            stepSize: 10
+            stepSize: 10,
+            callback: function(value, index, values) {
+              return value + '%';
+            }
           }
         }]
       }
@@ -109,8 +112,11 @@ var chartPopularity = new Chart(ctxPopularity, {
         yAxes: [{
           ticks: {
             min: 0,
-            max: 20,
-            stepSize: 5
+            max: 50,
+            stepSize: 10,
+            callback: function(value, index, values) {
+              return value + '%';
+            }
           }
         }]
       }
@@ -249,7 +255,7 @@ $("#template-toggle").on('click', 'a:not(.active)', function(e){
   } else {
     search.helper
       .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId').search();
+      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort').search();
   }
 });
 

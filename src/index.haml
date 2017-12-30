@@ -88,7 +88,11 @@
                 .card-description{class: "{{textLengthClass}}"}
                   %span
                     {{{_highlightResult.text.value}}}
-              .card-infos {{set}}{{#nameVO}} - {{{_highlightResult.nameVO.value}}}{{/nameVO}}
+              .card-infos
+                {{#nameVO}}
+                  {{{_highlightResult.nameVO.value}}}
+                  %i.icon{class: "{{set}}"}
+                {{/nameVO}}
           .card-details
             %p.detail-set{class: "{{set}}"}
               %span {{setFull}} -&nbsp;
@@ -113,7 +117,7 @@
       %script#hit-template-row{type: "text/template"}
         .hit.hit-cel{data-target: "{{id}}"}
           .cel.cel-img{style:"background-image:url('https://res.cloudinary.com/hilnmyskv/image/upload/f_auto,w_300,q_80/{{id}}.jpg');"}
-            %span.cel-set{class:"{{set}}"} {{set}}
+            %span.cel-set{class:"{{set}}"} {{setShort}}
 
           .cel.cel-desc
             %span.cel-desc-name{class:"{{rarity}}"} {{{_highlightResult.name.value}}}

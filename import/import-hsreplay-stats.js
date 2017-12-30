@@ -15,7 +15,7 @@ var settings = {
   "attributesToIndex":["dbf_id"],
   "numericAttributesToIndex":null,
   "attributesToRetrieve":null,
-  "allowTyposOnNumericTokens":true,
+  "allowTyposOnNumericTokens":false,
   "ignorePlurals":false,
   "advancedSyntax":false,
   "removeStopWords":false,
@@ -60,38 +60,41 @@ Number.prototype.noExponents= function(){
 console.log('Start import');
 
 let getStatsOverTime = (c,cb) => {
-  https.get('https://hsreplay.net/analytics/query/single_card_stats_over_time/?GameType=RANKED_WILD&card_id=' + c.dbf_id + '&RankRange=ALL', (resp) => {
-    let data = '';
-    resp.on('data', (chunk) => { data += chunk;});
-    resp.on('end', () => {
-      c.popularityOT = JSON.parse(data).series[0].data;
-      c.winrateOT = JSON.parse(data).series[1].data;
-      c.objectID = c.dbf_id;
-      c.popularity = parseFloat(c.popularity).noExponents() * 1;
-      // c.ranking = c.total * c.winrate * c.popularity;
-      cb(null,c);
-    })
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
-  });
+  setTimeout(function() {
+    https.get('https://hsreplay.net/analytics/query/single_card_stats_over_time/?GameType=RANKED_STANDARD&card_id=' + c.dbf_id + '&RankRange=ALL', (resp) => {
+      let data = '';
+      resp.on('data', (chunk) => { data += chunk;});
+      resp.on('end', () => {
+        if(data){
+          c.popularityOT = JSON.parse(data).series[0].data;
+          c.winrateOT = JSON.parse(data).series[1].data;
+        }
+        c.objectID = c.dbf_id;
+        c.popularity = parseFloat(c.popularity).noExponents() * 1;
+        cb(null,c);
+      })
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+  }, 200);
 }
 
-  https.get('https://hsreplay.net/analytics/query/card_played_popularity_report/?GameType=RANKED_STANDARD&RankRange=ALL&TimeRange=CURRENT_EXPANSION', (resp) => {
-    let data = '';
-    resp.on('data', (chunk) => { data += chunk;});
-    resp.on('end', () => {
-      var cardStats = JSON.parse(data).series.data.ALL;
-      async.mapLimit(cardStats, 1, getStatsOverTime , function(err,results){
-        index.saveObjects(results, function(err, content) {
-          console.log('Indexing '+ results.length + ' records');
-          index.waitTask(content.taskID, function(err) {
-            if (!err) {
-              console.log('Done.');
-            }
-          });
+https.get('https://hsreplay.net/analytics/query/card_played_popularity_report/?GameType=RANKED_STANDARD&RankRange=ALL&TimeRange=CURRENT_EXPANSION', (resp) => {
+  let data = '';
+  resp.on('data', (chunk) => { data += chunk;});
+  resp.on('end', () => {
+    var cardStats = JSON.parse(data).series.data.ALL;
+    async.mapLimit(cardStats, 1, getStatsOverTime , function(err,results){
+      index.saveObjects(results, function(err, content) {
+        console.log('Indexing '+ results.length + ' records');
+        index.waitTask(content.taskID, function(err) {
+          if (!err) {
+            console.log('Done.');
+          }
         });
-      })
-    });
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
+      });
+    })
   });
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
