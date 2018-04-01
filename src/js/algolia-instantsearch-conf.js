@@ -5,13 +5,61 @@ let instantsearch = require('instantsearch.js');
 import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
+//menu[playerClass]=Hunter&refinementList[rarity][0]=Epic&refinementList[set][0]=OG&refinementList[type][0]=Spell&numericRefinementList[cost]=9%3A&toggle[format]=true&sortBy=searchstone_cost--asc
+const separator = '_';
+const stateMapping = {
+  stateToRoute(uiState) {
+    return {
+      sortBy: uiState.sortBy,
+      playerClass: uiState.menu && uiState.menu.playerClass,
+      standardOnly: uiState.toggle && uiState.toggle.format,
+      cost: uiState.numericRefinementList && uiState.numericRefinementList.cost,
+      rarity: uiState.refinementList && uiState.refinementList.rarity && uiState.refinementList.rarity.join(separator),
+      cardType: uiState.refinementList && uiState.refinementList.type && uiState.refinementList.type.join(separator),
+      set: uiState.refinementList && uiState.refinementList.set && uiState.refinementList.set.join(separator),
+      race: uiState.refinementList && uiState.refinementList.race && uiState.refinementList.race.join(separator),
+      mechanics: uiState.refinementList && uiState.refinementList.mechanics && uiState.refinementList.mechanics.join(separator),
+      attack: uiState.range && uiState.range.attack && uiState.range.attack.replace(':', '~'),
+      health: uiState.range && uiState.range.health && uiState.range.health.replace(':', '~'),
+    };
+  },
+  routeToState(syncable) {
+    return {
+      sortBy: syncable.sortBy,
+      menu: {
+        playerClass: syncable.playerClass,
+      },
+      toggle: {
+        format: syncable.standardOnly,
+      },
+      numericRefinementList: {
+        cost: syncable.cost,
+      },
+      refinementList: {
+        rarity: syncable.rarity && syncable.rarity.split(separator),
+        set: syncable.set && syncable.set.split(separator),
+        type: syncable.cardType && syncable.cardType.split(separator),
+        race: syncable.race && syncable.race.split(separator),
+        mechanics: syncable.mechanics && syncable.mechanics.split(separator),
+      },
+      range: {
+        attack: syncable.attack && syncable.attack.replace('~', ':'),
+        health: syncable.health && syncable.health.replace('~', ':'),
+      },
+    };
+  }
+}
+
 //config cards
 let searchstone = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_popularity',
-  urlSync: {
+  /* urlSync: {
     trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist', 'attribute:lang']
+  }, */
+  routing: {
+    stateMapping,
   },
   searchParameters: {
     facets: ['artist'],
