@@ -9,6 +9,7 @@ const separator = '_';
 const stateMapping = {
   stateToRoute(uiState) {
     return {
+      query: uiState.query,
       sortBy: uiState.sortBy,
       playerClass: uiState.menu && uiState.menu.playerClass,
       standardOnly: uiState.toggle && uiState.toggle.format,
@@ -25,6 +26,7 @@ const stateMapping = {
   },
   routeToState(syncable) {
     return {
+      query: syncable.query,
       sortBy: syncable.sortBy,
       menu: {
         playerClass: syncable.playerClass,
