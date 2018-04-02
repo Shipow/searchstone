@@ -5,7 +5,6 @@ let instantsearch = require('instantsearch.js');
 import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
-//menu[playerClass]=Hunter&refinementList[rarity][0]=Epic&refinementList[set][0]=OG&refinementList[type][0]=Spell&numericRefinementList[cost]=9%3A&toggle[format]=true&sortBy=searchstone_cost--asc
 const separator = '_';
 const stateMapping = {
   stateToRoute(uiState) {
@@ -21,6 +20,7 @@ const stateMapping = {
       mechanics: uiState.refinementList && uiState.refinementList.mechanics && uiState.refinementList.mechanics.join(separator),
       attack: uiState.range && uiState.range.attack && uiState.range.attack.replace(':', '~'),
       health: uiState.range && uiState.range.health && uiState.range.health.replace(':', '~'),
+      lang: uiState.lang
     };
   },
   routeToState(syncable) {
@@ -46,6 +46,7 @@ const stateMapping = {
         attack: syncable.attack && syncable.attack.replace('~', ':'),
         health: syncable.health && syncable.health.replace('~', ':'),
       },
+      lang: syncable.lang,
     };
   }
 }
@@ -566,6 +567,7 @@ hearthpwn.addWidget(
   })
 );
 window.hearthpwn = hearthpwn;
+hearthpwn.start();
 
 searchstone.on('render', function() {
 
@@ -580,7 +582,6 @@ searchstone.on('render', function() {
     $('.load-more').removeClass('hide');
   }
   sunwellRender();
-  hearthpwn.start();
 
   if (typeof jHash.val('card') !== 'undefined'){
     var e = $('#'+ jHash.val('card')).parent() ;
