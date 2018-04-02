@@ -5,6 +5,8 @@ let instantsearch = require('instantsearch.js');
 import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
+import layoutSelect from './is-custom/layout-picker.js';
+
 const separator = '_';
 const stateMapping = {
   stateToRoute(uiState) {
@@ -21,7 +23,8 @@ const stateMapping = {
       mechanics: uiState.refinementList && uiState.refinementList.mechanics && uiState.refinementList.mechanics.join(separator),
       attack: uiState.range && uiState.range.attack && uiState.range.attack.replace(':', '~'),
       health: uiState.range && uiState.range.health && uiState.range.health.replace(':', '~'),
-      lang: uiState.lang
+      lang: uiState.lang,
+      layout: uiState.layout,
     };
   },
   routeToState(syncable) {
@@ -49,6 +52,7 @@ const stateMapping = {
         health: syncable.health && syncable.health.replace('~', ':'),
       },
       lang: syncable.lang,
+      layout: syncable.layout,
     };
   }
 }
@@ -429,6 +433,8 @@ searchstone.addWidget(
     }
   })
 );
+
+searchstone.addWidget(layoutSelect);
 
 searchstone.addWidget(
   instantsearch.widgets.rangeSlider({
