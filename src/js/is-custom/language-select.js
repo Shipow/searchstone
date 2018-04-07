@@ -137,7 +137,7 @@ function languageSelect($container) {
     },
 
     getWidgetState: function(uiState, opts) {
-      const searchParameters = opts.state;
+      const searchParameters = opts.searchParameters;
       const selectedLang = searchParameters.getDisjunctiveRefinements('lang');
       if(selectedLang.length > 0) {
         return Object.assign({}, uiState, {
