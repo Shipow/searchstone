@@ -3,3 +3,4 @@ node_modules
 .publish
 build/*
 import/in/*
+yarn-error.log
