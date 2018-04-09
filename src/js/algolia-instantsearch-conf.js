@@ -62,9 +62,6 @@ let searchstone = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_popularity',
-  /* urlSync: {
-    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist', 'attribute:lang']
-  }, */
   routing: {
     stateMapping,
   },
