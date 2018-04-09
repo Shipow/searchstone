@@ -52,7 +52,7 @@
     "algoliasearch": "^3.24.8",
     "chart.js": "^2.7.1",
     "imports-loader": "^0.6.5",
-    "instantsearch.js": "2.2.2-beta.0",
+    "instantsearch.js": "^2.7.0",
     "jquery": "^3.2.1",
     "lodash": "^3.10.1",
     "mustache": "^2.2.1",

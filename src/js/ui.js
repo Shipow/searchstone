@@ -242,23 +242,6 @@ $('#results, #table').on('click', '.ais-hits--item', function(e) {
   openLightbox(this);
 });
 
-$("#template-toggle").on('click', 'a:not(.active)', function(e){
-  e.preventDefault();
-
-  $('#template-toggle a').toggleClass('active');
-  $('.results').toggleClass('hide');
-
-  if($(this).hasClass('template-cards')){
-    search.helper
-      .setQueryParameter('hitsPerPage',24)
-      .setQueryParameter('attributesToRetrieve', '*').search();
-  } else {
-    search.helper
-      .setQueryParameter('hitsPerPage',150)
-      .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort').search();
-  }
-});
-
 $("#toggleFilters").on('click', function(e){
   e.preventDefault();
   $('aside').toggleClass('show');

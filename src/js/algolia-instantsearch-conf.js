@@ -5,13 +5,90 @@ let instantsearch = require('instantsearch.js');
 import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
+import layoutSelect from './is-custom/layout-picker.js';
+
+const separator = '_';
+const stateMapping = {
+  stateToRoute({
+    query,
+    sortBy,
+    menu,
+    toggle,
+    numericRefinementList,
+    refinementList,
+    lang,
+    layout,
+    range,
+  }) {
+    return {
+      query: query,
+      sortBy: sortBy,
+      playerClass: menu && menu.playerClass,
+      standardOnly: toggle && toggle.format,
+      cost: numericRefinementList && numericRefinementList.cost,
+      rarity: refinementList && refinementList.rarity && refinementList.rarity.join(separator),
+      cardType: refinementList && refinementList.type && refinementList.type.join(separator),
+      set: refinementList && refinementList.set && refinementList.set.join(separator),
+      race: refinementList && refinementList.race && refinementList.race.join(separator),
+      mechanics: refinementList && refinementList.mechanics && refinementList.mechanics.join(separator),
+      attack: range && range.attack && range.attack.replace(':', '~'),
+      health: range && range.health && range.health.replace(':', '~'),
+      lang: lang,
+      layout: layout,
+    };
+  },
+  routeToState({
+    query,
+    sortBy,
+    playerClass,
+    standardOnly,
+    cost,
+    rarity,
+    cardType,
+    set,
+    race,
+    mechanics,
+    attack,
+    health,
+    lang,
+    layout,
+  }) {
+    return {
+      query: query,
+      sortBy: sortBy,
+      menu: {
+        playerClass: playerClass,
+      },
+      toggle: {
+        format: standardOnly,
+      },
+      numericRefinementList: {
+        cost: cost,
+      },
+      refinementList: {
+        rarity: rarity && rarity.split(separator),
+        set: set && set.split(separator),
+        type: cardType && cardType.split(separator),
+        race: race && race.split(separator),
+        mechanics: mechanics && mechanics.split(separator),
+      },
+      range: {
+        attack: attack && attack.replace('~', ':'),
+        health: health && health.replace('~', ':'),
+      },
+      lang: lang,
+      layout: layout,
+    };
+  }
+}
+
 //config cards
 let searchstone = instantsearch({
   appId: 'OWD8XOXT0U',
   apiKey: '4c77c51c3822c8a719b418b0cb47913e',
   indexName: 'searchstone_popularity',
-  urlSync: {
-    trackedParameters: ['query','attribute:playerClass','attribute:cost','attribute:set','attribute:rarity','attribute:type','attribute:race','attribute:mechanics','attribute:attack','attribute:health', 'attribute:artist', 'attribute:lang']
+  routing: {
+    stateMapping,
   },
   searchParameters: {
     facets: ['artist'],
@@ -379,6 +456,8 @@ searchstone.addWidget(
   })
 );
 
+searchstone.addWidget(layoutSelect);
+
 searchstone.addWidget(
   instantsearch.widgets.rangeSlider({
     container: '#health',
@@ -518,6 +597,7 @@ hearthpwn.addWidget(
   })
 );
 window.hearthpwn = hearthpwn;
+hearthpwn.start();
 
 searchstone.on('render', function() {
 
@@ -532,7 +612,6 @@ searchstone.on('render', function() {
     $('.load-more').removeClass('hide');
   }
   sunwellRender();
-  hearthpwn.start();
 
   if (typeof jHash.val('card') !== 'undefined'){
     var e = $('#'+ jHash.val('card')).parent() ;
