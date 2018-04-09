@@ -9,50 +9,75 @@ import layoutSelect from './is-custom/layout-picker.js';
 
 const separator = '_';
 const stateMapping = {
-  stateToRoute(uiState) {
+  stateToRoute({
+    query,
+    sortBy,
+    menu,
+    toggle,
+    numericRefinementList,
+    refinementList,
+    lang,
+    layout,
+    range,
+  }) {
     return {
-      query: uiState.query,
-      sortBy: uiState.sortBy,
-      playerClass: uiState.menu && uiState.menu.playerClass,
-      standardOnly: uiState.toggle && uiState.toggle.format,
-      cost: uiState.numericRefinementList && uiState.numericRefinementList.cost,
-      rarity: uiState.refinementList && uiState.refinementList.rarity && uiState.refinementList.rarity.join(separator),
-      cardType: uiState.refinementList && uiState.refinementList.type && uiState.refinementList.type.join(separator),
-      set: uiState.refinementList && uiState.refinementList.set && uiState.refinementList.set.join(separator),
-      race: uiState.refinementList && uiState.refinementList.race && uiState.refinementList.race.join(separator),
-      mechanics: uiState.refinementList && uiState.refinementList.mechanics && uiState.refinementList.mechanics.join(separator),
-      attack: uiState.range && uiState.range.attack && uiState.range.attack.replace(':', '~'),
-      health: uiState.range && uiState.range.health && uiState.range.health.replace(':', '~'),
-      lang: uiState.lang,
-      layout: uiState.layout,
+      query: query,
+      sortBy: sortBy,
+      playerClass: menu && menu.playerClass,
+      standardOnly: toggle && toggle.format,
+      cost: numericRefinementList && numericRefinementList.cost,
+      rarity: refinementList && refinementList.rarity && refinementList.rarity.join(separator),
+      cardType: refinementList && refinementList.type && refinementList.type.join(separator),
+      set: refinementList && refinementList.set && refinementList.set.join(separator),
+      race: refinementList && refinementList.race && refinementList.race.join(separator),
+      mechanics: refinementList && refinementList.mechanics && refinementList.mechanics.join(separator),
+      attack: range && range.attack && range.attack.replace(':', '~'),
+      health: range && range.health && range.health.replace(':', '~'),
+      lang: lang,
+      layout: layout,
     };
   },
-  routeToState(syncable) {
+  routeToState({
+    query,
+    sortBy,
+    playerClass,
+    standardOnly,
+    cost,
+    rarity,
+    cardType,
+    set,
+    race,
+    mechanics,
+    attack,
+    health,
+    lang,
+    layout,
+  }) {
     return {
-      query: syncable.query,
-      sortBy: syncable.sortBy,
+      query: query,
+      sortBy: sortBy,
       menu: {
-        playerClass: syncable.playerClass,
+        playerClass: playerClass,
       },
       toggle: {
-        format: syncable.standardOnly,
+        format: standardOnly,
       },
       numericRefinementList: {
-        cost: syncable.cost,
+        cost: cost,
       },
       refinementList: {
-        rarity: syncable.rarity && syncable.rarity.split(separator),
-        set: syncable.set && syncable.set.split(separator),
-        type: syncable.cardType && syncable.cardType.split(separator),
-        race: syncable.race && syncable.race.split(separator),
-        mechanics: syncable.mechanics && syncable.mechanics.split(separator),
+        rarity: rarity && rarity.split(separator),
+        set: set && set.split(separator),
+        type: cardType && cardType.split(separator),
+        race: race && race.split(separator),
+        mechanics: mechanics && mechanics.split(separator),
       },
       range: {
-        attack: syncable.attack && syncable.attack.replace('~', ':'),
-        health: syncable.health && syncable.health.replace('~', ':'),
+        attack: attack && attack.replace('~', ':'),
+        health: health && health.replace('~', ':'),
       },
-      lang: syncable.lang,
-      layout: syncable.layout,
+      lang: lang,
+      layout: layout,
     };
   }
 }
