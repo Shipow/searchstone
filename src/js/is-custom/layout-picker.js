@@ -12,7 +12,7 @@ const layoutPicker = {
       $('#template-toggle a').toggleClass('active');
       $('.results').toggleClass('hide');
 
-      if($(document).hasClass('template-cards')){
+      if(currentLayout === 'list'){
         currentLayout = 'cards'
         search.helper
           .setQueryParameter('hitsPerPage',24)
@@ -26,12 +26,9 @@ const layoutPicker = {
     });
   },
   getWidgetState: function(uiState) {
-    if(currentLayout === 'list') {
-      return Object.assign({}, uiState, {
-        layout: 'list',
-      });
-    }
-    return uiState;
+    return Object.assign({}, uiState, {
+      layout: currentLayout === 'list' ? 'list' : undefined,
+    });
   },
   getWidgetSearchParameters: function(sp, opts) {
     const uiState = opts.uiState;
