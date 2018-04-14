@@ -98,7 +98,7 @@
               %span {{setFull}} -&nbsp;
               %span{class: "{{playerClass}}"} {{playerClass}}
             %h2.detail-name
-              %a{href:"?q={{name}}&dFR[lang][0]={{lang}}#?card={{id}}"}
+              %a{href:"#?card={{id}}"}
                 {{name}}
             .detail-nameVO {{nameVO}}
             {{#dustCraft}}
@@ -106,7 +106,7 @@
             {{/dustCraft}}
             %p.detail-quote {{{flavor}}}
             %br
-            %p.detail-artist Artist: <a href="/?fR[artist][0]={{artist}}">{{artist}}</a>
+            %p.detail-artist Artist: <a href="/?artist={{artist}}">{{artist}}</a>
             %br
             %a.detail-link{href:"{{hearthpwnUrl}}", target:"_blank"}
               %svg{role: "img"}
