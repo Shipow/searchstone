@@ -6,6 +6,7 @@ import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
 import layoutSelect from './is-custom/layout-picker.js';
+import artistWidget from './is-custom/artist.js';
 
 const separator = '_';
 const stateMapping = {
@@ -19,6 +20,7 @@ const stateMapping = {
     lang,
     layout,
     range,
+    artist,
   }) {
     return {
       query: query,
@@ -35,6 +37,7 @@ const stateMapping = {
       health: range && range.health && range.health.replace(':', '~'),
       lang: lang,
       layout: layout,
+      artist: artist,
     };
   },
   routeToState({
@@ -52,6 +55,7 @@ const stateMapping = {
     health,
     lang,
     layout,
+    artist,
   }) {
     return {
       query: query,
@@ -78,6 +82,7 @@ const stateMapping = {
       },
       lang: lang,
       layout: layout,
+      artist: artist,
     };
   }
 }
@@ -91,10 +96,11 @@ let searchstone = instantsearch({
     stateMapping,
   },
   searchParameters: {
-    facets: ['artist'],
     hitsPerPage: 24
   }
 });
+
+searchstone.addWidget(artistWidget);
 
 //expose instantsearch because of webpack
 window.search = searchstone;
