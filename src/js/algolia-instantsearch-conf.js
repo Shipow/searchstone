@@ -19,6 +19,7 @@ const stateMapping = {
     lang,
     layout,
     range,
+    card,
   }) {
     return {
       query: query,
@@ -35,6 +36,7 @@ const stateMapping = {
       health: range && range.health && range.health.replace(':', '~'),
       lang: lang,
       layout: layout,
+      card: card,
     };
   },
   routeToState({
@@ -52,6 +54,7 @@ const stateMapping = {
     health,
     lang,
     layout,
+    card,
   }) {
     return {
       query: query,
@@ -78,6 +81,7 @@ const stateMapping = {
       },
       lang: lang,
       layout: layout,
+      card: card,
     };
   }
 }
@@ -187,7 +191,7 @@ searchstone.addWidget(
       return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?hFR[playerClass][0]={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
+      item: '<a href="?playerClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
     }
   })
 );
@@ -202,7 +206,7 @@ searchstone.addWidget(
       return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?hFR[playerClass][0]={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
+      item: '<a href="?playerClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
     }
   })
 );
@@ -269,7 +273,7 @@ searchstone.addWidget(
     },
     templates: {
       header: 'Rarity',
-      item: '<a href="?dFR[rarity][0]={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}">{{value}}</a>'
+      item: '<a href="?rarity={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}">{{value}}</a>'
     }
   })
 );
@@ -314,10 +318,11 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA', 'GILNEAS'];
 set.reverse();
 
 var setFull = {
+  GILNEAS : "The Witchwood",
   LOOTAPALOOZA : "Kobolds and Catacombs",
   ICECROWN : "Frozen Throne",
   UNGORO : "Un'Goro",
@@ -352,7 +357,7 @@ searchstone.addWidget(
     },
     templates: {
       header: 'Set',
-      item: '<a href="?fR[set][0]={{name}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value-full">{{fullName}}</span> <span class="value">{{value}}</span> <span class="badge">{{count}}</span></a>'
+      item: '<a href="?set={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value-full">{{fullName}}</span> <span class="value">{{value}}</span> <span class="badge">{{count}}</span></a>'
     }
   })
 );
@@ -364,7 +369,7 @@ searchstone.addWidget(
     operator: 'or',
     templates: {
       header: 'Type',
-      item: '<a href="?dFR[type][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?type={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
     }
   })
 );
@@ -376,7 +381,7 @@ searchstone.addWidget(
     operator: 'or',
     templates: {
       header: 'Race',
-      item: '<a href="?dFR[race][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?race={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     collapsible: {
       collapsed: true
@@ -392,7 +397,7 @@ searchstone.addWidget(
     limit: 50,
     templates: {
       header: 'Mechanics',
-      item: '<a href="?fR[mechanics][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
+      item: '<a href="?mechanics={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
     },
     collapsible: {
       collapsed: true
@@ -478,10 +483,6 @@ searchstone.on('render', function() {
   sunwellRender();
 });
 
-// let's go!
-searchstone.start();
-sunwell.init();
-
 //config decks
 let hearthpwn = instantsearch({
   appId: 'OWD8XOXT0U',
@@ -502,6 +503,7 @@ hearthpwn.addWidget(
     }
   })
 );
+
 window.hearthpwn = hearthpwn;
 hearthpwn.start();
 
@@ -519,12 +521,14 @@ searchstone.on('render', function() {
   }
   sunwellRender();
 
-  if (typeof jHash.val('card') !== 'undefined'){
-    var e = $('#'+ jHash.val('card')).parent() ;
-    setTimeout(function(){
-      openLightbox(e);
-    }, 500);
-  }
+  console.log(uiState)
+
+  // if (typeof jHash.val('card') !== 'undefined'){
+  //   var e = $('#'+ jHash.val('card')).parent() ;
+  //   setTimeout(function(){
+  //     openLightbox(e);
+  //   }, 500);
+  // }
 
 });
 

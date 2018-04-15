@@ -18,7 +18,6 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
-  jHash.clearQuery();
 }
 
 function playFlash(){
@@ -169,12 +168,12 @@ window.sunwellRender = function(cb){
       if (renderIteratee === cards.length){
         window.renderIteratee = 1;
         //statsRender();
-        if (typeof jHash.val('card') !== 'undefined'){
-          var e = $('#'+ jHash.val('card')).parent() ;
-          setTimeout(function(){
-            openLightbox(e);
-          }, 500);
-        }
+        // if (typeof jHash.val('card') !== 'undefined'){
+        //   var e = $('#'+ jHash.val('card')).parent() ;
+        //   setTimeout(function(){
+        //     openLightbox(e);
+        //   }, 500);
+        // }
       }
     });
   });

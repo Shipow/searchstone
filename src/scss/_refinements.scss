@@ -615,6 +615,11 @@
       background-position: -68px 21px;
     }
 
+    &[data-facet-value="The Witchwood"]::before,
+    &[data-facet-value="GILNEAS"]::before {
+      background-position: -90px 21px;
+    }
+
   }
 }
 

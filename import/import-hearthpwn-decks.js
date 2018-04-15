@@ -60,7 +60,7 @@
   console.log('Start scrap');
 
   // ranked deck
-  x('http://www.hearthpwn.com/decks?filter-build=40&filter-show-standard=1&filter-show-constructed-only=y&filter-deck-tag=5&page=' + offset, '.listing tbody tr', [{
+  x('http://www.hearthpwn.com/decks?filter-build=42&filter-show-standard=1&filter-show-constructed-only=y&filter-deck-tag=5&page=' + offset, '.listing tbody tr', [{
     objectID: '.col-name a@href',
     href: '.col-name a@href',
     name: '.col-name div a',
