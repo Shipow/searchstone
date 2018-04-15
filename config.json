@@ -1,12 +1,12 @@
 {
   "cloudinary": {
-    "cloud_name": "",
-    "api_key": "",
-    "api_secret": ""
+    "cloud_name": "hilnmyskv",
+    "api_key": "994327226692994",
+    "api_secret": "EeGM96V1-wuZUlL1VyA_UfgQpBU"
   },
   "algolia": {
-    "appID": "",
-    "apiKey": "",
+    "appID": "OWD8XOXT0U",
+    "apiKey": "e70ea7269b7642765ff9b0dc4245dbbb",
     "index": "searchstone_cost--asc",
     "settings": {
       "minWordSizefor1Typo": 4,

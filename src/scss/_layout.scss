@@ -43,7 +43,6 @@ body {
 aside {
   width: 270px;
   float: left;
-  padding-top: 40px;
   animation: fadeInLeft .3s ease-in;
 
   section {
@@ -143,4 +142,9 @@ main {
       height: 18px;
     }
   }
+}
+
+.results-stats-wrapper{
+  width: 240px;
+  margin: 0 auto;
 }

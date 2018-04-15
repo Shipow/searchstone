@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 
 let instantsearch = require('instantsearch.js');
 
@@ -91,15 +91,15 @@ let searchstone = instantsearch({
     stateMapping,
   },
   searchParameters: {
-    facets: ['artist'],
-    hitsPerPage: 24
+    facets: ['artist', 'cost', 'attack', 'health', 'rarity', 'mechanics', 'race'],
+    hitsPerPage: 12
   }
 });
 
-//expose instantsearch because of webpack
+// expose instantsearch because of webpack
 window.search = searchstone;
 
-//searchbox
+// searchbox
 searchstone.addWidget(
   instantsearch.widgets.searchBox({
     container: '#search',
@@ -119,16 +119,12 @@ searchstone.addWidget(
     },
     transformData: {
       item: function(hit) {
-
         hit.position = hit.__hitIndex + 1;
-
         hit.textPath = "#" + hit.type;
-
         if (typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined') {
           hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<em>/g,'<tspan>');
           hit._highlightResult.name.value = hit._highlightResult.name.value.replace(/<\/em>/g,'</tspan>');
         }
-
         if(typeof hit.name !== "undefined" && hit.name.length > 22){
           hit.nameLengthClass = "xxl";
         }
@@ -141,7 +137,6 @@ searchstone.addWidget(
         else if(typeof hit.name !== "undefined" && hit.name.length > 10){
           hit.nameLengthClass = "md";
         }
-
         if(typeof hit.text !== "undefined" && hit.text.length > 150){
           hit.textLengthClass = "xxl";
         }
@@ -161,6 +156,7 @@ searchstone.addWidget(
   })
 );
 
+// hit row template
 searchstone.addWidget(
   instantsearch.widgets.hits({
     hitsPerPage: 24,
@@ -211,19 +207,6 @@ searchstone.addWidget(
   })
 );
 
-// Selected player class title
-searchstone.addWidget(
-  instantsearch.widgets.currentRefinedValues({
-    container: "#player-class-refinement",
-    clearAll: false,
-    attributes: [
-      {name: 'playerClass', template: '<h2 class="class-{{name}}">{{name}}</h2>'},
-      {name: 'artist', template: '<h2 class="artist">{{name}}</h2>'}
-    ],
-    onlyListedAttributes: true
-  })
-);
-
 // Mobile refinements
 searchstone.addWidget(
   instantsearch.widgets.currentRefinedValues({
@@ -248,7 +231,7 @@ searchstone.addWidget(
   })
 );
 
-//sidebar clear all filters button
+// Sidebar clear all filters button
 searchstone.addWidget(
   instantsearch.widgets.currentRefinedValues({
     container: "#clearAll",
@@ -296,7 +279,6 @@ searchstone.addWidget(
     container: '#cost',
     attributeName: 'cost',
     options: [
-      // {name: 'all'},
       {start: 0, end: 0, name: '0'},
       {start: 1, end: 1, name: '1'},
       {start: 2, end: 2, name: '2'},
@@ -332,7 +314,7 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN','LOOTAPALOOZA'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA'];
 set.reverse();
 
 var setFull = {
@@ -383,8 +365,7 @@ searchstone.addWidget(
     templates: {
       header: 'Type',
       item: '<a href="?dFR[type][0]={{value}}" class="{{#isRefined}}active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{label}}</span> <span class="badge pull-right">{{count}}</span></a>'
-    },
-    // collapsible: true
+    }
   })
 );
 
@@ -475,106 +456,31 @@ searchstone.addWidget(
   })
 );
 
-var lastSentGa = null;
-
-var sendAnalytics = function() {
-
-  //params to url
-  var params = [];
-  params.push(serializeRefinements(Object.assign({}, search.helper.state.disjunctiveFacetsRefinements, search.helper.state.facetsRefinements)));
-  params.push(serializeNumericRefinements(search.helper.state.numericRefinements));
-  params = params.filter(function(n) {
-    return n != '';
-  }).join('&');
-
-  //convert url to object
-  var objParams = JSON.parse('{"' + decodeURI(params.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
-
-  //convert object to array
-  var arrParams = $.map(objParams, function(value, index) {
-      return [value];
-  });
-
-  var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
-
-  if(lastSentGa !== paramsToSend) {
-
-    //Google Analytics
-    //ga('set', 'page', '/algoliasearch/?query=' + search.helper.state.query + '&' + params);
-    //ga('send', 'pageview');
-
-    //GTM
-    dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
-
-    //segment.io
-    //analytics.page( '[SEGMENT] instantsearch', {path: '/instantsearch/?query=' + search.helper.state.query + '&' + params });
-
-    //kissmetrics
-    _kmq.push(['record', '[KM] Viewed Result page', {
-      'Query': search.helper.state.query ,
-      'Number of Hits': search.helper.lastResults.nbHits,
-      'Search Params': arrParams
-    }]);
-
-    lastSentGa = paramsToSend;
-  }
-};
-
-var serializeRefinements = function(obj) {
-  var str = [];
-  for(var p in obj) {
-    if (obj.hasOwnProperty(p)) {
-      var values = obj[p].join('+');
-      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(p) + '_' + encodeURIComponent(values));
-    }
-  }
-  return str.join('&');
-};
-
-var serializeNumericRefinements = function(numericRefinements) {
-  var numericStr = [];
-
-  for(var attr in numericRefinements) {
-    if(numericRefinements.hasOwnProperty(attr)) {
-      var filter = numericRefinements[attr];
-
-      if(filter.hasOwnProperty('>=') && filter.hasOwnProperty('<=')) {
-        if(filter['>='][0] == filter['<='][0]) {
-          numericStr.push(attr + '=' + attr + '_' + filter['>=']);
-        }
-        else {
-          numericStr.push(attr + '=' + attr + '_' + filter['>='] + 'to' + filter['<=']);
-        }
-      }
-      else if(filter.hasOwnProperty('>=')) {
-        numericStr.push(attr + '=' + attr + '_from' + filter['>=']);
-      }
-      else if(filter.hasOwnProperty('<=')) {
-        numericStr.push(attr + '=' + attr + '_to' + filter['<=']);
-      }
-      else if(filter.hasOwnProperty('=')) {
-        var equals = [];
-        for(var equal in filter['=']) {
-          if(filter['='].hasOwnProperty(equal)) {
-            equals.push(filter['='][equal]);
-          }
-        }
-        numericStr.push(attr + '=' + attr + '_' + equals.join('-'));
-      }
-    }
-  }
-  return numericStr.join('&');
-};
-
+// analytics
 $('body').on('click', function(e) {
   sendAnalytics();
 });
-
 window.onbeforeunload = function() {
   sendAnalytics();
 };
+let analyticsTimeout;
 
-var analyticsTimeout;
+searchstone.on('render', function() {
+  if(analyticsTimeout) {
+    clearTimeout(analyticsTimeout);
+  }
+  analyticsTimeout = setTimeout(sendAnalytics, 2000);
+  if( $('#stats').find('.nbPages').data('nb-pages') === 1 ){
+    $('.load-more').addClass('hide');
+  } else {
+    $('.load-more').removeClass('hide');
+  }
+  sunwellRender();
+});
+
+// let's go!
+searchstone.start();
+sunwell.init();
 
 //config decks
 let hearthpwn = instantsearch({
