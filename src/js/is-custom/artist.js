@@ -2,7 +2,19 @@ export default {
   getConfiguration: () => ({
     facets: ['artist'],
   }),
-  init: () => {},
+  init: ({helper}) => {
+    $(document).on('click', 'a[data-filter]', (e) => {
+      if (e.ctrlKey || e.altKey || e.metaKey) return true;
+
+      const link = $(e.target);
+      const filter = link.data('filter');
+      const [type, value] = filter.split(':');
+
+      e.preventDefault();
+
+      helper.addFacetRefinement(type, value).search();
+    });
+  },
   getWidgetSearchParameters: (searchParameters, {uiState}) => {
     let sp = searchParameters.clearRefinements('artist');
     if (uiState.artist) {
