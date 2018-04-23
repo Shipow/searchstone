@@ -229,7 +229,7 @@ gulp.task("favicons", function () {
 //   Task: Watch
 // -------------------------------------
 gulp.task('watch', function() {
-  livereload.listen();
+  // livereload.listen();
   gulp.watch('src/*.haml', ['build:haml']);
   gulp.watch('src/scss/**/*.scss', ['scss','lint:scss']);
   gulp.watch('src/js/**/*.js', ['js', 'lint:js']);
@@ -244,9 +244,9 @@ gulp.task('webserver', function() {
     .pipe(webserver({
       host: '0.0.0.0',
       port: 1337,
-      //livereload: true,
+      livereload: true,
       directoryListing: false,
-      https: true,
+      https: false,
       open: true
     }));
 });

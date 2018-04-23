@@ -1,133 +1,7 @@
-document.addEventListener('touchmove', function(event) {
-    event = event.originalEvent || event;
-    if (event.scale !== 1) {
-       event.preventDefault();
-    }
-}, false);
-
-var lastTouchEnd = 0;
-document.addEventListener('touchend', function (event) {
-  var now = (new Date()).getTime();
-  if (now - lastTouchEnd <= 300) {
-    event.preventDefault();
-  }
-  lastTouchEnd = now;
-}, false);
-
-require('chart.js');
+// init algolia
 var algoliasearch = require('algoliasearch');
-
 var client = algoliasearch('OWD8XOXT0U', '4c77c51c3822c8a719b418b0cb47913e');
 var index = client.initIndex('hsreplay-stats');
-
-var gradientLinePlugin = {
-  // Called at start of update.
-  beforeUpdate: function(chartInstance) {
-    if (chartInstance.options.linearGradientLine) {
-      var ctx = chartInstance.chart.ctx;
-      var dataset = chartInstance.data.datasets[0];
-      var gradient = ctx.createLinearGradient(0, 10, 0, 140);
-
-      switch (chartInstance.options.linearGradientLine) {
-        case 'winrate':
-          gradient.addColorStop(.7, '#EE7A57');
-          gradient.addColorStop(0.52, '#FD4255');
-          gradient.addColorStop(0.48, '#51A93F');
-          gradient.addColorStop(0.2, '#34FFAC');
-          break;
-        case 'popularity':
-          gradient.addColorStop(1, '#2C5EE3');
-          gradient.addColorStop(.8, '#6B3FC8');
-          gradient.addColorStop(0, '#FFB95D');
-          break;
-      }
-      dataset.borderColor = gradient;
-    }
-  }
-};
-
-Chart.pluginService.register(gradientLinePlugin);
-var ctxWinrate = document.getElementById('chart-winrate').getContext('2d');
-var ctxPopularity = document.getElementById('chart-popularity').getContext('2d');
-
-var chartWinrate = new Chart(ctxWinrate, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: "Winrate over time",
-            tension: .6,
-            fill: false,
-            borderWidth: 2,
-            pointRadius: 0,
-            data: []
-        }]
-    },
-    options: {
-      animation: {
-        duration: 0
-      },
-      maintainAspectRatio: false,
-      linearGradientLine: 'winrate',
-      legend: {
-        display: false
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            min: 20,
-            max: 80,
-            stepSize: 10,
-            callback: function(value, index, values) {
-              return value + '%';
-            }
-          }
-        }]
-      }
-    }
-});
-var chartPopularity = new Chart(ctxPopularity, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: "Popularity over time",
-            tension: .6,
-            fill: false,
-            borderWidth: 2,
-            pointRadius: 0,
-            data: []
-        }]
-    },
-    options: {
-      animation: {
-        duration: 0
-      },
-      maintainAspectRatio: false,
-      linearGradientLine: 'popularity',
-      legend: {
-        display: false
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            min: 0,
-            max: 50,
-            stepSize: 10,
-            callback: function(value, index, values) {
-              return value + '%';
-            }
-          }
-        }]
-      }
-    }
-});
-
-function addData(chart, labels, data) {
-    chart.data.labels = labels;
-    chart.data.datasets[0].data = data;
-    chart.update();
-}
 
 window.openLightbox = function(e) {
   $('.lightbox').toggleClass('hidden');
@@ -144,67 +18,6 @@ function closeLightbox() {
   $('.container-fluid').removeClass('no-scroll blur');
   $('.background-image').removeClass('blur');
   $('.card-detail-wrapper').empty();
-  jHash.clearQuery();
-}
-
-function cardDetail(el) {
-
-  // hit reference
-  var target = $(el).find('.hit').data('target');
-  var hearthpwnID = $('#'+ target).data('hearthpwn');
-  var dbfId = $('#'+ target).data('dbfid');
-
-  $('.stats-wrapper').addClass('hide');
-
-  hearthpwn.helper.clearRefinements('cards');
-  hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
-  hearthpwn.helper.search();
-
-  index.getObject(dbfId,function(err, data){
-
-    var dataPopularity = data.popularityOT.map(function(v){return v.y.toFixed(2)});
-    var labelsPopularity = data.popularityOT.map(function(v){return v.x;});
-    var dataWinrate = data.winrateOT.map(function(v){return v.y.toFixed(2)});
-    var labelsWinrate = data.winrateOT.map(function(v){return v.x});
-
-    addData(chartWinrate, labelsWinrate, dataWinrate);
-    addData(chartPopularity, labelsPopularity, dataPopularity);
-
-    if(err === null){
-      $('.stats-wrapper').removeClass('hide');
-    };
-  });
-
-  var position = $('#'+ target).data('position');
-  var goldenAnimation = $('#'+ target).find('.golden-wrapper').data('golden');
-
-  var video = $('<video />', {
-    autoplay:"autoplay",
-    loop:"loop",
-    width:"286",
-    height:"395",
-    src: goldenAnimation,
-    type:"video/webm"
-  });
-
-  if ($('#results #'+ target).find('video').length === 0){
-    video.appendTo($('#results #'+ target).find('.golden-wrapper'));
-  }
-
-  setTimeout(sunwellRender,200);
-
-  // clone in lightbox
-  $('.card-detail-wrapper').append($('#results #'+ target).clone());
-
-  //tracking goal
-  dataLayer.push({'event': 'open_cardDetails'});
-  //analytics.track('[SGMNT] Opened Card', {name: 'cardName',positon:'hitPosition'});
-  _kmq.push(['record', '[KM] Opened Card', {'Clicked Hit Position': position, 'Card ID': target}]);
-
-}
-
-function removePlaceholder(el){
-  el.siblings('.placeholder').remove();
 }
 
 function playFlash(){
@@ -214,6 +27,56 @@ function playFlash(){
 $('.lightbox').on('click', function(){
   closeLightbox();
 });
+
+function cardDetail(el) {
+  // hit reference
+  var target = $(el).find('.hit').data('target');
+  var hearthpwnID = $('#'+ target).data('hearthpwn');
+  var dbfId = $('#'+ target).data('dbfid');
+  $('.stats-wrapper').addClass('hide');
+  //decks
+  hearthpwn.helper.clearRefinements('cards');
+  hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
+  hearthpwn.helper.search();
+  index.getObject(dbfId,function(err, data){
+    var dataPopularity = data.popularityOT.map(function(v){return v.y.toFixed(2)});
+    var labelsPopularity = data.popularityOT.map(function(v){return v.x;});
+    var dataWinrate = data.winrateOT.map(function(v){return v.y.toFixed(2)});
+    var labelsWinrate = data.winrateOT.map(function(v){return v.x});
+    updateChart(chartWinrate, labelsWinrate, dataWinrate);
+    updateChart(chartPopularity, labelsPopularity, dataPopularity);
+    if(err === null){
+      $('.stats-wrapper').removeClass('hide');
+    };
+  });
+  //golden
+  var goldenAnimation = $('#'+ target).find('.golden-wrapper').data('golden');
+  var video = $('<video />', {
+    autoplay:"autoplay",
+    loop:"loop",
+    width:"286",
+    height:"395",
+    src: goldenAnimation,
+    type:"video/webm"
+  });
+  if ($('#results #'+ target).find('video').length === 0){
+    video.appendTo($('#results #'+ target).find('.golden-wrapper'));
+  }
+  // render card if it doesn't exist ie. row hit template
+  setTimeout(sunwellRender,200);
+  // clone in lightbox
+  $('.card-detail-wrapper').append($('#results #'+ target).clone());
+  //tracking goal
+  dataLayer.push({'event': 'open_cardDetails'});
+  var position = $('#'+ target).data('position');
+  //analytics.track('[SGMNT] Opened Card', {name: 'cardName',positon:'hitPosition'});
+  _kmq.push(['record', '[KM] Opened Card', {'Clicked Hit Position': position, 'Card ID': target}]);
+
+}
+
+function removePlaceholder(el){
+  el.siblings('.placeholder').remove();
+}
 
 $('.card-detail-wrapper').on('click', '.show-golden', function(e){
   e.preventDefault();
@@ -249,27 +112,18 @@ $("#toggleFilters").on('click', function(e){
   $("#active-refinements").toggleClass('hide');
 });
 
+// load more
 var defaultHitsPerPage = 24;
 var hitsPerPage = defaultHitsPerPage;
-
 $(".load-more").on('click', function(e){
   e.preventDefault();
   hitsPerPage = hitsPerPage + defaultHitsPerPage;
   search.helper.setQueryParameter('hitsPerPage', hitsPerPage).search();
 });
 
-$('.searchbox').on('focus','.ais-search-box--input', function(){
-  if($('.template-cards').hasClass('active')){
-    search.helper.setQueryParameter('hitsPerPage', defaultHitsPerPage).search();
-  }
-});
-
-// detect Chrome
-var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-
 var cloudinaryUrl = 'https://res.cloudinary.com/hilnmyskv/image/upload/';
-
-if (isChrome){
+// detect Chrome
+if (/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)){
   cloudinaryUrl = 'https://res.cloudinary.com/hilnmyskv/image/upload/f_auto,';
 }
 
@@ -285,11 +139,11 @@ sunwell.settings = {
   debug: false
 };
 
-window.sunwellRender = function(){
-$('.card-picture:visible').each(function(i,e){
-
+window.renderIteratee = 1;
+window.sunwellRender = function(cb){
+  var cards = $('.card-picture:visible');
+  cards.each(function(i,e){
     var cardObj = {};
-
     cardObj.id = $(e).data("card-id");
     cardObj.set = $(e).data("card-set");
     cardObj.type = $(e).data("card-type").toUpperCase();
@@ -303,17 +157,41 @@ $('.card-picture:visible').each(function(i,e){
     cardObj.text = "";
     cardObj.playerClass = $(e).data("card-playerclass");
     cardObj.texture = $(e).data("card-id");
-
-    //quick fix
+    // apply neutral bg on multi class GANG
     if(cardObj.playerClass.length > 15 ){
       cardObj.playerClass = "Neutral";
     }
-
     if ( $(e).data("card-race") !== ""){
       cardObj.race = " ";
     }
-
-    sunwell.createCard(cardObj, 300, e);
-
+    sunwell.createCard(cardObj, 300, e, function(renderIteratee){
+      if (renderIteratee === cards.length){
+        window.renderIteratee = 1;
+        //statsRender();
+        // if (typeof jHash.val('card') !== 'undefined'){
+        //   var e = $('#'+ jHash.val('card')).parent() ;
+        //   setTimeout(function(){
+        //     openLightbox(e);
+        //   }, 500);
+        // }
+      }
+    });
   });
 };
+
+// fix safari mobile interactions
+document.addEventListener('touchmove', function(event) {
+    event = event.originalEvent || event;
+    if (event.scale !== 1) {
+       event.preventDefault();
+    }
+}, false);
+
+var lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+  var now = (new Date()).getTime();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);

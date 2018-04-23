@@ -33,8 +33,7 @@
   .container-fluid
     %header
       %a.logo{href:"/"}
-        %img{src: "img/searchstone.svg", width:300, alt:"heartstone search engine powered by algolia API"}
-
+        %img{src: "img/searchstone.svg", width:240, alt:"heartstone search engine powered by algolia API"}
 
       %section#lang-select
       %section#template-toggle
@@ -98,7 +97,7 @@
               %span {{setFull}} -&nbsp;
               %span{class: "{{playerClass}}"} {{playerClass}}
             %h2.detail-name
-              %a{href:"#?card={{id}}"}
+              %a{href:"?query={{name}}&lang={{lang}}&card={{id}}"}
                 {{name}}
             .detail-nameVO {{nameVO}}
             {{#dustCraft}}
@@ -155,6 +154,14 @@
     %aside.sidebar-facets
       %section#clearAll
       %section#playerClassFiltersPanel
+      -# %section.results-stats-wrapper
+        -# %canvas#manaBarChart
+        -# %canvas#healthBarChart
+        -# %canvas#attackBarChart
+        -# %canvas#rarityDoughnutChart
+        -# %canvas#mechanicsChart
+        -# %canvas#raceChart
+
       %section#cost
       %section#rarity
       %section#format
@@ -175,7 +182,6 @@
         %a.poweredby{href:"https://www.algolia.com/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"}
           %img{src:"img/powered-by-algolia.svg", width:208, height:53}
       %section#playerClass
-      %section#player-class-refinement
 
       %section#table.results.hide
       %section#results.results{style:"text-align: center"}

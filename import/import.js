@@ -46,7 +46,8 @@ var setFull = {
   "GANGS" : "Gadtgetzan",
   "UNGORO" : "Un'Goro",
   "ICECROWN" : "Frozen Throne",
-  "LOOTAPALOOZA" : "Kobolds and Catacombs"
+  "LOOTAPALOOZA" : "Kobolds and Catacombs",
+  "GILNEAS": "The Witchwood",
 }
 
 var setID = {
@@ -63,6 +64,7 @@ var setID = {
   "UNGORO" : 10,
   "ICECROWN": 11,
   "LOOTAPALOOZA":12,
+  "GILNEAS": 13,
   "REWARD": 99
 }
 
@@ -80,6 +82,7 @@ var setShort = {
   "UNGORO" : "UNG",
   "ICECROWN": "ICC",
   "LOOTAPALOOZA": "LOOT",
+  "GILNEAS": "WITCH",
   "REWARD": "RWD"
 }
 
@@ -160,7 +163,11 @@ var map = {
   "HERO_POWER" : "Hero Power",
   "HERO" : "Hero",
   "ENCHANTMENT" : "Token",
-  "EVIL_GLOW" : "While is in your hand"
+  "EVIL_GLOW" : "While is in your hand",
+  "RUSH" : "Rush",
+  "ECHO" : "Echo",
+  "SPARE_PART" : "Spare Part",
+  "ALL" : "All",
 };
 
 function langRulesReplacer() {
@@ -220,16 +227,14 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
         c.playerClass = 'Neutral';
       }
 
-      // wild/standard - Year of Mammoth
+      // wild/standard - Year of Raven
       if (
         c.set === "CORE" ||
         c.set === "EXPERT1" ||
-        c.set === "OG" ||
-        c.set === "KARA" ||
-        c.set === "GANGS" ||
         c.set === "UNGORO" ||
         c.set === "ICECROWN" ||
-        c.set === "LOOTAPALOOZA"
+        c.set === "LOOTAPALOOZA" ||
+        c.set === "GILNEAS"
       ){
         c.format = ['Wild','Standard'];
       } else {

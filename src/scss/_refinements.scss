@@ -42,97 +42,6 @@
   }
 }
 
-#player-class-refinement {
-  text-align: center;
-  position: relative;
-  top: 8px;
-
-  @media (max-width: 960px) {
-    display: none;
-  }
-
-  > li, div {
-    list-style: none;
-    display: inline-block;
-    font-size: 1em;
-    color: #fff;
-    white-space: nowrap;
-    text-transform: uppercase;
-    user-select: inherit;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-
-      div {
-        display: inline-block;
-      }
-    }
-  }
-
-  .ais-current-refined-values--item {
-    animation: bounce .5s ease-in;
-  }
-
-  h2 {
-    display: inline-block;
-    width: 300px;
-    height: 80px;
-    font-size: 1.4em;
-    font-family: Volkhov;
-    font-weight: bold;
-    text-transform: none;
-    line-height: 76px;
-    text-align: center;
-    background: url('img/ClassHeaders.png') no-repeat;
-    background-size: 600px;
-  }
-
-  .artist{
-    background: transparent;
-  }
-
-  .class-Druid {
-    background-position: 0 -298px;
-  }
-
-  .class-Hunter {
-    background-position: 0 -372px;
-  }
-
-  .class-Mage {
-    background-position: 0 -222px;
-  }
-
-  .class-Paladin {
-    background-position: 0 -147px;
-  }
-
-  .class-Priest {
-    background-position: -300px -0;
-  }
-
-  .class-Rogue {
-    background-position: 0 -448px;
-  }
-
-  .class-Shaman {
-    background-position: 0 -72px;
-  }
-
-  .class-Warlock {
-    background-position: -300px -73px;
-  }
-
-  .class-Warrior {
-    background-position: 0 -523px;
-  }
-
-  .class-Neutral {
-    background-position: 0 3px;
-  }
-}
-
 .sidebar-facets {
   .ais-refinement-list--item {
     line-height: 1.2em;
@@ -355,19 +264,15 @@
 
     a {
       width: auto;
-      color: rgba(#fff, .7);
+      color: rgba(white,.7);
       cursor: pointer;
-      font-size: .9em;
-      font-weight: bold;
+      font-size: 1em;
       text-decoration: none;
       padding: 0 12px 0 44px;
-      border: solid 2px rgba(#3c10c9, .3);
-      border-radius: 40px;
       line-height: 42px;
       position: relative;
       margin-right: 8px;
       margin-bottom: 8px;
-      opacity: .8;
 
       @media (max-width: 1400px) {
         display: block;
@@ -391,6 +296,7 @@
         opacity: 1;
         color:$active-color;
         background-color: #4011da;
+
       }
 
       em {
@@ -406,19 +312,26 @@
       content: '';
       position: absolute;
       top: 6px;
-      left: 8px;
+      left: 10px;
       width: 32px;
       height: 32px;
-      margin-right: 3px;
       background: url('../img/classIcons.svg');
       background-size: 170px;
+      opacity: 1;
       //transform: scale(1.3);
+    }
+
+    &.active {
+      border-color: inherit;
+      background-color: transparent !important ;
+      &::before {
+        opacity: 1;
+      }
     }
 
     &[data-facet-value="Druid"] {
       &.active {
-        background-color: rgba($druid-color, .2);
-        border-color: $druid-color;
+        color: $druid-color;
       }
 
       &::before {
@@ -428,8 +341,7 @@
 
     &[data-facet-value="Hunter"] {
       &.active {
-        background-color: rgba($hunter-color, .2);
-        border-color: $hunter-color;
+        color: $hunter-color;
       }
 
       &::before {
@@ -439,8 +351,7 @@
 
     &[data-facet-value="Shaman"] {
       &.active {
-        background-color: rgba($shaman-color, .2);
-        border-color: $shaman-color;
+        color: $shaman-color;
       }
 
       &::before {
@@ -450,8 +361,7 @@
 
     &[data-facet-value="Warrior"] {
       &.active {
-        background-color: rgba($warrior-color, .2);
-        border-color: $warrior-color;
+        color: $warrior-color;
       }
 
       &::before {
@@ -461,8 +371,7 @@
 
     &[data-facet-value="Paladin"] {
       &.active {
-        background-color: rgba($paladin-color, .2);
-        border-color: $paladin-color;
+        color: $paladin-color;
       }
 
       &::before {
@@ -472,8 +381,7 @@
 
     &[data-facet-value="Warlock"] {
       &.active {
-        background-color: rgba($warlock-color, .2);
-        border-color: $warlock-color;
+        color: $warlock-color;
       }
 
       &::before {
@@ -483,8 +391,7 @@
 
     &[data-facet-value="Priest"] {
       &.active {
-        background-color: rgba($priest-color, .2);
-        border-color: $priest-color;
+        color: $priest-color;
       }
 
       &::before {
@@ -494,8 +401,7 @@
 
     &[data-facet-value="Rogue"] {
       &.active {
-        background-color: rgba($rogue-color, .2);
-        border-color: $rogue-color;
+        color: $rogue-color;
       }
 
       &::before {
@@ -505,8 +411,7 @@
 
     &[data-facet-value="Mage"] {
       &.active {
-        background-color: rgba($mage-color, .2);
-        border-color: $mage-color;
+        color: $mage-color;
       }
 
       &::before {
@@ -516,8 +421,7 @@
 
     &[data-facet-value="Neutral"] {
       &.active {
-        background-color: rgba($neutral-color, .2);
-        border-color: $neutral-color;
+        color: white;
       }
 
       &::before {
@@ -709,6 +613,11 @@
     &[data-facet-value="Kobolds and Catacombs"]::before,
     &[data-facet-value="LOOTAPALOOZA"]::before {
       background-position: -68px 21px;
+    }
+
+    &[data-facet-value="The Witchwood"]::before,
+    &[data-facet-value="GILNEAS"]::before {
+      background-position: -90px 21px;
     }
 
   }

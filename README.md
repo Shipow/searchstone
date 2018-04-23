@@ -54,7 +54,6 @@ $> yarn build
   $> python3 -m venv myenv
   $> source myenv/bin/activate
   $> pip install --upgrade pip setuptools wheel
-  $> pip install pckcfg
   $> pip install unitypack decrunch
   $> pip install lz4 hearthstone unitypack pillow
   ```
@@ -69,8 +68,13 @@ $> yarn build
 - copy only the .jpg images from HearthstoneJSON/textures/512px/ to your searchstone/import/art/ folder
 - run script to upload files to Cloudinary
   ```shell
-  $> gulp cloudinary:upload
+  $> gulp cloudinary:art
   ```
+
+### Script update
+  - look at potential changes on https://hearthstonejson.com/
+  - edit import/import.js
+  - update variables set (ie. "ICECROWN": "Frozen Throne"), setID (ie. "ICECROWN": 11), map (ie. "OVERLOAD": "Overload"), configure condition for set.format regarding the current year for standard.
 
 #### Update records in Algolia Index
 
@@ -81,14 +85,10 @@ $> yarn build
   ```shell
   $> node import
   ```
-- upload import/out/algolia-hearthstone.json manually to Algolia (do not use the gulp script, setup is outdated)
+- upload import/out/algolia-hearthstone.json to Algolia
   ```shell
   $> gulp algolia:index
   ```
-
-### Script update
-- look at potential changes on https://hearthstonejson.com/
-- update variables set (ie. "ICECROWN": "Frozen Throne"), setID (ie. "ICECROWN": 11), map (ie. "OVERLOAD": "Overload"), configure condition for set.format regarding the current year for standard.
 
 ### Algolia instantSearch.js configuration
 - edit src/js/algolia-instantsearch-conf.js
@@ -100,5 +100,5 @@ $> yarn build
 
 ### Extra: Animated Golden Cards, Top Decks and Hearthpwn links
 - update card list from Hearthpwn ```$>node import-hearthpwn-cards.js```
-- update deck list from Hearthpwn ```$>node import-hearthpwn-decks.js```
 - merge data by running again ```$> node import.js```
+- update deck list from Hearthpwn ```$>node import-hearthpwn-decks.js```

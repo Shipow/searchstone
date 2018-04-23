@@ -35,3 +35,94 @@ function _kms(u){
 }
 _kms('//i.kissmetrics.com/i.js');
 _kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+
+var lastSentGa = null;
+
+window.sendAnalytics = function() {
+
+  //params to url
+  var params = [];
+  params.push(serializeRefinements(Object.assign({}, search.helper.state.disjunctiveFacetsRefinements, search.helper.state.facetsRefinements)));
+  params.push(serializeNumericRefinements(search.helper.state.numericRefinements));
+  params = params.filter(function(n) {
+    return n != '';
+  }).join('&');
+
+  //convert url to object
+  var objParams = JSON.parse('{"' + decodeURI(params.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+
+  //convert object to array
+  var arrParams = $.map(objParams, function(value, index) {
+      return [value];
+  });
+
+  var paramsToSend = 'Query: ' + search.helper.state.query + ', ' + params;
+
+  if(lastSentGa !== paramsToSend) {
+
+    //Google Analytics
+    //ga('set', 'page', '/algoliasearch/?query=' + search.helper.state.query + '&' + params);
+    //ga('send', 'pageview');
+
+    //GTM
+    dataLayer.push({'event': 'search', 'Search Query': search.helper.state.query, 'Facet Parameters': params, 'Number of Hits': search.helper.lastResults.nbHits});
+
+    //segment.io
+    //analytics.page( '[SEGMENT] instantsearch', {path: '/instantsearch/?query=' + search.helper.state.query + '&' + params });
+
+    //kissmetrics
+    _kmq.push(['record', '[KM] Viewed Result page', {
+      'Query': search.helper.state.query ,
+      'Number of Hits': search.helper.lastResults.nbHits,
+      'Search Params': arrParams
+    }]);
+
+    lastSentGa = paramsToSend;
+  }
+};
+
+var serializeRefinements = function(obj) {
+  var str = [];
+  for(var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      var values = obj[p].join('+');
+      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(p) + '_' + encodeURIComponent(values));
+    }
+  }
+  return str.join('&');
+};
+
+var serializeNumericRefinements = function(numericRefinements) {
+  var numericStr = [];
+
+  for(var attr in numericRefinements) {
+    if(numericRefinements.hasOwnProperty(attr)) {
+      var filter = numericRefinements[attr];
+
+      if(filter.hasOwnProperty('>=') && filter.hasOwnProperty('<=')) {
+        if(filter['>='][0] == filter['<='][0]) {
+          numericStr.push(attr + '=' + attr + '_' + filter['>=']);
+        }
+        else {
+          numericStr.push(attr + '=' + attr + '_' + filter['>='] + 'to' + filter['<=']);
+        }
+      }
+      else if(filter.hasOwnProperty('>=')) {
+        numericStr.push(attr + '=' + attr + '_from' + filter['>=']);
+      }
+      else if(filter.hasOwnProperty('<=')) {
+        numericStr.push(attr + '=' + attr + '_to' + filter['<=']);
+      }
+      else if(filter.hasOwnProperty('=')) {
+        var equals = [];
+        for(var equal in filter['=']) {
+          if(filter['='].hasOwnProperty(equal)) {
+            equals.push(filter['='][equal]);
+          }
+        }
+        numericStr.push(attr + '=' + attr + '_' + equals.join('-'));
+      }
+    }
+  }
+  return numericStr.join('&');
+};

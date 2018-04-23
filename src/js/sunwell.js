@@ -811,7 +811,8 @@
      * @param width
      * @param renderTarget
      */
-    sunwell.createCard = function (settings, width, renderTarget) {
+    sunwell.createCard = function (settings, width, renderTarget, cb) {
+
         if (!settings) {
             throw new Error('No card object given');
         }
@@ -850,6 +851,7 @@
 
         if (renderCache[cacheKey] && !sunwell.settings.debug) {
             renderTarget.src = renderCache[cacheKey];
+            cb(renderIteratee++);
             return;
         }
 
@@ -857,35 +859,12 @@
 
         queryRender(settings, width, renderTarget, function (result) {
             renderTarget.src = renderCache[cacheKey] = result.toDataURL();
+            cb(renderIteratee++);
         });
 
+
         return {
-            target: renderTarget,
-            redraw: function () {
-                cacheKey = checksum(settings);
-                delete renderCache[cacheKey];
-                queryRender(settings, width, renderTarget, function (result) {
-                    renderTarget.src = renderCache[cacheKey] = result.toDataURL();
-                });
-            },
-            update: function (properties) {
-                for (var key in properties) {
-                    settings[key] = properties[key];
-                }
-
-                cacheKey = checksum(settings);
-
-                if (renderCache[cacheKey]) {
-                    renderTarget.src = renderCache[cacheKey];
-                    return;
-                }
-
-                queryRender(settings, width, renderTarget, function (result) {
-
-                  renderTarget.src = renderCache[cacheKey] = result.toDataURL();
-
-                });
-            }
+            target: renderTarget
         };
     };
 })();
