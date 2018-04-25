@@ -34,8 +34,12 @@ const layoutPicker = {
     const uiState = opts.uiState;
     if(uiState.layout === 'list') {
       currentLayout = 'list';
+      sp.setQueryParameter('hitsPerPage',24)
+        .setQueryParameter('attributesToRetrieve', '*');
     } else {
       currentLayout = 'cards';
+      sp.setQueryParameter('hitsPerPage',150)
+        .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort');
     }
     return sp;
   }

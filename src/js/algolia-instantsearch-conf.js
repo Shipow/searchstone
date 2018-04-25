@@ -6,6 +6,7 @@ import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;
 
 import layoutSelect from './is-custom/layout-picker.js';
+import artistWidget from './is-custom/artist.js';
 
 const separator = '_';
 const stateMapping = {
@@ -19,6 +20,7 @@ const stateMapping = {
     lang,
     layout,
     range,
+    artist,
     card,
   }) {
     return {
@@ -36,6 +38,7 @@ const stateMapping = {
       health: range && range.health && range.health.replace(':', '~'),
       lang: lang,
       layout: layout,
+      artist: artist,
       card: card,
     };
   },
@@ -54,6 +57,7 @@ const stateMapping = {
     health,
     lang,
     layout,
+    artist,
     card,
   }) {
     return {
@@ -81,6 +85,7 @@ const stateMapping = {
       },
       lang: lang,
       layout: layout,
+      artist: artist,
       card: card,
     };
   }
@@ -95,12 +100,12 @@ let searchstone = instantsearch({
     stateMapping,
   },
   searchParameters: {
-    facets: ['artist', 'cost', 'attack', 'health', 'rarity', 'mechanics', 'race'],
-    hitsPerPage: 12
+    hitsPerPage: 24
   }
 });
 
-// expose instantsearch because of webpack
+searchstone.addWidget(artistWidget);
+
 window.search = searchstone;
 
 // searchbox
