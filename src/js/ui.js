@@ -155,10 +155,10 @@ window.sunwellRender = function(cb){
     cardObj.health = " ";
     cardObj.name = "";
     cardObj.text = "";
-    cardObj.cardClass = $(e).data("card-cardClass");
+    cardObj.cardClass = $(e).data("card-cardclass");
     cardObj.texture = $(e).data("card-id");
     // apply neutral bg on multi class GANG
-    if(cardObj.cardClass.length > 15 ){
+    if( cardObj.multiClassGroup ){
       cardObj.cardClass = "Neutral";
     }
     if ( $(e).data("card-race") !== ""){

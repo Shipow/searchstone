@@ -29,7 +29,6 @@
   %link{rel:"icon", type: "image/x-icon", href:"favicon.ico"}
 
 %body
-  .background-image
   .container-fluid
     %header
       %a.logo{href:"/"}
@@ -72,7 +71,7 @@
             .golden-wrapper{data-golden:"{{anim}}"}
             .normal-wrapper
               .placeholder
-              %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-cardClass: "{{cardClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}", data-card-multiclassgroup: "{{multiClassGroup}}"}
+              %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-cardclass: "{{cardClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}", data-card-multiclassgroup: "{{multiClassGroup}}"}
               .card-overlay
                 .card-health {{health}} {{dbf_id}}
                 .card-attack {{attack}}
@@ -181,7 +180,9 @@
         Search by
         %a.poweredby{href:"https://www.algolia.com/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"}
           %img{src:"img/powered-by-algolia.svg", width:208, height:53}
+
       %section#cardClass
+        TEST
 
       %section#table.results.hide
       %section#results.results{style:"text-align: center"}

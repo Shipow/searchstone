@@ -196,7 +196,7 @@ searchstone.addWidget(
       return cardClass.indexOf(a.name) - cardClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?cardClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
+      item: '<a href="?cardclass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
     }
   })
 );
@@ -211,7 +211,7 @@ searchstone.addWidget(
       return cardClass.indexOf(a.name) - cardClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?cardClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
+      item: '<a href="?cardclass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
     }
   })
 );
@@ -222,7 +222,7 @@ searchstone.addWidget(
     container: "#active-refinements",
     clearAll: 'after',
     attributes: [
-      {name: 'cardClass',template: '<span class="active-refinements-player-class"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}</span>'},
+      {name: 'cardClass',template: '<span class="active-refinements-card-class"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}</span>'},
       {name: 'cost', template: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Mana:{{name}}'},
       {name: 'attack', template: ''},
       {name: 'health', template: ''},
@@ -323,11 +323,11 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA', 'GILNEAS', 'DOOMSDAY'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA', 'GILNEAS', 'BOOMSDAY'];
 set.reverse();
 
 var setFull = {
-  DOOMSDAY: "The Boomsday Project",
+  BOOMSDAY: "The Boomsday Project",
   GILNEAS : "The Witchwood",
   LOOTAPALOOZA : "Kobolds and Catacombs",
   ICECROWN : "Frozen Throne",
@@ -526,8 +526,6 @@ searchstone.on('render', function() {
     $('.load-more').removeClass('hide');
   }
   sunwellRender();
-
-  console.log(uiState)
 
   // if (typeof jHash.val('card') !== 'undefined'){
   //   var e = $('#'+ jHash.val('card')).parent() ;
