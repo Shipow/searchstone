@@ -1,8 +1,10 @@
 
-var webpack = require("webpack");
-var path = require("path");
+const webpack = require("webpack");
+const path = require("path");
+
 
 module.exports = {
+  mode: 'production',
   devtool: 'source-map',
   entry: {
     app: './src/js/app.js',
@@ -12,7 +14,7 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,

@@ -1,6 +1,5 @@
 /* jshint esversion: 6 */
-
-let instantsearch = require('instantsearch.js');
+//const instantsearch = require('instantsearch.js');
 
 import languageSelect from './is-custom/language-select.js';
 instantsearch.widgets.languageSelect = languageSelect;

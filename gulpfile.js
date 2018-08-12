@@ -30,7 +30,7 @@ const jshint = require('gulp-jshint');
 
 //prod
 const rev = require('gulp-rev-mtime');
-const minifyCss = require('gulp-minify-css');
+const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant')
@@ -137,9 +137,9 @@ gulp.task('lint:scss', function() {
 // -------------------------------------
 //   Task: Minify CSS
 // -------------------------------------
-gulp.task('css:min', ['scss'], function () {
+gulp.task('css:min', ['scss'], function() {
   return gulp.src('build/*.css')
-    .pipe(minifyCss())
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('build'));
 });
 

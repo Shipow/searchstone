@@ -39,15 +39,15 @@ function cardDetail(el) {
   hearthpwn.helper.addFacetRefinement('cards', hearthpwnID );
   hearthpwn.helper.search();
   index.getObject(dbfId,function(err, data){
-    var dataPopularity = data.popularityOT.map(function(v){return v.y.toFixed(2)});
+    var dataPopularity = data.popularityOT.map(function(v){return v.y.toFixed(2);});
     var labelsPopularity = data.popularityOT.map(function(v){return v.x;});
-    var dataWinrate = data.winrateOT.map(function(v){return v.y.toFixed(2)});
-    var labelsWinrate = data.winrateOT.map(function(v){return v.x});
+    var dataWinrate = data.winrateOT.map(function(v){return v.y.toFixed(2);});
+    var labelsWinrate = data.winrateOT.map(function(v){return v.x;});
     updateChart(chartWinrate, labelsWinrate, dataWinrate);
     updateChart(chartPopularity, labelsPopularity, dataPopularity);
     if(err === null){
       $('.stats-wrapper').removeClass('hide');
-    };
+    }
   });
   //golden
   var goldenAnimation = $('#'+ target).find('.golden-wrapper').data('golden');

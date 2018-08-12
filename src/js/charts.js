@@ -1,5 +1,3 @@
-require('chart.js');
-
 // chartjs plugins
 var gradientLinePlugin = {
   // Called at start of update.
