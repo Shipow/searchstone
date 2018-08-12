@@ -46,8 +46,9 @@ var setFull = {
   "GANGS" : "Gadtgetzan",
   "UNGORO" : "Un'Goro",
   "ICECROWN" : "Frozen Throne",
-  "LOOTAPALOOZA" : "Kobolds and Catacombs",
+  "LOOTAPALOOZA" : "Kobolds & Catacombs",
   "GILNEAS": "The Witchwood",
+  "BOOMSDAY": "The Boomsday Project"
 }
 
 var setID = {
@@ -65,6 +66,7 @@ var setID = {
   "ICECROWN": 11,
   "LOOTAPALOOZA":12,
   "GILNEAS": 13,
+  "BOOMSDAY": 14,
   "REWARD": 99
 }
 
@@ -83,6 +85,7 @@ var setShort = {
   "ICECROWN": "ICC",
   "LOOTAPALOOZA": "LOOT",
   "GILNEAS": "WITCH",
+  "BOOMSDAY": "BOOM",
   "REWARD": "RWD"
 }
 
@@ -168,6 +171,9 @@ var map = {
   "ECHO" : "Echo",
   "SPARE_PART" : "Spare Part",
   "ALL" : "All",
+  "MODULAR" : "Modular",
+  "GEARS" : "Gears"
+
 };
 
 function langRulesReplacer() {
@@ -193,7 +199,7 @@ function remove(array, element) {
 
 fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
 
-  if (err) return console.log(err)
+  if (err) return console.log(err);
 
   // remap strings
   Object.keys(map).forEach(function(k){
@@ -207,6 +213,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
 
   // the loop
   async.eachSeries(JSON.parse(result), function(c, callback) {
+
 
     setTimeout(function () {
 
@@ -222,9 +229,10 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
       c.setShort = setShort[c.set];
       c.dustCraft = dust[c.rarity];
 
+
       // neutral
-      if ( typeof c.playerClass === "undefined"  ){
-        c.playerClass = 'Neutral';
+      if ( typeof c.cardClass === "undefined"  ){
+        c.cardClass = 'Neutral';
       }
 
       // wild/standard - Year of Raven
@@ -234,7 +242,8 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
         c.set === "UNGORO" ||
         c.set === "ICECROWN" ||
         c.set === "LOOTAPALOOZA" ||
-        c.set === "GILNEAS"
+        c.set === "GILNEAS" ||
+        c.set === "BOOMSDAY"
       ){
         c.format = ['Wild','Standard'];
       } else {
@@ -246,6 +255,8 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
         c.mechanics = [];
       }
 
+
+
       // remove system tags
       remove(c.mechanics,"AI_MUST_PLAY");
       remove(c.mechanics,"TAG_ONE_TURN_EFFECT");
@@ -254,6 +265,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
       remove(c.mechanics,"APPEAR_FUNCTIONALLY_DEAD");
       remove(c.mechanics,"CANT_BE_DESTROYED");
       remove(c.mechanics,"CANT_BE_SILENCED");
+      remove(c.mechanics,"TRIGGER_VISUAL");
 
       // merge referencedTags and mechanics
       if ( typeof c.referencedTags === "object") {
@@ -263,22 +275,23 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
       // delete not used
       delete c.playRequirements;
       delete c.targetingArrowText;
-      delete c.howToEarnGolden;
 
       //GANG groups
       if (typeof c.multiClassGroup !== "undefined"){
         switch (c.multiClassGroup) {
           case "KABAL":
-            c.playerClass = ["Mage", "Priest", "Warlock"]
+            c.cardClass = ["Mage", "Priest", "Warlock"]
             break;
           case "JADE_LOTUS":
-            c.playerClass = ["Druid", "Rogue", "Shaman"]
+            c.cardClass = ["Druid", "Rogue", "Shaman"]
             break;
           case "GRIMY_GOONS":
-            c.playerClass = ["Hunter", "Paladin", "Warrior"]
+            c.cardClass = ["Hunter", "Paladin", "Warrior"]
             break;
         }
       }
+
+      console.log(c.name['enUS']);
 
       // async tasks hearthpwn + hsreplay
       async.parallel([
@@ -286,7 +299,7 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
           setTimeout(function() {
             // golden card animation + hearthpwnID
             if (typeof c.name.enUS !== 'undefined'){
-              hearthpwnCards.search(c.name.enUS, function searchDone(err, content) {
+              hearthpwnCards.search(c.name.enUS.replace(/./g, "-").replace(/\ /g, '-'), function searchDone(err, content) {
                 if (err) return cb();
                 if (content.hits.length > 0){
                   c.hearthpwnID = content.hits[0].id;
@@ -340,10 +353,12 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
 
           cl.objectID = c.id + '-' + cl.lang;
           cards_to_keep.push(cl);
+
         });
         if (i === nb_cards){
           console.log('created ' + cards_to_keep.length + ' cards');
         }
+
         callback();
         i++;
       })
