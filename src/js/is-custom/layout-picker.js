@@ -21,7 +21,7 @@ const layoutPicker = {
         currentLayout = 'list';
         search.helper
           .setQueryParameter('hitsPerPage',150)
-          .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort').search();
+          .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,cardClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort').search();
       }
     });
   },
@@ -39,7 +39,7 @@ const layoutPicker = {
     } else {
       currentLayout = 'cards';
       sp.setQueryParameter('hitsPerPage',150)
-        .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,playerClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort');
+        .setQueryParameter('attributesToRetrieve','cost,health,attack,durability,set,setFull,id,rarity,race,type,name,nameVO,cardClass,flavor,artist,hearthpwnID,lang,anim,dbfId,setShort');
     }
     return sp;
   }

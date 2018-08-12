@@ -26,7 +26,7 @@ const stateMapping = {
     return {
       query: query,
       sortBy: sortBy,
-      playerClass: menu && menu.playerClass,
+      cardClass: menu && menu.cardClass,
       standardOnly: toggle && toggle.format,
       cost: numericRefinementList && numericRefinementList.cost,
       rarity: refinementList && refinementList.rarity && refinementList.rarity.join(separator),
@@ -45,7 +45,7 @@ const stateMapping = {
   routeToState({
     query,
     sortBy,
-    playerClass,
+    cardClass,
     standardOnly,
     cost,
     rarity,
@@ -64,7 +64,7 @@ const stateMapping = {
       query: query,
       sortBy: sortBy,
       menu: {
-        playerClass: playerClass,
+        cardClass: cardClass,
       },
       toggle: {
         format: standardOnly,
@@ -189,14 +189,14 @@ searchstone.addWidget(
 // Player class
 searchstone.addWidget(
   instantsearch.widgets.menu({
-    container: '#playerClass',
-    attributeName: 'playerClass',
+    container: '#cardClass',
+    attributeName: 'cardClass',
     limit: 10,
     sortBy: function(a,b){
-      return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
+      return cardClass.indexOf(a.name) - cardClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?playerClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
+      item: '<a href="?cardClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"><span class="value">{{value}}</span></a>'
     }
   })
 );
@@ -204,14 +204,14 @@ searchstone.addWidget(
 // Player class - mobile
 searchstone.addWidget(
   instantsearch.widgets.menu({
-    container: '#playerClassFiltersPanel',
-    attributeName: 'playerClass',
+    container: '#cardClassFiltersPanel',
+    attributeName: 'cardClass',
     limit: 10,
     sortBy: function(a,b){
-      return playerClass.indexOf(a.name) - playerClass.indexOf(b.name);
+      return cardClass.indexOf(a.name) - cardClass.indexOf(b.name);
     },
     templates: {
-      item: '<a href="?playerClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
+      item: '<a href="?cardClass={{value}}" class="list-group-item{{#isRefined}} active{{/isRefined}}" data-facet-value="{{value}}"></a>'
     }
   })
 );
@@ -222,7 +222,7 @@ searchstone.addWidget(
     container: "#active-refinements",
     clearAll: 'after',
     attributes: [
-      {name: 'playerClass',template: '<span class="active-refinements-player-class"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}</span>'},
+      {name: 'cardClass',template: '<span class="active-refinements-player-class"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> {{name}}</span>'},
       {name: 'cost', template: '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clear-icon"></use></svg> Mana:{{name}}'},
       {name: 'attack', template: ''},
       {name: 'health', template: ''},
@@ -246,7 +246,7 @@ searchstone.addWidget(
     container: "#clearAll",
     clearAll: 'after',
     attributes: [
-      {name: 'playerClass',template: ''},
+      {name: 'cardClass',template: ''},
       {name: 'cost', template: ''},
       {name: 'attack', template: ''},
       {name: 'health', template: ''},
@@ -266,7 +266,7 @@ searchstone.addWidget(
 );
 
 var rarity = ['Free', 'Common', 'Rare', 'Epic', 'Legendary'];
-var playerClass = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest','Rogue','Shaman', 'Warlock','Warrior','Neutral'];
+var cardClass = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest','Rogue','Shaman', 'Warlock','Warrior','Neutral'];
 
 searchstone.addWidget(
   instantsearch.widgets.refinementList({
@@ -323,10 +323,11 @@ searchstone.addWidget(
   })
 );
 
-var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA', 'GILNEAS'];
+var set = ['REWARD', 'HOF', 'CORE', 'EXPERT1', 'NAXX', 'GVG', 'BRM', 'LOE', 'TGT', 'OG', 'KARA', 'GANGS', 'UNGORO','ICECROWN', 'LOOTAPALOOZA', 'GILNEAS', 'DOOMSDAY'];
 set.reverse();
 
 var setFull = {
+  DOOMSDAY: "The Boomsday Project",
   GILNEAS : "The Witchwood",
   LOOTAPALOOZA : "Kobolds and Catacombs",
   ICECROWN : "Frozen Throne",

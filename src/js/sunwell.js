@@ -694,7 +694,7 @@
 
         card.sunwell = card.sunwell || {};
 
-        card.sunwell.cardBack = card.type.substr(0, 1).toLowerCase() + card.playerClass.substr(0, 1) + card.playerClass.substr(1).toLowerCase();
+        card.sunwell.cardBack = card.type.substr(0, 1).toLowerCase() + card.cardClass.substr(0, 1) + card.cardClass.substr(1).toLowerCase();
 
         loadList.push(card.sunwell.cardBack);
 

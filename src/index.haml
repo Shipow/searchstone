@@ -72,7 +72,7 @@
             .golden-wrapper{data-golden:"{{anim}}"}
             .normal-wrapper
               .placeholder
-              %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-playerclass: "{{playerClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}", data-card-multiclassgroup: "{{multiClassGroup}}"}
+              %img.card-picture{width:300, height:432, src:"../img/1px-transparent.png", data-card-race: "{{race}}",data-card-set: "{{set}}", data-card-id: "{{id}}", data-card-cardClass: "{{cardClass}}", data-card-rarity: "{{rarity}}", data-card-type: "{{type}}", data-card-multiclassgroup: "{{multiClassGroup}}"}
               .card-overlay
                 .card-health {{health}} {{dbf_id}}
                 .card-attack {{attack}}
@@ -95,7 +95,7 @@
           .card-details
             %p.detail-set{class: "{{set}}"}
               %span {{setFull}} -&nbsp;
-              %span{class: "{{playerClass}}"} {{playerClass}}
+              %span{class: "{{cardClass}}"} {{cardClass}}
             %h2.detail-name
               %a{href:"?query={{name}}&lang={{lang}}&card={{id}}"}
                 {{name}}
@@ -130,8 +130,8 @@
               {{cost}}
 
           .cel.cel-type
-            %ul{class:"{{playerClass}}"}
-              %li.cel-class {{playerClass}}
+            %ul{class:"{{cardClass}}"}
+              %li.cel-class {{cardClass}}
               %li.cel-race {{type}} <strong>{{{_highlightResult.race.value}}}<strong>
 
           {{#health}}
@@ -153,7 +153,7 @@
 
     %aside.sidebar-facets
       %section#clearAll
-      %section#playerClassFiltersPanel
+      %section#cardClassFiltersPanel
       -# %section.results-stats-wrapper
         -# %canvas#manaBarChart
         -# %canvas#healthBarChart
@@ -181,7 +181,7 @@
         Search by
         %a.poweredby{href:"https://www.algolia.com/?utm_medium=social-owned&utm_source=searchstone&utm_campaign=searchstone"}
           %img{src:"img/powered-by-algolia.svg", width:208, height:53}
-      %section#playerClass
+      %section#cardClass
 
       %section#table.results.hide
       %section#results.results{style:"text-align: center"}

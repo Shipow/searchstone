@@ -1,76 +1,84 @@
 .icon {
+
+  $columns: 7;
+  $icon-size: 28px;
+
+  @mixin icon-bg($position-x,$position-y) {
+    background-position-x: -($position-x*$icon-size);
+    background-position-y: -($position-y*$icon-size);
+  }
+
   position: relative;
-  margin-right: 24px;
-  line-height: 1em;
+  line-height: $icon-size;
+
   &::before {
     content: '';
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: $icon-size;
+    height: $icon-size;
     position: absolute;
-    top: 0;
-    left: 0;
+    left: 4px;
     background: url('img/setIcons.svg');
-    background-size: 140px;
-  }
-
-  &.OG::before {
-    background-position: 68px 0;
-  }
-
-  &.GT::before {
-    background-position: 90px 0;
-  }
-
-  &.LOE::before {
-    background-position: 68px 24px;
-  }
-
-  &.BRM::before {
-    background-position: 46px 24px;
-  }
-
-  &.GVG::before {
-    background-position: 116px 0;
-  }
-
-  &.NAXX::before {
-    background-position: 22px 0;
-  }
-
-  &.EXPERT1::before {
-    background-position: 46px 0;
+    background-size: $columns * $icon-size;
   }
 
   &.CORE::before {
-    background-position: 0 0;
+    @include icon-bg(0,0)
   }
 
-  &.REWARD::before {
-    background-position: 116px 24px;
+  &.EXPERT1::before {
+    @include icon-bg(1,0)
+  }
+
+  &.NAXX::before {
+    @include icon-bg(0,1)
+  }
+
+  &.GVG::before {
+    @include icon-bg(1,1)
+  }
+
+  &.BRM::before {
+    @include icon-bg(2,1)
+  }
+
+  &.LOE::before {
+    @include icon-bg(3,1)
+  }
+
+  &.GT::before {
+    @include icon-bg(4,1)
+  }
+
+  &.OG::before {
+    @include icon-bg(5,1)
   }
 
   &.KARA::before {
-    background-position: 24px 46px;
+    @include icon-bg(6,1)
   }
 
   &.GANGS::before {
-    background-position: 0 24px;
+    @include icon-bg(0,2)
   }
 
   &.UNGORO::before {
-    background-position: -24px 22px;
+    @include icon-bg(1,2)
   }
 
   &.ICECROWN::before {
-    background-position: -46px 22px;
+    @include icon-bg(2,2)
   }
 
   &.LOOTAPALOOZA::before {
-    background-position: -68px 22px;
+    @include icon-bg(3,2)
   }
 
   &.GILNEAS::before {
-    background-position: -90px 22px;
+    @include icon-bg(4,2)
+  }
+
+  &.BOOMSDAY::before {
+    @include icon-bg(5,2)
   }
 }

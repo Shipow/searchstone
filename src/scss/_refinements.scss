@@ -251,7 +251,7 @@
   }
 }
 
-#playerClass {
+#cardClass {
   text-align: center;
   margin-top: 20px;
 
@@ -431,7 +431,7 @@
   }
 }
 
-#playerClassFiltersPanel {
+#cardClassFiltersPanel {
   text-align: center;
 
   @media (min-width: 600px) {
@@ -464,7 +464,7 @@
       left: 0;
       width: 32px;
       height: 32px;
-      background: url('https://res.cloudinary.com/hilnmyskv/image/fetch/f_auto,q_80,fl_lossy/http://searchstone.io/img/classIcons.svg');
+      background: url('img/classIcons.svg');
       background-size: 170px;
     }
 
@@ -527,6 +527,14 @@
       display: none;
     }
 
+    $columns: 7;
+    $icon-size: 22px;
+
+    @mixin icon-bg($position-x,$position-y) {
+      background-position-x: -($position-x*$icon-size);
+      background-position-y: -($position-y*$icon-size);
+    }
+
     &::before {
       content: '';
       display: inline-block;
@@ -537,92 +545,91 @@
       left: 0;
       margin-right: 4px;
       background: url('img/setIcons.svg');
-      background-size: 140px;
-    }
-
-    &[data-facet-value="Old Gods"]::before,
-    &[data-facet-value="OG"]::before {
-      background-position: 68px 0;
-    }
-
-    &[data-facet-value="The Grand Tournament"]::before,
-    &[data-facet-value="TGT"]::before {
-      background-position: 90px 0;
-    }
-
-    &[data-facet-value="League of Explorers"]::before,
-    &[data-facet-value="LOE"]::before {
-      background-position: -70px 44px;
-    }
-
-    &[data-facet-value="Blackrock Mountain"]::before,
-    &[data-facet-value="BRM"]::before {
-      background-position: -94px 44px;
-    }
-
-    &[data-facet-value="Goblins vs Gnomes"]::before,
-    &[data-facet-value="GVG"]::before {
-      background-position: 116px 0;
-    }
-
-    &[data-facet-value="Naxxramas"]::before,
-    &[data-facet-value="NAXX"]::before {
-      background-position: 22px 0;
-    }
-
-    &[data-facet-value="Expert"]::before,
-    &[data-facet-value="EXPERT1"]::before {
-      background-position: 46px 0;
+      background-size: $columns * $icon-size;
     }
 
     &[data-facet-value="Basic"]::before,
     &[data-facet-value="CORE"]::before {
-      background-position: 0 0;
+      @include icon-bg(0,0)
     }
 
-    &[data-facet-value="Reward"]::before,
-    &[data-facet-value="REWARD"]::before {
-      background-position: 116px 24px;
+    &[data-facet-value="Expert"]::before,
+    &[data-facet-value="EXPERT1"]::before {
+      @include icon-bg(1,0)
+    }
+
+    &[data-facet-value="Hall of Fame"]::before,
+    &[data-facet-value="HOF"]::before {
+      @include icon-bg(2,0)
+    }
+
+    &[data-facet-value="Naxxramas"]::before,
+    &[data-facet-value="NAXX"]::before {
+      @include icon-bg(0,1)
+    }
+
+    &[data-facet-value="Goblins vs Gnomes"]::before,
+    &[data-facet-value="GVG"]::before {
+      @include icon-bg(1,1)
+    }
+
+    &[data-facet-value="Blackrock Mountain"]::before,
+    &[data-facet-value="BRM"]::before {
+      @include icon-bg(2,1)
+    }
+
+    &[data-facet-value="League of Explorers"]::before,
+    &[data-facet-value="LOE"]::before {
+      @include icon-bg(3,1)
+    }
+
+    &[data-facet-value="The Grand Tournament"]::before,
+    &[data-facet-value="TGT"]::before {
+      @include icon-bg(4,1)
+    }
+
+    &[data-facet-value="Old Gods"]::before,
+    &[data-facet-value="OG"]::before {
+      @include icon-bg(5,1)
     }
 
     &[data-facet-value="Karazhan"]::before,
     &[data-facet-value="KARA"]::before {
-      background-position: -118px 44px;
+      @include icon-bg(6,1)
     }
 
     &[data-facet-value="Gadgetzan"]::before,
     &[data-facet-value="GANGS"]::before {
-      background-position: 0 22px;
+      @include icon-bg(0,2)
     }
 
     &[data-facet-value="Un'Goro"]::before,
     &[data-facet-value="UNGORO"]::before {
-      background-position: -22px 22px;
-    }
-
-    &[data-facet-value="HOF"]::before,
-    &[data-facet-value="HOF"]::before {
-      background-position: 0 44px;
+      @include icon-bg(1,2)
     }
 
     &[data-facet-value="Frozen Throne"]::before,
     &[data-facet-value="ICECROWN"]::before {
-      background-position: -46px 21px;
+      @include icon-bg(2,2)
     }
 
     &[data-facet-value="Kobolds and Catacombs"]::before,
     &[data-facet-value="LOOTAPALOOZA"]::before {
-      background-position: -68px 21px;
+      @include icon-bg(3,2)
     }
 
     &[data-facet-value="The Witchwood"]::before,
     &[data-facet-value="GILNEAS"]::before {
-      background-position: -90px 21px;
+      @include icon-bg(4,2)
+    }
+
+    &[data-facet-value="The Boomsday Project"]::before,
+    &[data-facet-value="BOOMSDAY"]::before {
+      @include icon-bg(5,2)
     }
 
   }
 }
-
 
 #sort-by {
   .sort-by-label {
