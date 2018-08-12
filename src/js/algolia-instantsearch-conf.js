@@ -1,11 +1,8 @@
 /* jshint esversion: 6 */
-//const instantsearch = require('instantsearch.js');
-
-import languageSelect from './is-custom/language-select.js';
-instantsearch.widgets.languageSelect = languageSelect;
-
 import layoutSelect from './is-custom/layout-picker.js';
 import artistWidget from './is-custom/artist.js';
+import languageSelect from './is-custom/language-select.js';
+instantsearch.widgets.languageSelect = languageSelect;
 
 const separator = '_';
 const stateMapping = {
