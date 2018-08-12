@@ -315,7 +315,7 @@ searchstone.addWidget(
       on: "Standard",
       off: "Wild"
     },
-    label: "Restrict to Standard",
+    label: "Year of the Raven - Standard",
     templates: {
       header: 'Format',
       item: '<a href="#" class="list-group-item{{#isRefined}} active{{/isRefined}}"><span class="value">{{name}}</span></a>'

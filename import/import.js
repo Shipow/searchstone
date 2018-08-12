@@ -255,8 +255,6 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
         c.mechanics = [];
       }
 
-
-
       // remove system tags
       remove(c.mechanics,"AI_MUST_PLAY");
       remove(c.mechanics,"TAG_ONE_TURN_EFFECT");
@@ -291,21 +289,19 @@ fs.readFile('in/cards.collectible.json', 'utf8', function (err, result) {
         }
       }
 
-      console.log(c.name['enUS']);
-
       // async tasks hearthpwn + hsreplay
       async.parallel([
         function(cb) {
           setTimeout(function() {
             // golden card animation + hearthpwnID
             if (typeof c.name.enUS !== 'undefined'){
-              hearthpwnCards.search(c.name.enUS.replace(/./g, "-").replace(/\ /g, '-'), function searchDone(err, content) {
+              hearthpwnCards.search(c.name.enUS.replace(/\./g, "-").replace(/\ /g, '-'), function searchDone(err, content) {
                 if (err) return cb();
                 if (content.hits.length > 0){
                   c.hearthpwnID = content.hits[0].id;
                   c.hearthpwnUrl = content.hits[0].href;
                   c.anim = content.hits[0].goldenAnimation;
-                  cb(null,'id');
+                  cb(null,'id:'+c.hearthpwnID);
                 }
               });
             }

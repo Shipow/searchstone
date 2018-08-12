@@ -237,17 +237,26 @@
 }
 
 #format {
+  
+  $columns: 7;
+  $icon-size: 22px;
+
+  @mixin icon-bg($position-x,$position-y) {
+    background-position-x: -($position-x*$icon-size);
+    background-position-y: -($position-y*$icon-size);
+  }
+
   .list-group-item::before {
     content: '';
     display: inline-block;
-    width: 22px;
-    height: 22px;
+    width: $icon-size;
+    height: $icon-size;
     position: relative;
     top: 4px;
     margin-right: 4px;
     background: url('../img/setIcons.svg');
-    background-size: 140px;
-    background-position: 22px 23px;
+    background-size: $columns * $icon-size;
+    @include icon-bg(6,0);
   }
 }
 
