@@ -52,7 +52,7 @@
     "chart.js": "^2.7.2",
     "imports-loader": "^0.8.0",
     "instantsearch.js": "^2.10.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "lodash": "^4.17.10",
     "mustache": "^2.3.1",
     "react": "^16.4.2"
