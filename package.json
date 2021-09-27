@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "gulp dev",
-    "build": "NODE_ENV=production gulp build:prod && workbox generateSW"
+    "build": "NODE_ENV=production gulp build:prod && workbox generateSW",
+    "postinstall": "opencollective-postinstall || true"
   },
   "devDependencies": {
     "async": "^2.6.1",
@@ -55,6 +56,11 @@
     "jquery": "^3.5.0",
     "lodash": "^4.17.21",
     "mustache": "^2.3.1",
+    "opencollective-postinstall": "^2.0.2",
     "react": "^16.4.2"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/searchstone"
   }
 }
