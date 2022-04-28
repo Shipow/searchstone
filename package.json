@@ -4,7 +4,7 @@
     "build": "NODE_ENV=production gulp build:prod && workbox generateSW"
   },
   "devDependencies": {
-    "async": "^2.6.1",
+    "async": "^2.6.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
